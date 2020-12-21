@@ -12,11 +12,11 @@ client.on('ready', () => {
 
 client.on('message', (message) => {
     if (message.author.bot) return;
-
+    var content = message.content.toLowerCase();
     //simple replies
 
 
-    if (message.content === 'is harry hot') {
+    if (content === 'is harry hot') {
         message.channel.send('Harry is extremely hot');
     }
 
@@ -26,13 +26,13 @@ client.on('message', (message) => {
         'Pritten patil picked the wrong baby when adopting', 'Rey has big boobies',
         'Rey is a stinky', 'Rey is a curry muncher', 'Rey shoots up orphanages', 'Rey watched 300 naruto episodes in a week',
         'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud'];
-    if (message.content.substring(0, 3) === 'rey') {
+    if (content.substring(0, 3) === 'rey') {
         message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
 
     //prefixes
-    if (message.content.startsWith(PREFIX)) {
-        const [CMD_NAME, ...args] = message.content
+    if (content.startsWith(PREFIX)) {
+        const [CMD_NAME, ...args] = content
             .trim()
             .substring(PREFIX.length)
             .split(/\s+/);
