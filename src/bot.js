@@ -30,10 +30,6 @@ client.on('message', (message) => {
         message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
 
-    if (message.content === 'whats my dick length') {
-        message.reply(`your dick is ${message.author.id.substring(5, 6)} inches long`);
-    }
-
     //prefixes
     if (message.content.startsWith(PREFIX)) {
         const [CMD_NAME, ...args] = message.content
@@ -51,11 +47,11 @@ client.on('message', (message) => {
                 .addFields(
                     { name: '\u200B', value: '**Random Commands**' },
                     { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: true},
-                    { name: 'whats my dick length', value: `calculates your dick length\n \`whats my dick length\``, inline: true},
                     { name: '\u200B', value: '**Fun Commands**' },
                     { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: true},
                     { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: true},
                     { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: false},
+                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: true},
                     { name: '\u200B', value: '**Mod Commands**' },
                     { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: true},
                     { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: true},
@@ -80,6 +76,10 @@ client.on('message', (message) => {
         if (CMD_NAME === 'dice') {
             var ans = 1 + Math.floor(Math.random()*5)
             message.channel.send(`You rolled a ${ans}!`);
+        }
+
+        if (CMD_NAME === 'length') {
+            message.reply(`your dick is ${message.author.id.substring(5, 6)} inches long`);
         }
 
         if (CMD_NAME === 'mute') {
