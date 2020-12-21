@@ -76,15 +76,15 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'length') {
-            if (args.length === 0) return message.channel.send(`your dick is ${message.author.id.substring(5, 6)} inches long`);
+            if (args.length === 0) return message.reply(`your dick is ${message.author.id.substring(6, 7)} inches long`);
             const member = message.guild.members.cache.get(args[0]
                 .replace("<", "")
                 .replace(">", "")
                 .replace("!", "")
                 .replace("@", "")
             );
-            if (!member) return message.channel.send(`your dick is ${message.author.id.substring(5, 6)} inches long`);
-            message.channel.send(`your dick is ${member.id.substring(5, 6)} inches long`);
+            if (!member) return message.reply(`your dick is ${message.author.id.substring(6, 7)} inches long`);
+            message.channel.send(`<@${member.id}>'s dick is ${member.id.substring(6, 7)} inches long`);
         }
 
         if (CMD_NAME === 'mute') {
