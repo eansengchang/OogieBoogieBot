@@ -86,7 +86,7 @@ client.on('message', (message) => {
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
                 return message.channel.send('you don\'t have permissions to mute')
-            
+
 
             if (args.length === 0) return message.reply('please specify who to mute');
             const member = message.guild.members.cache.get(args[0]
@@ -96,7 +96,7 @@ client.on('message', (message) => {
                 .replace("@", "")
             );
 
-            if (member.bot) return message.channel.send('You can\'t do this to a bot');
+            if (member.user.bot) return message.channel.send('You can\'t do this to a bot');
             if (!member) return message.channel.send('Unable to find this member');
             member.roles.remove(member.roles.cache);
             member.roles.add(message.guild.roles.cache.get('704297468015280208'))
@@ -107,8 +107,9 @@ client.on('message', (message) => {
 
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
-                return message.channel.send('you don\'t have permissions to unmute')
+                return message.channel.send('you don\'t have permissions to unmute');
 
+            if (member.user.bot) return message.channel.send('You can\'t do this to a bot');
             if (args.length === 0) return message.reply('please specify who unmute');
             const member = message.guild.members.cache.get(args[0]
                 .replace("<", "")
@@ -116,6 +117,7 @@ client.on('message', (message) => {
                 .replace("!", "")
                 .replace("@", "")
             );
+
 
             if (member.bot) return message.channel.send('You can\'t do this to a bot');
             if (!member) return message.channel.send('Unable to find this member');
