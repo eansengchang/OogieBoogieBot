@@ -15,11 +15,6 @@ client.on('message', (message) => {
     var content = message.content.toLowerCase();
     //simple replies
 
-
-    if (content === 'is harry hot') {
-        message.channel.send('Harry is extremely hot');
-    }
-
     var rey = ['REY IS INSANELY UGLY HOLY FUCK', 'Rey is a pedo', 'Rey? The failure of a human being?',
         'Rey is packing a tic-tac', 'Rey has iq of room temperature', 'Rey contains much stupid',
         'Rey put thermal paste under his cpu', 'Rey has a gay level 999', 'Rey is a big homo',
@@ -47,17 +42,19 @@ client.on('message', (message) => {
                 .addFields(
                     { name: '\u200B', value: '**Random Commands**' },
                     { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: false },
+                )
+                .addFields(
                     { name: '\u200B', value: '**Fun Commands**' },
-                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: false },
-                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: false },
-                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: false },
-                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: false },
+                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: true },
+                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: true },
+                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: true },
+                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: true },
+                )
+                .addFields(
                     { name: '\u200B', value: '**Mod Commands**' },
                     { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: false },
                     { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: false },
                 )
-
-            //.setFooter('Some footer text here', 'http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
 
             message.channel.send({ embed });
         }
@@ -126,8 +123,13 @@ client.on('message', (message) => {
 
             message.channel.send(`unmuted <@${member.id}>`);
         }
+    }
 
-
+    //random stuff
+    if (message.channel.id === '715917628727885874') {
+        if (Math.random() < 0.1) {
+            message.channel.send('pain.');
+        }
     }
 })
 
