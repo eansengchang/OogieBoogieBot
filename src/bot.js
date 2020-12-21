@@ -73,7 +73,7 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'test') {
-            message.channel.send(`tested`);
+            message.channel.send(`tested2`);
         }
 
         if (CMD_NAME === 'say') {
