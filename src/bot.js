@@ -10,7 +10,6 @@ client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
 })
 
-
 client.on('message', (message) => {
     if (message.author.bot) return;
 
@@ -21,7 +20,7 @@ client.on('message', (message) => {
         message.channel.send('Harry is extremely hot');
     }
 
-    rey = ['REY IS INSANELY UGLY HOLY FUCK', 'Rey is a pedo', 'Rey? The failure of a human being?',
+    var rey = ['REY IS INSANELY UGLY HOLY FUCK', 'Rey is a pedo', 'Rey? The failure of a human being?',
         'Rey is packing a tic-tac', 'Rey has iq of room temperature', 'Rey contains much stupid',
         'Rey put thermal paste under his cpu', 'Rey has a gay level 999', 'Rey is a big homo',
         'Pritten patil picked the wrong baby when adopting', 'Rey has big boobies',
@@ -71,6 +70,10 @@ client.on('message', (message) => {
             var botping = Math.round(client.ws.ping);
     
             message.channel.send(`Pong! ${botping}ms`);
+        }
+
+        if (CMD_NAME === 'test') {
+            message.channel.send(`tested`);
         }
 
         if (CMD_NAME === 'say') {
