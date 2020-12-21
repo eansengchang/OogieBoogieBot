@@ -14,7 +14,7 @@ client.on('message', (message) => {
     if (message.author.bot) return;
 
     //simple replies
-    
+
 
     if (message.content === 'is harry hot') {
         message.channel.send('Harry is extremely hot');
@@ -46,15 +46,15 @@ client.on('message', (message) => {
                 .setAuthor(client.user.username, client.user.displayAvatarURL)
                 .addFields(
                     { name: '\u200B', value: '**Random Commands**' },
-                    { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: false},
+                    { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: false },
                     { name: '\u200B', value: '**Fun Commands**' },
-                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: false},
-                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: false},
-                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: false},
-                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: false},
+                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: false },
+                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: false },
+                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: false },
+                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: false },
                     { name: '\u200B', value: '**Mod Commands**' },
-                    { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: false},
-                    { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: false},
+                    { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: false },
+                    { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: false },
                 )
 
             //.setFooter('Some footer text here', 'http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
@@ -64,7 +64,7 @@ client.on('message', (message) => {
 
         if (CMD_NAME === 'ping') {
             var botping = Math.round(client.ws.ping);
-    
+
             message.channel.send(`Pong! ${botping}ms`);
         }
 
@@ -74,7 +74,7 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'dice') {
-            var ans = 1 + Math.floor(Math.random()*5)
+            var ans = 1 + Math.floor(Math.random() * 5)
             message.channel.send(`You rolled a ${ans}!`);
         }
 
@@ -86,6 +86,7 @@ client.on('message', (message) => {
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
                 return message.channel.send('you don\'t have permissions to mute')
+            if (message.author.bot) return message.channel.send('You can\'t do this to a bot');
 
             if (args.length === 0) return message.reply('please specify who to mute');
             const member = message.guild.members.cache.get(args[0]
@@ -102,9 +103,11 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'unmute') {
+
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
                 return message.channel.send('you don\'t have permissions to unmute')
+            if (message.author.bot) return message.channel.send('You can\'t do this to a bot');
 
             if (args.length === 0) return message.reply('please specify who unmute');
             const member = message.guild.members.cache.get(args[0]
@@ -121,7 +124,7 @@ client.on('message', (message) => {
             message.channel.send(`unmuted <@${member.id}>`);
         }
 
-        
+
     }
 })
 
