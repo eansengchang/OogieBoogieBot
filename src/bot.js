@@ -50,7 +50,7 @@ client.on('message', (message) => {
                     { name: '\u200B', value: '**Fun Commands**' },
                     { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: true},
                     { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: true},
-                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: false},
+                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: true},
                     { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: true},
                     { name: '\u200B', value: '**Mod Commands**' },
                     { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: true},
