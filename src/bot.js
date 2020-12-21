@@ -72,10 +72,6 @@ client.on('message', (message) => {
             message.channel.send(`Pong! ${botping}ms`);
         }
 
-        if (CMD_NAME === 'test') {
-            message.channel.send(`tested2`);
-        }
-
         if (CMD_NAME === 'say') {
             if (args.length === 0) return message.reply('please specify what to say');
             message.channel.send(args.join(' '));
