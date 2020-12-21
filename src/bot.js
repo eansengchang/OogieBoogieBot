@@ -76,6 +76,7 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'length') {
+            if (args.length === 0) return message.channel.send(`your dick is ${message.author.id.substring(5, 6)} inches long`);
             const member = message.guild.members.cache.get(args[0]
                 .replace("<", "")
                 .replace(">", "")
@@ -100,15 +101,14 @@ client.on('message', (message) => {
                 .replace("@", "")
             );
 
-            if (member.user.bot) return message.channel.send('You can\'t do this to a bot');
             if (!member) return message.channel.send('Unable to find this member');
+            if (member.user.bot) return message.channel.send('You can\'t do this to a bot');
             member.roles.remove(member.roles.cache);
             member.roles.add(message.guild.roles.cache.get('704297468015280208'))
             message.channel.send(`muted <@${member.id}>`);
         }
 
         if (CMD_NAME === 'unmute') {
-
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
                 return message.channel.send('you don\'t have permissions to unmute');
@@ -123,8 +123,8 @@ client.on('message', (message) => {
             );
 
 
-            if (member.bot) return message.channel.send('You can\'t do this to a bot');
             if (!member) return message.channel.send('Unable to find this member');
+            if (member.bot) return message.channel.send('You can\'t do this to a bot');
             member.roles.remove(member.roles.cache);
             member.roles.add(message.guild.roles.cache.get('704254909612032050'));
 
