@@ -46,15 +46,15 @@ client.on('message', (message) => {
                 .setAuthor(client.user.username, client.user.displayAvatarURL)
                 .addFields(
                     { name: '\u200B', value: '**Random Commands**' },
-                    { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: true},
+                    { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: false},
                     { name: '\u200B', value: '**Fun Commands**' },
-                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: true},
-                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: true},
-                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: true},
-                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: true},
+                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: false},
+                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: false},
+                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: false},
+                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: false},
                     { name: '\u200B', value: '**Mod Commands**' },
-                    { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: true},
-                    { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: true},
+                    { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: false},
+                    { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: false},
                 )
 
             //.setFooter('Some footer text here', 'http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
