@@ -12,6 +12,7 @@ client.on('ready', () => {
 })
 
 client.on('message', (message) => {
+    if(!message.guild) return
     if (message.author.bot) return;
     var content = message.content.toLowerCase();
     //simple replies
@@ -132,6 +133,25 @@ client.on('message', (message) => {
 
             message.channel.send(`unmuted <@${member.id}>`);
         }
+/*
+        if (CMD_NAME === 'moveall') {
+            if (!message.guild.members.cache.get(message.author.id).hasPermission('MOVE_MEMBERS'))
+                return message.channel.send('you don\'t have permissions to move');
+            if (!message.guild.members.cache.get(client.user.id).hasPermission('MOVE_MEMBERS'))
+                return message.channel.send('I don\'t have permissions to move');
+
+            console.log('test');
+            if (args.length === 0) return message.reply('please say where to move');
+            const channel = message.guild.channels.cache.get(args[0]
+                .replace("<", "")
+                .replace(">", "")
+                .replace("!", "")
+                .replace("@", "")
+            );
+            console.log(channel);
+            if (!channel) return message.channel.send('Unable to find this channel');
+
+        }*/
     }
 
     //random stuff
