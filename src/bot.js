@@ -8,7 +8,7 @@ client.login(process.env.DISCORDJS_BOT_TOKEN);
 
 client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
-    client.users.get("333177159357169664").send("someMessage");
+    client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('<@333177159357169664> BOT IS ONLINE AND READY');
 })
 
 client.on('message', (message) => {
@@ -135,7 +135,7 @@ client.on('message', (message) => {
 
     //random stuff
     if (message.channel.id === '715917628727885874') {
-        if (0.55<Math.random()< 0.7) {
+        if (Math.random()< 0.4) {
             message.channel.send('pain.');
         }
     }
