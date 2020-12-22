@@ -134,7 +134,7 @@ client.on('message', (message) => {
 
     //random stuff
     if (message.channel.id === '715917628727885874') {
-        if (Math.random()< 0.15) {
+        if (Math.random()< 0.14) {
             message.channel.send('pain.');
         }
     }
