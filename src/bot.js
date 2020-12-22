@@ -8,6 +8,7 @@ client.login(process.env.DISCORDJS_BOT_TOKEN);
 
 client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
+    client.users.get("333177159357169664").send("someMessage");
 })
 
 client.on('message', (message) => {
