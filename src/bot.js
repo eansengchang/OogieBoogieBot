@@ -12,7 +12,7 @@ client.on('ready', () => {
 })
 
 client.on('message', (message) => {
-    if(!message.guild) return
+    if (!message.guild) return
     if (message.author.bot) return;
     var content = message.content.toLowerCase();
     //simple replies
@@ -95,63 +95,86 @@ client.on('message', (message) => {
             if (!message.member.roles.cache.has('684396194566242376'))
                 return message.channel.send('you don\'t have permissions to mute')
 
+            const user = message.mentions.users.first();
+            if (user.bot) return message.channel.send('You can\'t do this to a bot');
+            // If we have a user mentioned
+            if (user) {
+                // Now we get the member from the user
+                const member = message.guild.member(user);
+                // If the member is in the guild
 
-            if (args.length === 0) return message.reply('please specify who to mute');
-            const member = message.guild.members.cache.get(args[0]
-                .replace("<", "")
-                .replace(">", "")
-                .replace("!", "")
-                .replace("@", "")
-            );
-
-            if (!member) return message.channel.send('Unable to find this member');
-            if (member.user.bot) return message.channel.send('You can\'t do this to a bot');
-            member.roles.remove(member.roles.cache);
-            member.roles.add(message.guild.roles.cache.get('704297468015280208'))
-            message.channel.send(`muted <@${member.id}>`);
+                if (member) {
+                    member
+                        .roles.set(['704297468015280208'])
+                        .then(() => {
+                            message.reply(`Successfully muted <@${user.id}>`);
+                        })
+                        .catch(err => {
+                            message.reply('I was unable to mute the member');
+                            console.error(err);
+                        });
+                } else {
+                    // The mentioned user isn't in this guild
+                    message.reply("That user isn't in this server!");
+                }
+                // Otherwise, if no user was mentioned
+            } else {
+                message.reply("You didn't mention the user to mute!");
+            }
         }
 
         if (CMD_NAME === 'unmute') {
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
-                return message.channel.send('you don\'t have permissions to unmute');
+                return message.channel.send('you don\'t have permissions to unmute')
 
-            if (member.user.bot) return message.channel.send('You can\'t do this to a bot');
-            if (args.length === 0) return message.reply('please specify who unmute');
-            const member = message.guild.members.cache.get(args[0]
-                .replace("<", "")
-                .replace(">", "")
-                .replace("!", "")
-                .replace("@", "")
-            );
+            const user = message.mentions.users.first();
+            if (user.bot) return message.channel.send('You can\'t do this to a bot');
+            // If we have a user mentioned
+            if (user) {
+                // Now we get the member from the user
+                const member = message.guild.member(user);
+                // If the member is in the guild
 
-
-            if (!member) return message.channel.send('Unable to find this member');
-            if (member.bot) return message.channel.send('You can\'t do this to a bot');
-            member.roles.remove(member.roles.cache);
-            member.roles.add(message.guild.roles.cache.get('704254909612032050'));
-
-            message.channel.send(`unmuted <@${member.id}>`);
+                if (member) {
+                    member
+                        .roles.set(['704254909612032050'])
+                        .then(() => {
+                            message.reply(`Successfully unmuted <@${user.id}>`);
+                        })
+                        .catch(err => {
+                            message.reply('I was unable to unmute the member');
+                            console.error(err);
+                        });
+                } else {
+                    // The mentioned user isn't in this guild
+                    message.reply("That user isn't in this server!");
+                }
+                // Otherwise, if no user was mentioned
+            } else {
+                message.reply("You didn't mention the user to mute!");
+            }
         }
-/*
-        if (CMD_NAME === 'moveall') {
-            if (!message.guild.members.cache.get(message.author.id).hasPermission('MOVE_MEMBERS'))
-                return message.channel.send('you don\'t have permissions to move');
-            if (!message.guild.members.cache.get(client.user.id).hasPermission('MOVE_MEMBERS'))
-                return message.channel.send('I don\'t have permissions to move');
 
-            console.log('test');
-            if (args.length === 0) return message.reply('please say where to move');
-            const channel = message.guild.channels.cache.get(args[0]
-                .replace("<", "")
-                .replace(">", "")
-                .replace("!", "")
-                .replace("@", "")
-            );
-            console.log(channel);
-            if (!channel) return message.channel.send('Unable to find this channel');
-
-        }*/
+        /*
+                if (CMD_NAME === 'moveall') {
+                    if (!message.guild.members.cache.get(message.author.id).hasPermission('MOVE_MEMBERS'))
+                        return message.channel.send('you don\'t have permissions to move');
+                    if (!message.guild.members.cache.get(client.user.id).hasPermission('MOVE_MEMBERS'))
+                        return message.channel.send('I don\'t have permissions to move');
+        
+                    console.log('test');
+                    if (args.length === 0) return message.reply('please say where to move');
+                    const channel = message.guild.channels.cache.get(args[0]
+                        .replace("<", "")
+                        .replace(">", "")
+                        .replace("!", "")
+                        .replace("@", "")
+                    );
+                    console.log(channel);
+                    if (!channel) return message.channel.send('Unable to find this channel');
+        
+                }*/
     }
 
     //random stuff
