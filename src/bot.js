@@ -76,15 +76,15 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'length') {
-            if (args.length === 0) return message.reply(`your dick is ${message.author.id.substring(6, 7)} inches long`);
+            if (args.length === 0) return message.reply(`your dick is ${message.author.id.substring(1, 2)} inches long`);
             const member = message.guild.members.cache.get(args[0]
                 .replace("<", "")
                 .replace(">", "")
                 .replace("!", "")
                 .replace("@", "")
             );
-            if (!member) return message.reply(`your dick is ${message.author.id.substring(6, 7)} inches long`);
-            message.channel.send(`<@${member.id}>'s dick is ${member.id.substring(6, 7)} inches long`);
+            if (!member) return message.reply(`your dick is ${message.author.id.substring(1, 2)} inches long`);
+            message.channel.send(`<@${member.id}>'s dick is ${member.id.substring(1, 2)} inches long`);
         }
 
         if (CMD_NAME === 'mute') {
@@ -134,7 +134,7 @@ client.on('message', (message) => {
 
     //random stuff
     if (message.channel.id === '715917628727885874') {
-        if (Math.random() < 0.1) {
+        if (Math.random()< 0.2) {
             message.channel.send('pain.');
         }
     }
