@@ -21,7 +21,8 @@ client.on('message', (message) => {
         'Rey put thermal paste under his cpu', 'Rey has a gay level 999', 'Rey is a big homo',
         'Pritten patil picked the wrong baby when adopting', 'Rey has big boobies',
         'Rey is a stinky', 'Rey is a curry muncher', 'Rey shoots up orphanages', 'Rey watched 300 naruto episodes in a week',
-        'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud'];
+        'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud', 'Rey wants to get pegged by Joe',
+        'Rey is hardstuck silver'];
     if (content.substring(0, 3) === 'rey') {
         message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
@@ -135,7 +136,7 @@ client.on('message', (message) => {
 
     //random stuff
     if (message.channel.id === '715917628727885874') {
-        if (Math.random()< 0.4) {
+        if (Math.random() < 0.4) {
             message.channel.send('pain.');
         }
     }
