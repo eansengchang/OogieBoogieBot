@@ -4,6 +4,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const PREFIX = 'esc ';
 
+const fetch = require('node-fetch');
+
 client.login(process.env.DISCORDJS_BOT_TOKEN);
 
 client.on('ready', () => {
@@ -11,7 +13,7 @@ client.on('ready', () => {
     client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('<@333177159357169664> BOT IS ONLINE AND READY');
 })
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
     if (!message.guild) return
     if (message.author.bot) return;
     var content = message.content.toLowerCase();
@@ -60,6 +62,19 @@ client.on('message', (message) => {
                 )
 
             message.channel.send({ embed });
+        }
+
+        if (CMD_NAME == 'meme') {
+            let response = await fetch('https://meme-api.herokuapp.com/gimme');
+            let json = await response.json();
+
+            let embed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle(json.title)
+                .setURL(json.postLink)
+                .setImage(json.url)
+
+            message.channel.send(embed);
         }
 
         if (CMD_NAME === 'ping') {
