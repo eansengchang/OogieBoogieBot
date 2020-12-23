@@ -10,7 +10,7 @@ client.login(process.env.DISCORDJS_BOT_TOKEN);
 
 client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
-    client.user.setActivity('prefix: e', { type: 'LISTENING' })
+    client.user.setActivity('prefix: e', { type: 'LISTENING' });
     client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('<@333177159357169664> BOT IS ONLINE AND READY');
 })
 
