@@ -61,6 +61,10 @@ client.on('message', async (message) => {
                     { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: false },
                     { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: false },
                 )
+                .addFields(
+                    { name: '\u200B', value: '**NSFW Commands**' },
+                    { name: 'neko', value: `nekos \n \`${PREFIX}neko\``, inline: false },
+                )
 
             message.channel.send({ embed });
         }
@@ -191,6 +195,21 @@ client.on('message', async (message) => {
                     if (!channel) return message.channel.send('Unable to find this channel');
         
                 }*/
+
+
+        if (CMD_NAME == 'neko') {
+            if(!message.channel.nsfw) return message.reply('This is not an NSFW channel');
+
+            let response = await fetch('https://nekos.life/api/v2/img/lewd');
+            let json = await response.json();
+
+            let embed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setImage(json.url)
+                .setFooter('from nekos.life API')
+
+            message.channel.send(embed);
+        }
     }
 
     //random stuff
