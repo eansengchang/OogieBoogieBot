@@ -206,7 +206,6 @@ client.on('message', async (message) => {
             let embed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
                 .setImage(json.url)
-                .setFooter('from nekos.life API')
 
             message.channel.send(embed);
         }
