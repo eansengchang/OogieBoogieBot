@@ -51,11 +51,11 @@ client.on('message', async (message) => {
                 )
                 .addFields(
                     { name: '\u200B', value: '**Fun Commands**' },
-                    { name: 'meme', value: `gives a meme! \n \`${PREFIX}meme\``, inline: true },
-                    { name: 'ping', value: `pong! \n \`${PREFIX}ping\``, inline: true },
-                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: true },
-                    { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: true },
-                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: true },
+                    { name: 'meme', value: `gives a meme! \n \`${PREFIX}meme\``, inline: false },
+                    { name: 'ping', value: `pong! \n \`${PREFIX}ping\``, inline: false },
+                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: false },
+                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: false },
+                    { name: 'profile', value: `information on a user\n \`${PREFIX}userinfo @user\``, inline: false },
                 )
                 .addFields(
                     { name: '\u200B', value: '**Mod Commands**' },
@@ -94,11 +94,6 @@ client.on('message', async (message) => {
             message.channel.send(args.join(' '));
         }
 
-        if (CMD_NAME === 'dice') {
-            var ans = 1 + Math.floor(Math.random() * 5)
-            message.channel.send(`You rolled a ${ans}!`);
-        }
-
         if (CMD_NAME === 'length') {
             if (args.length === 0) return message.reply(`your dick is ${message.author.id.substring(1, 2)} inches long`);
             const member = message.guild.members.cache.get(args[0]
@@ -109,6 +104,30 @@ client.on('message', async (message) => {
             );
             if (!member) return message.reply(`your dick is ${message.author.id.substring(1, 2)} inches long`);
             message.channel.send(`<@${member.id}>'s dick is ${member.id.substring(1, 2)} inches long`);
+        }
+
+        if (CMD_NAME === 'profile') {
+            let user = message.mentions.first || message.author || message.member.user;
+            let member = message.guild.members.cache.get(user.id);
+            let roles = ``;
+            member.roles.cache.array().forEach((item, index)=>{
+                roles += `<@&${item.id}> `
+            })
+
+            let embed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle(`User info for ${user.username}`)
+                .setThumbnail(user.displayAvatarURL())
+                .addFields(
+                    { name: 'Usertag:', value: `${user.tag}` },
+                    { name: 'ID:', value: `${user.id}` },
+                    { name: 'Date created:', value: `${user.createdAt}` },
+                    { name: 'Joined server at:', value: `${member.joinedAt}` },
+                    { name: 'Roles:', value: roles},
+                    { name: 'Bot:', value: `${user.bot}` },
+                )
+                .setFooter(`requested by ${message.author.tag}`)
+            message.channel.send(embed);
         }
 
         if (CMD_NAME === 'mute') {
