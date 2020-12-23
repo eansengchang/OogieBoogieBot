@@ -66,7 +66,7 @@ client.on('message', async (message) => {
                 )
                 .addFields(
                     { name: 'NSFW Commands', value: `\n
-                    \`${PREFIX}neko\` nekos`},
+                    \`${PREFIX}neko\` gives some nekos`},
                 )
 
             message.channel.send({ embed });
