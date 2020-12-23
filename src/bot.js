@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const PREFIX = 'esc ';
+const PREFIX = 'e ';
 
 const fetch = require('node-fetch');
 
