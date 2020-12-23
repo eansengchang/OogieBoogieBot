@@ -50,7 +50,8 @@ client.on('message', async (message) => {
                 )
                 .addFields(
                     { name: '\u200B', value: '**Fun Commands**' },
-                    { name: 'ping', value: `Pong! \n \`${PREFIX}ping\``, inline: true },
+                    { name: 'meme', value: `gives a meme! \n \`${PREFIX}meme\``, inline: true },
+                    { name: 'ping', value: `pong! \n \`${PREFIX}ping\``, inline: true },
                     { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: true },
                     { name: 'dice', value: `rolls a dice \n \`${PREFIX}dice\``, inline: true },
                     { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: true },
