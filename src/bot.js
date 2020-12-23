@@ -44,27 +44,30 @@ client.on('message', async (message) => {
                 .setTitle('Ching Chong Commands')
                 .setDescription('A collection of all the commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
-                .setAuthor(client.user.username, client.user.displayAvatarURL)
                 .addFields(
                     { name: '\u200B', value: '**Random Commands**' },
-                    { name: 'rey', value: `insults <@512375511205543936> \n \`rey\``, inline: false },
+                    { name: `\`rey\``, value: `insults <@!512375511205543936>`, inline: false },
                 )
                 .addFields(
                     { name: '\u200B', value: '**Fun Commands**' },
-                    { name: 'meme', value: `gives a meme! \n \`${PREFIX}meme\``, inline: false },
-                    { name: 'ping', value: `pong! \n \`${PREFIX}ping\``, inline: false },
-                    { name: 'say', value: `repeats a certain sentence \n \`${PREFIX}say [phrase]\``, inline: false },
-                    { name: 'length', value: `calculates your dick length\n \`${PREFIX}length\``, inline: false },
-                    { name: 'profile', value: `information on a user\n \`${PREFIX}userinfo @user\``, inline: false },
+                    { name: `\`${PREFIX}meme\``, value: `gives a meme`, inline: false },
+                    { name: `\`${PREFIX}ping\``, value: `pong!`, inline: false },
+                    { name: `\`${PREFIX}say\``, value: `repeats a certain sentence`, inline: false },
+                    { name: `\`${PREFIX}length\``, value: `calculates your length`, inline: false },
+                )
+                .addFields(
+                    { name: '\u200B', value: '**Info Commands**' },
+                    { name: `\`${PREFIX}profile @user\``, value: `info on a user`, inline: false },
+                    { name: `\`${PREFIX}serverinfo\``, value: `info on this server`, inline: false },
                 )
                 .addFields(
                     { name: '\u200B', value: '**Mod Commands**' },
-                    { name: 'mute', value: `mutes a certain invidivual \n \`${PREFIX}mute @user\``, inline: false },
-                    { name: 'unmute', value: `unmutes a certain individual \n \`${PREFIX}unmute @user\``, inline: false },
+                    { name: `\`${PREFIX}mute @user\``, value: `mutes a certain invidivual`, inline: false },
+                    { name: `\`${PREFIX}unmute @user\``, value: `unmutes a certain individual`, inline: false },
                 )
                 .addFields(
                     { name: '\u200B', value: '**NSFW Commands**' },
-                    { name: 'neko', value: `nekos \n \`${PREFIX}neko\``, inline: false },
+                    { name: `\`${PREFIX}neko\``, value: `nekos`, inline: false },
                 )
 
             message.channel.send({ embed });
@@ -110,7 +113,7 @@ client.on('message', async (message) => {
             let user = message.mentions.users.first() || message.author || message.member.user;
             let member = message.guild.members.cache.get(user.id);
             let roles = ``;
-            member.roles.cache.array().forEach((item, index)=>{
+            member.roles.cache.array().forEach((item, index) => {
                 roles += `<@&${item.id}> `
             })
 
@@ -119,13 +122,33 @@ client.on('message', async (message) => {
                 .setTitle(`User info for ${user.username}`)
                 .setThumbnail(user.displayAvatarURL())
                 .addFields(
-                    { name: 'Usertag:', value: `${user.tag}` , inline: true},
+                    { name: 'Usertag:', value: `${user.tag}`, inline: true },
                     { name: 'Display name:', value: `${member.displayName}`, inline: true },
                     { name: 'ID:', value: `${user.id}` },
                     { name: 'Date created:', value: `${user.createdAt}` },
                     { name: 'Joined server at:', value: `${member.joinedAt}` },
-                    { name: 'Roles:', value: roles},
+                    { name: 'Roles:', value: roles },
                     { name: 'Bot:', value: `${user.bot}` },
+                )
+                .setFooter(`requested by ${message.author.tag}`)
+            message.channel.send(embed);
+        }
+
+        if (CMD_NAME === 'serverinfo') {
+            let server = message.guild;
+            let embed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle(`Information on ${server.name}`)
+                .setThumbnail(server.iconURL())
+                .addFields(
+                    { name: 'Servername:', value: `${server.name}`, inline: true },
+                    { name: 'Owner:', value: `<@!${server.ownerID}>`, inline: true },
+                    { name: 'Region:', value: `${server.region}`, inline: true },
+                    { name: 'ID:', value: `${server.id}`, inline: true },
+                    { name: 'Created at:', value: `${server.createdAt}` },
+                    { name: 'Channels:', value: `${server.channels.cache.size}`, inline: true },
+                    { name: 'Members:', value: `${server.memberCount}`, inline: true },
+                    { name: 'Roles:', value: `${server.roles.cache.size - 1}`, inline: true },
                 )
                 .setFooter(`requested by ${message.author.tag}`)
             message.channel.send(embed);
