@@ -10,6 +10,7 @@ client.login(process.env.DISCORDJS_BOT_TOKEN);
 
 client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
+    client.user.setActivity('prefix: e', { type: 'LISTENING' })
     client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('<@333177159357169664> BOT IS ONLINE AND READY');
 })
 
@@ -198,7 +199,7 @@ client.on('message', async (message) => {
 
 
         if (CMD_NAME == 'neko') {
-            if(!message.channel.nsfw) return message.reply('This is not an NSFW channel');
+            if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
             let response = await fetch('https://nekos.life/api/v2/img/lewd');
             let json = await response.json();
