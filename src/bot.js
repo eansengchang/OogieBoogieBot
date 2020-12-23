@@ -30,11 +30,6 @@ client.on('message', async (message) => {
         message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
 
-    console.log(content + `<@!${client.user.id}>`)
-    if(content === `<@${client.user.id}>`){
-        message.reply(`My prefix is ${PREFIX}!`);
-    }
-
     //prefixes
     if (content.startsWith(PREFIX)) {
         const [CMD_NAME, ...args] = content
