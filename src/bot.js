@@ -119,7 +119,8 @@ client.on('message', async (message) => {
                 .setTitle(`User info for ${user.username}`)
                 .setThumbnail(user.displayAvatarURL())
                 .addFields(
-                    { name: 'Usertag:', value: `${user.tag}` },
+                    { name: 'Usertag:', value: `${user.tag}` , inline: true},
+                    { name: 'Display name:', value: `${member.displayName}`, inline: true },
                     { name: 'ID:', value: `${user.id}` },
                     { name: 'Date created:', value: `${user.createdAt}` },
                     { name: 'Joined server at:', value: `${member.joinedAt}` },
