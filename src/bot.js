@@ -107,7 +107,7 @@ client.on('message', async (message) => {
         }
 
         if (CMD_NAME === 'profile') {
-            let user = message.mentions.first || message.author || message.member.user;
+            let user = message.mentions.first() || message.author || message.member.user;
             let member = message.guild.members.cache.get(user.id);
             let roles = ``;
             member.roles.cache.array().forEach((item, index)=>{
