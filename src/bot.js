@@ -45,29 +45,28 @@ client.on('message', async (message) => {
                 .setDescription('A collection of all the commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
-                    { name: '\u200B', value: '**Random Commands**' },
-                    { name: `\`rey\``, value: `insults <@!512375511205543936>`, inline: false },
+                    { name: 'Random Commands', value: `\`rey\` insults <@!512375511205543936>` }
                 )
                 .addFields(
-                    { name: '\u200B', value: '**Fun Commands**' },
-                    { name: `\`${PREFIX}meme\``, value: `gives a meme`, inline: false },
-                    { name: `\`${PREFIX}ping\``, value: `pong!`, inline: false },
-                    { name: `\`${PREFIX}say\``, value: `repeats a certain sentence`, inline: false },
-                    { name: `\`${PREFIX}length\``, value: `calculates your length`, inline: false },
+                    { name: 'Fun Commands', value: `\n
+                    \`${PREFIX}meme\`\t gives a meme \n
+                    \`${PREFIX}ping\`\t pong! \n
+                    \`${PREFIX}say\`\t repeats a certain sentence \n
+                    \`${PREFIX}length\`\t calculates your length`}
                 )
                 .addFields(
-                    { name: '\u200B', value: '**Info Commands**' },
-                    { name: `\`${PREFIX}profile @user\``, value: `info on a user`, inline: false },
-                    { name: `\`${PREFIX}serverinfo\``, value: `info on this server`, inline: false },
+                    { name: 'Info Commands', value: `\n
+                    \`${PREFIX}profile @user\` info on a user \n
+                    \`${PREFIX}serverinfo\` info on this server`}
                 )
                 .addFields(
-                    { name: '\u200B', value: '**Mod Commands**' },
-                    { name: `\`${PREFIX}mute @user\``, value: `mutes a certain invidivual`, inline: false },
-                    { name: `\`${PREFIX}unmute @user\``, value: `unmutes a certain individual`, inline: false },
+                    { name: 'Mod Commands', value: `\n
+                    \`${PREFIX}mute @user\` mutes a certain invidivual \n
+                    \`${PREFIX}unmute @user\` unmutes a certain individual`}
                 )
                 .addFields(
-                    { name: '\u200B', value: '**NSFW Commands**' },
-                    { name: `\`${PREFIX}neko\``, value: `nekos`, inline: false },
+                    { name: 'NSFW Commands', value: `\n
+                    \`${PREFIX}neko\` nekos`},
                 )
 
             message.channel.send({ embed });
