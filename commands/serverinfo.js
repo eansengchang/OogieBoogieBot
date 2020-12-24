@@ -1,6 +1,9 @@
+const Discord = require('discord.js');
+
 module.exports = {
     name: 'serverinfo',
     description: 'Gets the server info!',
+    guildOnly: true,
     execute(message, args) {
         let server = message.guild;
         let embed = new Discord.MessageEmbed()

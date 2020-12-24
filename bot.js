@@ -21,12 +21,12 @@ client.login(config.token);
 
 client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
-    client.user.setActivity('prefix: e', { type: 'LISTENING' });
+    client.user.setActivity(`prefix: ${config.prefix}`, { type: 'LISTENING' });
+
     client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('BOT IS ONLINE AND READY');
 })
 
 client.on('message', async (message) => {
-    if (!message.guild) return;
     if (message.author.bot) return;
     const content = message.content.toLowerCase();
     //simple replies
@@ -49,8 +49,46 @@ client.on('message', async (message) => {
             .substring(PREFIX.length)
             .split(/\s+/);
 
+        //checks if the command exists
         if (!client.commands.has(commandName)) return;
         const command = client.commands.get(commandName);
+
+        //error traps if its meant only for server
+        if (command.guildOnly && message.channel.type === 'dm') {
+            return message.reply('I can\'t execute that command inside DMs!');
+        }
+
+        //error traps if there are no args
+        if (command.args && !args.length) {
+            return message.reply('You didn\'t specficy any arguments!');
+        }
+
+        //error traps for permissions
+        if (command.permissions) {
+            const selfMember = message.guild.members.cache.get(message.client.user.id);
+            const member = message.member;
+            let missingPerms1 = [];
+            let missingPerms2 = [];
+            let flag1 = false;
+            let flag2 = false;
+            command.permissions.forEach((item, index) => {
+                if(!selfMember.hasPermission(item)){
+                    flag2 = true;
+                    missingPerms2.push(item);
+                }
+                if(!member.hasPermission(item)){
+                    flag1 = true;
+                    missingPerms1.push(item);
+                }
+            })
+
+            if (flag1){
+                return message.reply(`You require the following permissions: \`${missingPerms1.join(' ')}\``);
+            }
+            else if (flag2) {
+                return message.reply(`I require the following permissions: \`${missingPerms2.join(' ')}\``);
+            }
+        }
 
         try {
             command.execute(message, args);

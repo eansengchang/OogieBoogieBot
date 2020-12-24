@@ -1,6 +1,7 @@
 module.exports = {
     name: 'unmute',
     description: 'Unmutes a person!',
+    args: true,
     execute(message, args) {
         if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
         if (!message.member.roles.cache.has('684396194566242376'))

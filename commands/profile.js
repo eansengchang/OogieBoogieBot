@@ -1,6 +1,7 @@
 module.exports = {
     name: 'profile',
     description: 'Gets someone\'s profile!',
+    guildOnly: true,
     execute(message, args) {
         const user = message.mentions.users.first() || message.author || message.member.user;
         const member = message.guild.members.cache.get(user.id);

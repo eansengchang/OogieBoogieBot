@@ -1,6 +1,9 @@
 module.exports = {
     name: 'prune',
     description: 'Bulk deletes a channel!',
+    args: true,
+    guildOnly: true,
+    permissions: ['MANAGE_MESSAGES'],
     execute(message, args) {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('you don\'t have the permissions for that');
         const self_member = message.guild.members.cache.get(message.client.user.id);
