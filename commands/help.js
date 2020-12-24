@@ -35,7 +35,8 @@ module.exports = {
                     name: 'Mod Commands', value: `\n
                     \`${PREFIX}mute @user\` mutes a certain invidivual \n
                     \`${PREFIX}unmute @user\` unmutes a certain individual\n
-                    \`${PREFIX}prune {number}\` deletes a number of messages`
+                    \`${PREFIX}prune {number}\` deletes a number of messages\n
+                    \`${PREFIX}nickall {name}\` nicknames everyone`
                 }
             )
             .addFields(
