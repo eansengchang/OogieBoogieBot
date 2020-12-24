@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const config = require('./ config.json');
 const fs = require('fs');
 
 const Discord = require('discord.js');
@@ -14,8 +15,8 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const PREFIX = 'e ';
-client.login(process.env.DISCORD_TOKEN);
+const PREFIX = config.prefix;
+client.login(config.token);
 
 
 client.on('ready', () => {
@@ -43,15 +44,16 @@ client.on('message', async (message) => {
 
     //prefixes
     if (content.startsWith(PREFIX)) {
-        const [command, ...args] = content
+        const [commandName, ...args] = content
             .trim()
             .substring(PREFIX.length)
             .split(/\s+/);
 
-        if (!client.commands.has(command)) return;
+        if (!client.commands.has(commandName)) return;
+        const command = client.commands.get(commandName);
 
         try {
-            client.commands.get(command).execute(message, args);
+            command.execute(message, args);
         } catch (error) {
             console.error(error);
             message.reply('there was an error trying to execute that command!');

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-PREFIX = 'e ';
+const config = require('../ config.json');
+PREFIX = config.prefix;
 
 module.exports = {
     name: 'help',
