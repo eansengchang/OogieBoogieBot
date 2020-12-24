@@ -11,6 +11,8 @@ module.exports = {
         member.roles.cache.array().forEach((item, index) => {
             roles += `<@&${item.id}> `
         })
+        let daysCreated = Math.round((message.createdTimestamp - user.createdTimestamp) / 1000 / 60 / 60 / 24);
+        let daysJoined = Math.round((message.createdTimestamp - member.joinedTimestamp) / 1000 / 60 / 60 / 24);
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
@@ -20,8 +22,8 @@ module.exports = {
                 { name: 'Usertag:', value: `${user.tag}`, inline: true },
                 { name: 'Display name:', value: `${member.displayName}`, inline: true },
                 { name: 'ID:', value: `${user.id}` },
-                { name: 'Date created:', value: `${user.createdAt}` },
-                { name: 'Joined server at:', value: `${member.joinedAt}` },
+                { name: 'Date created:', value: `\`${user.createdAt.toDateString()}\` (${daysCreated} days ago)` },
+                { name: 'Joined server at:', value: `\`${member.joinedAt.toDateString()}\` (${daysJoined} days ago)` },
                 { name: 'Roles:', value: roles },
                 { name: 'Bot:', value: `${user.bot}` },
             )
