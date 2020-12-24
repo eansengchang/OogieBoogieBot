@@ -15,12 +15,12 @@ client.on('ready', () => {
 })
 
 client.on('message', async (message) => {
-    if (!message.guild) return
+    if (!message.guild) return;
     if (message.author.bot) return;
-    var content = message.content.toLowerCase();
+    const content = message.content.toLowerCase();
     //simple replies
 
-    var rey = ['REY IS INSANELY UGLY HOLY FUCK', 'Rey is a pedo', 'Rey? The failure of a human being?',
+    const rey = ['REY IS INSANELY UGLY HOLY FUCK', 'Rey is a pedo', 'Rey? The failure of a human being?',
         'Rey is packing a tic-tac', 'Rey has iq of room temperature', 'Rey contains much stupid',
         'Rey put thermal paste under his cpu', 'Rey has a gay level 999', 'Rey is a big homo',
         'Pritten patil picked the wrong baby when adopting', 'Rey has big boobies',
@@ -33,12 +33,12 @@ client.on('message', async (message) => {
 
     //prefixes
     if (content.startsWith(PREFIX)) {
-        const [CMD_NAME, ...args] = content
+        const [command, ...args] = content
             .trim()
             .substring(PREFIX.length)
             .split(/\s+/);
 
-        if (CMD_NAME === 'help') {
+        if (command === 'help') {
             const embed = new Discord.MessageEmbed();
             embed.setColor('#0099ff')
                 .setTitle('Ching Chong Commands')
@@ -48,31 +48,40 @@ client.on('message', async (message) => {
                     { name: 'Random Commands', value: `\`rey\` insults <@!512375511205543936>` }
                 )
                 .addFields(
-                    { name: 'Fun Commands', value: `\n
+                    {
+                        name: 'Fun Commands', value: `\n
                     \`${PREFIX}meme\`\t gives a meme \n
                     \`${PREFIX}ping\`\t pong! \n
                     \`${PREFIX}say\`\t repeats a certain sentence \n
-                    \`${PREFIX}length\`\t calculates your length`}
+                    \`${PREFIX}length\`\t calculates your length`
+                    }
                 )
                 .addFields(
-                    { name: 'Info Commands', value: `\n
+                    {
+                        name: 'Info Commands', value: `\n
                     \`${PREFIX}profile @user\` info on a user \n
-                    \`${PREFIX}serverinfo\` info on this server`}
+                    \`${PREFIX}serverinfo\` info on this server`
+                    }
                 )
                 .addFields(
-                    { name: 'Mod Commands', value: `\n
+                    {
+                        name: 'Mod Commands', value: `\n
                     \`${PREFIX}mute @user\` mutes a certain invidivual \n
-                    \`${PREFIX}unmute @user\` unmutes a certain individual`}
+                    \`${PREFIX}unmute @user\` unmutes a certain individual\n
+                    \`${PREFIX}prune {number}\` deletes a number of messages`
+                    }
                 )
                 .addFields(
-                    { name: 'NSFW Commands', value: `\n
-                    \`${PREFIX}neko\` gives some nekos`},
-                )
+                    {
+                        name: 'NSFW Commands', value: `\n
+                    \`${PREFIX}neko\` gives some nekos`
+                    },
+                );
 
             message.channel.send({ embed });
         }
 
-        if (CMD_NAME == 'meme') {
+        else if (command == 'meme') {
             let response = await fetch('https://meme-api.herokuapp.com/gimme');
             let json = await response.json();
 
@@ -80,23 +89,23 @@ client.on('message', async (message) => {
                 .setColor('#0099ff')
                 .setTitle(json.title)
                 .setURL(json.postLink)
-                .setImage(json.url)
+                .setImage(json.url);
 
             message.channel.send(embed);
         }
 
-        if (CMD_NAME === 'ping') {
-            var botping = Math.round(client.ws.ping);
+        else if (command === 'ping') {
+            let botping = Math.round(client.ws.ping);
 
             message.channel.send(`Pong! ${botping}ms`);
         }
 
-        if (CMD_NAME === 'say') {
+        else if (command === 'say') {
             if (args.length === 0) return message.reply('please specify what to say');
             message.channel.send(args.join(' '));
         }
 
-        if (CMD_NAME === 'length') {
+        else if (command === 'length') {
             if (args.length === 0) return message.reply(`your dick is ${message.author.id.substring(1, 2)} inches long`);
             const member = message.guild.members.cache.get(args[0]
                 .replace("<", "")
@@ -108,9 +117,9 @@ client.on('message', async (message) => {
             message.channel.send(`<@${member.id}>'s dick is ${member.id.substring(1, 2)} inches long`);
         }
 
-        if (CMD_NAME === 'profile') {
-            let user = message.mentions.users.first() || message.author || message.member.user;
-            let member = message.guild.members.cache.get(user.id);
+        else if (command === 'profile') {
+            const user = message.mentions.users.first() || message.author || message.member.user;
+            const member = message.guild.members.cache.get(user.id);
             let roles = ``;
             member.roles.cache.array().forEach((item, index) => {
                 roles += `<@&${item.id}> `
@@ -133,7 +142,7 @@ client.on('message', async (message) => {
             message.channel.send(embed);
         }
 
-        if (CMD_NAME === 'serverinfo') {
+        else if (command === 'serverinfo') {
             let server = message.guild;
             let embed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
@@ -153,10 +162,10 @@ client.on('message', async (message) => {
             message.channel.send(embed);
         }
 
-        if (CMD_NAME === 'mute') {
+        else if (command === 'mute') {
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
-                return message.channel.send('you don\'t have permissions to mute')
+                return message.channel.send('you don\'t have permissions to mute');
 
             const user = message.mentions.users.first();
             if (user.bot) return message.channel.send('You can\'t do this to a bot');
@@ -186,10 +195,10 @@ client.on('message', async (message) => {
             }
         }
 
-        if (CMD_NAME === 'unmute') {
+        else if (command === 'unmute') {
             if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
             if (!message.member.roles.cache.has('684396194566242376'))
-                return message.channel.send('you don\'t have permissions to unmute')
+                return message.channel.send('you don\'t have permissions to unmute');
 
             const user = message.mentions.users.first();
             if (user.bot) return message.channel.send('You can\'t do this to a bot');
@@ -219,8 +228,26 @@ client.on('message', async (message) => {
             }
         }
 
+        else if (command === 'prune') {
+            if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('you don\'t have the permissions for that');
+            const self_member = message.guild.members.cache.get(client.user.id);
+            if(!self_member.hasPermission('MANAGE_MESSAGES')) return message.reply('I don\'t have the permissions for that');
+            
+            const amount = parseInt(args[0]);
+
+            if (isNaN(amount)) {
+                return message.reply('that doesn\'t seem to be a valid number.');
+            } else if (amount < 2 || amount > 100) {
+                return message.reply('you need to input a number between 2 and 100.');
+            }
+            message.channel.bulkDelete(amount, true).catch(err => {
+                message.channel.send('There was an error while pruning these messages');
+                console.error(err);
+            });
+        }
+
         /*
-                if (CMD_NAME === 'moveall') {
+                if (command === 'moveall') {
                     if (!message.guild.members.cache.get(message.author.id).hasPermission('MOVE_MEMBERS'))
                         return message.channel.send('you don\'t have permissions to move');
                     if (!message.guild.members.cache.get(client.user.id).hasPermission('MOVE_MEMBERS'))
@@ -240,7 +267,7 @@ client.on('message', async (message) => {
                 }*/
 
 
-        if (CMD_NAME == 'neko') {
+        if (command == 'neko') {
             if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
             let response = await fetch('https://nekos.life/api/v2/img/lewd');
@@ -248,7 +275,7 @@ client.on('message', async (message) => {
 
             let embed = new Discord.MessageEmbed()
                 .setColor('#0099ff')
-                .setImage(json.url)
+                .setImage(json.url);
 
             message.channel.send(embed);
         }
