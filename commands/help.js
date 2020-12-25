@@ -5,6 +5,7 @@ PREFIX = config.prefix;
 module.exports = {
     name: 'help',
     description: 'Helps with commands!',
+    
     execute(message, args) {
         const embed = new Discord.MessageEmbed();
         embed.setColor('#0099ff')

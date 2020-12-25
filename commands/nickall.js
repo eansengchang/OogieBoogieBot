@@ -1,19 +1,21 @@
 module.exports = {
     name: 'nickall',
-    guildOnly: true,
-    permissions: ['MANAGE_NICKNAMES'],
     description: 'Nicknames everyone!',
+    expectedArgs: '{name}',
+    guildOnly: true,
+    minArgs : 1,
+    permissions :['MANAGE_NICKNAMES'],
     async execute(message, args) {
         // Get the Guild and store it under the variable "list"
         message.guild.members.fetch()
-		.then(members => {
-            members.array().forEach(member => {
-                
-                member.setNickname(args.join(' ')).catch(error => {
-                    return
+            .then(members => {
+                members.array().forEach(member => {
+
+                    member.setNickname(args.join(' ')).catch(error => {
+                        return
+                    });
                 });
             });
-        });
         message.channel.send('I have changed the nickname of all possible users')
     },
 };

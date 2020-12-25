@@ -1,11 +1,13 @@
 module.exports = {
     name: 'mute',
     description: 'Mutes a person!',
-    args: true,
+    expectedArgs: '@user',
+    guildOnly: true,
+    minArgs: 1,
+    maxArgs: 1,
+    permissions: ['MUTE_MEMBERS'],
     execute(message, args) {
         if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
-        if (!message.member.roles.cache.has('684396194566242376'))
-            return message.channel.send('you don\'t have permissions to mute');
 
         const user = message.mentions.users.first();
         if (user.bot) return message.channel.send('You can\'t do this to a bot');

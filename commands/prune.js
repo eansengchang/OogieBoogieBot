@@ -1,7 +1,9 @@
 module.exports = {
     name: 'prune',
     description: 'Bulk deletes a channel!',
-    args: true,
+    expectedArgs: '{num}',
+    minArgs: 1,
+    maxArgs: 1,
     guildOnly: true,
     permissions: ['MANAGE_MESSAGES'],
     execute(message, args) {

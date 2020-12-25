@@ -3,8 +3,11 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'profile',
     description: 'Gets someone\'s profile!',
+    expectedArgs: '@user',
     guildOnly: true,
-    execute(message, args) {
+    minArgs: 0,
+    maxArgs: 1,
+    execute: (message, args) => {
         const user = message.mentions.users.first() || message.author || message.member.user;
         const member = message.guild.members.cache.get(user.id);
         let roles = ``;

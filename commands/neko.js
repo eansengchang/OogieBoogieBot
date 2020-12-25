@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'neko',
     description: 'Sends a neko!',
+    
     async execute(message, args) {
         if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
