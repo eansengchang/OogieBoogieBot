@@ -3,7 +3,6 @@ module.exports = {
     description: 'Nicknames everyone!',
     expectedArgs: '{name}',
     guildOnly: true,
-    minArgs : 1,
     permissions :['MANAGE_NICKNAMES'],
     async execute(message, args) {
         // Get the Guild and store it under the variable "list"
