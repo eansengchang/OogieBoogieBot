@@ -37,7 +37,8 @@ module.exports = {
                     \`${PREFIX}mute @user\` mutes a certain invidivual \n
                     \`${PREFIX}unmute @user\` unmutes a certain individual\n
                     \`${PREFIX}prune {number}\` deletes a number of messages\n
-                    \`${PREFIX}nickall {name}\` nicknames everyone`
+                    \`${PREFIX}nickall {name}\` nicknames everyone\n
+                    \`${PREFIX}moveall {channel id}\` moves everyone to a voice channel`
                 }
             )
             .addFields(
