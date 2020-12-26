@@ -14,7 +14,7 @@ for (const file of commandFiles) {
     // with the key as the command name and the value as the exported module
     client.commands.set(command.name, command);
 }
-
+//.replace(/[<@!>]/g, '');
 const PREFIX = config.prefix;
 client.login(config.token);
 
@@ -109,6 +109,10 @@ client.on('message', async (message) => {
         'Rey is hardstuck silver'];
     if (content.substring(0, 3) === 'rey') {
         message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
+    }
+
+    if(content.replace(/[<@!>]/g, '') === client.user.id){
+        message.channel.send(`My prefix is: \`e \``);
     }
 
     //random stuff
