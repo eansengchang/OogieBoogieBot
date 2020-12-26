@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'prune',
+    name: 'purge',
     description: 'Bulk deletes a channel!',
     expectedArgs: '{num}',
     minArgs: 1,
