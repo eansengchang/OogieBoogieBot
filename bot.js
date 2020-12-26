@@ -29,7 +29,7 @@ client.on('ready', () => {
 client.on('message', async (message) => {
     if (message.author.bot) return;
     const content = message.content.toLowerCase();
-    
+
     //prefixes
     if (content.startsWith(PREFIX)) {
         const [commandName, ...args] = content
@@ -66,13 +66,13 @@ client.on('message', async (message) => {
             let flag1 = false;
             let flag2 = false;
             permissions.forEach((item, index) => {
-                if (!selfMember.hasPermission(item)) {
-                    flag2 = true;
-                    missingPerms2.push(item);
-                }
                 if (!member.hasPermission(item)) {
                     flag1 = true;
                     missingPerms1.push(item);
+                }
+                if (!selfMember.hasPermission(item)) {
+                    flag2 = true;
+                    missingPerms2.push(item);
                 }
             })
 
@@ -85,15 +85,15 @@ client.on('message', async (message) => {
         }
 
         //error traps if there are no args
-        if (args.length< minArgs || (maxArgs !== null && maxArgs < args.length)) {
-            return message.reply(`incorrect syntax! Use \`${PREFIX}${name} ${expectedArgs}\``);
+        if (args.length < minArgs || (maxArgs !== null && maxArgs < args.length)) {
+            return message.reply(`Incorrect syntax! Use \`${PREFIX}${name} ${expectedArgs}\``);
         }
 
         try {
             execute(message, args);
         } catch (error) {
             client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send(error);
-            console.log(error);j
+            console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`); j
             message.reply('there was an error trying to execute that command!');
         }
     }
@@ -111,7 +111,7 @@ client.on('message', async (message) => {
         message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
 
-    if(content.replace(/[<@!>]/g, '') === client.user.id){
+    if (content.replace(/[<@!>]/g, '') === client.user.id) {
         message.channel.send(`Type \`${PREFIX}help\` for some help`);
     }
 
