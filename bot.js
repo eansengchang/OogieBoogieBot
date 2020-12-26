@@ -112,7 +112,7 @@ client.on('message', async (message) => {
     }
 
     if(content.replace(/[<@!>]/g, '') === client.user.id){
-        message.channel.send(`My prefix is: \`e \``);
+        message.channel.send(`Type \`${PREFIX}help\` for some help);
     }
 
     //random stuff
