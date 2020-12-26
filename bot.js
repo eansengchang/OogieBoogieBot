@@ -32,10 +32,8 @@ client.on('message', async (message) => {
 
     //prefixes
     if (content.startsWith(PREFIX)) {
-        const [commandName, ...args] = content
-            .trim()
-            .substring(PREFIX.length)
-            .split(/\s+/);
+        const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+        const commandName = args.shift().toLowerCase();
 
         //checks if the command exists
         if (!client.commands.has(commandName)) return;
@@ -92,7 +90,6 @@ client.on('message', async (message) => {
         try {
             execute(message, args);
         } catch (error) {
-            client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send(error);
             console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`); j
             message.reply('there was an error trying to execute that command!');
         }
