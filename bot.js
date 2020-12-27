@@ -1,29 +1,35 @@
-const fetch = require('node-fetch');
 const config = require('./config.json');
+const path = require('path')
 const fs = require('fs');
 
 const Discord = require('discord.js');
 require('dotenv').config();
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
 
-    // set a new item in the Collection
-    // with the key as the command name and the value as the exported module
-    client.commands.set(command.name, command);
-}
 //.replace(/[<@!>]/g, '');
-const PREFIX = config.prefix;
+const prefix = config.prefix;
 client.login(config.token);
 
 
 client.on('ready', () => {
     console.log('BOT IS ONLINE AND READY');
-    client.user.setActivity(`prefix: ${config.prefix}`, { type: 'LISTENING' });
-
+    client.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
     client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('BOT IS ONLINE AND READY');
+
+    const readCommands = (dir)=>{
+        const files = fs.readdirSync(path.join(__dirname, dir));
+        for(const file of files){
+            const stat = fs.lstatSync(path.join(__dirname, dir, file));
+            if(stat.isDirectory()){
+                readCommands(path.join(dir, file));
+            } else {
+                const command = require(path.join(__dirname, dir, file));
+                client.commands.set(command.name, command);
+            }
+        }
+    }
+    readCommands('commands');
 })
 
 client.on('message', async (message) => {
@@ -31,8 +37,8 @@ client.on('message', async (message) => {
     const content = message.content.toLowerCase();
 
     //prefixes
-    if (content.startsWith(PREFIX)) {
-        const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+    if (content.startsWith(prefix)) {
+        const args = message.content.slice(prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
 
         //checks if the command exists
@@ -41,7 +47,7 @@ client.on('message', async (message) => {
 
         let {
             name,
-            description = 'Gets someone\'s profile!',
+            description,
             expectedArgs,
             guildOnly = false,
             minArgs = 0,
@@ -84,7 +90,7 @@ client.on('message', async (message) => {
 
         //error traps if there are no args
         if (args.length < minArgs || (maxArgs !== null && maxArgs < args.length)) {
-            return message.reply(`Incorrect syntax! Use \`${PREFIX}${name} ${expectedArgs}\``);
+            return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
         }
 
         try {
@@ -109,7 +115,7 @@ client.on('message', async (message) => {
     }
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
-        message.channel.send(`Type \`${PREFIX}help\` for some help`);
+        message.channel.send(`Type \`${prefix}help\` for some help`);
     }
 
     //random stuff

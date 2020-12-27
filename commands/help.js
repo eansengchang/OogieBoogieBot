@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
-PREFIX = config.prefix;
+prefix = config.prefix;
 
 module.exports = {
     name: 'help',
@@ -18,33 +18,33 @@ module.exports = {
             .addFields(
                 {
                     name: 'Fun Commands', value: `\n
-                    \`${PREFIX}meme\`\t gives a meme \n
-                    \`${PREFIX}ping\`\t pong! \n
-                    \`${PREFIX}say\`\t repeats a certain sentence \n
-                    \`${PREFIX}length\`\t calculates your length`
+                    \`${prefix}meme\`\t gives a meme \n
+                    \`${prefix}ping\`\t pong! \n
+                    \`${prefix}say\`\t repeats a certain sentence \n
+                    \`${prefix}length\`\t calculates your length`
                 }
             )
             .addFields(
                 {
                     name: 'Info Commands', value: `\n
-                    \`${PREFIX}profile @user\` info on a user \n
-                    \`${PREFIX}serverinfo\` info on this server`
+                    \`${prefix}profile @user\` info on a user \n
+                    \`${prefix}serverinfo\` info on this server`
                 }
             )
             .addFields(
                 {
                     name: 'Mod Commands', value: `\n
-                    \`${PREFIX}mute @user\` mutes a certain invidivual \n
-                    \`${PREFIX}unmute @user\` unmutes a certain individual\n
-                    \`${PREFIX}prune {number}\` deletes a number of messages\n
-                    \`${PREFIX}nickall {name}\` nicknames everyone\n
-                    \`${PREFIX}moveall {channel id}\` moves everyone to a voice channel`
+                    \`${prefix}mute @user\` mutes a certain invidivual \n
+                    \`${prefix}unmute @user\` unmutes a certain individual\n
+                    \`${prefix}prune {number}\` deletes a number of messages\n
+                    \`${prefix}nickall {name}\` nicknames everyone\n
+                    \`${prefix}moveall {channel id}\` moves everyone to a voice channel`
                 }
             )
             .addFields(
                 {
                     name: 'NSFW Commands', value: `\n
-                    \`${PREFIX}neko\` gives some nekos`
+                    \`${prefix}neko\` gives some nekos`
                 },
             );
 
