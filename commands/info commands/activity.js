@@ -9,9 +9,12 @@ module.exports = {
     minArgs: 0,
     maxArgs: 1,
     execute: (message, args) => {
-        const userid = message.mentions.users.first().id || message.author.id || message.member.user.id;
+        const user = message.mentions.users.first() || message.author || message.member.user;
 
-        activity = message.client.getActivity.get(message.author.id);
-        message.reply(`<@${userid}> has sent ${activity.messages} messages in this server`);
+        activity = message.client.getActivity.get(user.id);
+        if (!activity) {
+            activity = { id: `${user.id}`, userid: user.tag, messages: 0, lastUpdate: `${message.createdTimestamp}` }
+        }
+        message.channel.send(`<@${user.id}> has sent ${activity.messages} messages in this server`);
     },
 };
