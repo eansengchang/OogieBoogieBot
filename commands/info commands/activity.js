@@ -6,8 +6,9 @@ module.exports = {
     description: 'See how many messages you\'ve sent',
     guildOnly: true,
     execute: (message, args) => {
-        
+        const userid = message.mentions.users.first().id || message.author.id || message.member.user.id;
+
         activity = message.client.getActivity.get(message.author.id);
-        message.reply(`You\'ve sent ${activity.messages} messages in this server`);
+        message.reply(`<@${userid}> has sent ${activity.messages} messages in this server`);
     },
 };
