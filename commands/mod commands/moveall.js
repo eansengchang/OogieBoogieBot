@@ -1,14 +1,19 @@
 module.exports = {
     name: 'moveall',
     description: 'Moves everyone to a call!',
-    expectedArgs: '{channel id}',
+    expectedArgs: '{channel name}',
     minArgs: 1,
-    maxArgs: 1,
     guildOnly: true,
     permissions: ['MOVE_MEMBERS'],
     async execute(message, args) {
-        if (!message.guild.channels.cache.get(args[0]) || (message.guild.channels.cache.get(args[0]).type != 'voice')) return message.reply('That is not a valid channel');
-        const channelEnd = message.guild.channels.cache.get(args[0]);
+        let channelEnd;
+        message.guild.channels.cache.array().forEach(channel => {
+            if(channel.type == 'voice' && channel.name === args.join(' ')){
+                channelEnd = channel;
+            };
+            console.log(channel.name, args.join(' '));
+        });
+        if(!channelEnd) return message.channel.send('This is not a valid channel name')
 
         message.guild.channels.cache.array().forEach(
             channel => { 
