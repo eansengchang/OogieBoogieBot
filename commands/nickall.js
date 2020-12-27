@@ -15,7 +15,7 @@ module.exports = {
                     });
                 });
             });
-        if (args.length === 0) return message.channel.send(`I have changed the nickname of all possible users to default`)
-        message.channel.send(`I have changed the nickname of all possible users to ${args.join(' ')}`)
+        if (args.length === 0) return message.channel.send(`I have changed the nickname of all possible users to default`);
+        message.channel.send(`I have changed the nickname of all possible users to \`${args.join(' ')}\``);
     },
 };
