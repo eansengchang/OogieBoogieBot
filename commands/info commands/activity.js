@@ -14,7 +14,10 @@ module.exports = {
         activity = message.client.getActivity.get(user.id);
         if (!activity) {
             activity = { id: `${user.id}`, userid: user.tag, messages: 0, lastUpdate: `${message.createdTimestamp}` }
+            client.setActivity.run(activity);
         }
-        message.channel.send(`<@${user.id}> has sent ${activity.messages} messages in this server`);
+        let days = Math.round((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24)
+        
+        message.channel.send(`<@${user.id}> has sent ${activity.messages} messages in this server since ${days} days ago`);
     },
 };
