@@ -11,7 +11,6 @@ module.exports = {
             if(channel.type == 'voice' && channel.name === args.join(' ')){
                 channelEnd = channel;
             };
-            console.log(channel.name, args.join(' '));
         });
         if(!channelEnd) return message.channel.send('This is not a valid channel name')
 

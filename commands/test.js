@@ -4,6 +4,6 @@ module.exports = {
     permissions: ['ADMINISTRATOR'],
     execute(message, args) {
 
-        return;
+        
     },
 };

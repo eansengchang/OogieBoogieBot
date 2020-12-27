@@ -1,6 +1,8 @@
 const config = require('./config.json');
 const path = require('path')
 const fs = require('fs');
+const SQLite = require("better-sqlite3");
+const sql = new SQLite('./activity.sqlite');
 
 const Discord = require('discord.js');
 require('dotenv').config();
@@ -17,11 +19,11 @@ client.on('ready', () => {
     client.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
     client.guilds.cache.get('616347460679368731').channels.cache.get('616347460679368737').send('BOT IS ONLINE AND READY');
 
-    const readCommands = (dir)=>{
+    const readCommands = (dir) => {
         const files = fs.readdirSync(path.join(__dirname, dir));
-        for(const file of files){
+        for (const file of files) {
             const stat = fs.lstatSync(path.join(__dirname, dir, file));
-            if(stat.isDirectory()){
+            if (stat.isDirectory()) {
                 readCommands(path.join(dir, file));
             } else {
                 const command = require(path.join(__dirname, dir, file));
@@ -30,13 +32,31 @@ client.on('ready', () => {
         }
     }
     readCommands('commands');
+
+    client.guilds.cache.array().forEach(guild => {
+        // If the table isn't there, create it and setup the database correctly.
+        sql.prepare(`CREATE TABLE IF NOT EXISTS '${guild.id}' (id TEXT PRIMARY KEY, userid TEXT, messages INTEGER, lastUpdate TEXT);`).run();
+    })
 })
 
 client.on('message', async (message) => {
     if (message.author.bot) return;
     const content = message.content.toLowerCase();
 
-    //prefixes
+
+    if (message.guild) {
+        client.getActivity = sql.prepare(`SELECT * FROM \`${message.guild.id}\` WHERE id = ?`);
+        client.setActivity = sql.prepare(`INSERT OR REPLACE INTO \`${message.guild.id}\` VALUES (@id, @userid, @messages, @lastUpdate);`);
+
+        activity = client.getActivity.get(message.author.id);
+        if (!activity) {
+            activity = { id: `${message.author.id}`, userid: message.author.tag, messages: 0, lastUpdate: `${message.createdTimestamp}` }
+        }
+        activity.messages++;
+        client.setActivity.run(activity);
+    }
+
+    //prefixes and commands
     if (content.startsWith(prefix)) {
         const args = message.content.slice(prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
