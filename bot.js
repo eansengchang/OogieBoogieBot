@@ -54,6 +54,7 @@ client.on('message', async (message) => {
         }
         activity.messages++;
         client.setActivity.run(activity);
+        
     }
 
     //prefixes and commands
