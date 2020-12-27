@@ -4,7 +4,10 @@ const sql = new SQLite('./activity.sqlite');
 module.exports = {
     name: 'activity',
     description: 'See how many messages you\'ve sent',
+    expectedArgs: '@user',
     guildOnly: true,
+    minArgs: 0,
+    maxArgs: 1,
     execute: (message, args) => {
         const userid = message.mentions.users.first().id || message.author.id || message.member.user.id;
 
