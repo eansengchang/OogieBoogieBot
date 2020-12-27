@@ -17,7 +17,11 @@ module.exports = {
             client.setActivity.run(activity);
         }
         let days = Math.round((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24)
-        
-        message.channel.send(`<@${user.id}> has sent ${activity.messages} messages in this server since ${days} days ago`);
+        if (days === 0){
+            days = 1;
+        }
+        let messagesPerDay = activity.messages / days;
+
+        message.channel.send(`<@${user.id}> has sent ${activity.messages} messages in this server since ${days} days ago with an average activity of ${messagesPerDay} messages a day`);
     },
 };

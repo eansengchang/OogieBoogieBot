@@ -28,7 +28,8 @@ module.exports = {
                 {
                     name: 'Info Commands', value: `\n
                     \`${prefix}profile @user\` info on a user \n
-                    \`${prefix}serverinfo\` info on this server`
+                    \`${prefix}serverinfo\` info on this server\n
+                    \`${prefix}activity @user\` info on your activity`
                 }
             )
             .addFields(
