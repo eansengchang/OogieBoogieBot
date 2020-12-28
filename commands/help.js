@@ -37,7 +37,7 @@ module.exports = {
                     name: 'Mod Commands', value: `\n
                     \`${prefix}mute @user\` mutes a certain invidivual \n
                     \`${prefix}unmute @user\` unmutes a certain individual\n
-                    \`${prefix}prune {number}\` deletes a number of messages\n
+                    \`${prefix}purge {number}\` deletes a number of messages\n
                     \`${prefix}nickall {name}\` nicknames everyone\n
                     \`${prefix}moveall {channel name}\` moves everyone to a voice channel`
                 }
