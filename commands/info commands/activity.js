@@ -1,5 +1,6 @@
 const SQLite = require("better-sqlite3");
 const sql = new SQLite('./activity.sqlite');
+const Discord = require('discord.js');
 
 module.exports = {
     name: 'activity',
@@ -22,6 +23,16 @@ module.exports = {
         }
         let messagesPerDay = activity.messages / days;
 
-        message.channel.send(`<@${user.id}> has sent ${activity.messages} messages in this server since ${days} days ago with an average activity of ${messagesPerDay} messages a day`);
+        let embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle(`Activity info for ${user.username}`)
+            .setThumbnail(user.displayAvatarURL())
+            .addFields(
+                { name: 'Activity:', value: `${messagesPerDay} m/d`, inline: false },
+                { name: 'Messages:', value: `${activity.messages} messages`, inline: false },
+                { name: 'Days logged:', value: `${days} days`, inline: false },
+            )
+            .setFooter(`requested by ${message.author.tag}`)
+        message.channel.send(embed);
     },
 };
