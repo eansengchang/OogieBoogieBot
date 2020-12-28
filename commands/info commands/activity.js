@@ -25,7 +25,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`Activity info for ${user.username}`)
+            .setTitle(`${user.username}'s activity in ${message.guild.name}`)
             .setThumbnail(user.displayAvatarURL())
             .addFields(
                 { name: 'Activity:', value: `${messagesPerDay} m/d`, inline: false },
