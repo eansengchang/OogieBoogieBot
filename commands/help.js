@@ -35,8 +35,8 @@ module.exports = {
             .addFields(
                 {
                     name: 'Mod Commands', value: `\n
-                    \`${prefix}mute @user\` mutes a certain invidivual \n
-                    \`${prefix}unmute @user\` unmutes a certain individual\n
+                    \`${prefix}timeout @user\` timeouts a certain invidivual \n
+                    \`${prefix}untimeout @user\` untimeouts a certain individual\n
                     \`${prefix}purge {number}\` deletes a number of messages\n
                     \`${prefix}nickall {name}\` nicknames everyone\n
                     \`${prefix}moveall {channel name}\` moves everyone to a voice channel`

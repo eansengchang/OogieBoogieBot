@@ -41,25 +41,29 @@ module.exports = {
                             }
                         }
                     }
-                    let embed = new Discord.MessageEmbed()
-                        .setColor('#0099ff')
-                        .setTitle(`Top voice activity`);
 
                     let list = '';
                     for (let i = 0; i < 10; i++) {
                         if (activityList[i]) {
+                            let days = Math.round((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                            let voicePerDay = activityList[i].voice / days;
                             let member = message.guild.members.cache.get(activityList[i].id)
                             if (activityList[i].voice < 60) {
-                                list += `\n${i + 1}. **${member.displayName}** (${activityList[i].voice}m/d)`;
+                                list += `\n${i + 1}. **${member.displayName}** ${voicePerDay}}m/d)`;
                             }
                             else {
-                                list += `\n${i + 1}. **${member.displayName}** (${Math.round(activityList[i].voice / 60)}hr/d)`;
+                                list += `\n${i + 1}. **${member.displayName}** (${Math.floor(voicePerDay / 60)}hr/d)`;
                             }
                         }
                     }
-                    embed.setDescription(list);
+                    //prints voice activity
+                    let embed = new Discord.MessageEmbed()
+                        .setColor('#0099ff')
+                        .setTitle(`Top voice activity`)
+                        .setDescription(list);
                     message.channel.send(embed);
-                } //bubble sorts messages
+                } 
+                //bubble sorts messages
                 else {
                     let flag = true;
                     while (flag) {
@@ -73,25 +77,27 @@ module.exports = {
                             }
                         }
                     }
-                    let embed = new Discord.MessageEmbed()
-                        .setColor('#0099ff')
-                        .setTitle(`Top message activity`);
 
                     let list = '';
                     for (let i = 0; i < 10; i++) {
                         if (activityList[i]) {
+                            let days = Math.round((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                             let member = message.guild.members.cache.get(activityList[i].id)
                             list += `\n${i + 1}. **${member.displayName}** (${activityList[i].messages}m/d)`;
                         }
                     }
-                    embed.setDescription(list);
+                    //prints message activity
+                    let embed = new Discord.MessageEmbed()
+                        .setColor('#0099ff')
+                        .setTitle(`Top message activity`)
+                        .setDescription(list);
                     message.channel.send(embed);
                 }
             })
 
         }
+        //it just gives the activity
         else {
-
             //either first mention or author
             const user = message.mentions.users.first() || message.author || message.member.user;
 

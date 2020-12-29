@@ -1,6 +1,6 @@
 module.exports = {
-    name: 'mute',
-    description: 'Mutes a person!',
+    name: 'timeout',
+    description: 'Timeouts a person!',
     expectedArgs: '@user',
     guildOnly: true,
     minArgs: 1,

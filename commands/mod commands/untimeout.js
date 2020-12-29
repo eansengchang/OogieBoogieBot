@@ -1,6 +1,6 @@
 module.exports = {
-    name: 'unmute',
-    description: 'Unmutes a person!',
+    name: 'untimeout',
+    description: 'Untimeouts a person!',
     expectedArgs: '@user',
     guildOnly: true,
     minArgs: 1,
