@@ -32,7 +32,7 @@ client.on('ready', () => {
             }
         }
     }
-    readCommands('commands');
+    //readCommands('commands');
 
     client.guilds.cache.array().forEach(guild => {
         // If the table isn't there, create it and setup the database correctly.
@@ -173,7 +173,7 @@ client.on('voiceStateUpdate', async (state1, state2) => {
 
     //disconnects from a channel
     if (!state2.channel && state1.channel) {
-        if (activity.isvoice == 1) {
+        if (activity.isVoice == 1) {
             activity.isVoice = 0;
             client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} left in ${state2.guild.name}`).then(message => {
                 let callEnd = message.createdTimestamp;
