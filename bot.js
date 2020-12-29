@@ -115,12 +115,12 @@ client.on('message', async (message) => {
             return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
         }
 
-        //try {
+        try {
             execute(message, args);
-        // } catch (error) {
-        //     console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
-        //     message.reply('there was an error trying to execute that command!');
-        // }
+        } catch (error) {
+            console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
+            message.reply('there was an error trying to execute that command!');
+        }
     }
 
     //simple replies

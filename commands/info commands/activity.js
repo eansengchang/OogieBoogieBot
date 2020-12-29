@@ -11,14 +11,7 @@ module.exports = {
     maxArgs: 2,
     execute: (message, args) => {
         //resets first mention
-        if (args[0] === 'reset') {
-            const user = message.mentions.users.first()
-            if (!user) return message.reply('I was unable to find that user')
-            activity = { id: `${message.author.id}`, usertag: message.author.tag, lastUpdate: `${message.createdTimestamp}`, messages: 0, voice: 0, isVoice: 0, voiceJoinedStamp: '' };
-            message.client.setActivity.run(activity);
-            return message.channel.send(`I have resetted <@${user.id}>'s activity`);
-
-        } else if (args[0] === 'top') {
+        if (args[0] === 'top') {
             let activityList = [];
             message.guild.members.fetch().then(members => {
                 members.array().forEach(member => {
