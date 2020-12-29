@@ -5,6 +5,7 @@ const SQLite = require("better-sqlite3");
 const sql = new SQLite('./activity.sqlite');
 
 const Discord = require('discord.js');
+const activity = require('./commands/info commands/activity');
 require('dotenv').config();
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -35,7 +36,7 @@ client.on('ready', () => {
 
     client.guilds.cache.array().forEach(guild => {
         // If the table isn't there, create it and setup the database correctly.
-        sql.prepare(`CREATE TABLE IF NOT EXISTS '${guild.id}' (id TEXT PRIMARY KEY, userid TEXT, messages INTEGER, lastUpdate TEXT);`).run();
+        sql.prepare(`CREATE TABLE IF NOT EXISTS '${guild.id}' (id TEXT PRIMARY KEY, usertag TEXT, lastUpdate TEXT, messages INTEGER, voice INTEGER, isVoice INTEGER, voiceJoinedStamp TEXT);`).run();
     })
 })
 
@@ -46,15 +47,14 @@ client.on('message', async (message) => {
 
     if (message.guild) {
         client.getActivity = sql.prepare(`SELECT * FROM \`${message.guild.id}\` WHERE id = ?`);
-        client.setActivity = sql.prepare(`INSERT OR REPLACE INTO \`${message.guild.id}\` VALUES (@id, @userid, @messages, @lastUpdate);`);
+        client.setActivity = sql.prepare(`INSERT OR REPLACE INTO \`${message.guild.id}\` VALUES (@id, @usertag, @lastUpdate, @messages, @voice, @isVoice, @voiceJoinedStamp);`);
 
-        activity = client.getActivity.get(message.author.id);
+        let activity = client.getActivity.get(message.author.id);
         if (!activity) {
-            activity = { id: `${message.author.id}`, userid: message.author.tag, messages: 0, lastUpdate: `${message.createdTimestamp}` }
+            activity = { id: `${message.author.id}`, usertag: message.author.tag, lastUpdate: `${message.createdTimestamp}`, messages: 0, voice: 0, isVoice: 0, voiceJoinedStamp: '' };
         }
         activity.messages++;
         client.setActivity.run(activity);
-        
     }
 
     //prefixes and commands
@@ -147,3 +147,37 @@ client.on('message', async (message) => {
     }
 })
 
+client.on('voiceStateUpdate', async (state1, state2) => {
+    client.getActivity = sql.prepare(`SELECT * FROM \`${state2.guild.id}\` WHERE id = ?`);
+    client.setActivity = sql.prepare(`INSERT OR REPLACE INTO \`${state2.guild.id}\` VALUES (@id, @usertag, @lastUpdate, @messages, @voice, @isVoice, @voiceJoinedStamp);`);
+
+    let activity = client.getActivity.get(state2.member.user.id);
+    if (!activity) {
+        activity = { id: `${state2.member.user.id}`, usertag: state1.member.user.tag, lastUpdate: ``, messages: 0, voice: 0, isVoice: 0, voiceJoinedStamp: '' };
+    }
+
+    if (state2.channel && !state1.channel) {
+        activity.isVoice = 1;
+        client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} joined in ${state2.guild.name}`).then(message => {
+            activity.voiceJoinedStamp = message.createdTimestamp;
+            if(activity.lastUpdate === ``){activity.lastUpdate = message.createdTimestamp;}
+            
+            console.log(`${activity.usertag} has joined the call`);
+            client.setActivity.run(activity);
+        });
+    }
+    if (!state2.channel && state1.channel) {
+        activity.isVoice = 0;
+        client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} left in ${state2.guild.name}`).then(message => {
+            let callEnd = message.createdTimestamp;
+            if(activity.lastUpdate === ``){activity.lastUpdate = message.createdTimestamp;}
+            let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
+
+            console.log(`${activity.usertag} has left the call`);
+            console.log(`call lasted ${duration} minutes`)
+            activity.voice += duration;
+            client.setActivity.run(activity);
+        });
+    }
+
+})

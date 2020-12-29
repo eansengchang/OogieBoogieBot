@@ -14,14 +14,12 @@ module.exports = {
 
         activity = message.client.getActivity.get(user.id);
         if (!activity) {
-            activity = { id: `${user.id}`, userid: user.tag, messages: 0, lastUpdate: `${message.createdTimestamp}` }
+            activity = { id: `${message.author.id}`, usertag: message.author.tag, lastUpdate: `${message.createdTimestamp}`, messages: 0, voice: 0, isVoice: 0, voiceJoinedStamp: ''};
             client.setActivity.run(activity);
         }
-        let days = Math.round((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24)
-        if (days === 0){
-            days = 1;
-        }
+        let days = Math.round((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
         let messagesPerDay = activity.messages / days;
+        let voicePerDay = activity.voice / days;
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
@@ -30,6 +28,8 @@ module.exports = {
             .addFields(
                 { name: 'Activity:', value: `${messagesPerDay} m/d`, inline: false },
                 { name: 'Messages:', value: `${activity.messages} messages`, inline: false },
+                { name: 'Voice:', value: `${voicePerDay} minutes per day`, inline: false },
+                { name: 'Total voice:', value: `${activity.voice} minutes`, inline: false },
                 { name: 'Days logged:', value: `${days} days`, inline: false },
             )
             .setFooter(`requested by ${message.author.tag}`)
