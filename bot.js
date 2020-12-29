@@ -32,7 +32,7 @@ client.on('ready', () => {
             }
         }
     }
-    //readCommands('commands');
+    readCommands('commands');
 
     client.guilds.cache.array().forEach(guild => {
         // If the table isn't there, create it and setup the database correctly.
