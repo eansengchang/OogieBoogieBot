@@ -175,7 +175,7 @@ client.on('voiceStateUpdate', async (state1, state2) => {
     if (!state2.channel && state1.channel) {
         if (activity.isVoice == 1) {
             activity.isVoice = 0;
-            client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} left in ${state2.guild.name}`).then(message => {
+            client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state1.member.user.tag} left in ${state1.guild.name}`).then(message => {
                 let callEnd = message.createdTimestamp;
                 if (activity.lastUpdate === ``) { activity.lastUpdate = message.createdTimestamp; }
                 let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
