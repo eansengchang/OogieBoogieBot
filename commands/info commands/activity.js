@@ -60,7 +60,7 @@ module.exports = {
                     embed.setDescription(list);
                     message.channel.send(embed);
                 } //bubble sorts messages
-                else if (args[1] === 'messages') {
+                else {
                     let flag = true;
                     while (flag) {
                         flag = false;
