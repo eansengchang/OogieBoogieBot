@@ -15,7 +15,7 @@ module.exports = {
         activity = message.client.getActivity.get(user.id);
         if (!activity) {
             activity = { id: `${message.author.id}`, usertag: message.author.tag, lastUpdate: `${message.createdTimestamp}`, messages: 0, voice: 0, isVoice: 0, voiceJoinedStamp: ''};
-            client.setActivity.run(activity);
+            message.client.setActivity.run(activity);
         }
         let days = Math.round((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
         let messagesPerDay = activity.messages / days;

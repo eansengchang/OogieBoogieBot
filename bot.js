@@ -114,12 +114,12 @@ client.on('message', async (message) => {
             return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
         }
 
-        try {
+        //try {
             execute(message, args);
-        } catch (error) {
-            console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`); j
-            message.reply('there was an error trying to execute that command!');
-        }
+        // } catch (error) {
+        //     console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
+        //     message.reply('there was an error trying to execute that command!');
+        // }
     }
 
     //simple replies
@@ -160,24 +160,26 @@ client.on('voiceStateUpdate', async (state1, state2) => {
         activity.isVoice = 1;
         client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} joined in ${state2.guild.name}`).then(message => {
             activity.voiceJoinedStamp = message.createdTimestamp;
-            if(activity.lastUpdate === ``){activity.lastUpdate = message.createdTimestamp;}
-            
+            if (activity.lastUpdate === ``) { activity.lastUpdate = message.createdTimestamp; }
+
             console.log(`${activity.usertag} has joined the call`);
             client.setActivity.run(activity);
         });
     }
     if (!state2.channel && state1.channel) {
-        activity.isVoice = 0;
-        client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} left in ${state2.guild.name}`).then(message => {
-            let callEnd = message.createdTimestamp;
-            if(activity.lastUpdate === ``){activity.lastUpdate = message.createdTimestamp;}
-            let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
+        if (activity.isvoice == 1) {
+            activity.isVoice = 0;
+            client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} left in ${state2.guild.name}`).then(message => {
+                let callEnd = message.createdTimestamp;
+                if (activity.lastUpdate === ``) { activity.lastUpdate = message.createdTimestamp; }
+                let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
 
-            console.log(`${activity.usertag} has left the call`);
-            console.log(`call lasted ${duration} minutes`)
-            activity.voice += duration;
-            client.setActivity.run(activity);
-        });
+                console.log(`${activity.usertag} has left the call`);
+                console.log(`call lasted ${duration} minutes`)
+                activity.voice += duration;
+                client.setActivity.run(activity);
+            });
+        }
     }
 
 })
