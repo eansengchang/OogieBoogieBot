@@ -44,7 +44,7 @@ client.on('message', async (message) => {
     if (message.author.bot) return;
     const content = message.content.toLowerCase();
 
-
+    //activity logging part
     if (message.guild) {
         client.getActivity = sql.prepare(`SELECT * FROM \`${message.guild.id}\` WHERE id = ?`);
         client.setActivity = sql.prepare(`INSERT OR REPLACE INTO \`${message.guild.id}\` VALUES (@id, @usertag, @lastUpdate, @messages, @voice, @isVoice, @voiceJoinedStamp);`);
@@ -66,6 +66,7 @@ client.on('message', async (message) => {
         if (!client.commands.has(commandName)) return;
         const command = client.commands.get(commandName);
 
+        //default properties of a command
         let {
             name,
             description,
@@ -148,14 +149,17 @@ client.on('message', async (message) => {
 })
 
 client.on('voiceStateUpdate', async (state1, state2) => {
+    if (state1.member.user.bot) return;
     client.getActivity = sql.prepare(`SELECT * FROM \`${state2.guild.id}\` WHERE id = ?`);
     client.setActivity = sql.prepare(`INSERT OR REPLACE INTO \`${state2.guild.id}\` VALUES (@id, @usertag, @lastUpdate, @messages, @voice, @isVoice, @voiceJoinedStamp);`);
 
     let activity = client.getActivity.get(state2.member.user.id);
+    //creates a row if not already
     if (!activity) {
         activity = { id: `${state2.member.user.id}`, usertag: state1.member.user.tag, lastUpdate: ``, messages: 0, voice: 0, isVoice: 0, voiceJoinedStamp: '' };
     }
 
+    //connects to channel
     if (state2.channel && !state1.channel) {
         activity.isVoice = 1;
         client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} joined in ${state2.guild.name}`).then(message => {
@@ -166,6 +170,8 @@ client.on('voiceStateUpdate', async (state1, state2) => {
             client.setActivity.run(activity);
         });
     }
+
+    //disconnects from a channel
     if (!state2.channel && state1.channel) {
         if (activity.isvoice == 1) {
             activity.isVoice = 0;
