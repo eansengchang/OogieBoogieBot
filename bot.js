@@ -1,7 +1,7 @@
 const config = require('./config.json');
 const path = require('path')
 const fs = require('fs');
-const SQLite = require("better-sqlite3");
+//const SQLite = require("better-sqlite3");
 const sql = new SQLite('./activity.sqlite');
 
 const Discord = require('discord.js');

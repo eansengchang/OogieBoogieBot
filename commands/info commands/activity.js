@@ -1,5 +1,5 @@
-const SQLite = require("better-sqlite3");
-const sql = new SQLite('./activity.sqlite');
+//const SQLite = require("better-sqlite3");
+//const sql = new SQLite('./activity.sqlite');
 const Discord = require('discord.js');
 
 module.exports = {
