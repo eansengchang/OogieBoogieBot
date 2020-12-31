@@ -79,7 +79,10 @@ module.exports = {
                     {
                         name: 'NSFW Commands', value: `\n
                     \`${prefix}neko\` gives some nekos\n
-                    \`${prefix}lol\` rule34 lol`
+                    \`${prefix}lol\` rule34 lol\n
+                    \`${prefix}hentaig\` hentai gifs\n
+                    \`${prefix}solo\` solo pics\n
+                    \`${prefix}solo\` solo pics`
                     },
                 );
             message.channel.send({ embed });
