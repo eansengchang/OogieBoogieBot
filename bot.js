@@ -43,7 +43,7 @@ client.on('ready', () => {
 client.on('message', async (message) => {
     if (message.author.bot) return;
     const content = message.content.toLowerCase();
-
+    /*
     //activity logging part
     if (message.guild) {
         client.getActivity = sql.prepare(`SELECT * FROM \`${message.guild.id}\` WHERE id = ?`);
@@ -55,7 +55,7 @@ client.on('message', async (message) => {
         }
         activity.messages++;
         client.setActivity.run(activity);
-    }
+    }*/
 
     //prefixes and commands
     if (content.startsWith(prefix)) {
@@ -147,7 +147,7 @@ client.on('message', async (message) => {
         }
     }
 })
-
+/*
 client.on('voiceStateUpdate', async (state1, state2) => {
     if (state1.member.user.bot) return;
     client.getActivity = sql.prepare(`SELECT * FROM \`${state2.guild.id}\` WHERE id = ?`);
@@ -188,4 +188,4 @@ client.on('voiceStateUpdate', async (state1, state2) => {
         }
     }
 
-})
+})*/

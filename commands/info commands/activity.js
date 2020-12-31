@@ -7,9 +7,9 @@ module.exports = {
     description: 'See how many messages you\'ve sent',
     expectedArgs: '@user or reset @user or top',
     guildOnly: true,
-    minArgs: 0,
-    maxArgs: 2,
-    execute: (message, args) => {
+    //minArgs: 0,
+    //maxArgs: 2,
+    execute: (message, args) => {/*
         //resets first mention
         if (args[0] === 'top') {
             let activityList = [];
@@ -128,6 +128,6 @@ module.exports = {
                 )
                 .setFooter(`requested by ${message.author.tag}`)
             message.channel.send(embed);
-        }
+        }*/
     },
 };
