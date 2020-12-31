@@ -2,7 +2,7 @@ const config = require('./config.json');
 const path = require('path')
 const fs = require('fs');
 //const SQLite = require("better-sqlite3");
-const sql = new SQLite('./activity.sqlite');
+//const sql = new SQLite('./activity.sqlite');
 
 const Discord = require('discord.js');
 const activity = require('./commands/info commands/activity');
@@ -34,10 +34,10 @@ client.on('ready', () => {
     }
     readCommands('commands');
 
-    client.guilds.cache.array().forEach(guild => {
-        // If the table isn't there, create it and setup the database correctly.
-        sql.prepare(`CREATE TABLE IF NOT EXISTS '${guild.id}' (id TEXT PRIMARY KEY, usertag TEXT, lastUpdate TEXT, messages INTEGER, voice INTEGER, isVoice INTEGER, voiceJoinedStamp TEXT);`).run();
-    })
+    // client.guilds.cache.array().forEach(guild => {
+    //     // If the table isn't there, create it and setup the database correctly.
+    //     sql.prepare(`CREATE TABLE IF NOT EXISTS '${guild.id}' (id TEXT PRIMARY KEY, usertag TEXT, lastUpdate TEXT, messages INTEGER, voice INTEGER, isVoice INTEGER, voiceJoinedStamp TEXT);`).run();
+    // })
 })
 
 client.on('message', async (message) => {
