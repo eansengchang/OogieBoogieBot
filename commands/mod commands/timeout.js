@@ -18,6 +18,11 @@ module.exports = {
             // If the member is in the guild
 
             if (member) {
+                if(member.roles.highest.position >= message.member.roles.highest.position){
+                    return message.reply('Unable to timeout someone with an equal or higher role than you');
+                }
+                
+
                 member
                     .roles.set(['704297468015280208'])
                     .then(() => {
