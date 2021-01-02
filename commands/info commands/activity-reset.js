@@ -8,8 +8,8 @@ module.exports = {
     description: 'resets the activity',
     expectedArgs: '@user',
     guildOnly: true,
-    //minArgs: 0,
-    //maxArgs: 1,
+    minArgs: 0,
+    maxArgs: 1,
     permissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
         let activityCollection = serverActivity(message.guild);

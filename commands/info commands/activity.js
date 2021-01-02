@@ -8,8 +8,8 @@ module.exports = {
     description: 'See how many messages you\'ve sent',
     expectedArgs: '@user or reset @user or top',
     guildOnly: true,
-    //minArgs: 0,
-    //maxArgs: 2,
+    minArgs: 0,
+    maxArgs: 2,
     execute: async (message, args) => {
         let activityCollection = serverActivity(message.guild);
 
@@ -46,12 +46,13 @@ module.exports = {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                         let voicePerDay = Math.round(10 * activityList[i].voice / days) / 10;
+                        console.log(voicePerDay)
                         let member = message.guild.members.cache.get(activityList[i]._id)
                         if (activityList[i].voice < 60) {
                             list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}m/d)`;
                         }
                         else {
-                            list += `\n${i + 1}. **${member.displayName}** (${Math.floor(voicePerDay / 60)}hr/d)`;
+                            list += `\n${i + 1}. **${member.displayName}** (${Math.round(10*voicePerDay / 60) / 10}hr/d)`;
                         }
                     }
                 }
