@@ -45,8 +45,9 @@ module.exports = {
                 .addFields(
                     {
                         name: 'Info Commands', value: `\n
-                    \`${prefix}profile @user\` info on a user \n
-                    \`${prefix}serverinfo\` info on this server`
+                    \`${prefix}profile @user\` info on a user\n
+                    \`${prefix}serverinfo\` info on this server\n
+                    \`${prefix}activity\` info on your activity`
                     }
                 );
             message.channel.send({ embed });
