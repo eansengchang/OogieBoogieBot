@@ -21,7 +21,6 @@ module.exports = {
                 if(member.roles.highest.position >= message.member.roles.highest.position){
                     return message.reply('Unable to timeout someone with an equal or higher role than you');
                 }
-                
 
                 member
                     .roles.set(['704297468015280208'])
