@@ -15,10 +15,11 @@ module.exports = {
 
         if (args[0] === 'top') {
             let activityList = [];
-            (await activityCollection.find()).forEach(activity=>{
-                activityList.push(activity);
+            (await activityCollection.find()).forEach(activity => {
+                if (message.guild.members.cache.get(activity._id)) {
+                    activityList.push(activity);
+                }
             })
-            console.log(activityList)
 
             //bubbble sorts voice
             if (args[1] === 'voice') {
@@ -45,7 +46,7 @@ module.exports = {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                         let voicePerDay = Math.round(10 * activityList[i].voice / days) / 10;
-                        let member = message.guild.members.cache.get(activityList[i].id)
+                        let member = message.guild.members.cache.get(activityList[i]._id)
                         if (activityList[i].voice < 60) {
                             list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}m/d)`;
                         }
@@ -86,8 +87,12 @@ module.exports = {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                         let messagesPerDay = Math.round(10 * activityList[i].messages / days) / 10;
-                        let member = message.guild.members.cache.get(activityList[i].id)
-                        list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
+                        await message.guild.members.fetch(`${activityList[i]._id}`).then(member => {
+                            list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
+                        }).catch(err => {
+                            console.log(activityList[i])
+                            console.log(err)
+                        });
                     }
                 }
                 //prints message activity
@@ -121,7 +126,7 @@ module.exports = {
                     });
 
                     newMember.save()
-                        .then(result => console.log(result))
+                        //                        .then(result => console.log(result))
                         .catch(err => console.error(err));
 
                     return showActivity(newMember, message, user)
@@ -135,7 +140,7 @@ module.exports = {
     },
 };
 
-let showActivity = (activity, message, user) =>{
+let showActivity = (activity, message, user) => {
     let days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
     let messagesPerDay = activity.messages / days;
     let voicePerDay = activity.voice / days;
