@@ -15,7 +15,7 @@ module.exports = {
         let activityCollection = serverActivity(message.guild);
 
         if (args[0] === 'all') {
-            (await activityCollection.find()).array().forEach(async element => {
+            (await activityCollection.find()).forEach(async element => {
                 await element.updateOne({
                     _id: message.author.id,
                     userTag: message.author.tag,

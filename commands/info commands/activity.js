@@ -15,7 +15,7 @@ module.exports = {
 
         if (args[0] === 'top') {
             let activityList = [];
-            (await activityCollection.find()).array().forEach(activity => {
+            (await activityCollection.find()).forEach(activity => {
                 if (message.guild.members.cache.get(activity._id)) {
                     activityList.push(activity);
                 }
