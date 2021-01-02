@@ -1,10 +1,7 @@
 const config = require('./config.json');
-//const SQLite = require("better-sqlite3");
-//const sql = new SQLite('./activity.sqlite');
 const fs = require('fs');
 
 const Discord = require('discord.js');
-const activity = require('./commands/info commands/activity');
 require('dotenv').config();
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -23,5 +20,5 @@ fs.readdir('./events/', (err, files) => {
     });
 });
 
-client.login(config.token);
+client.login(process.env.BOTTOKEN);
 client.mongoose.init();
