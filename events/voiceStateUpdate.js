@@ -32,9 +32,10 @@ module.exports = async (client, state1, state2) => {
     }
 
     //connects to channel
-    if (state2.channel && !state1.channel) {
+    if (state2.channel && (!state1.channel || (state2.guild.afkChannelID && state1.channelID == state2.guild.afkChannelID))) {
+        //if it directly connected to afk channel, return
+        if(state2.channelID == state2.guild.afkChannelID) return;
         client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state2.member.user.tag} joined in ${state2.guild.name}`).then(async message => {
-
             if (activity.lastUpdate === ``) {
                 await activity.updateOne({
                     lastUpdate: message.createdTimestamp,
@@ -46,11 +47,14 @@ module.exports = async (client, state1, state2) => {
                 isVoice: true
             });
             console.log(`${activity.userTag} has joined the call`);
+            //console.log(state2.guild.afkChannelID, state1.channelID, state2.guild.afkChannelID)
         });
     }
 
     //disconnects from a channel
-    if (!state2.channel && state1.channel) {
+    if (state1.channel && (!state2.channel || (state1.guild.afkChannelID && state2.channelID == state1.guild.afkChannelID))) {
+        //if it directly disconnected from afk channel, return
+        if(state1.channelID == state1.guild.afkChannelID) return;
         if (activity.isVoice == true) {
             client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`${state1.member.user.tag} left in ${state1.guild.name}`).then(async message => {
                 let callEnd = message.createdTimestamp;
