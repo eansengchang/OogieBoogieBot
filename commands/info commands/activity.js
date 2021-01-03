@@ -46,13 +46,12 @@ module.exports = {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                         let voicePerDay = Math.round(10 * activityList[i].voice / days) / 10;
-                        console.log(voicePerDay)
                         let member = message.guild.members.cache.get(activityList[i]._id)
-                        if (activityList[i].voice < 60) {
+                        if (voicePerDay < 60) {
                             list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}m/d)`;
                         }
                         else {
-                            list += `\n${i + 1}. **${member.displayName}** (${Math.round(10*voicePerDay / 60) / 10}hr/d)`;
+                            list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * voicePerDay / 60) / 10}hr/d)`;
                         }
                     }
                 }
@@ -152,12 +151,26 @@ let showActivity = (activity, message, user) => {
         .setThumbnail(user.displayAvatarURL())
         .addFields(
             { name: 'Activity:', value: `${messagesPerDay} m/d`, inline: false },
-            { name: 'Messages:', value: `${activity.messages} messages`, inline: false },
-            { name: 'Voice:', value: `${voicePerDay} minutes per day`, inline: false },
-            { name: 'Total voice:', value: `${activity.voice} minutes`, inline: false },
-            { name: 'Days logged:', value: `${days} days`, inline: false },
+            { name: 'Messages:', value: `${activity.messages} messages`, inline: false }
         )
+
+    if (voicePerDay < 60) {
+        embed.addFields({ name: 'Voice:', value: `${voicePerDay} min/day`, inline: false })
+    } else {
+        embed.addFields({ name: 'Voice:', value: `${Math.round(10 * voicePerDay / 60) / 10} hr/day`, inline: false })
+    }
+
+    if (activity.voice < 60) {
+        embed.addFields({ name: 'Total voice:', value: `${activity.voice} minutes`, inline: false })
+    } else {
+        embed.addFields({ name: 'Total voice:', value: `${Math.round(10 * activity.voice / 60) / 10} hours`, inline: false })
+    }
+
+    embed.addFields({
+        name: 'Days logged:', value: `${days} days`, inline: false
+    })
         .setFooter(`requested by ${message.author.tag}`)
+
     message.channel.send(embed);
 }
 
