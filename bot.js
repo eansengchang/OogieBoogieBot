@@ -16,5 +16,8 @@ loadCommands(client);
 const loadEvents = require('@root/events/load-events');
 loadEvents(client);
 
+const loadFeatures = require('@root/features/load-features');
+loadFeatures(client);
+
 client.login(process.env.BOTTOKEN);
 client.mongoose.init();

@@ -7,41 +7,6 @@ module.exports = async (client, message) => {
     if (message.author.bot) return;
     const content = message.content.toLowerCase();
 
-    //activity logging part
-    if (message.guild) {
-        let activityCollection = serverActivity(message.guild);
-
-        let activity = await activityCollection.findOne({
-            _id: message.author.id
-        }, (err, member) => {
-            if (err) console.error(err)
-            if (!member) {
-                const newMember = new activityCollection({
-                    _id: message.author.id,
-                    userTag: message.author.tag,
-                    lastUpdate: message.createdTimestamp,
-                    messages: 0,
-                    voice: 0,
-                    isVoice: false,
-                    voiceJoinedStamp: message.createdTimestamp
-                });
-
-                newMember.save()
-                    .catch(err => console.error(err));
-            }
-        });
-
-        if (!activity) {
-            activity = await activityCollection.findOne({
-                _id: message.author.id
-            });
-        }
-
-        await activity.updateOne({
-            messages: activity.messages + 1
-        });
-
-    }
 
     //prefixes and commands
     if (content.startsWith(prefix)) {
