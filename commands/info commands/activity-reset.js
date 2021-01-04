@@ -17,7 +17,6 @@ module.exports = {
         if (args[0] === 'all') {
             (await activityCollection.find()).forEach(async element => {
                 await element.updateOne({
-                    userTag: message.author.tag,
                     lastUpdate: message.createdTimestamp,
                     messages: 0,
                     voice: 0,
