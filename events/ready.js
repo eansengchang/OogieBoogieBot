@@ -23,24 +23,5 @@ module.exports = client => {
     }
     readCommands('../commands');
 
-    // client.guilds.cache.array().forEach(guild => {
-    //     // If the table isn't there, create it and setup the database correctly.
-    //     let serverCollection = serverActivity(guild);
-    //     server = new serverCollection({
-    //         _id: 'test',
-    //         userTag: 'test',
-    //         lastUpdate: 'test',
-    //         messages: 3,
-    //         voice: 3,
-    //         isVoice: false,
-    //         voiceJoinedStamp: 'test'
-    //     });
-    
-    //     server.save()
-    //     //.then(result => console.log(result))
-    //     .catch(err => console.error(err));
-    // })
-
-
     console.log('BOT IS ONLINE AND READY');
 }
