@@ -1,5 +1,5 @@
 
-const serverActivity = require('../models/server-activity-schema');
+const serverActivity = require('@models/server-activity-schema');
 
 module.exports = async (client, state1, state2) => {
     if (state1.member.user.bot) return;

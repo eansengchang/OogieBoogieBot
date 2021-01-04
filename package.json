@@ -12,7 +12,15 @@
   "dependencies": {
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
+    "module-alias": "^2.2.2",
     "mongoose": "^5.11.9",
     "node-fetch": "^2.6.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@models": "./models",
+    "@commands": "./commands/commands",
+    "@utils": "./utils",
+    "@events": "./events/events"
   }
 }

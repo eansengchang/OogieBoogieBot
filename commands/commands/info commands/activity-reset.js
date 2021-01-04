@@ -1,7 +1,7 @@
 //const SQLite = require("better-sqlite3");
 //const sql = new SQLite('./activity.sqlite');
 const Discord = require('discord.js');
-const serverActivity = require('../../models/server-activity-schema');
+const serverActivity = require('@models/server-activity-schema');
 
 module.exports = {
     name: 'activity-reset',
