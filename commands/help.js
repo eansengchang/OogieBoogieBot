@@ -47,7 +47,8 @@ module.exports = {
                         name: 'Info Commands', value: `\n
                     \`${prefix}profile @user\` info on a user\n
                     \`${prefix}serverinfo\` info on this server\n
-                    \`${prefix}activity\` info on your activity`
+                    \`${prefix}activity\` info on your activity\n
+                    \`${prefix}info\` info on the bot`
                     }
                 );
             message.channel.send({ embed });
@@ -67,7 +68,8 @@ module.exports = {
                     \`${prefix}mute @user\` or \`${prefix}mute all\` mutes a member or everyone\n
                     \`${prefix}unmute @user\` or \`${prefix}unmute all\` unmutes a member or everyone\n
                     \`${prefix}deafen @user\` or \`${prefix}deafen all\` deafens a member or everyone\n
-                    \`${prefix}undeafen @user\` or \`${prefix}undeafen all\` undeafens a member or everyone`
+                    \`${prefix}undeafen @user\` or \`${prefix}undeafen all\` undeafens a member or everyone\n
+                    \`${prefix}disconnect @user\` or \`${prefix}disconnect all\` disonnects a member or everyone`
                     }
                 );
             message.channel.send({ embed });
