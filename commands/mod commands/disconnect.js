@@ -32,7 +32,7 @@ module.exports = {
                 });
             };
         });
-        if(flag){return message.reply('User not found in the channels!')}
+        if(flag){return message.reply('User not found in voice channels!')}
         message.channel.send(`I have disconnected <@${user.id}>`);
     },
 };
