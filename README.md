@@ -1,2 +1,2 @@
 # ChingChongBot
- Discord Bot
+ Discord Bot created by ESC
