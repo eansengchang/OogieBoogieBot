@@ -3,6 +3,7 @@ const serverActivity = require('@models/server-activity-schema');
 module.exports = async (client) => {
     //message logging
     client.on('message', async (message) => {
+        if(message.user.bot) return;
         if (message.guild) {
             let activityCollection = serverActivity(message.guild);
 

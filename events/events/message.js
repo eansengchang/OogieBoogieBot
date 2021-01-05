@@ -8,7 +8,6 @@ module.exports = async (client, message) => {
     if (author.bot) return;
     content = content.toLowerCase();
 
-
     //prefixes and commands
     if (content.startsWith(prefix)) {
         commandBase(message);
