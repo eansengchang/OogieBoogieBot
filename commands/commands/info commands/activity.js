@@ -21,16 +21,17 @@ module.exports = {
 
             //bubbble sorts voice
             if (args[1] === 'voice') {
+
+                let voicePerDay  = activityList.map(activity =>{
+                    days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                    return Math.round(10 * activity.voice / days) / 10;
+                })
+                
                 let flag = true;
                 while (flag) {
                     flag = false;
                     for (let i = 0; i < activityList.length - 1; i++) {
-                        let days1 = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let voicePerDay1 = Math.round(10 * activityList[i].voice / days1) / 10;
-                        let days2 = Math.floor((message.createdTimestamp - activityList[i + 1].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let voicePerDay2 = Math.round(10 * activityList[i + 1].voice / days2) / 10;
-
-                        if (voicePerDay1 < voicePerDay2) {
+                        if (voicePerDay[i] < voicePerDay[i+1]) {
                             flag = true;
                             let temp = activityList[i];
                             activityList[i] = activityList[i + 1];
