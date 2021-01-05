@@ -13,7 +13,7 @@ module.exports = {
             family:4
         };
 
-        mongoose.connect('mongodb+srv://esc:KJ1tqtnAq5l8w6xP@activity.0d7q6.mongodb.net/Activity?retryWrites=true&w=majority', dbOptions);
+        mongoose.connect(`mongodb+srv://esc:${process.env.MONGO_PASSWORD}@activity.0d7q6.mongodb.net/Activity?retryWrites=true&w=majority`, dbOptions);
         mongoose.set('useFindAndModify', false);
         mongoose.Promise = global.Promise;
 
