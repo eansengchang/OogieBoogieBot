@@ -85,7 +85,7 @@ module.exports = {
                     \`${prefix}lol\` rule34 lol\n
                     \`${prefix}hentaig\` hentai gifs\n
                     \`${prefix}solo\` solo pics\n
-                    \`${prefix}solo\` solo pics`
+                    \`${prefix}solog\` solo gifs`
                     },
                 );
             message.channel.send({ embed });
