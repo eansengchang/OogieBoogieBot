@@ -1,7 +1,6 @@
 const serverActivity = require('@models/server-activity-schema');
 
 module.exports = async (client) => {
-    console.log('activity loaded')
     //message logging
     client.on('message', async (message) => {
         if (message.guild) {
