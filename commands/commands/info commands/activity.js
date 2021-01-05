@@ -22,20 +22,24 @@ module.exports = {
             //bubbble sorts voice
             if (args[1] === 'voice') {
 
-                let voicePerDay  = activityList.map(activity =>{
+                let voicePerDay = activityList.map(activity => {
                     days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                     return Math.round(10 * activity.voice / days) / 10;
                 })
-                
+
                 let flag = true;
                 while (flag) {
                     flag = false;
                     for (let i = 0; i < activityList.length - 1; i++) {
-                        if (voicePerDay[i] < voicePerDay[i+1]) {
+                        if (voicePerDay[i] < voicePerDay[i + 1]) {
                             flag = true;
                             let temp = activityList[i];
                             activityList[i] = activityList[i + 1];
                             activityList[i + 1] = temp;
+
+                            temp = voicePerDay[i];
+                            voicePerDay[i] = voicePerDay[i + 1];
+                            voicePerDay[i + 1] = temp;
                         }
                     }
                 }
@@ -47,13 +51,14 @@ module.exports = {
                         let voicePerDay = Math.round(10 * activityList[i].voice / days) / 10;
                         let member = message.guild.members.cache.get(activityList[i]._id)
                         if (voicePerDay < 60) {
-                            list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}m/d)`;
+                            list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}min/d)`;
                         }
                         else {
                             list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * voicePerDay / 60) / 10}hr/d)`;
                         }
                     }
                 }
+
                 //prints voice activity
                 let embed = new Discord.MessageEmbed()
                     .setColor('#0099ff')
@@ -63,20 +68,25 @@ module.exports = {
             }
             //bubble sorts messages
             else {
+                let messagesPerDay = activityList.map(activity => {
+                    days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                    return Math.round(10 * activity.messages / days) / 10;
+                })
+
                 let flag = true;
                 while (flag) {
                     flag = false;
                     for (let i = 0; i < activityList.length - 1; i++) {
-                        let days1 = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let messagesPerDay1 = Math.round(10 * activityList[i].messages / days1) / 10;
-                        let days2 = Math.floor((message.createdTimestamp - activityList[i + 1].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let messagesPerDay2 = Math.round(10 * activityList[i + 1].messages / days2) / 10;
-
-                        if (messagesPerDay1 < messagesPerDay2) {
+                        if (messagesPerDay[i] < messagesPerDay[i+1]) {
                             flag = true;
+
                             let temp = activityList[i];
                             activityList[i] = activityList[i + 1];
                             activityList[i + 1] = temp;
+
+                            temp = messagesPerDay[i];
+                            messagesPerDay[i] = messagesPerDay[i + 1];
+                            messagesPerDay[i + 1] = temp;
                         }
                     }
                 }
