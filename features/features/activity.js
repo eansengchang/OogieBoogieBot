@@ -24,9 +24,7 @@ module.exports = async (client) => {
                     newMember.save()
                         .catch(err => console.error(err));
                 }
-            }).catch((error) => {
-                return message.channel.send('An error has occured');
-            });
+            })
 
             if (!activity) {
                 activity = await activityCollection.findOne({
