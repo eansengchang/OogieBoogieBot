@@ -4,8 +4,9 @@ const serverActivity = require('@models/server-activity-schema');
 const commandBase = require('@root/commands/command-base');
 
 module.exports = async (client, message) => {
-    if (message.author.bot) return;
-    const content = message.content.toLowerCase();
+    let { author, content, channel } = message;
+    if (author.bot) return;
+    content = content.toLowerCase();
 
 
     //prefixes and commands
@@ -23,17 +24,17 @@ module.exports = async (client, message) => {
         'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud', 'Rey wants to get pegged by Joe',
         'Rey is hardstuck silver'];
     if (content.substring(0, 3) === 'rey') {
-        message.channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
+        channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
-        message.channel.send(`Type \`${prefix}help\` for some help`);
+        channel.send(`Type \`${prefix}help\` for some help`);
     }
 
     //random stuff
-    if (message.channel.id === '715917628727885874') {
+    if (channel.id === '715917628727885874') {
         if (Math.random() < 0.4) {
-            message.channel.send('pain.');
+            channel.send('pain.');
         }
     }
 };
