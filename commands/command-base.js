@@ -25,7 +25,7 @@ module.exports = message => {
     }
 
     //error traps for permissions
-    if (permissions) {
+    if (message.channel.type !== 'dm' && permissions) {
         const selfMember = message.guild.members.cache.get(message.client.user.id);
         const member = message.member;
         let missingPerms1 = [];

@@ -1,6 +1,4 @@
 require('module-alias/register');
-const config = require('@root/config.json');
-const fs = require('fs');
 
 const Discord = require('discord.js');
 require('dotenv').config();
