@@ -1,5 +1,10 @@
 const Discord = require('discord.js');
 const serverActivity = require('@models/server-activity-schema');
+const { CanvasRenderService } = require('chartjs-node-canvas')
+const { MessageAttachment } = require('discord.js');
+
+const width = 1200;
+const height = 800;
 
 module.exports = {
     name: 'activity',
@@ -45,11 +50,16 @@ module.exports = {
                 }
 
                 let list = '';
+                let users = [];
+                let activities = [];
                 for (let i = 0; i < 10; i++) {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                         let voicePerDay = Math.round(10 * activityList[i].voice / days) / 10;
                         let member = message.guild.members.cache.get(activityList[i]._id)
+
+                        users.push(member.displayName);
+                        activities.push(voicePerDay);
                         if (voicePerDay < 60) {
                             list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}min/d)`;
                         }
@@ -65,6 +75,7 @@ module.exports = {
                     .setTitle(`Top voice activity`)
                     .setDescription(list);
                 message.channel.send(embed);
+                showChart(message, users, activities, 'Voice Activity (Min/Day)');
             }
             //bubble sorts messages
             else {
@@ -77,7 +88,7 @@ module.exports = {
                 while (flag) {
                     flag = false;
                     for (let i = 0; i < activityList.length - 1; i++) {
-                        if (messagesPerDay[i] < messagesPerDay[i+1]) {
+                        if (messagesPerDay[i] < messagesPerDay[i + 1]) {
                             flag = true;
 
                             let temp = activityList[i];
@@ -92,11 +103,15 @@ module.exports = {
                 }
 
                 let list = '';
+                let users = [];
+                let activities = [];
                 for (let i = 0; i < 10; i++) {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                         let messagesPerDay = Math.round(10 * activityList[i].messages / days) / 10;
                         await message.guild.members.fetch(`${activityList[i]._id}`).then(member => {
+                            users.push(member.displayName);
+                            activities.push(messagesPerDay);
                             list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
                         }).catch(err => {
                             console.log(activityList[i])
@@ -110,6 +125,7 @@ module.exports = {
                     .setTitle(`Top message activity`)
                     .setDescription(list);
                 message.channel.send(embed);
+                showChart(message, users, activities, 'Message Activity Per Day');
             }
 
 
@@ -148,6 +164,46 @@ module.exports = {
         }
     },
 };
+
+const ChartCallback = (ChartJS) => {
+    ChartJS.defaults.global.defaultFontColor = 'black';
+    ChartJS.defaults.global.defaultFontSize = 24;
+    ChartJS.plugins.register({
+        beforeDraw: (chartInstance) => {
+            const { chart } = chartInstance;
+            const { ctx } = chart;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, chart.width, chart.height);
+        }
+    })
+}
+
+let showChart = async (message, users, activities, label) => {
+
+    const canvas = new CanvasRenderService(
+        width,
+        height,
+        ChartCallback
+    )
+
+    const configuration = {
+        type: 'bar',
+        data: {
+            labels: users,
+            datasets: [
+                {
+                    label: label,
+                    data: activities,
+                    backgroundColor: '#7289d9'
+                }
+            ]
+        }
+    }
+
+    const image = await canvas.renderToBuffer(configuration);
+    const attachment = new MessageAttachment(image);
+    message.channel.send(attachment)
+}
 
 let showActivity = (activity, message, user) => {
     let days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
