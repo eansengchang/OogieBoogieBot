@@ -59,7 +59,7 @@ module.exports = {
                         let member = message.guild.members.cache.get(activityList[i]._id)
 
                         users.push(member.displayName);
-                        activities.push(voicePerDay);
+                        activities.push(Math.round(10 * voicePerDay / 60) / 10);
                         if (voicePerDay < 60) {
                             list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}min/d)`;
                         }
@@ -75,7 +75,7 @@ module.exports = {
                     .setTitle(`Top voice activity`)
                     .setDescription(list);
                 message.channel.send(embed);
-                showChart(message, users, activities, 'Voice Activity (Min/Day)');
+                showChart(message, users, activities, 'Voice Activity (Hr/Day)');
             }
             //bubble sorts messages
             else {
