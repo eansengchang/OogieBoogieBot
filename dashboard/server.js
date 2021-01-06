@@ -1,0 +1,13 @@
+const express = require('express');
+const app = express()
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
+
+app.get('/', (req, res) => res.render('index', {
+    something: 'epic test'
+}));
+
+const port = process.env.PORt || 3000;
+
+app.listen(port, () => console.log(`Server is live on port ${port}\n`))
