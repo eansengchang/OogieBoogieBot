@@ -223,6 +223,13 @@ let showChart = async (message, users, activities, label) => {
                 display: true,
                 text: `Top Activity of ${message.guild.name}`,
                 fontSize: 25,
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
         }
     }
