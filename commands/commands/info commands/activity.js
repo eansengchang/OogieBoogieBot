@@ -233,7 +233,7 @@ let showChart = async (message, users, activities, label) => {
             }
         }
     }
-    console.log(activities, users)
+    
     const image = await canvas.renderToBuffer(configuration);
     const attachment = new MessageAttachment(image);
     message.channel.send(attachment)
