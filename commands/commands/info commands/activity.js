@@ -16,15 +16,17 @@ module.exports = {
     execute: async (message, args) => {
         let activityCollection = serverActivity(message.guild);
 
+        //activity top
         if (args[0] === 'top') {
             let activityList = [];
+            //all activities of every member in activityList
             (await activityCollection.find()).forEach(activity => {
                 if (message.guild.members.cache.get(activity._id)) {
                     activityList.push(activity);
                 }
             })
 
-            //bubbble sorts voice
+            
             if (args[1] === 'voice') {
 
                 let voicePerDay = activityList.map(activity => {
@@ -32,6 +34,7 @@ module.exports = {
                     return Math.round(10 * activity.voice / days) / 10;
                 })
 
+                //bubbble sorts voice
                 let flag = true;
                 while (flag) {
                     flag = false;
@@ -49,6 +52,7 @@ module.exports = {
                     }
                 }
 
+                //grabs 10 highest activity
                 let list = '';
                 let users = [];
                 let activities = [];
@@ -77,13 +81,13 @@ module.exports = {
                 message.channel.send(embed);
                 showChart(message, users, activities, 'Voice Activity (Hr/Day)');
             }
-            //bubble sorts messages
+            
             else {
                 let messagesPerDay = activityList.map(activity => {
                     days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                     return Math.round(10 * activity.messages / days) / 10;
                 })
-
+                //bubble sorts messages
                 let flag = true;
                 while (flag) {
                     flag = false;
@@ -102,6 +106,7 @@ module.exports = {
                     }
                 }
 
+                //grabs 10 highest activity
                 let list = '';
                 let users = [];
                 let activities = [];
@@ -139,6 +144,7 @@ module.exports = {
                 _id: user.id
             }, (err, member) => {
                 if (err) console.error(err);
+                //if member isn't in the database, creates one
                 if (!member) {
                     const newMember = new activityCollection({
                         _id: message.author.id,
@@ -179,7 +185,7 @@ const ChartCallback = (ChartJS) => {
 }
 
 let showChart = async (message, users, activities, label) => {
-
+    //creates a graph on activity
     const canvas = new CanvasRenderService(
         width,
         height,

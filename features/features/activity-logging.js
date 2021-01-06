@@ -11,6 +11,7 @@ module.exports = async (client) => {
                 _id: message.author.id
             }, (err, member) => {
                 if (err) console.error(err)
+                //creates member if its not there
                 if (!member) {
                     const newMember = new activityCollection({
                         _id: message.author.id,
@@ -27,12 +28,14 @@ module.exports = async (client) => {
                 }
             })
 
+            //gets activity again if its not there
             if (!activity) {
                 activity = await activityCollection.findOne({
                     _id: message.author.id
                 });
             }
 
+            //updates messages
             await activity.updateOne({
                 messages: activity.messages + 1
             });
