@@ -26,7 +26,7 @@ module.exports = {
                 }
             })
 
-            
+
             if (args[1] === 'voice') {
 
                 let voicePerDay = activityList.map(activity => {
@@ -81,7 +81,7 @@ module.exports = {
                 message.channel.send(embed);
                 showChart(message, users, activities, 'Voice Activity (Hr/Day)');
             }
-            
+
             else {
                 let messagesPerDay = activityList.map(activity => {
                     days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
@@ -172,8 +172,9 @@ module.exports = {
 };
 
 const ChartCallback = (ChartJS) => {
+    ChartJS.defaults.global.defaultFontFamily = 'Lato';
     ChartJS.defaults.global.defaultFontColor = 'black';
-    ChartJS.defaults.global.defaultFontSize = 24;
+    ChartJS.defaults.global.defaultFontSize = 18;
     ChartJS.plugins.register({
         beforeDraw: (chartInstance) => {
             const { chart } = chartInstance;
@@ -200,12 +201,32 @@ let showChart = async (message, users, activities, label) => {
                 {
                     label: label,
                     data: activities,
-                    backgroundColor: '#7289d9'
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 126, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 126, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777'
                 }
-            ]
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: `Top Activity of ${message.guild.name}`,
+                fontSize: 25,
+            }
         }
     }
-
+    console.log(activities, users)
     const image = await canvas.renderToBuffer(configuration);
     const attachment = new MessageAttachment(image);
     message.channel.send(attachment)
