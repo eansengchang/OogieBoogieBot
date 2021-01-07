@@ -1,8 +1,9 @@
 module.exports = {
     name: 'say',
     description: 'Say something!',
+    permissions: ['MENTION_EVERYONE'],
     execute(message, args) {
-        if (args.length === 0) return message.reply('please specify what to say');
+        //if (args.length === 0) return message.reply('please specify what to say');
         message.channel.send(args.join(' '));
     },
 };
