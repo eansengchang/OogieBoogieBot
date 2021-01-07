@@ -1,2 +1,2 @@
-Web: node ./dashboard/server.js
+web: node ./dashboard/server.js
 Worker: node ./bot.js
