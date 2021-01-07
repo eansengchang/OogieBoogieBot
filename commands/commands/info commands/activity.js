@@ -250,7 +250,7 @@ let showActivity = (activity, message, user) => {
         .setThumbnail(user.displayAvatarURL())
         .addFields(
             { name: 'Activity:', value: `${messagesPerDay} m/d`, inline: false },
-            { name: 'Messages:', value: `${activity.messages} messages`, inline: false }
+            { name: 'Total messages:', value: `${activity.messages} messages`, inline: false }
         )
 
     if (voicePerDay < 60) {
