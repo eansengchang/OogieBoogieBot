@@ -5,7 +5,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => res.render('index', {
-    something: 'epic test'
+    something: 'yoooo it works'
 }));
 
 const port = process.env.PORT || 3000;
