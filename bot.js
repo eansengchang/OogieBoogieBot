@@ -20,4 +20,4 @@ loadFeatures(client);
 client.login(process.env.BOTTOKEN);
 client.mongoose.init();
 
-//require('./dashboard/server');
+require('./dashboard/server');
