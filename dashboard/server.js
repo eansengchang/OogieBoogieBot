@@ -8,6 +8,6 @@ app.get('/', (req, res) => res.render('index', {
     something: 'epic test'
 }));
 
-const port = process.env.PORt || 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`Server is live on port ${port}\n`))
