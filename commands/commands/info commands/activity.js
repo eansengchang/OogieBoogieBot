@@ -233,7 +233,7 @@ let showChart = async (message, users, activities, label) => {
             }
         }
     }
-    
+
     const image = await canvas.renderToBuffer(configuration);
     const attachment = new MessageAttachment(image);
     message.channel.send(attachment)
@@ -241,7 +241,7 @@ let showChart = async (message, users, activities, label) => {
 
 let showActivity = (activity, message, user) => {
     let days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-    let messagesPerDay = activity.messages / days;
+    let messagesPerDay = Math.floor(10 * activity.messages / days) / 10;
     let voicePerDay = activity.voice / days;
 
     let embed = new Discord.MessageEmbed()
