@@ -32,7 +32,7 @@ module.exports = async (client, message) => {
         'Seif is a stinky', 'Rey shoots up orphanages',
         'Rey wants to fuck Tima', 'Rey wants to get pegged by Joe'];
     if (content.substring(0, 4) === 'seif') {
-        channel.send('<@512375511205543936> ' + seif[Math.floor(Math.random() * seif.length)]);
+        channel.send('<@300232634875904000> ' + seif[Math.floor(Math.random() * seif.length)]);
     }
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
