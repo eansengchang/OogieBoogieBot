@@ -26,6 +26,15 @@ module.exports = async (client, message) => {
         channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
 
+    const seif = ['SEIF IS INSANELY SUS HOLY FUCK', 'Seif is a pedo', 'Seif? The failure of a human being?',
+        'Seif is packing a tic-tac', 'Seif has iq of room temperature', 'Seif contains much stupid', 
+        'Rey has a gay level 999', 'Rey is a big homo', 'Seif has big boobies',
+        'Seif is a stinky', 'Rey shoots up orphanages',
+        'Rey wants to fuck Tima', 'Rey wants to get pegged by Joe'];
+    if (content.substring(0, 4) === 'seif') {
+        channel.send('<@512375511205543936> ' + seif[Math.floor(Math.random() * seif.length)]);
+    }
+
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
         channel.send(`Type \`${prefix}help\` for some help`);
     }
