@@ -28,9 +28,7 @@ module.exports = async (client, message) => {
     //seif
     const seif = ['SEIF IS INSANELY SUS HOLY FUCK', 'Seif is a pedo', 'Seif? The failure of a human being?',
         'Seif is packing a tic-tac', 'Seif has big boobies', 'Seif is a stinky', 'Seif shoots up orphanages',
-        'Seifs tits are so massive that he can breastfeed all the starving children in Africa',
         'Seif wants to fuck Tima', 'Seif wants to get pegged by James Charles', 'Seif\'s broke the record for most thicc athelete in the world with his 4Km run in 15 mins',
-        'Seif is so unattractive that all the pigs in Islam willingly died so that they could try make him ingest pork',
         'Seif is so homophobic that even joe wouldn\'t allow the tap', 'seif had krishna\'s babies'];
     if (content.substring(0, 4) === 'seif') {
         channel.send('<@300232634875904000> ' + seif[Math.floor(Math.random() * seif.length)]);
