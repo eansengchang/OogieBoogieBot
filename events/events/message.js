@@ -25,7 +25,7 @@ module.exports = async (client, message) => {
     if (content.substring(0, 3) === 'rey') {
         channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
-
+    //seif
     const seif = ['SEIF IS INSANELY SUS HOLY FUCK', 'Seif is a pedo', 'Seif? The failure of a human being?',
         'Seif is packing a tic-tac', 'Seif has iq of room temperature', 'Seif contains much stupid', 
         'Rey has a gay level 999', 'Rey is a big homo', 'Seif has big boobies',
