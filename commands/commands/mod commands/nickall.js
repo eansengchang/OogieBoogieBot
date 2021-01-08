@@ -6,15 +6,20 @@ module.exports = {
     permissions: ['MANAGE_NICKNAMES'],
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"
+        let reply;
+        if (args.length === 0) {
+            reply = message.channel.send(`changing all possible users to default...`);
+        } else {
+            reply = message.channel.send(`changing all possible users to \`${args.join(' ')}\` ...`);
+        }
+
         message.guild.members.fetch()
-            .then(members => {
-                members.array().forEach(member => {
+            .then(async members => {
+                embers.array().forEach(member => {
                     member.setNickname(args.join(' ')).catch(error => {
                         return
                     });
-                });
+                })
             });
-        if (args.length === 0) return message.channel.send(`I have changed the nickname of all possible users to default`);
-        message.channel.send(`I have changed the nickname of all possible users to \`${args.join(' ')}\``);
     },
 };

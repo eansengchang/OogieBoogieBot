@@ -11,7 +11,11 @@ module.exports = {
             if(channel.type == 'voice' && channel.name === args.join(' ')){
                 channelEnd = channel;
             };
+            if(channel.type == 'voice' && channel.id === args.join(' ')){
+                channelEnd = channel;
+            };
         });
+
         if(!channelEnd) return message.channel.send('This is not a valid channel name')
 
         message.guild.channels.cache.array().forEach(
