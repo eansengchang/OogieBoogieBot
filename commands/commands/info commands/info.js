@@ -20,8 +20,8 @@ module.exports = {
                 { name: 'Created by:', value: `ESC#3777`, inline: false },
                 { name: 'Created on:', value: `${message.client.user.createdAt.toDateString()}`, inline: false },
                 { name: 'Servers:', value: `${message.client.guilds.cache.size}`, inline: false },
-                { name: 'Channels:', value: `${channels}`, inline: false },
-                { name: 'Server members:', value: `${serverMembers}`, inline: false },
+                { name: 'Total Channels:', value: `${channels}`, inline: false },
+                { name: 'Total Server members:', value: `${serverMembers}`, inline: false },
                 { name: 'Commands:', value: `${message.client.commands.size}`, inline: false },
             )
         let uptime = message.client.uptime;

@@ -5,11 +5,10 @@ module.exports = {
     guildOnly: true,
     permissions: ['MANAGE_NICKNAMES'],
     async execute(message, args) {
-        // Get the Guild and store it under the variable "list"
+        // Get the Guild and store it under the variable "members"
         message.guild.members.fetch()
             .then(members => {
                 members.array().forEach(member => {
-
                     member.setNickname(args.join(' ')).catch(error => {
                         return
                     });
