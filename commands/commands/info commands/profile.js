@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
-    execute: (message, args) => {
+    execute: async (message, args) => {
         let user;
         await message.guild.members.fetch(args[0]).then(member =>{
             user = member.user|| message.mentions.users.first() || message.author || message.member.user;
