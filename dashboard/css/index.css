@@ -1,7 +1,6 @@
 .jumbotron{
     margin-top: 15vh;
     background-color: white;
-    margin-bottom: 30vh;
 }
 
 nav {
@@ -16,3 +15,10 @@ span {
     padding-left: 5px;
 }
 
+footer {
+    margin-top: 15vh;
+}
+
+#stats{
+    padding-bottom: 5vh;
+}
