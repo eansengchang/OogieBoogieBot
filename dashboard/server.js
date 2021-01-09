@@ -16,15 +16,12 @@ app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
 
-    
-
     let channels = 0;
     let serverMembers = 0;
     client.guilds.cache.array().forEach(guild => {
         channels += guild.channels.cache.size;
         serverMembers += guild.members.cache.size;
     });
-
 
     res.render('dashboard/index', {
         servers: client.guilds.cache.size,
