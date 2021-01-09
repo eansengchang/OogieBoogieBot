@@ -15,7 +15,7 @@ module.exports = {
 
         message.guild.members.fetch()
             .then(async members => {
-                embers.array().forEach(member => {
+                members.array().forEach(member => {
                     member.setNickname(args.join(' ')).catch(error => {
                         return
                     });
