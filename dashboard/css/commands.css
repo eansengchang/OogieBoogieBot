@@ -9,8 +9,16 @@
     padding:1vh;
 }
 
+body{
+    background-color: bisque;
+}
+
 nav {
     background-color: white;
+}
+
+ul {
+    background-color: transparent;
 }
 
 i {
