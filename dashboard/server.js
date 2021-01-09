@@ -23,14 +23,15 @@ app.get('/', (req, res) => {
         serverMembers += guild.members.cache.size;
     });
 
-    res.render('dashboard/index', {
+    res.render('index', {
         servers: client.guilds.cache.size,
         channels: channels,
         members: serverMembers,
         commands: 26,
     })
 });
-app.get('/commands', (req, res) => res.sendFile(__dirname + '/commands.html'));
+
+app.get('/commands', (req, res) => res.render('commands'));
 
 app.get('/invite', (req, res) => {
     console.log('button pressed')

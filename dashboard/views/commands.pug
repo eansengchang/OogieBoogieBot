@@ -1,0 +1,88 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title ESC - Commands
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js', integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW', crossorigin='anonymous')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1', crossorigin='anonymous')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css')
+  link(rel='stylesheet', href='./css/commands.css')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') Ching Chong Bot
+    button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/commands')
+            i.fas.fa-code
+            |                             Commands
+.container(style='max-width:980px;')
+  .jumbotron.text-center.bg-transparent
+    h1.display-2 Commands
+    hr
+  section(id='info commands')
+    #subjumbotron.jumbotron.text-center.bg-transparent
+      p.h1 Info Commands
+    .row
+      .col-sm-5
+        ul.list-group
+          li.list-group-item e help
+          li.list-group-item e profile @user
+          li.list-group-item e serverinfo
+          li.list-group-item e activity @user
+          li.list-group-item e activity top message/voice
+          li.list-group-item e info
+          li.list-group-item e ping
+      #commands.col-sm-7
+        ul.list-group
+          li.list-group-item Gives help on the bot
+          li.list-group-item Gives info on a specific user
+          li.list-group-item Gives info on the server
+          li.list-group-item Gives info on your activity
+          li.list-group-item Gives info on top message or voice activity
+          li.list-group-item Gives info on the bot
+          li.list-group-item Gives the bot&apos;s ping
+  section(id='Fun commands')
+    #subjumbotron.jumbotron.text-center.bg-transparent
+      p.h1 Fun Commands
+    .row
+      .col-sm-5
+        ul.list-group
+          li.list-group-item e meme
+          li.list-group-item e say {message}
+          li.list-group-item e length
+      #commands.col-sm-7
+        ul.list-group
+          li.list-group-item Sends a meme
+          li.list-group-item Says a specific message
+          li.list-group-item Calculates your length
+  section(id='Mod commands')
+    #subjumbotron.jumbotron.text-center.bg-transparent
+      p.h1 Mod Commands
+    .row
+      .col-sm-5
+        ul.list-group
+          li.list-group-item e purge {number}
+          li.list-group-item e nickall {name}
+          li.list-group-item e moveall {channel name}
+          li.list-group-item e mute @user or all
+          li.list-group-item e unmute @user or all
+          li.list-group-item e deafen @user or all
+          li.list-group-item e undeafen @user or all
+          li.list-group-item e disconnect @user or all
+      #commands.col-sm-7
+        ul.list-group
+          li.list-group-item Bulk deletes a number of messages
+          li.list-group-item Nicknames everyone to something
+          li.list-group-item Moves all members to a channel
+          li.list-group-item Mutes a user or everyone
+          li.list-group-item Unmutes a user or everyone
+          li.list-group-item Deafens a user or everyone
+          li.list-group-item Undeafens a user or everyone
+          li.list-group-item Disconnects a user or everyone
+footer.bg-light.text-center.text-lg-start
+  .text-center.p-3(style='background-color: rgba(0, 0, 0, 0.2)')
+    | Created by ESC#3777
