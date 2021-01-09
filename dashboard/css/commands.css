@@ -1,0 +1,27 @@
+.jumbotron{
+    margin:0;
+    padding:0;
+    background-color: white;
+}
+
+.row{
+    margin:1vh;
+    padding:1vh;
+}
+
+nav {
+    background-color: white;
+}
+
+i {
+    padding-left: 5px;
+}
+
+span {
+    padding-left: 5px;
+}
+
+#subjumbotron {
+    margin: 1vh;
+    padding: 1vh;
+}
