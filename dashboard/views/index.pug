@@ -5,28 +5,46 @@ head
 
 body
   include includes/navbar.pug
+  .container(style='max-width:980px;')
+    #gap.jumbotron.text-center.bg-transparent
+      h1.display-3
+        | Ching Chong Bot
+        i.fas.fa-robot
+      p.lead A pretty good bot that you should add!
+      a(href='/invite')
+        button.btn.btn-dark Invite to your server
 
-  .jumbotron.text-center.bg-transparent
-    h1.display-3
-      | Ching Chong Bot
-      i.fas.fa-robot
-    p.lead A pretty good bot that you should add!
-    a(href='/invite')
-      button.btn.btn-dark Invite to your server
-      
-  .container-fluid.padding
-    .row.text-center.padding
-      #stats.col-xs-12.col-sm-6.col-md-3
-        h3 #{servers}
-        |                 Servers
-      #stats.ol-xs-12.col-sm-6.col-md-3
-        h3 #{channels}
-        |                 Channels
-      #stats.col-xs-12.col-sm-6.col-md-3
-        h3 #{members}
-        |                 Members
-      #stats.col-xs-12.col-sm-6.col-md-3
-        h3 #{commands}
-        |                 Commands
+    .container-fluid.padding
+      .row.text-center.padding
+        #stats.col-xs-12.col-sm-6.col-md-3
+          h1 #{servers}
+          h5
+            i.i.fab.fa-discord
+            | Servers
+        #stats.ol-xs-12.col-sm-6.col-md-3
+          h1 #{channels}
+          h5
+            i.fab.fa-slack-hash
+            | Channels
+        #stats.col-xs-12.col-sm-6.col-md-3
+          h1 #{members}
+          h5
+            i.fas.fa-user
+            | Members
+        #stats.col-xs-12.col-sm-6.col-md-3
+          h1 #{commands}
+          h5
+            i.fas.fa-code
+            | Commands
+
+    #stopgap.jumbotron.text-center.bg-transparent
+      h2
+        | Why should I invite this bot?
+      p.lead Because this if a fun bot with also many informational and moderation commands!
+
+    #stopgap.jumbotron.text-center.bg-transparent
+      h2
+        | Will this bot be any useful?
+      p.lead Yes, this bot automates a lot of work!
   
   include includes/footer.pug
