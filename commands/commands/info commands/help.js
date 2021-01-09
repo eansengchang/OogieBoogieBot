@@ -30,10 +30,10 @@ module.exports = {
                 .addFields(
                     {
                         name: 'Fun Commands', value: `\n
-                    \`${prefix}meme\`\t gives a meme \n
-                    \`${prefix}ping\`\t pong! \n
-                    \`${prefix}say\`\t repeats a certain sentence \n
-                    \`${prefix}length\`\t calculates your length`
+                    \`${prefix}meme\` gives a meme \n
+                    \`${prefix}say\` repeats a certain sentence \n
+                    \`${prefix}length\` calculates your length\n
+                    \`${prefix}8ball\` Answers your question`
                     }
 
                 );
@@ -49,7 +49,8 @@ module.exports = {
                     \`${prefix}profile @user\` info on a user\n
                     \`${prefix}serverinfo\` info on this server\n
                     \`${prefix}activity\` info on your activity\n
-                    \`${prefix}info\` info on the bot`
+                    \`${prefix}info\` info on the bot\n
+                    \`${prefix}ping\` pong!`
                     }
                 );
             message.channel.send({ embed });
