@@ -1,13 +1,37 @@
 const express = require('express');
 const app = express()
+const Discord = require('discord.js');
+require('dotenv').config();
 
-app.use(express.static(`public`));
+const client = new Discord.Client();
+client.login(process.env.BOTTOKEN);
+
+app.use(express.static(`${__dirname}/assets`));
 app.use('/css', express.static(__dirname + '/css'))
 app.use('/js', express.static(__dirname + '/js'))
 app.use('/img', express.static(__dirname + '/img'))
+app.set('views', __dirname + '/views');
+
+app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+
+    
+
+    let channels = 0;
+    let serverMembers = 0;
+    client.guilds.cache.array().forEach(guild => {
+        channels += guild.channels.cache.size;
+        serverMembers += guild.members.cache.size;
+    });
+
+
+    res.render('dashboard/index', {
+        servers: client.guilds.cache.size,
+        channels: channels,
+        members: serverMembers,
+        commands: 26,
+    })
 });
 app.get('/commands', (req, res) => res.sendFile(__dirname + '/commands.html'));
 

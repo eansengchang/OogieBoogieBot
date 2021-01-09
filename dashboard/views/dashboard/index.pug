@@ -1,0 +1,45 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title ESC - BOT
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js', integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW', crossorigin='anonymous')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1', crossorigin='anonymous')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css')
+  link(rel='stylesheet', href='./css/index.css')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') Ching Chong Bot
+    button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/commands')
+            i.fas.fa-code
+            |                             Commands
+.jumbotron.text-center.bg-transparent
+  h1.display-3
+    | Ching Chong Bot
+    i.fas.fa-robot
+  p.lead A pretty good bot that you should add!
+  a(href='/invite')
+    button.btn.btn-dark Add
+.container-fluid.padding
+  .row.text-center.padding
+    #stats.col-xs-12.col-sm-6.col-md-3
+      h3 #{servers}
+      |                 Servers
+    #stats.ol-xs-12.col-sm-6.col-md-3
+      h3 #{channels}
+      |                 Channels
+    #stats.col-xs-12.col-sm-6.col-md-3
+      h3 #{members}
+      |                 Members
+    #stats.col-xs-12.col-sm-6.col-md-3
+      h3 #{commands}
+      |                 Commands
+footer.bg-light.text-center.text-lg-start
+  .text-center.p-3(style='background-color: rgba(0, 0, 0, 0.2)')
+    | Created by ESC#3777
