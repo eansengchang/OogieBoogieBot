@@ -1,4 +1,5 @@
 const serverActivity = require('@models/server-activity-schema');
+const fetch = require('node-fetch');
 
 module.exports = async (client) => {
     //message logging
@@ -45,6 +46,7 @@ module.exports = async (client) => {
 
     //voice logging
     client.on('voiceStateUpdate', async (state1, state2) => {
+        await fetch('https://chingchongdashboard.herokuapp.com/');
         if (state1.member.user.bot) return;
 
         let activityCollection = serverActivity(state1.guild);
