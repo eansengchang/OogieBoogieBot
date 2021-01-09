@@ -137,8 +137,11 @@ module.exports = {
         }
         //it just gives the activity
         else {
+            let user;
             //either first mention or author
-            const user = message.mentions.users.first() || message.author || message.member.user;
+            await message.guild.members.fetch(args[0]).then(member =>{
+                user = member.user|| message.mentions.users.first() || message.author || message.member.user;
+            })
 
             const activity = await activityCollection.findOne({
                 _id: user.id
