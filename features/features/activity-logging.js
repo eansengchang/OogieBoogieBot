@@ -5,8 +5,9 @@ module.exports = async (client) => {
     //message logging
     client.on('message', async (message) => {
         if(message.author.bot) return;
+        await fetch('https://chingchongdashboard.herokuapp.com/');
         if (message.guild) {
-            let activityCollection = serverActivity(message.guild);
+            let activityCollection = serverActivity(message.guild.id);
 
             let activity = await activityCollection.findOne({
                 _id: message.author.id
@@ -46,10 +47,9 @@ module.exports = async (client) => {
 
     //voice logging
     client.on('voiceStateUpdate', async (state1, state2) => {
-        await fetch('https://chingchongdashboard.herokuapp.com/');
         if (state1.member.user.bot) return;
 
-        let activityCollection = serverActivity(state1.guild);
+        let activityCollection = serverActivity(state1.guild.id);
         let activity = await activityCollection.findOne({
             _id: state1.member.user.id
         }, (err, member) => {

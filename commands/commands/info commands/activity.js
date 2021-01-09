@@ -14,7 +14,7 @@ module.exports = {
     minArgs: 0,
     maxArgs: 2,
     execute: async (message, args) => {
-        let activityCollection = serverActivity(message.guild);
+        let activityCollection = serverActivity(message.guild.id);
 
         //activity top
         if (args[0] === 'top') {

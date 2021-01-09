@@ -12,7 +12,7 @@ module.exports = {
     maxArgs: 1,
     permissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let activityCollection = serverActivity(message.guild);
+        let activityCollection = serverActivity(message.guild.id);
 
         if (args[0] === 'all') {
             (await activityCollection.find()).forEach(async element => {

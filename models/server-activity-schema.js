@@ -10,6 +10,6 @@ const guildSchema = mongoose.Schema({
     voiceJoinedStamp: String
 });
 
-module.exports = guild => {
-    return mongoose.model('Activity', guildSchema, guild.id);
+module.exports = guildID => {
+    return mongoose.model('Activity', guildSchema, guildID);
 }

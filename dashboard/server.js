@@ -6,10 +6,12 @@ app.use('/css', express.static(__dirname + '/css'))
 app.use('/js', express.static(__dirname + '/js'))
 app.use('/img', express.static(__dirname + '/img'))
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+});
 app.get('/commands', (req, res) => res.sendFile(__dirname + '/commands.html'));
 
-app.get('/invite', (req, res)=>{
+app.get('/invite', (req, res) => {
     console.log('button pressed')
     res.redirect('https://discord.com/api/oauth2/authorize?client_id=789960873203990598&permissions=8&scope=bot');
 })
