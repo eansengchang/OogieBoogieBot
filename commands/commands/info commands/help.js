@@ -33,7 +33,8 @@ module.exports = {
                     \`${prefix}meme\` gives a meme \n
                     \`${prefix}say\` repeats a certain sentence \n
                     \`${prefix}length\` calculates your length\n
-                    \`${prefix}8ball\` Answers your question`
+                    \`${prefix}8ball\` Answers your question\n
+                    \`${prefix}gay\` Calculates your gay level`
                     }
 
                 );
