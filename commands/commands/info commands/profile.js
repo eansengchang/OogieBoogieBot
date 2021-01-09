@@ -8,7 +8,10 @@ module.exports = {
     minArgs: 0,
     maxArgs: 1,
     execute: (message, args) => {
-        const user = message.mentions.users.first() || message.author || message.member.user;
+        let user;
+        await message.guild.members.fetch(args[0]).then(member =>{
+            user = member.user|| message.mentions.users.first() || message.author || message.member.user;
+        })
         const member = message.guild.members.cache.get(user.id);
         let roles = ``;
         member.roles.cache.array().forEach((item, index) => {
