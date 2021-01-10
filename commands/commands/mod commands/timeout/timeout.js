@@ -1,3 +1,5 @@
+const timeoutSchema = require('@models/timeout-schema');
+
 module.exports = {
     name: 'timeout',
     description: 'Timeouts a person!',
@@ -6,24 +8,43 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     permissions: ['MUTE_MEMBERS'],
-    execute(message, args) {
+    async execute(message, args) {
         if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
 
-        const user = message.mentions.users.first();
+        let timeoutCollection = timeoutSchema(message.guild.id);
+        let timeout = await timeoutCollection.findOne({
+            _id: 'roles'
+        }, (err, object) => {});
+
+        if(!timeout){
+            message.reply(`You first have to set up the timeout role using \`e timeoutrole\``);
+        }
+
+        let user;
+        await message.guild.members.fetch(args[0]).then(member => {
+            user = member.user || message.mentions.users.first() || message.author || message.member.user;
+        }).catch((err) => {
+            user = message.mentions.users.first() || message.author || message.member.user;
+        })
+
         if (user.bot) return message.channel.send('You can\'t do this to a bot');
         // If we have a user mentioned
         if (user) {
             // Now we get the member from the user
             const member = message.guild.member(user);
+
             // If the member is in the guild
 
             if (member) {
-                if(member.roles.highest.position >= message.member.roles.highest.position){
+                if (member.roles.highest.position >= message.member.roles.highest.position) {
                     return message.reply('Unable to timeout someone with an equal or higher role than you');
+                }
+                if (message.guild.member(message.client.user).roles.highest.position <= message.member.roles.highest.position) {
+                    return message.reply('I\m unable to timeout someone with an equal or higher role than me');
                 }
 
                 member
-                    .roles.set(['704297468015280208'])
+                    .roles.set([timeout.timeoutRole])
                     .then(() => {
                         message.reply(`Successfully muted <@${user.id}>`);
                     })

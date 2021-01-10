@@ -14,7 +14,8 @@ module.exports = {
         }).catch((err)=>{
             user = message.mentions.users.first() || message.author || message.member.user;
         })
-        const member = message.guild.members.cache.get(user.id);
+
+        const member = await message.guild.members.fetch(user.id);
         let roles = ``;
         member.roles.cache.array().forEach((item, index) => {
             roles += `<@&${item.id}> `

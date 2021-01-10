@@ -1,3 +1,5 @@
+const timeoutSchema = require('@models/timeout-schema');
+
 module.exports = {
     name: 'untimeout',
     description: 'Untimeouts a person!',
@@ -6,10 +8,23 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     permissions: ['MUTE_MEMBERS'],
-    execute(message, args) {
-        if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
+    async execute(message, args) {
+        let timeoutCollection = timeoutSchema(message.guild.id);
+        let timeout = await timeoutCollection.findOne({
+            _id: 'roles'
+        }, (err, object) => {});
 
-        const user = message.mentions.users.first();
+        if(!timeout){
+            message.reply(`You first have to set up the default role using \`e autorole\``);
+        }
+
+        let user;
+        await message.guild.members.fetch(args[0]).then(member => {
+            user = member.user || message.mentions.users.first() || message.author || message.member.user;
+        }).catch((err) => {
+            user = message.mentions.users.first() || message.author || message.member.user;
+        })
+
         if (user.bot) return message.channel.send('You can\'t do this to a bot');
         // If we have a user mentioned
         if (user) {
@@ -19,7 +34,7 @@ module.exports = {
 
             if (member) {
                 member
-                    .roles.set(['704254909612032050'])
+                    .roles.set([timeout.defaultRole])
                     .then(() => {
                         message.reply(`Successfully unmuted <@${user.id}>`);
                     })

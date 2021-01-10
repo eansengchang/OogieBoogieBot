@@ -1,6 +1,5 @@
 const timeoutSchema = require('@models/timeout-schema');
 const fetch = require('node-fetch');
-const timeout = require('../../commands/commands/mod commands/timeout');
 
 module.exports = async (client) => {
     //message logging
