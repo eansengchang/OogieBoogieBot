@@ -36,3 +36,13 @@ span {
 #stopgap{
     margin-top: 5vh;
 }
+
+#mainbuts{
+    margin: 4px;
+}
+
+#invite{
+    margin: 4px;
+    background-color: rgb(76, 149, 218);
+    border-color: transparent;
+}

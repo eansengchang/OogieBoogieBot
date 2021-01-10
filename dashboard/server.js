@@ -32,8 +32,6 @@ app.get('/', (req, res) => {
         members: serverMembers,
         commands: numCommands,
     })
-
-    
 });
 
 app.get('/commands', (req, res) => res.render('commands'));
