@@ -1,0 +1,29 @@
+const Discord = require('discord.js');
+const timeoutSchema = require('@models/timeout-schema');
+
+module.exports = {
+    name: 'settings',
+    description: 'Settings of this server',
+    guildOnly: true,
+    async execute(message, args) {
+        let timeoutCollection = timeoutSchema(message.guild.id);
+        let { guild } = message;
+
+        let embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle(`${guild.name}'s settings`)
+            .setThumbnail(guild.iconURL())
+            .setFooter(`requested by ${message.author.tag}`)
+
+        let timeout = await timeoutCollection.findOne({
+            _id: 'roles'
+        })
+        if (timeout) {
+            embed.addFields(
+                { name: 'Default role:', value: `<@&${timeout.defaultRole}>`, inline: false },
+                { name: 'Timeout role:', value: `<@&${timeout.timeoutRole}>`, inline: false },
+            )
+        }
+        message.channel.send(embed);
+    },
+};

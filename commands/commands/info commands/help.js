@@ -53,7 +53,8 @@ module.exports = {
                     \`${prefix}serverinfo\` info on this server\n
                     \`${prefix}activity\` info on your activity\n
                     \`${prefix}info\` info on the bot\n
-                    \`${prefix}ping\` pong!`
+                    \`${prefix}ping\` pong!\n
+                    \`${prefix}settings\` Settings of this server!`
                     }
                 );
             message.channel.send({ embed });
