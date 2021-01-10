@@ -14,7 +14,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`Ching Chong Bot Website`)
+            .setTitle(`PsyBot Website`)
             .setURL('https://chingchongdashboard.herokuapp.com/')
             .setThumbnail(message.client.user.displayAvatarURL())
             .addFields(
