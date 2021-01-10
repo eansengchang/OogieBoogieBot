@@ -9,7 +9,6 @@ module.exports = {
     maxArgs: 1,
     permissions: ['MUTE_MEMBERS'],
     async execute(message, args) {
-        if (message.guild.id != '684391250777866301') return message.channel.send('Unvailable in this server');
 
         let timeoutCollection = timeoutSchema(message.guild.id);
         let timeout = await timeoutCollection.findOne({
@@ -17,7 +16,7 @@ module.exports = {
         }, (err, object) => {});
 
         if(!timeout){
-            message.reply(`You first have to set up the timeout role using \`e timeoutrole\``);
+            return message.reply(`You first have to set up the timeout role using \`e timeoutrole\``);
         }
 
         let user;

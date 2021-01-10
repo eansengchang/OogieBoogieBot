@@ -15,7 +15,7 @@ module.exports = {
         }, (err, object) => {});
 
         if(!timeout){
-            message.reply(`You first have to set up the default role using \`e autorole\``);
+            return message.reply(`You first have to set up the default role using \`e autorole\``);
         }
 
         let user;
