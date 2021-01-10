@@ -25,7 +25,6 @@ app.get('/', (req, res) => {
         serverMembers += guild.members.cache.size;
     });
     const numCommands = commands();
-    console.log(numCommands)
 
     res.render('index', {
         servers: client.guilds.cache.size,
