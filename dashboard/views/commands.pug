@@ -64,6 +64,8 @@ body
             li.list-group-item.bg-transparent e deafen @user or all
             li.list-group-item.bg-transparent e undeafen @user or all
             li.list-group-item.bg-transparent e disconnect @user or all
+            li.list-group-item.bg-transparent e autorole {role} or off
+            li.list-group-item.bg-transparent e timeoutrole {role}
         #commands.col-sm-7
           ul.list-group
             li.list-group-item.bg-transparent Bulk deletes a number of messages
@@ -74,5 +76,7 @@ body
             li.list-group-item.bg-transparent Deafens a user or everyone
             li.list-group-item.bg-transparent Undeafens a user or everyone
             li.list-group-item.bg-transparent Disconnects a user or everyone
+            li.list-group-item.bg-transparent Default role (used for automatically giving roles and untimeout)
+            li.list-group-item.bg-transparent Sets the timeout role
   
   include includes/footer.pug

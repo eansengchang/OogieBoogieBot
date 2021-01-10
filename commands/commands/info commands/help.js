@@ -10,7 +10,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed();
         if (args.length == 0) {
             embed.setColor('#0099ff')
-                .setTitle('Full List of Commands')
+                .setTitle('Full Description of Commands')
                 .setURL('https://psybotdashboard.herokuapp.com/commands')
                 .setDescription('Type one of them for info on a specific category')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
@@ -25,6 +25,7 @@ module.exports = {
         else if (args[0] == 'fun') {
             embed.setColor('#0099ff')
                 .setTitle('Fun commands')
+                .setURL('https://psybotdashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the fun commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -42,6 +43,7 @@ module.exports = {
         } else if (args[0] == 'info') {
             embed.setColor('#0099ff')
                 .setTitle('Info Commands')
+                .setURL('https://psybotdashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the info commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -58,6 +60,7 @@ module.exports = {
         } else if (args[0] == 'mod') {
             embed.setColor('#0099ff')
                 .setTitle('Mod Commands')
+                .setURL('https://psybotdashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the mod commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -72,13 +75,16 @@ module.exports = {
                     \`${prefix}unmute @user\` or \`${prefix}unmute all\` unmutes a member or everyone\n
                     \`${prefix}deafen @user\` or \`${prefix}deafen all\` deafens a member or everyone\n
                     \`${prefix}undeafen @user\` or \`${prefix}undeafen all\` undeafens a member or everyone\n
-                    \`${prefix}disconnect @user\` or \`${prefix}disconnect all\` disonnects a member or everyone`
+                    \`${prefix}disconnect @user\` or \`${prefix}disconnect all\` disonnects a member or everyone\n
+                    \`${prefix}autorole {role}\` or \`${prefix}autorole off\` sets default role\n
+                    \`${prefix}timeoutrole @user\` sets timeout role`
                     }
                 );
             message.channel.send({ embed });
         } else if (args[0] == 'nsfw') {
             embed.setColor('#0099ff')
                 .setTitle('NSFW Commands')
+                .setURL('https://psybotdashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the nsfw commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
