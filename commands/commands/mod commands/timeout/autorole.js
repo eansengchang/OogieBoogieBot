@@ -16,7 +16,10 @@ module.exports = {
         let roleID = args[0].replace(/<|>|@|&/g, '')
         let role = await message.guild.roles.fetch(roleID);
 
-        if (!role) {
+        if(args[0] == 'off'){
+            roleID = '';
+        }
+        else if (!role) {
             return message.reply('That is not a role!');
         }
 

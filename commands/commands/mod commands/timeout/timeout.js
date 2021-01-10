@@ -8,6 +8,7 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     permissions: ['MUTE_MEMBERS'],
+    botPerms: ['MANAGE_ROLES'],
     async execute(message, args) {
 
         let timeoutCollection = timeoutSchema(message.guild.id);
@@ -15,15 +16,15 @@ module.exports = {
             _id: 'roles'
         }, (err, object) => {});
 
-        if(!timeout){
+        if(!timeout || timeout.timeoutRole == ''){
             return message.reply(`You first have to set up the timeout role using \`e timeoutrole\``);
         }
 
         let user;
         await message.guild.members.fetch(args[0]).then(member => {
-            user = member.user || message.mentions.users.first() || message.author || message.member.user;
+            user = member.user || message.mentions.users.first()
         }).catch((err) => {
-            user = message.mentions.users.first() || message.author || message.member.user;
+            user = message.mentions.users.first();
         })
 
         if (user.bot) return message.channel.send('You can\'t do this to a bot');
@@ -38,8 +39,9 @@ module.exports = {
                 if (member.roles.highest.position >= message.member.roles.highest.position) {
                     return message.reply('Unable to timeout someone with an equal or higher role than you');
                 }
-                if (message.guild.member(message.client.user).roles.highest.position <= message.member.roles.highest.position) {
-                    return message.reply('I\m unable to timeout someone with an equal or higher role than me');
+                if (message.guild.member(message.client.user).roles.highest.position <= member.roles.highest.position) {
+                    console.log(message.guild.member(message.client.user).roles.highest.position, member.roles.highest.position)
+                    return message.reply('I\'m unable to timeout someone with an equal or higher role than me');
                 }
 
                 member
