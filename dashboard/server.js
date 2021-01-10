@@ -6,6 +6,8 @@ require('dotenv').config();
 const client = new Discord.Client();
 client.login(process.env.BOTTOKEN);
 
+const commands = require('../commands/count-commands')
+
 app.use(express.static(`${__dirname}/assets`));
 app.use('/css', express.static(__dirname + '/css'))
 app.use('/js', express.static(__dirname + '/js'))
@@ -22,13 +24,17 @@ app.get('/', (req, res) => {
         channels += guild.channels.cache.size;
         serverMembers += guild.members.cache.size;
     });
+    const numCommands = commands();
+    console.log(numCommands)
 
     res.render('index', {
         servers: client.guilds.cache.size,
         channels: channels,
         members: serverMembers,
-        commands: 26,
+        commands: numCommands,
     })
+
+    
 });
 
 app.get('/commands', (req, res) => res.render('commands'));

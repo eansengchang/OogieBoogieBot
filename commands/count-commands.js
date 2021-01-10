@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = (client) => {
+module.exports = () => {
+    let commands = 0;
     const readCommands = (dir) => {
         const files = fs.readdirSync(path.join(__dirname, dir));
         for (const file of files) {
@@ -9,10 +10,10 @@ module.exports = (client) => {
             if (stat.isDirectory()) {
                 readCommands(path.join(dir, file));
             } else if (file !== 'command-base.js' && file !== 'load-commands.js') {
-                const command = require(path.join(__dirname, dir, file));
-                client.commands.set(command.name, command);
+                commands += 1;
             }
         }
     }
     readCommands('commands');
+    return commands;
 }
