@@ -34,22 +34,22 @@ module.exports = {
                     return Math.round(10 * activity.voice / days) / 10;
                 })
 
-                //bubbble sorts voice
+                //selection sorts voice
                 let flag = true;
-                while (flag) {
-                    flag = false;
-                    for (let i = 0; i < activityList.length - 1; i++) {
-                        if (voicePerDay[i] < voicePerDay[i + 1]) {
-                            flag = true;
-                            let temp = activityList[i];
-                            activityList[i] = activityList[i + 1];
-                            activityList[i + 1] = temp;
-
-                            temp = voicePerDay[i];
-                            voicePerDay[i] = voicePerDay[i + 1];
-                            voicePerDay[i + 1] = temp;
+                for (let j = 0; j < 10; j++) {
+                    let max = j;
+                    for (let i = j; i < activityList.length - 1; i++) {
+                        if (voicePerDay[i] > voicePerDay[max]) {
+                            max = i;
                         }
                     }
+                    let temp = activityList[j];
+                    activityList[j] = activityList[max];
+                    activityList[max] = temp;
+
+                    temp = voicePerDay[j];
+                    voicePerDay[j] = voicePerDay[max];
+                    voicePerDay[max] = temp;
                 }
 
                 //grabs 10 highest activity
@@ -89,21 +89,20 @@ module.exports = {
                 })
                 //bubble sorts messages
                 let flag = true;
-                while (flag) {
-                    flag = false;
-                    for (let i = 0; i < activityList.length - 1; i++) {
-                        if (messagesPerDay[i] < messagesPerDay[i + 1]) {
-                            flag = true;
-
-                            let temp = activityList[i];
-                            activityList[i] = activityList[i + 1];
-                            activityList[i + 1] = temp;
-
-                            temp = messagesPerDay[i];
-                            messagesPerDay[i] = messagesPerDay[i + 1];
-                            messagesPerDay[i + 1] = temp;
+                for (let j = 0; j < 10; j++) {
+                    let max = j;
+                    for (let i = j; i < activityList.length - 1; i++) {
+                        if (messagesPerDay[i] > messagesPerDay[max]) {
+                            max = i;
                         }
                     }
+                    let temp = activityList[j];
+                    activityList[j] = activityList[max];
+                    activityList[max] = temp;
+
+                    temp = messagesPerDay[j];
+                    messagesPerDay[j] = messagesPerDay[max];
+                    messagesPerDay[max] = temp;
                 }
 
                 //grabs 10 highest activity
@@ -139,9 +138,9 @@ module.exports = {
         else {
             let user;
             //either first mention or author
-            await message.guild.members.fetch(args[0]).then(member =>{
-                user = member.user|| message.mentions.users.first() || message.author || message.member.user;
-            }).catch(()=>{
+            await message.guild.members.fetch(args[0]).then(member => {
+                user = member.user || message.mentions.users.first() || message.author || message.member.user;
+            }).catch(() => {
                 user = message.mentions.users.first() || message.author || message.member.user;
             })
 
@@ -259,7 +258,7 @@ let showActivity = (activity, message, user) => {
         )
 
     if (voicePerDay < 60) {
-        embed.addFields({ name: 'Voice:', value: `${voicePerDay} min/day`, inline: false })
+        embed.addFields({ name: 'Voice:', value: `${Math.round(10*voicePerDay)/10} min/day`, inline: false })
     } else {
         embed.addFields({ name: 'Voice:', value: `${Math.round(10 * voicePerDay / 60) / 10} hr/day`, inline: false })
     }
