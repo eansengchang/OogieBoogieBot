@@ -5,6 +5,5 @@ module.exports = {
     execute(message, args) {
         if (args.length === 0) return message.reply('please specify what to say');
         message.channel.send(args.join(' '));
-        message.delete();
     },
 };
