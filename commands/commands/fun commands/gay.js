@@ -3,7 +3,7 @@ module.exports = {
     description: 'Finds out how gay you are!',
     execute(message, args) {
         let user = message.mentions.users.first() || message.author || message.member.user;
-        const gay = Math.round(100*Math.random())
+        let gay = Math.round(100*Math.random())
 
         if(user.id === '300232634875904000'){
             gay = 99;
