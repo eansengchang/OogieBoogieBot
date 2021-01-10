@@ -5,7 +5,7 @@ const timeout = require('../../commands/commands/mod commands/timeout');
 module.exports = async (client) => {
     //message logging
     client.on('guildMemberAdd', async (member) => {
-        let timeoutCollection = timeoutSchema(message.guild.id);
+        let timeoutCollection = timeoutSchema(member.guild.id);
 
         let timeout = await timeoutCollection.findOne({
             _id: 'roles'
