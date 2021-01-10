@@ -19,7 +19,7 @@ module.exports = async (client) => {
                         _id: message.author.id,
                         userTag: message.author.tag,
                         lastUpdate: message.createdTimestamp,
-                        messages: 0,
+                        messages: 1,
                         voice: 0,
                         isVoice: false,
                         voiceJoinedStamp: message.createdTimestamp
@@ -30,17 +30,12 @@ module.exports = async (client) => {
                 }
             })
 
-            //gets activity again if its not there
-            if (!activity) {
-                activity = await activityCollection.findOne({
-                    _id: message.author.id
+            //updates messages
+            if (activity) {
+                await activity.updateOne({
+                    messages: activity.messages + 1
                 });
             }
-
-            //updates messages
-            await activity.updateOne({
-                messages: activity.messages + 1
-            });
 
         }
     })

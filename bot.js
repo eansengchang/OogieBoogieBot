@@ -18,6 +18,7 @@ const loadFeatures = require('@root/features/load-features');
 loadFeatures(client);
 
 client.login(process.env.BOTTOKEN);
+
 client.mongoose.init();
 
 //require('./dashboard/server');

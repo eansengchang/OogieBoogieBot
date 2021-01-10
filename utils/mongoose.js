@@ -18,7 +18,7 @@ module.exports = {
         mongoose.Promise = global.Promise;
 
         mongoose.connection.on('connected', () => {
-            console.log('\nMongoose has successfully connected!');
+            console.log(`\nMongoose has successfully connected to Activity!`);
         });
 
         mongoose.connection.on('err', err => {
@@ -26,7 +26,7 @@ module.exports = {
         });
 
         mongoose.connection.on('disconnected', () => {
-            console.warn('Mongoose connection lost');
+            console.warn(`Mongoose connection lost on Activity`);
         });
     }
 }
