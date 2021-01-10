@@ -48,6 +48,10 @@ module.exports = {
                 defaultRole: roleID,
             });
         }
+
+        if(args[0] == 'off'){
+            return message.channel.send(`I have successfully deleted the default role`)
+        }
         message.channel.send(`I have successfully set the default role to ${role.name}`)
     },
 };
