@@ -1,5 +1,5 @@
 module.exports = {
-    name: '8ball',
+    name: 'ask',
     description: 'Ask a question!',
     execute(message, args) {
         const replies = [
@@ -17,8 +17,8 @@ module.exports = {
             'That is almost certaintly true.',
             'Without a doubt.',
             'Better not tell you now.',
-            'It is best for you to not know',
-            'There answer is complicated',
+            'It is best for you to not know.',
+            'There answer is complicated.',
         ]
 
         message.channel.send(replies[Math.floor(Math.random() * replies.length)]);
