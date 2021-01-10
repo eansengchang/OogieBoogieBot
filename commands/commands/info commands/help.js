@@ -11,7 +11,7 @@ module.exports = {
         if (args.length == 0) {
             embed.setColor('#0099ff')
                 .setTitle('Full List of Commands')
-                .setURL('https://chingchongdashboard.herokuapp.com/commands')
+                .setURL('https://psybotdashboard.herokuapp.com/commands)
                 .setDescription('Type one of them for info on a specific category')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
