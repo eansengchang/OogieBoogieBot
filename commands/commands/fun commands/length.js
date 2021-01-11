@@ -4,6 +4,7 @@ module.exports = {
     
     execute(message, args) {
         const user = message.mentions.users.first() || message.author || message.member.user;
-        message.channel.send(`<@${user.id}>'s dick is ${user.id.substring(1, 2)} inches long`);
+        let length = Math.round(Math.random()*10);
+        message.channel.send(`<@${user.id}>'s dick is ${length} inches long`);
     },
 };
