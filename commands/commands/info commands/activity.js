@@ -134,6 +134,7 @@ module.exports = {
 
 
         }
+
         //it just gives the activity
         else {
             let user;

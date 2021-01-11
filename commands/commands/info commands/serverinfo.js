@@ -1,10 +1,24 @@
 const Discord = require('discord.js');
+const serverActivity = require('@models/server-activity-schema');
 
 module.exports = {
     name: 'serverinfo',
     description: 'Gets the server info!',
     guildOnly: true,
     async execute(message, args) {
+        let activityCollection = serverActivity(message.guild.id);
+        let totalMessages = 0;
+        let totalVoice = 0;
+
+        (await activityCollection.find()).forEach(activity => {
+            if (message.guild.members.cache.get(activity._id)) {
+                totalMessages += activity.messages;
+                totalVoice += activity.voice;
+            }
+        })
+
+
+
         let { guild } = message;
         let daysCreated = Math.round((message.createdTimestamp - guild.createdTimestamp) / 1000 / 60 / 60 / 24)
 
@@ -21,6 +35,8 @@ module.exports = {
                 { name: 'Channels:', value: `${guild.channels.cache.size}`, inline: true },
                 { name: 'Members:', value: `${guild.memberCount}`, inline: true },
                 { name: 'Roles:', value: `${guild.roles.cache.size - 1}`, inline: true },
+                { name: 'Total messages logged:', value: `${totalMessages} messages`, inline: false },
+                { name: 'Total hours logged:', value: `${Math.floor(10 * totalVoice / 60) / 10} hours`, inline: false },
             )
             .setFooter(`requested by ${message.author.tag}`)
         message.channel.send(embed);

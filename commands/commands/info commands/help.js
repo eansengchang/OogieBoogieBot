@@ -82,7 +82,7 @@ module.exports = {
                     \`${prefix}disconnect @user\` or \`${prefix}disconnect all\` disonnects a member or everyone\n
                     \`${prefix}autorole {role}\` or \`${prefix}autorole off\` sets default role\n
                     \`${prefix}timeoutrole @user\` sets timeout role\n
-                    \`${prefix}e activity-reset @user\` resets someone's activity`
+                    \`${prefix}e activity-reset @user\` or \`${prefix}activity-reset all\` resets someone's activity`
                     }
                 );
             message.channel.send({ embed });
