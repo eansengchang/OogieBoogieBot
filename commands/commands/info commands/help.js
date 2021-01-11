@@ -35,7 +35,8 @@ module.exports = {
                     \`${prefix}say\` repeats a certain sentence \n
                     \`${prefix}length\` calculates your length\n
                     \`${prefix}ask\` Answers your question\n
-                    \`${prefix}gay\` Calculates your gay level`
+                    \`${prefix}gay\` Calculates your gay level\n
+                    \`${prefix}ascii\` Generates a big image`
                     }
 
                 );

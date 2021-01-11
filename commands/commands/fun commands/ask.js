@@ -1,6 +1,8 @@
 module.exports = {
     name: 'ask',
     description: 'Ask a question!',
+    expectedArgs: '{question}',
+    minArgs: 1,
     execute(message, args) {
         const replies = [
             'Yes.',
