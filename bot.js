@@ -9,7 +9,7 @@ client.mongoose = require('@utils/mongoose')
 //.replace(/[<@!>]/g, '');
 
 const loadCommands = require('@root/commands/load-commands');
-//loadCommands(client);
+loadCommands(client);
 
 const loadEvents = require('@root/events/load-events');
 loadEvents(client);
