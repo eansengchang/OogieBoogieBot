@@ -53,7 +53,7 @@ module.exports = message => {
         })
 
         if (flag) {
-            return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
+            return message.reply(`I require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
 
