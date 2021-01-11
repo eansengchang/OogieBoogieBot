@@ -40,7 +40,10 @@ module.exports = message => {
             return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
-    
+    if(botPerms == []){
+        botPerms = permissions;
+    }
+
     if (message.channel.type !== 'dm' && botPerms) {
         const selfMember = message.guild.member(message.client.user);
         let missingPerms = [];

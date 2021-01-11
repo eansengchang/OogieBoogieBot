@@ -6,6 +6,7 @@ module.exports = {
     maxArgs: 1,
     guildOnly: true,
     permissions: ['MANAGE_MESSAGES'],
+    botPerms: ['MANAGE_MESSAGES'],
     execute(message, args) {
         const amount = parseInt(args[0]);
 
