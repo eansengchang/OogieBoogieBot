@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 module.exports = async (client) => {
     //message logging
     client.on('message', async (message) => {
-        if(message.author.bot) return;
+        if (message.author.bot) return;
         await fetch('https://oogieboogiedashboard.herokuapp.com/');
         if (message.guild) {
             let activityCollection = serverActivity(message.guild.id);
@@ -75,20 +75,20 @@ module.exports = async (client) => {
         if (state2.channel && (!state1.channel || (state2.guild.afkChannelID && state1.channelID == state2.guild.afkChannelID))) {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
-            client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`**${state2.member.user.tag}** joined in \`${state2.guild.name}\``).then(async message => {
-                if (activity.lastUpdate === ``) {
-                    await activity.updateOne({
-                        lastUpdate: message.createdTimestamp,
-                    });
-                }
 
+            if (activity.lastUpdate === ``) {
                 await activity.updateOne({
-                    voiceJoinedStamp: message.createdTimestamp,
-                    isVoice: true
+                    lastUpdate: Date.now(),
                 });
-                console.log(`${activity.userTag} has joined the call`);
-                //console.log(state2.guild.afkChannelID, state1.channelID, state2.guild.afkChannelID)
+            }
+
+            await activity.updateOne({
+                voiceJoinedStamp: Date.now(),
+                isVoice: true
             });
+            console.log(`${activity.userTag} has joined the call`);
+            //console.log(state2.guild.afkChannelID, state1.channelID, state2.guild.afkChannelID)
+
         }
 
         //disconnects from a channel
@@ -96,22 +96,22 @@ module.exports = async (client) => {
             //if it directly disconnected from afk channel, return
             if (state1.channelID == state1.guild.afkChannelID) return;
             if (activity.isVoice == true) {
-                client.guilds.cache.get('616347460679368731').channels.cache.get('793229646824734720').send(`**${state1.member.user.tag}** left in \`${state1.guild.name}\``).then(async message => {
-                    let callEnd = message.createdTimestamp;
-                    if (activity.lastUpdate === ``) {
-                        await activity.updateOne({
-                            lastUpdate: message.createdTimestamp,
-                        });
-                    }
-                    let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
 
-                    console.log(`${activity.userTag} has left the call`);
-                    console.log(`call lasted ${duration} minutes`)
+                let callEnd = Date.now()
+                if (activity.lastUpdate === ``) {
                     await activity.updateOne({
-                        voice: activity.voice + duration,
-                        isVoice: false
+                        lastUpdate: Date.now(),
                     });
+                }
+                let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
+
+                console.log(`${activity.userTag} has left the call`);
+                console.log(`call lasted ${duration} minutes`)
+                await activity.updateOne({
+                    voice: activity.voice + duration,
+                    isVoice: false
                 });
+
             }
         }
     })
