@@ -33,7 +33,7 @@ module.exports = message => {
         permissions.forEach((item, index) => {
             if (!member.hasPermission(item)) {
                 flag = true;
-                missingPerms1.push(item);
+                missingPerms.push(item);
             }
         })
         if (flag) {
@@ -50,7 +50,7 @@ module.exports = message => {
         let flag = false;
         permissions.forEach((item, index) => {
             if (!selfMember.hasPermission(item)) {
-                flag2 = true;
+                flag = true;
                 missingPerms.push(item);
             }
         })
