@@ -5,7 +5,7 @@ const serverActivity = require('@models/server-activity-schema');
 
 module.exports = {
     name: 'activity-reset',
-    description: 'resets the activity',
+    description: 'Resets the activity.',
     expectedArgs: '@user',
     guildOnly: true,
     minArgs: 0,

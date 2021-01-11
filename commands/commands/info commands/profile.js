@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'profile',
-    description: 'Gets someone\'s profile!',
+    description: 'Gets someone\'s profile.',
     expectedArgs: '@user',
     guildOnly: true,
     minArgs: 0,

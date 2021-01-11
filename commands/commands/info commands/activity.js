@@ -8,8 +8,8 @@ const height = 800;
 
 module.exports = {
     name: 'activity',
-    description: 'See how many messages you\'ve sent',
-    expectedArgs: '@user or reset @user or top',
+    description: 'See how many messages you\'ve sent.',
+    expectedArgs: '@user or top',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 2,

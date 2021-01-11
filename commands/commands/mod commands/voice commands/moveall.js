@@ -1,6 +1,6 @@
 module.exports = {
     name: 'moveall',
-    description: 'Moves everyone to a call!',
+    description: 'Moves everyone to a call.',
     expectedArgs: '{channel name}',
     minArgs: 1,
     guildOnly: true,

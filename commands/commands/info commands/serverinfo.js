@@ -3,7 +3,7 @@ const serverActivity = require('@models/server-activity-schema');
 
 module.exports = {
     name: 'serverinfo',
-    description: 'Gets the server info!',
+    description: 'Information on the server.',
     guildOnly: true,
     async execute(message, args) {
         let activityCollection = serverActivity(message.guild.id);

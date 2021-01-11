@@ -3,10 +3,13 @@ const app = express()
 const Discord = require('discord.js');
 require('dotenv').config();
 
+require('module-alias/register');
+
 const client = new Discord.Client();
 client.login(process.env.BOTTOKEN);
 
-const commands = require('../commands/count-commands')
+const countCommands = require('../commands/count-commands')
+const listCommands = require('../commands/list-commands')
 
 app.use(express.static(`${__dirname}/assets`));
 app.use('/css', express.static(__dirname + '/css'))
@@ -24,7 +27,7 @@ app.get('/', (req, res) => {
         channels += guild.channels.cache.size;
         serverMembers += guild.members.cache.size;
     });
-    const numCommands = commands();
+    const numCommands = countCommands();
 
     res.render('index', {
         servers: client.guilds.cache.size,
@@ -34,7 +37,20 @@ app.get('/', (req, res) => {
     })
 });
 
-app.get('/commands', (req, res) => res.render('commands'));
+app.get('/commands', (req, res) => {
+    let funCommands = listCommands('commands/fun commands')
+    let infoCommands = listCommands('commands/info commands')
+    let modCommands = listCommands('commands/mod commands')
+
+    res.render('commands', {
+        funNames: funCommands.map(element => 'e ' + element[0] + ' ' + (element[2] || '')),
+        funDescriptions: funCommands.map(element => element[1]),
+        infoNames: infoCommands.map(element => 'e ' + element[0] + ' ' + (element[2] || '')),
+        infoDescriptions: infoCommands.map(element => element[1]),
+        modNames: modCommands.map(element => 'e ' + element[0] + ' ' + (element[2] || '')),
+        modDescriptions: modCommands.map(element => element[1]),
+    })
+});
 
 app.get('/invite', (req, res) => {
     console.log('button pressed')

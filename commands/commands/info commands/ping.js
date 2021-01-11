@@ -1,6 +1,6 @@
 module.exports = {
     name: 'ping',
-    description: 'Ping!',
+    description: 'Gives the bot\'s ping.',
     
     execute(message, args) {
         let botping = Math.round(message.client.ws.ping);

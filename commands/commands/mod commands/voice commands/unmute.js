@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'unmute',
-    description: 'Unmutes people in a call!',
+    description: 'Unmutes people in a call.',
     expectedArgs: '@user or all',
     guildOnly: true,
     minArgs: 1,

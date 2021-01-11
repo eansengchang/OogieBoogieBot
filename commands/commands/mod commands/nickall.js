@@ -1,6 +1,6 @@
 module.exports = {
     name: 'nickall',
-    description: 'Nicknames everyone!',
+    description: 'Nicknames everyone.',
     expectedArgs: '{name}',
     guildOnly: true,
     permissions: ['MANAGE_NICKNAMES'],

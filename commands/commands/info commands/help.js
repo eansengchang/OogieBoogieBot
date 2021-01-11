@@ -2,9 +2,11 @@ const Discord = require('discord.js');
 const config = require('@root/config.json');
 prefix = config.prefix;
 
+const listCommands = require('../../list-commands')
+
 module.exports = {
     name: 'help',
-    description: 'Helps with commands!',
+    description: 'Help with commands.',
 
     execute(message, args) {
         const embed = new Discord.MessageEmbed();
@@ -23,6 +25,7 @@ module.exports = {
             message.channel.send({ embed });
         }
         else if (args[0] == 'fun') {
+            let list = makeCommandList(listCommands('commands/fun commands'))
             embed.setColor('#0099ff')
                 .setTitle('Fun commands')
                 .setURL('https://psybotdashboard.herokuapp.com/commands')
@@ -30,18 +33,12 @@ module.exports = {
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
                     {
-                        name: 'Fun Commands', value: `\n
-                    \`${prefix}meme\` gives a meme \n
-                    \`${prefix}say\` repeats a certain sentence \n
-                    \`${prefix}length\` calculates your length\n
-                    \`${prefix}ask\` Answers your question\n
-                    \`${prefix}gay\` Calculates your gay level\n
-                    \`${prefix}ascii\` Generates a big image`
+                        name: '\u200B', value: list
                     }
-
                 );
             message.channel.send({ embed });
         } else if (args[0] == 'info') {
+            let list = makeCommandList(listCommands('commands/info commands'))
             embed.setColor('#0099ff')
                 .setTitle('Info Commands')
                 .setURL('https://psybotdashboard.herokuapp.com/commands')
@@ -49,20 +46,12 @@ module.exports = {
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
                     {
-                        name: 'Info Commands', value: `\n
-                    \`${prefix}profile @user\` info on a user\n
-                    \`${prefix}serverinfo\` info on this server\n
-                    \`${prefix}activity\` info on your activity\n
-                    \`${prefix}activity top\` top message activity\n
-                    \`${prefix}activity top voice\` top voice activity\n
-                    \`${prefix}info\` info on the bot\n
-                    \`${prefix}ping\` pong!\n
-                    \`${prefix}settings\` Settings of this server!\n
-                    \`${prefix}invitecheck {invite code}\` Info on the server being invited!`
+                        name: '\u200B', value: list
                     }
                 );
             message.channel.send({ embed });
         } else if (args[0] == 'mod') {
+            let list = makeCommandList(listCommands('commands/mod commands'))
             embed.setColor('#0099ff')
                 .setTitle('Mod Commands')
                 .setURL('https://psybotdashboard.herokuapp.com/commands')
@@ -70,24 +59,12 @@ module.exports = {
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
                     {
-                        name: 'Mod Commands', value: `\n
-                    \`${prefix}timeout @user\` timeouts a certain invidivual \n
-                    \`${prefix}untimeout @user\` untimeouts a certain individual\n
-                    \`${prefix}purge {number}\` deletes a number of messages\n
-                    \`${prefix}nickall {name}\` nicknames everyone\n
-                    \`${prefix}moveall {channel name}\` moves everyone to a voice channel\n
-                    \`${prefix}mute @user\` or \`${prefix}mute all\` mutes a member or everyone\n
-                    \`${prefix}unmute @user\` or \`${prefix}unmute all\` unmutes a member or everyone\n
-                    \`${prefix}deafen @user\` or \`${prefix}deafen all\` deafens a member or everyone\n
-                    \`${prefix}undeafen @user\` or \`${prefix}undeafen all\` undeafens a member or everyone\n
-                    \`${prefix}disconnect @user\` or \`${prefix}disconnect all\` disonnects a member or everyone\n
-                    \`${prefix}autorole {role}\` or \`${prefix}autorole off\` sets default role\n
-                    \`${prefix}timeoutrole @user\` sets timeout role\n
-                    \`${prefix}e activity-reset @user\` or \`${prefix}activity-reset all\` resets someone's activity`
+                        name: '\u200B', value: list
                     }
                 );
             message.channel.send({ embed });
         } else if (args[0] == 'nsfw') {
+            let list = makeCommandList(listCommands('commands/nsfw commands'))
             embed.setColor('#0099ff')
                 .setTitle('NSFW Commands')
                 .setURL('https://psybotdashboard.herokuapp.com/commands')
@@ -95,15 +72,18 @@ module.exports = {
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
                     {
-                        name: 'NSFW Commands', value: `\n
-                    \`${prefix}neko\` gives some nekos\n
-                    \`${prefix}lol\` rule34 lol\n
-                    \`${prefix}hentaig\` hentai gifs\n
-                    \`${prefix}solo\` solo pics\n
-                    \`${prefix}solog\` solo gifs`
-                    },
+                        name: '\u200B', value: list
+                    }
                 );
             message.channel.send({ embed });
         }
     },
 };
+
+let makeCommandList = (array) => {
+    let ans = '';
+    array.forEach(element => {
+        ans += `\`${prefix}${element[0]} ${element[2] || ''}\` ${element[1]} \n\n`;
+    });
+    return ans;
+}

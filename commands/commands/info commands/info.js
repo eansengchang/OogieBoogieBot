@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'info',
-    description: 'Info on this bot!',
+    description: 'Info on this bot.',
     execute: async (message, args) => {
 
         let channels = 0;

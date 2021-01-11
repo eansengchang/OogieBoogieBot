@@ -3,7 +3,7 @@ const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'settings',
-    description: 'Settings of this server',
+    description: 'Settings of this server.',
     guildOnly: true,
     async execute(message, args) {
         let timeoutCollection = timeoutSchema(message.guild.id);

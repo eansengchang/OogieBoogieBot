@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'deafen',
-    description: 'Deafens people in a call!',
+    description: 'Deafens people in a call.',
     expectedArgs: '@user or all',
     guildOnly: true,
     minArgs: 1,

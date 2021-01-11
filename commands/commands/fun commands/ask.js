@@ -1,6 +1,6 @@
 module.exports = {
     name: 'ask',
-    description: 'Ask a question!',
+    description: 'Answers your question.',
     expectedArgs: '{question}',
     minArgs: 1,
     execute(message, args) {

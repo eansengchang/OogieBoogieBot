@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'ascii',
-    description: 'Transforms text into big text!',
+    description: 'Transforms text into big text.',
     expectedArgs: '{message}',
     minArgs: 1,
     

@@ -2,7 +2,7 @@ const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'untimeout',
-    description: 'Untimeouts a person!',
+    description: 'Untimeouts a person.',
     expectedArgs: '@user',
     guildOnly: true,
     minArgs: 1,

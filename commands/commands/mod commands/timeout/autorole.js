@@ -5,7 +5,7 @@ const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'autorole',
-    description: 'autorole',
+    description: 'The default role given.',
     expectedArgs: '{role}',
     guildOnly: true,
     minArgs: 1,
