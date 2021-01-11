@@ -11,7 +11,6 @@ module.exports = {
         let response = await fetch(`https://artii.herokuapp.com/make?text=${args.join('+')}`);
         let text = await response.text();
 
-        console.log(text)
         message.channel.send(`\`\`\`${text}\`\`\``);
     },
 };
