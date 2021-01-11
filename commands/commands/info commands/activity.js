@@ -79,7 +79,7 @@ module.exports = {
                     .setTitle(`Top voice activity`)
                     .setDescription(list);
                 message.channel.send(embed);
-                showChart(message, users, activities, 'Voice Activity (Hr/Day)');
+                showBarChart(message, users, activities, 'Voice Activity (Hr/Day)');
             }
 
             else {
@@ -129,7 +129,7 @@ module.exports = {
                     .setTitle(`Top message activity`)
                     .setDescription(list);
                 message.channel.send(embed);
-                showChart(message, users, activities, 'Message Activity Per Day');
+                showBarChart(message, users, activities, 'Message Activity Per Day');
             }
 
 
@@ -189,7 +189,7 @@ const ChartCallback = (ChartJS) => {
     })
 }
 
-let showChart = async (message, users, activities, label) => {
+let showBarChart = async (message, users, activities, label) => {
     //creates a graph on activity
     const canvas = new CanvasRenderService(
         width,
