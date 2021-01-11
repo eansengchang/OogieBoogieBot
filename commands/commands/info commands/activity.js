@@ -154,7 +154,7 @@ module.exports = {
                         _id: message.author.id,
                         userTag: message.author.tag,
                         lastUpdate: message.createdTimestamp,
-                        messages: 0,
+                        messages: 1,
                         voice: 0,
                         isVoice: false,
                         voiceJoinedStamp: message.createdTimestamp
