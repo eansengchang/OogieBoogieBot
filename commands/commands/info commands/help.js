@@ -57,7 +57,8 @@ module.exports = {
                     \`${prefix}activity top voice\` top voice activity\n
                     \`${prefix}info\` info on the bot\n
                     \`${prefix}ping\` pong!\n
-                    \`${prefix}settings\` Settings of this server!`
+                    \`${prefix}settings\` Settings of this server!\n
+                    \`${prefix}invitecheck {invite code}\` Info on the server being invited!`
                     }
                 );
             message.channel.send({ embed });
