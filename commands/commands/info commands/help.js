@@ -53,6 +53,8 @@ module.exports = {
                     \`${prefix}profile @user\` info on a user\n
                     \`${prefix}serverinfo\` info on this server\n
                     \`${prefix}activity\` info on your activity\n
+                    \`${prefix}activity top\` top message activity\n
+                    \`${prefix}activity top voice\` top voice activity\n
                     \`${prefix}info\` info on the bot\n
                     \`${prefix}ping\` pong!\n
                     \`${prefix}settings\` Settings of this server!`
