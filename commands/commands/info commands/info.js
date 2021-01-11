@@ -14,8 +14,8 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`PsyBot Website`)
-            .setURL('https://psybotdashboard.herokuapp.com/')
+            .setTitle(`Oogie Boogie Website`)
+            .setURL('https://oogieboogiedashboard.herokuapp.com/')
             .setThumbnail(message.client.user.displayAvatarURL())
             .addFields(
                 { name: 'Created by:', value: `ESC#3777`, inline: false },

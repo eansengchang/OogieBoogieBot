@@ -5,7 +5,7 @@ module.exports = async (client) => {
     //message logging
     client.on('message', async (message) => {
         if(message.author.bot) return;
-        await fetch('https://psybotdashboard.herokuapp.com/');
+        await fetch('https://oogieboogiedashboard.herokuapp.com/');
         if (message.guild) {
             let activityCollection = serverActivity(message.guild.id);
 
