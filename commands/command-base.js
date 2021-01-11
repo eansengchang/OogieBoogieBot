@@ -37,7 +37,7 @@ module.exports = message => {
             }
         })
         if (flag) {
-            return message.reply(`You require the following permissions: \`${missingPerms1.join(' ')}\``);
+            return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
     
@@ -48,12 +48,12 @@ module.exports = message => {
         permissions.forEach((item, index) => {
             if (!selfMember.hasPermission(item)) {
                 flag2 = true;
-                missingPerms2.push(item);
+                missingPerms.push(item);
             }
         })
 
         if (flag) {
-            return message.reply(`You require the following permissions: \`${missingPerms1.join(' ')}\``);
+            return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
 
