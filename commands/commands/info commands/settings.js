@@ -12,7 +12,6 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle(`${guild.name}'s settings`)
-            .setThumbnail(guild.iconURL())
             .setFooter(`requested by ${message.author.tag}`)
 
         let timeout = await timeoutCollection.findOne({
