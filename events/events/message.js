@@ -12,9 +12,6 @@ module.exports = async (client, message) => {
 
     //prefixes and commands
     if (content.startsWith(prefix)) {
-        if (author.id == '249148390527598592') {
-            return;
-        }
         commandBase(message);
     }
 

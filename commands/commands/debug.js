@@ -7,7 +7,6 @@ module.exports = {
 
         let user = message.mentions.users.first() || message.author || message.member.user;
         let ans = message.guild.member(user).permissions.toArray().join('\n').toLowerCase();
-        console.log(ans)
         message.channel.send(ans);
     },
 };
