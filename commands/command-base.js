@@ -7,9 +7,9 @@ module.exports = message => {
     if (!client.commands.has(commandName)) return;
     const command = client.commands.get(commandName);
 
-    if (message.author.id == '249148390527598592') {
-        return message.reply('Sorry, I\'m unable to run that command for you.');
-    }
+    // if (message.author.id == '249148390527598592') {
+    //     return message.reply('Sorry, I\'m unable to run that command for you.');
+    // }
 
     //default properties of a command
     let {
