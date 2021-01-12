@@ -52,7 +52,7 @@ module.exports = message => {
         const selfMember = message.guild.member(message.client.user);
         let missingPerms = [];
         let flag = false;
-        permissions.forEach((item, index) => {
+        botPerms.forEach((item, index) => {
             if (!selfMember.hasPermission(item)) {
                 flag = true;
                 missingPerms.push(item);
