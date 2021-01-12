@@ -53,7 +53,7 @@ module.exports = async (client) => {
                 const newMember = new activityCollection({
                     _id: state1.member.id,
                     userTag: state1.member.user.tag,
-                    lastUpdate: ``,
+                    lastUpdate: Date.now(),
                     messages: 0,
                     voice: 0,
                     isVoice: false,
