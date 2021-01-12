@@ -9,13 +9,13 @@ module.exports = {
     async execute(message, args) {
         if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
-        let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join(' ')}`);
+        let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join('_')}`);
         let text = await response.text();
         let result = text.split('"').filter(element => {
-            return (element.startsWith('wimg', 8) || element.startsWith('img', 8)) && (element.endsWith('jpeg') || element.endsWith('png'));
+            return (element.startsWith('wimg', 8) || element.startsWith('img', 8)) && (element.includes('jpeg') || element.includes('jpg') || element.includes('png'));
         })
 
-        if (result.length === 0){
+        if (result.length === 0) {
             return message.channel.send('No searches found...')
         }
 
@@ -23,7 +23,8 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setImage(pick);
+            .setImage(pick)
+            .setFooter(`Requested by ${message.author.tag}`)
 
         message.channel.send(embed);
     },

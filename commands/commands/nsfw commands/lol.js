@@ -14,7 +14,8 @@ module.exports = {
             .setColor('#0099ff')
             .setTitle(json.title)
             .setURL(json.postLink)
-            .setImage(json.url);
+            .setImage(json.url)
+            .setFooter(`Requested by ${message.author.tag}`)
 
         message.channel.send(embed);
     },

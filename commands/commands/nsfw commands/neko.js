@@ -13,7 +13,8 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setImage(json.url);
+            .setImage(json.url)
+            .setFooter(`Requested by ${message.author.tag}`)
 
         message.channel.send(embed);
     },
