@@ -12,7 +12,8 @@ module.exports = {
 
         let response = await fetch(`https://discord.com/api/v8/invites/${inviteCode}?with_counts=true`);
         let json = await response.json();
-        console.log(json);
+        
+        if(json.message === 'Unknown Invite') return message.channel.send('Unknown invite!')
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
