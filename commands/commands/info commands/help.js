@@ -13,7 +13,7 @@ module.exports = {
         if (args.length == 0) {
             embed.setColor('#0099ff')
                 .setTitle('Full Description of Commands')
-                .setURL('https://oogieboogiedashboard.herokuapp.com//commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                 .setDescription('Type one of them for info on a specific category')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -28,7 +28,7 @@ module.exports = {
             let list = makeCommandList(listCommands('commands/fun commands'))
             embed.setColor('#0099ff')
                 .setTitle('Fun commands')
-                .setURL('https://oogieboogiedashboard.herokuapp.com//commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the fun commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -41,7 +41,7 @@ module.exports = {
             let list = makeCommandList(listCommands('commands/info commands'))
             embed.setColor('#0099ff')
                 .setTitle('Info Commands')
-                .setURL('https://oogieboogiedashboard.herokuapp.com//commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the info commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -54,7 +54,7 @@ module.exports = {
             let list = makeCommandList(listCommands('commands/mod commands'))
             embed.setColor('#0099ff')
                 .setTitle('Mod Commands')
-                .setURL('https://oogieboogiedashboard.herokuapp.com//commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the mod commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
@@ -67,7 +67,7 @@ module.exports = {
             let list = makeCommandList(listCommands('commands/nsfw commands'))
             embed.setColor('#0099ff')
                 .setTitle('NSFW Commands')
-                .setURL('https://oogieboogiedashboard.herokuapp.com//commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the nsfw commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
