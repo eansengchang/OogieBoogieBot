@@ -38,10 +38,6 @@ module.exports = async (client, message) => {
         channel.send(`Type \`${prefix}help\` for some help`);
     }
 
-    if(content == 'who asked' || content == 'no one asked'){
-        message.channel.send('I asked!');
-    }
-
     //random stuff
     if (channel.id === '715917628727885874') {
         if (Math.random() < 0.4) {
