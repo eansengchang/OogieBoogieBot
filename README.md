@@ -8,16 +8,16 @@ Oogie Boogie Bot is a multi-functiontal bot that can take care of moderation and
  
 ## Features
 ### Activity logging:
-Creates a very detailed breakdown of people's activities.
+The bot logs every minute of voice and message and can be used to create detailed breakdowns of each members activity and prescence per day visually.
 
 ### Moderation commands:
-Such as purging channels or muting someone permanently.
+There are a range of moderation commands that do the work for you such as purging a channel or muting someone from a server.
 
 ### Informative commands:
-Such as information on the server or on a member.
+The bot also gives detailed information on a lot of areas such as a specific user or the entire server.
 
 ### Automative commands:
-Such as changing everyones nicknames or automatic roles.
+The bot also automates commands such as nicknaming all members or automatic roles.
 
 ### Fun commands:
 This includes meme command or 8ball.
