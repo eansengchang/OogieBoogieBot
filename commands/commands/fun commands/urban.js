@@ -19,8 +19,6 @@ module.exports = {
 
         let top = list.find(function (o) { return o.thumbs_up == res; })
 
-        console.log(list);
-
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle(`Urban Dictionary of: ${args.join(' ')}`)
