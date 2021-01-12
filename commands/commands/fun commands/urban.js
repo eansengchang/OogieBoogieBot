@@ -21,7 +21,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`Urban Dictionary of: ${args.join(' ')}`)
+            .setTitle(`Urban Dictionary of: ${top.word}`)
             .setURL(top.permalink)
             .setDescription(top.definition.replace(/[\[\]]/g, ''))
             .addFields(
