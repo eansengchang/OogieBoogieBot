@@ -17,15 +17,21 @@ module.exports = {
         let members = await message.guild.members.fetch();
         let count = 0;
         members.each(async member => {
-            let thing = await member.setNickname(args.join(' '))
-
-            if (thing) {
+            await member.setNickname(args.join(' ')).then(thing => {
                 count++;
                 if (count % 5 == 0 || count == message.guild.memberCount) {
                     let percentage = Math.round(100 * count / message.guild.memberCount);
                     reply.edit(`${percentage}% done`)
                 }
-            }
+            }).catch(err => {
+                count++;
+                if (count % 5 == 0 || count == message.guild.memberCount) {
+                    let percentage = Math.round(100 * count / message.guild.memberCount);
+                    reply.edit(`${percentage}% done`)
+                }
+            })
+
+
         })
 
     },
