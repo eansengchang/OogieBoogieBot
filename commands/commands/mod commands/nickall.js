@@ -8,10 +8,11 @@ module.exports = {
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"
         if (args.length === 0) {
-            message.channel.send(`changing all possible users to default, if its a large server, it may take a minute or 2`);
+            message.channel.send(`changing all possible users to default`);
         } else {
-            message.channel.send(`changing all possible users to \`${args.join(' ')}\`, if its a large server, it may take a minute or 2`);
+            message.channel.send(`changing all possible users to \`${args.join(' ')}\``);
         }
+        message.channel.send('If its a large server, it may take a minute or so')
         let reply = await message.channel.send(`0% done`);
 
         let members = await message.guild.members.fetch();
