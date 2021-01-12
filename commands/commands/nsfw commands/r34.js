@@ -9,15 +9,21 @@ module.exports = {
     async execute(message, args) {
         if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
-        let response = await fetch(`https://r34-json-api.herokuapp.com/posts?tags=${args.join(' ')}`);
-        let json = await response.json();
-        
-        let random = json[Math.floor(Math.random() * json.length)]
-        console.log(random)
+        let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join(' ')}`);
+        let text = await response.text();
+        let result = text.split('"').filter(element => {
+            return (element.startsWith('wimg', 8) || element.startsWith('img', 8)) && (element.endsWith('jpeg') || element.endsWith('png'));
+        })
+
+        if (result.length === 0){
+            return message.reply('No searches found...')
+        }
+
+        let pick = result[Math.floor(Math.random() * result.length)];
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setImage(random.file_url);
+            .setImage(pick);
 
         message.channel.send(embed);
     },
