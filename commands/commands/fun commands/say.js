@@ -1,6 +1,7 @@
 module.exports = {
     name: 'say',
     description: 'Says something.',
+    expectedArgs: '{phrase}',
     execute(message, args) {
         if (message.guild && (message.mentions.everyone && !message.member.hasPermission('MENTION_EVERYONE'))) {
             return message.reply('You don\'t have permissions to mention everyone');

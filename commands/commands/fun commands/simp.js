@@ -1,6 +1,7 @@
 module.exports = {
     name: 'simp',
     description: 'Finds out how simp you are.',
+    expectedArgs: '@user',
     execute(message, args) {
         let user = message.mentions.users.first() || message.author || message.member.user;
         let simp = Math.round(100 * Math.random())
