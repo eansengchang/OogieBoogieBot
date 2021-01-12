@@ -30,9 +30,7 @@ module.exports = async (client, message) => {
         'Seif is packing a tic-tac', 'Seif has big boobies', 'Seif is a stinky', 'Seif shoots up orphanages',
         'Seif wants to fuck Tima', 'Seif wants to get pegged by James Charles', 'Seif\'s broke the record for most thicc athelete in the world with his 4Km run in 15 mins',
         'Seif is so homophobic that even joe wouldn\'t allow the tap', 'seif had krishna\'s babies'];
-    if (content.substring(0, 4) === 'seif') {
-        channel.send('<@300232634875904000> ' + seif[Math.floor(Math.random() * seif.length)]);
-    }
+   
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
         channel.send(`Type \`${prefix}help\` for some help`);
