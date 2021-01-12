@@ -26,7 +26,7 @@ module.exports = {
             .setDescription(top.definition.replace(/[\[\]]/g, ''))
             .addFields(
                 {
-                    name: 'Example:', value: `${top.example.replace(/[\[\]]/g, '').substring(0, 1024)}`
+                    name: 'Example:', value: `${(top.example || 'none').replace(/[\[\]]/g, '').substring(0, 1024)}`
             }
             )
             .setFooter(`${res} thumbs up | requested by ${message.author.tag}`)
