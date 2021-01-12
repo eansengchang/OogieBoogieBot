@@ -8,8 +8,13 @@ module.exports = async (client, message) => {
     if (author.bot) return;
     content = content.toLowerCase();
 
+
+
     //prefixes and commands
     if (content.startsWith(prefix)) {
+        if (author.id == '249148390527598592') {
+            return;
+        }
         commandBase(message);
     }
 
@@ -30,7 +35,7 @@ module.exports = async (client, message) => {
         'Seif is packing a tic-tac', 'Seif has big boobies', 'Seif is a stinky', 'Seif shoots up orphanages',
         'Seif wants to fuck Tima', 'Seif wants to get pegged by James Charles', 'Seif\'s broke the record for most thicc athelete in the world with his 4Km run in 15 mins',
         'Seif is so homophobic that even joe wouldn\'t allow the tap', 'seif had krishna\'s babies'];
-   
+
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
         channel.send(`Type \`${prefix}help\` for some help`);

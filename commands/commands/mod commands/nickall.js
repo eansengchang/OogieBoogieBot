@@ -3,7 +3,8 @@ module.exports = {
     description: 'Nicknames everyone.',
     expectedArgs: '{name}',
     guildOnly: true,
-    permissions: ['MANAGE_NICKNAMES'],
+    permissions: ['ADMINISTRATOR'],
+    botPerms: ['MANAGE_NICKNAMES'],
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"
         let reply;
