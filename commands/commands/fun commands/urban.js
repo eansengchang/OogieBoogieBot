@@ -24,6 +24,11 @@ module.exports = {
             .setTitle(`Urban Dictionary of: ${args.join(' ')}`)
             .setURL(top.permalink)
             .setDescription(top.definition.replace(/[\[\]]/g, ''))
+            .addFields(
+                {
+                    name: 'Example:', value: `${top.example.replace(/[\[\]]/g, '')}`
+            }
+            )
             .setFooter(`${res} thumbs up`)
 
         message.channel.send(embed);
