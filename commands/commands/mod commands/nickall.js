@@ -7,20 +7,26 @@ module.exports = {
     botPerms: ['MANAGE_NICKNAMES'],
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"
-        let reply;
         if (args.length === 0) {
-            reply = message.channel.send(`changing all possible users to default...`);
+            message.channel.send(`changing all possible users to default, if its a large server, it may take a minute or 2`);
         } else {
-            reply = message.channel.send(`changing all possible users to \`${args.join(' ')}\` ...`);
+            message.channel.send(`changing all possible users to \`${args.join(' ')}\`, if its a large server, it may take a minute or 2`);
         }
+        let reply = await message.channel.send(`0% done`);
 
-        message.guild.members.fetch()
-            .then(async members => {
-                members.array().forEach(member => {
-                    member.setNickname(args.join(' ')).catch(error => {
-                        return
-                    });
-                })
-            });
+        let members = await message.guild.members.fetch();
+        let count = 0;
+        members.each(async member => {
+            let thing = await member.setNickname(args.join(' '))
+
+            if (thing) {
+                count++;
+                if (count % 5 == 0 || count == message.guild.memberCount) {
+                    let percentage = Math.round(100 * count / message.guild.memberCount);
+                    reply.edit(`${percentage}% done`)
+                }
+            }
+        })
+
     },
 };

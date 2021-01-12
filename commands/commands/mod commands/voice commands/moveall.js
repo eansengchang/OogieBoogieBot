@@ -18,10 +18,10 @@ module.exports = {
 
         if(!channelEnd) return message.channel.send('This is not a valid channel name')
 
-        message.guild.channels.cache.array().forEach(
+        message.guild.channels.cache.each(
             channel => { 
                 if (channel.type === 'voice') {
-                    channel.members.array().forEach(member => {
+                    channel.members.each(member => {
                         member.voice.setChannel(channelEnd);
                     });
                 }
