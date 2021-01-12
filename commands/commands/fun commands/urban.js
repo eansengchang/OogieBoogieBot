@@ -29,7 +29,7 @@ module.exports = {
                     name: 'Example:', value: `${top.example.replace(/[\[\]]/g, '').substring(0, 1024)}`
             }
             )
-            .setFooter(`${res} thumbs up || requested by ${message.author.tag}`)
+            .setFooter(`${res} thumbs up | requested by ${message.author.tag}`)
 
         message.channel.send(embed);
     },
