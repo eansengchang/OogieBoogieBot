@@ -14,7 +14,10 @@ module.exports = {
     execute: async (message, args) => {
 
         let roleID = args[0].replace(/<|>|@|&/g, '')
-        let role = await message.guild.roles.fetch(roleID);
+        let role = message.guild.roles.cache.get(roleID)
+        if(!role){
+            role = await message.guild.roles.fetch(roleID);
+        }
         
         if(!role){
             return message.reply('That is not a role!');

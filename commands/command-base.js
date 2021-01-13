@@ -1,6 +1,8 @@
+let recentlyRan = []
+
 module.exports = message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    client = message.client;
+    let {client, guild, member} = message;
     const commandName = args.shift().toLowerCase();
 
     //checks if the command exists
@@ -21,6 +23,7 @@ module.exports = message => {
         maxArgs = null,
         permissions = [],
         botPerms = [],
+        cooldown = -1,
         execute
     } = command
 
@@ -44,10 +47,11 @@ module.exports = message => {
             return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
-    if(botPerms == []){
+    if (botPerms == []) {
         botPerms = permissions;
     }
 
+    //error traps for bot perms
     if (message.channel.type !== 'dm' && botPerms) {
         const selfMember = message.guild.member(message.client.user);
         let missingPerms = [];
@@ -64,9 +68,26 @@ module.exports = message => {
         }
     }
 
+    //ensure command isn't ran too frequently
+    let cooldownString = `${guild.id}-${member.id}-${name}`;
+    if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
+        message.reply(`You can\'t use that command so soon, cooldown is ${cooldown} secs.`)
+        return
+    }
+
     //error traps if there are no args
     if (args.length < minArgs || (maxArgs !== null && maxArgs < args.length)) {
         return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
+    }
+
+    
+    if (cooldown > 0) {
+        recentlyRan.push(cooldownString)
+        setTimeout(() => {
+            recentlyRan = recentlyRan.filter((string)=>{
+                return string !== cooldownString
+            })
+        }, 1000 * cooldown);
     }
 
     try {

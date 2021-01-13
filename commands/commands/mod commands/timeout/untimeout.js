@@ -13,18 +13,22 @@ module.exports = {
         let timeoutCollection = timeoutSchema(message.guild.id);
         let timeout = await timeoutCollection.findOne({
             _id: 'roles'
-        }, (err, object) => {});
+        }, (err, object) => { });
 
-        if(!timeout || timeout.defaultRole == ''){
+        if (!timeout || timeout.defaultRole == '') {
             return message.reply(`You first have to set up the default role using \`e autorole\``);
         }
 
-        let user;
-        await message.guild.members.fetch(args[0]).then(member => {
-            user = member.user || message.mentions.users.first();
-        }).catch((err) => {
-            user = message.mentions.users.first();
-        })
+        let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
+
+        //fetches user if not in cache
+        if (!user) {
+            message.guild.members.fetch(args[0]).then(member => {
+                user = member.user || message.mentions.users.first()
+            }).catch((err) => {
+                user = message.mentions.users.first();
+            })
+        }
 
         if (user.bot) return message.channel.send('You can\'t do this to a bot');
         // If we have a user mentioned

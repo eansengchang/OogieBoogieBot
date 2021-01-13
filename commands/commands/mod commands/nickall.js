@@ -5,6 +5,7 @@ module.exports = {
     guildOnly: true,
     permissions: ['ADMINISTRATOR'],
     botPerms: ['MANAGE_NICKNAMES'],
+    cooldown: 60,
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"
         if (args.length === 0) {
@@ -12,28 +13,21 @@ module.exports = {
         } else {
             message.channel.send(`changing all possible users to \`${args.join(' ')}\``);
         }
-        message.channel.send('If its a large server, it may take a minute or so')
-        let reply = await message.channel.send(`0% done`);
+        message.channel.send('If its a large server, it may take a minute or so...')
+        let reply = await message.channel.send(`\`Fetching members...\``);
+        let fail = await message.channel.send('Failed to change 0 members due to permission errors')
 
         let members = await message.guild.members.fetch();
         let count = 0;
+        let failed = 0;
         members.each(async member => {
             await member.setNickname(args.join(' ')).then(thing => {
                 count++;
-                if (count % 5 == 0 || count == message.guild.memberCount) {
-                    let percentage = Math.round(100 * count / message.guild.memberCount);
-                    reply.edit(`${percentage}% done`)
-                }
+                reply.edit(`\`${count} / ${members.array().length} done\``)
             }).catch(err => {
-                count++;
-                if (count % 5 == 0 || count == message.guild.memberCount) {
-                    let percentage = Math.round(100 * count / message.guild.memberCount);
-                    reply.edit(`${percentage}% done`)
-                }
+                failed ++;
+                fail.edit(`Failed to change ${failed} members due to permission errors`)
             })
-
-
         })
-
     },
 };

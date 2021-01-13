@@ -18,15 +18,22 @@ module.exports = {
 
         if(!channelEnd) return message.channel.send('This is not a valid channel name')
 
+        message.channel.send(`Moving all possible users to \`${channelEnd.name}\`...`);
+
+        let reply = await message.channel.send(`\`moved 0 members\`...`);
+        let count = 0;
         message.guild.channels.cache.each(
             channel => { 
                 if (channel.type === 'voice') {
-                    channel.members.each(member => {
-                        member.voice.setChannel(channelEnd);
+                    channel.members.each(async member => {
+                        await member.voice.setChannel(channelEnd).then(()=>{
+                            count ++;
+                            reply.edit(`\`moved ${count} members\`...`)
+                        });
+                        
                     });
                 }
             }
         )
-        message.channel.send(`I have moved all possible users to \`${channelEnd.name}\``);
     },
 };

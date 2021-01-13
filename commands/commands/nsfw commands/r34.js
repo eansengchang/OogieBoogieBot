@@ -6,6 +6,7 @@ module.exports = {
     description: 'Searches rule 34.',
     minArgs: 1,
     expectedArgs: '{tag}',
+    cooldown: 2,
     async execute(message, args) {
         if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 

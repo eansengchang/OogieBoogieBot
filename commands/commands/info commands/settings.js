@@ -18,8 +18,13 @@ module.exports = {
             _id: 'roles'
         })
         if (timeout) {
+            let defaultRole = 'none';
+            if (timeout.defaultRole !== '') {
+                defaultRole = `<@&${timeout.defaultRole}>`;
+            }
+
             embed.addFields(
-                { name: 'Default role:', value: `<@&${timeout.defaultRole}>`, inline: false },
+                { name: 'Default role:', value: `${defaultRole}`, inline: false },
                 { name: 'Timeout role:', value: `<@&${timeout.timeoutRole}>`, inline: false },
             )
         }
