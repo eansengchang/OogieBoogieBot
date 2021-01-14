@@ -25,7 +25,7 @@ module.exports = message => {
         clientPermissions = [],
         cooldown = -1,
         execute
-    } = command
+    } = command;
 
     //error traps if its meant only for server
     if (guildOnly && message.channel.type === 'dm') {

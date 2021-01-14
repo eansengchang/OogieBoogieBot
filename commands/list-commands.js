@@ -11,7 +11,7 @@ module.exports = (category) => {
                 readCommands(path.join(dir, file));
             } else if (file !== 'command-base.js' && file !== 'load-commands.js') {
                 const { name, expectedArgs, description } = require(path.join(__dirname, dir, file));
-                commands.push([name, description, expectedArgs]);
+                commands.push([name, expectedArgs || '', description]);
             }
         }
     }

@@ -43,12 +43,9 @@ app.get('/commands', (req, res) => {
     let modCommands = listCommands('commands/mod commands')
 
     res.render('commands', {
-        funNames: funCommands.map(element => 'e ' + element[0] + ' ' + (element[2] || '')),
-        funDescriptions: funCommands.map(element => element[1]),
-        infoNames: infoCommands.map(element => 'e ' + element[0] + ' ' + (element[2] || '')),
-        infoDescriptions: infoCommands.map(element => element[1]),
-        modNames: modCommands.map(element => 'e ' + element[0] + ' ' + (element[2] || '')),
-        modDescriptions: modCommands.map(element => element[1]),
+        funCommands: funCommands,
+        infoCommands: infoCommands,
+        modCommands: modCommands,
     })
 });
 

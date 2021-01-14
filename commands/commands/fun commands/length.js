@@ -1,7 +1,7 @@
 module.exports = {
     name: 'length',
     description: 'Finds your length.',
-    
+    expectedArgs: '@user',
     execute(message, args) {
         const user = message.mentions.users.first() || message.author || message.member.user;
         let length = Math.round(Math.random()*10);

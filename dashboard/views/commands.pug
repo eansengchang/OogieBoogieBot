@@ -14,38 +14,34 @@ body
       #subjumbotron.jumbotron.text-center.bg-transparent
         p.h1 Fun Commands
       .row
-        .col-sm-5
-          each commandName in funNames
-            ul.list-group.my-1
-              li.list-group-item.bg-transparent #{commandName}
-        #commands.col-sm-7
-          each commandDesc in funDescriptions
-            ul.list-group.my-1
-              li.list-group-item.bg-transparent #{commandDesc}
+        each command in funCommands
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
+            p.text-left e #{command[0]} #{command[1]}
+          .collapse(id=command[0])
+            .card.card-body
+              p(style='color:white') #{command[2]}
+        
 
-    section(id='Info commands')
+    section(id='info commands')
       #subjumbotron.jumbotron.text-center.bg-transparent
         p.h1 Info Commands
       .row
-        .col-sm-5
-          each commandName in infoNames
-            ul.list-group.my-1
-              li.list-group-item.bg-transparent #{commandName}
-        #commands.col-sm-7
-          each commandDesc in infoDescriptions
-            ul.list-group.my-1
-              li.list-group-item.bg-transparent #{commandDesc}
-    section(id='Mod commands')
+        each command in infoCommands
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
+            p.text-left e #{command[0]} #{command[1]}
+          .collapse(id=command[0])
+            .card.card-body
+              p(style='color:white') #{command[2]}
+
+    section(id='mod commands')
       #subjumbotron.jumbotron.text-center.bg-transparent
         p.h1 Mod Commands
       .row
-        .col-sm-5
-          each commandName in modNames
-            ul.list-group.my-1
-              li.list-group-item.bg-transparent #{commandName}
-        #commands.col-sm-7
-          each commandDesc in modDescriptions
-            ul.list-group.my-1
-              li.list-group-item.bg-transparent #{commandDesc}
+        each command in modCommands
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
+            p.text-left e #{command[0]} #{command[1]}
+          .collapse(id=command[0])
+            .card.card-body
+              p(style='color:white') #{command[2]}
   
   include includes/footer.pug

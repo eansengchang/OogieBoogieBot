@@ -1,7 +1,7 @@
 module.exports = {
     name: 'pfp',
     description: 'Gives the user\'s picture.',
-    
+    expectedArgs: '@user',
     async execute(message, args) {
         let user;
         await message.guild.members.fetch(args[0]).then(member =>{
