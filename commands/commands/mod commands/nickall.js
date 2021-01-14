@@ -16,7 +16,7 @@ module.exports = {
         message.channel.send('If its a large server, it may take a minute or so...')
         let reply = await message.channel.send(`\`Fetching members...\``);
         let fail = await message.channel.send('Failed to change 0 members due to permission errors')
-
+        
         let members = await message.guild.members.fetch();
         let count = 0;
         let failed = 0;
