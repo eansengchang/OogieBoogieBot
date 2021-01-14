@@ -47,7 +47,7 @@ module.exports = message => {
             return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
-    if (clientpermissions == []) {
+    if (clientpermissions === []) {
         clientpermissions = memberPermisisons;
     }
 

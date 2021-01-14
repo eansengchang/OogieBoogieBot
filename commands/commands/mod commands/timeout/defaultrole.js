@@ -11,6 +11,7 @@ module.exports = {
     minArgs: 0,
     maxArgs: 1,
     memberPermisisons: ['ADMINISTRATOR'],
+    clientpermissions: [''],
     execute: async (message, args) => {
         let timeoutCollection = timeoutSchema(message.guild.id);
         let { guild } = message;
