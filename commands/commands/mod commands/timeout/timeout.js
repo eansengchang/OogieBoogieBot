@@ -7,8 +7,8 @@ module.exports = {
     guildOnly: true,
     minArgs: 1,
     maxArgs: 1,
-    permissions: ['MUTE_MEMBERS'],
-    botPerms: ['MANAGE_ROLES'],
+    memberPermisisons: ['MUTE_MEMBERS'],
+    clientpermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
 
         let timeoutCollection = timeoutSchema(message.guild.id);
@@ -31,7 +31,7 @@ module.exports = {
             })
         }
 
-        if (user.bot) return message.channel.send('You can\'t do this to a bot');
+        if (user && user.bot) return message.channel.send('You can\'t do this to a bot');
         // If we have a user mentioned
         if (user) {
             // Now we get the member from the user
@@ -54,7 +54,10 @@ module.exports = {
                         message.reply(`Successfully muted <@${user.id}>`);
                     })
                     .catch(err => {
-                        message.reply('I was unable to mute the member');
+                        if(err.message == 'Missing Permissions'){
+                            return message.reply('I don\'t have the permissions to do that')
+                        }
+                        message.reply('I was unable to unmute the member');
                         console.error(err);
                     });
             } else {

@@ -3,8 +3,8 @@ module.exports = {
     description: 'Nicknames everyone.',
     expectedArgs: '{name}',
     guildOnly: true,
-    permissions: ['ADMINISTRATOR'],
-    botPerms: ['MANAGE_NICKNAMES'],
+    memberPermisisons: ['ADMINISTRATOR'],
+    clientpermissions: ['MANAGE_NICKNAMES'],
     cooldown: 60,
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"
@@ -25,8 +25,10 @@ module.exports = {
                 count++;
                 reply.edit(`\`${count} / ${members.array().length} done\``)
             }).catch(err => {
-                failed ++;
-                fail.edit(`Failed to change ${failed} members due to permission errors`)
+                if(err.message == 'Missing Permissions'){
+                    failed ++;
+                    fail.edit(`Failed to change ${failed} members due to permission errors`)
+                }
             })
         })
     },

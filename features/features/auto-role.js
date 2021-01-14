@@ -11,7 +11,7 @@ module.exports = async (client) => {
         }, (err, object) => { })
 
         if (timeout && timeout.defaultRole != ''){
-            member.roles.add([timeout.defaultRole])
+            //member.roles.add([timeout.defaultRole])
         }
     })
 }

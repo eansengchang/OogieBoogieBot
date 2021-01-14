@@ -4,29 +4,48 @@ const Discord = require('discord.js');
 const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
-    name: 'autorole',
+    name: 'defaultrole',
     description: 'The default role given.',
     expectedArgs: '{role}',
     guildOnly: true,
-    minArgs: 1,
+    minArgs: 0,
     maxArgs: 1,
-    permissions: ['ADMINISTRATOR'],
+    memberPermisisons: ['ADMINISTRATOR'],
     execute: async (message, args) => {
+        let timeoutCollection = timeoutSchema(message.guild.id);
+        let { guild } = message;
+
+        if (args.length === 0) {
+            let timeout = await timeoutCollection.findOne({
+                _id: 'roles'
+            })
+            if (timeout) {
+                let defaultRole = 'none';
+                if (timeout.defaultRole !== '') {
+                    defaultRole = `<@&${timeout.defaultRole}>`;
+                }
+                let embed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle(`${guild.name}'s default role`)
+                    .addFields(
+                        { name: 'Default role:', value: `${defaultRole}`, inline: false },
+                    )
+                return message.channel.send(embed);
+            }
+        }
 
         let roleID = args[0].replace(/<|>|@|&/g, '')
         let role = message.guild.roles.cache.get(roleID)
-        if(!role){
+        if (!role) {
             role = await message.guild.roles.fetch(roleID);
         }
 
-        if(args[0] == 'off'){
+        if (args[0] == 'off') {
             roleID = '';
         }
         else if (!role) {
             return message.reply('That is not a role!');
         }
-
-        let timeoutCollection = timeoutSchema(message.guild.id);
 
         let timeout = await timeoutCollection.findOne({
             _id: 'roles'
@@ -52,7 +71,7 @@ module.exports = {
             });
         }
 
-        if(args[0] == 'off'){
+        if (args[0] == 'off') {
             return message.channel.send(`I have successfully deleted the default role`)
         }
         message.channel.send(`I have successfully set the default role to ${role.name}`)

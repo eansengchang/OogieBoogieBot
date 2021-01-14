@@ -10,7 +10,7 @@ module.exports = {
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
-    permissions: ['ADMINISTRATOR'],
+    memberPermisisons: ['ADMINISTRATOR'],
     execute: async (message, args) => {
         let activityCollection = serverActivity(message.guild.id);
 

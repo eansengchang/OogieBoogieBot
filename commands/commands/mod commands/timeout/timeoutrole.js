@@ -8,22 +8,44 @@ module.exports = {
     description: 'The role given to timeout.',
     expectedArgs: '{role}',
     guildOnly: true,
-    minArgs: 1,
+    minArgs: 0,
     maxArgs: 1,
-    permissions: ['ADMINISTRATOR'],
+    memberPermisisons: ['ADMINISTRATOR'],
     execute: async (message, args) => {
+        let timeoutCollection = timeoutSchema(message.guild.id);
+        let { guild } = message;
+
+        if (args.length === 0) {
+            let timeout = await timeoutCollection.findOne({
+                _id: 'roles'
+            })
+            if (timeout) {
+                let timeoutRole = 'none';
+                if (timeout.timeoutRole !== '') {
+                    timeoutRole = `<@&${timeout.timeoutRole}>`;
+                }
+                let embed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle(`${guild.name}'s timeout role`)
+                    .addFields(
+                        { name: 'Timeout role:', value: `${timeoutRole}`, inline: false },
+                    )
+                return message.channel.send(embed);
+            }
+        }
 
         let roleID = args[0].replace(/<|>|@|&/g, '')
         let role = message.guild.roles.cache.get(roleID)
         if(!role){
             role = await message.guild.roles.fetch(roleID);
         }
+        if (args[0] == 'off') {
+            roleID = '';
+        }
         
-        if(!role){
+        else if(!role){
             return message.reply('That is not a role!');
         }
-
-        let timeoutCollection = timeoutSchema(message.guild.id);
 
         let timeout = await timeoutCollection.findOne({
             _id: 'roles'
@@ -39,6 +61,9 @@ module.exports = {
         await timeout.updateOne({
             timeoutRole: roleID,
         });
+        if (args[0] == 'off') {
+            return message.channel.send(`I have successfully deleted the timeout role`)
+        }
         message.channel.send(`I have successfully set the timeout role to ${role.name}`)
     },
 };

@@ -7,8 +7,8 @@ module.exports = {
     guildOnly: true,
     minArgs: 1,
     maxArgs: 1,
-    permissions: ['MUTE_MEMBERS'],
-    botPerms: ['MANAGE_ROLES'],
+    memberPermisisons: ['MUTE_MEMBERS'],
+    clientpermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
         let timeoutCollection = timeoutSchema(message.guild.id);
         let timeout = await timeoutCollection.findOne({
@@ -44,6 +44,9 @@ module.exports = {
                         message.reply(`Successfully unmuted <@${user.id}>`);
                     })
                     .catch(err => {
+                        if(err.message == 'Missing Permissions'){
+                            return message.reply('I don\'t have the permissions to do that')
+                        }
                         message.reply('I was unable to unmute the member');
                         console.error(err);
                     });
