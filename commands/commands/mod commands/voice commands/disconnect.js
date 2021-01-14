@@ -17,7 +17,7 @@ module.exports = {
                     });
                 };
             });
-            return message.channel.send(`I have disconneted all possible members`);
+            return message.channel.send(`I have disconnected all possible members`);
         }
         let user = message.mentions.users.first();
         if (!user) { return message.reply('User not found!'); }
