@@ -16,10 +16,10 @@ body
       .row
         each command in funCommands
           button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left e #{command[0]} #{command[1]}
+            p.text-left(style='color:black') e #{command[0]} #{command[1]}
           .collapse(id=command[0])
             .card.card-body
-              p(style='color:white') #{command[2]}
+              p(style='color:black') #{command[2]}
         
 
     section(id='info commands')
@@ -28,10 +28,10 @@ body
       .row
         each command in infoCommands
           button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left e #{command[0]} #{command[1]}
+            p.text-left(style='color:black') e #{command[0]} #{command[1]}
           .collapse(id=command[0])
             .card.card-body
-              p(style='color:white') #{command[2]}
+              p(style='color:black') #{command[2]}
 
     section(id='mod commands')
       #subjumbotron.jumbotron.text-center.bg-transparent
@@ -39,9 +39,23 @@ body
       .row
         each command in modCommands
           button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left e #{command[0]} #{command[1]}
+            p.text-left(style='color:black') e #{command[0]} #{command[1]}
           .collapse(id=command[0])
             .card.card-body
-              p(style='color:white') #{command[2]}
+              p(style='color:black') #{command[2]}
+
+    section(id='nsfw commands')
+      .row
+        button.btn.bg-transparent(style = 'margin:0;padding:0',type='button', data-bs-toggle='collapse', data-bs-target='#collapseNSFW', aria-expanded='false', aria-controls='collapseNSFW')
+          p.h2(style='background-color:#2c363f;margin:0;padding:5px') NSFW commands
+      
+      #collapseNSFW.collapse
+        .row
+          each command in nsfwCommands
+            button.btn(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
+              p.text-left(style='color:black') e #{command[0]} #{command[1]}
+            .collapse(id=command[0])
+              .card.card-body
+                p(style='color:black') #{command[2]}
   
   include includes/footer.pug

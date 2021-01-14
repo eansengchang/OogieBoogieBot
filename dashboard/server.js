@@ -41,11 +41,13 @@ app.get('/commands', (req, res) => {
     let funCommands = listCommands('commands/fun commands')
     let infoCommands = listCommands('commands/info commands')
     let modCommands = listCommands('commands/mod commands')
+    let nsfwCommands = listCommands('commands/nsfw commands')
 
     res.render('commands', {
         funCommands: funCommands,
         infoCommands: infoCommands,
         modCommands: modCommands,
+        nsfwCommands: nsfwCommands
     })
 });
 

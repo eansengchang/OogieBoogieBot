@@ -44,7 +44,6 @@ module.exports = {
                     return message.reply('Unable to timeout someone with an equal or higher role than you');
                 }
                 if (message.guild.member(message.client.user).roles.highest.position <= member.roles.highest.position) {
-                    console.log(message.guild.member(message.client.user).roles.highest.position, member.roles.highest.position)
                     return message.reply('I\'m unable to timeout someone with an equal or higher role than me');
                 }
 

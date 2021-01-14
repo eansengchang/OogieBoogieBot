@@ -1,14 +1,26 @@
 .jumbotron{
-    background-color: white;
     padding: 0;
-}
-
-h2 {
-    margin-bottom: 20px;
 }
 
 body{
     background-color: bisque;
+}
+
+#invite{
+    margin: 4px;
+    background-color: rgb(76, 149, 218);
+    border-color: transparent;
+}
+
+body{
+    background-color: #212529;
+    /* background-color: bisque; */
+    color: white;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color:##212529;
 }
 
 i {
@@ -17,7 +29,7 @@ i {
 }
 
 footer{
-    margin-top: 5vh;
+    margin-top: 15vh;
 }
 
 span {
@@ -41,8 +53,3 @@ span {
     margin: 4px;
 }
 
-#invite{
-    margin: 4px;
-    background-color: rgb(76, 149, 218);
-    border-color: transparent;
-}

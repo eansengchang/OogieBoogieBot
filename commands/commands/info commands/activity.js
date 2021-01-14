@@ -118,7 +118,6 @@ module.exports = {
                             activities.push(messagesPerDay);
                             list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
                         }).catch(err => {
-                            console.log(activityList[i])
                             console.log(err)
                         });
                     }
