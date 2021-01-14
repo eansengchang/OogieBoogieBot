@@ -60,7 +60,6 @@ module.exports = message => {
                 missingPerms.push(item);
             }
         })
-        console.log(flag, clientPermissions, missingPerms)
         if (flag) {
             return message.reply(`I require the following permissions: \`${missingPerms.join(' ')}\``);
         }
