@@ -7,11 +7,12 @@ module.exports = {
     guildOnly: true,
     minArgs: 1,
     maxArgs: 1,
-    memberPermisisons: ['MUTE_MEMBERS'],
+    memberPermissions: ['MUTE_MEMBERS'],
+    clientPermissions: ['MUTE_MEMBERS'],
     execute: (message, args) => {
-        if(args[0] === 'all'){
+        if (args[0] === 'all') {
             message.guild.channels.cache.array().forEach(channel => {
-                if(channel.type == 'voice'){
+                if (channel.type == 'voice') {
                     channel.members.array().forEach(member => {
                         member.voice.setMute(false);
                     });
@@ -33,7 +34,7 @@ module.exports = {
                 });
             };
         });
-        if(flag){return message.reply('User not found in the channels!')}
+        if (flag) { return message.reply('User not found in the channels!') }
         message.channel.send(`I have unmuted <@${user.id}>`);
     },
 };

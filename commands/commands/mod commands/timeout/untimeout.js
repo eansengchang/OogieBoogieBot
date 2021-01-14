@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: true,
     minArgs: 1,
     maxArgs: 1,
-    memberPermisisons: ['MUTE_MEMBERS'],
+    memberPermissions: ['MUTE_MEMBERS'],
     clientpermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
         let timeoutCollection = timeoutSchema(message.guild.id);

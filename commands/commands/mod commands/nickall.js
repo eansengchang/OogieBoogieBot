@@ -3,7 +3,7 @@ module.exports = {
     description: 'Nicknames everyone.',
     expectedArgs: '{name}',
     guildOnly: true,
-    memberPermisisons: ['ADMINISTRATOR'],
+    memberPermissions: ['ADMINISTRATOR'],
     clientpermissions: ['MANAGE_NICKNAMES'],
     cooldown: 30,
     async execute(message, args) {

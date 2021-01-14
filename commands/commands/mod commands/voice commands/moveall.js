@@ -4,7 +4,8 @@ module.exports = {
     expectedArgs: '{channel name}',
     minArgs: 1,
     guildOnly: true,
-    memberPermisisons: ['MOVE_MEMBERS'],
+    memberPermissions: ['MOVE_MEMBERS'],
+    clientPermissions: ['MOVE_MEMBERS'],
     cooldown: 10,
     async execute(message, args) {
         let channelEnd;

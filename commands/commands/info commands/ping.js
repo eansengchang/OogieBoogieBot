@@ -3,8 +3,11 @@ module.exports = {
     description: 'Gives the bot\'s ping.',
     
     execute(message, args) {
-        let botping = Math.round(message.client.ws.ping);
 
-        message.channel.send(`Pong! ${botping}ms`);
+        message.channel.send(`Calculating ping...`).then((resultMessage)=>{
+            const ping = resultMessage.createdTimestamp - message.createdTimestamp;
+
+            resultMessage.edit(`\`Bot latency:\` ${ping}ms \n\`API latency:\` ${message.client.ws.ping}ms`);
+        });
     },
-};
+}; 

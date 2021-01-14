@@ -21,8 +21,8 @@ module.exports = message => {
         guildOnly = false,
         minArgs = 0,
         maxArgs = null,
-        memberPermisisons = [],
-        clientpermissions = [],
+        memberPermissions = [],
+        clientPermissions = [],
         cooldown = -1,
         execute
     } = command
@@ -33,11 +33,11 @@ module.exports = message => {
     }
 
     //error traps for permissions
-    if (message.channel.type !== 'dm' && memberPermisisons) {
+    if (message.channel.type !== 'dm' && memberPermissions) {
         const member = message.member;
         let missingPerms = [];
         let flag = false;
-        memberPermisisons.forEach((item, index) => {
+        memberPermissions.forEach((item, index) => {
             if (!member.hasPermission(item)) {
                 flag = true;
                 missingPerms.push(item);
@@ -47,22 +47,20 @@ module.exports = message => {
             return message.reply(`You require the following permissions: \`${missingPerms.join(' ')}\``);
         }
     }
-    if (clientpermissions === []) {
-        clientpermissions = memberPermisisons;
-    }
 
     //error traps for bot perms
-    if (message.channel.type !== 'dm' && clientpermissions) {
+    if (message.channel.type !== 'dm' && clientPermissions) {
+        
         const selfMember = message.guild.member(message.client.user);
         let missingPerms = [];
         let flag = false;
-        clientpermissions.forEach((item, index) => {
+        clientPermissions.forEach((item, index) => {
             if (!selfMember.hasPermission(item)) {
                 flag = true;
                 missingPerms.push(item);
             }
         })
-
+        console.log(flag, clientPermissions, missingPerms)
         if (flag) {
             return message.reply(`I require the following permissions: \`${missingPerms.join(' ')}\``);
         }

@@ -7,7 +7,8 @@ module.exports = {
     guildOnly: true,
     minArgs: 1,
     maxArgs: 1,
-    memberPermisisons: ['MUTE_MEMBERS'],
+    memberPermissions: ['MUTE_MEMBERS'],
+    clientPermissions: ['MUTE_MEMBERS'],
     execute: (message, args) => {
         if (args[0] === 'all') {
             message.guild.channels.cache.array().forEach(channel => {
@@ -19,6 +20,7 @@ module.exports = {
             });
             return message.channel.send(`I have muted all possible members`);
         }
+        
         let user = message.mentions.users.first();
         if (!user) { return message.reply('User not found!'); }
         let flag = true;
@@ -32,7 +34,7 @@ module.exports = {
                 });
             };
         });
-        if(flag){return message.reply('User not found in the channels!')}
+        if (flag) { return message.reply('User not found in the channels!') }
         message.channel.send(`I have muted <@${user.id}>`);
     },
 };

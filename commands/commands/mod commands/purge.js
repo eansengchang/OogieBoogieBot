@@ -5,7 +5,7 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     guildOnly: true,
-    memberPermisisons: ['MANAGE_MESSAGES'],
+    memberPermissions: ['MANAGE_MESSAGES'],
     clientpermissions: ['MANAGE_MESSAGES'],
     execute(message, args) {
         const amount = parseInt(args[0]);

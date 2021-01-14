@@ -7,7 +7,8 @@ module.exports = {
     guildOnly: true,
     minArgs: 1,
     maxArgs: 1,
-    memberPermisisons: ['MOVE_MEMBERS'],
+    memberPermissions: ['MOVE_MEMBERS'],
+    clientPermissions: ['MOVE_MEMBERS'],
     execute: (message, args) => {
         if (args[0] === 'all') {
             message.guild.channels.cache.array().forEach(channel => {
