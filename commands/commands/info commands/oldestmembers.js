@@ -13,7 +13,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`Oldest users in ${message.guild.name}`)
+            .setTitle(`Oldest members in ${message.guild.name}`)
             .setFooter(`requested by ${message.author.tag}`)
 
         for (let i = 0; i < 10; i++) {
