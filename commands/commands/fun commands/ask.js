@@ -19,8 +19,11 @@ module.exports = {
             'That is almost certaintly true.',
             'Without a doubt.',
             'Better not tell you now.',
-            'It is best for you to not know.',
             'There answer is complicated.',
+            'Unfortunately, yes.',
+            'Unfortunately, no.',
+            'Fortunately, yes.',
+            'Fortunately, no.',
         ]
 
         message.reply(replies[Math.floor(Math.random() * replies.length)]);
