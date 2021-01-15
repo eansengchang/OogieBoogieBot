@@ -5,6 +5,7 @@ const commandBase = require('@root/commands/command-base');
 
 module.exports = async (client, message) => {
     let { author, content, channel } = message;
+
     if (author.bot) return;
     content = content.toLowerCase();
 
