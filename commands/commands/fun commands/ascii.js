@@ -6,10 +6,9 @@ module.exports = {
     description: 'Transforms text into big text.',
     expectedArgs: '{message}',
     minArgs: 1,
-    cooldown: 4,
-    
+
     async execute(message, args) {
-        let response = await fetch(`https://artii.herokuapp.com/make?text=${args.join('+')}`);
+        let response = await fetch(`https://artii.herokuapp.com/make?text=${encodeURIComponent(args.join(' '))}`);
         let text = await response.text();
 
         message.channel.send(`\`\`\`${text}\`\`\``);
