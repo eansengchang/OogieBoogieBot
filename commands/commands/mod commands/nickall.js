@@ -4,7 +4,7 @@ module.exports = {
     expectedArgs: '{name}',
     guildOnly: true,
     memberPermissions: ['ADMINISTRATOR'],
-    clientpermissions: ['MANAGE_NICKNAMES'],
+    clientPermissions: ['MANAGE_NICKNAMES'],
     cooldown: 30,
     async execute(message, args) {
         // Get the Guild and store it under the variable "members"

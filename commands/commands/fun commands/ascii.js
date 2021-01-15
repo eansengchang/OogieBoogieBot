@@ -6,6 +6,7 @@ module.exports = {
     description: 'Transforms text into big text.',
     expectedArgs: '{message}',
     minArgs: 1,
+    cooldown: 4,
     
     async execute(message, args) {
         let response = await fetch(`https://artii.herokuapp.com/make?text=${args.join('+')}`);

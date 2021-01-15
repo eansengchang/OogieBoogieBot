@@ -50,7 +50,6 @@ module.exports = message => {
 
     //error traps for bot perms
     if (message.channel.type !== 'dm' && clientPermissions) {
-        
         const selfMember = message.guild.member(message.client.user);
         let missingPerms = [];
         let flag = false;
