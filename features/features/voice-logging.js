@@ -34,11 +34,11 @@ module.exports = async (client) => {
             if (!member) return
 
             let array = member[0].split('-');
-            let time = Math.round((Date.now() - array[1]) / 1000);
+            let time = Math.floor((Date.now() - array[1]) / 1000);
 
-            if (time < 60) text += `[Call time: **${time}** seconds]`;
-            else if (time / 60 < 60) text += (`[Call time: **${Math.floor(time / 60)}** minutes]`);
-            else text += (`[Call time: **${Math.floor(time / 60 / 60)}** hours]`);
+            if (time < 60) text += `[Call time: **${time}s**]`;
+            else if (time / 60 < 60) text += (`[Call time: **${Math.floor(time / 60)}m**]`);
+            else text += (`[Call time: **${Math.floor(time / 60 / 60)}hr${Math.floor(60 * (time / 60 / 60 - Math.floor(time / 60 / 60)))}m**]`);
 
             vlogChannel.send(text)
         }
