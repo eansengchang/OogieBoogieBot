@@ -103,7 +103,7 @@ module.exports = async (client) => {
                         lastUpdate: Date.now(),
                     });
                 }
-                let duration = Math.round((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
+                let duration = Math.floor((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
 
                 console.log(`${activity.userTag} has left the call`);
                 console.log(`call lasted ${duration} minutes`)
