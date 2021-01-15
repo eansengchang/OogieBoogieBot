@@ -23,6 +23,6 @@ module.exports = {
             'There answer is complicated.',
         ]
 
-        message.channel.send(replies[Math.floor(Math.random() * replies.length)]);
+        message.reply(replies[Math.floor(Math.random() * replies.length)]);
     },
 };
