@@ -27,12 +27,17 @@ module.exports = async (client) => {
             let text = `**${state1.member.user.tag}** left **${state1.channel.name}** `;
 
             let member = inCall.filter(string => {
-                return string.includes(`${state1.member.id}`)
+                return string.includes(state1.member.id)
             })
             inCall = inCall.filter(string => {
-                return !string.includes(`${state1.member.id}`)
+                return !string.includes(state1.member.id)
             })
-            if (!member[0]) return
+            console.log(member);
+            console.log(inCall)
+            if (!member[0]) {
+                console.log('no member[0]: ', member)
+                return
+            }
 
             let array = member[0].split('-');
             let time = Math.floor((Date.now() - array[1]) / 1000);
@@ -45,7 +50,7 @@ module.exports = async (client) => {
         }
 
         else if (state1.channelID !== state2.channelID) {
-            vlogChannel.send(`**${state1.member.user.tag}** moved from **${statel.channel.name}** to **${state2.channel.name}**`)
+            vlogChannel.send(`**${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`)
         }
     })
 }

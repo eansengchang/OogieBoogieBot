@@ -85,7 +85,6 @@ module.exports = async (client) => {
                 voiceJoinedStamp: Date.now(),
                 isVoice: true
             });
-            console.log(`${activity.userTag} has joined the call`);
             //console.log(state2.guild.afkChannelID, state1.channelID, state2.guild.afkChannelID)
 
         }
@@ -104,8 +103,6 @@ module.exports = async (client) => {
                 }
                 let duration = Math.floor((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
 
-                console.log(`${activity.userTag} has left the call`);
-                console.log(`call lasted ${duration} minutes`)
                 await activity.updateOne({
                     voice: activity.voice + duration,
                     isVoice: false
