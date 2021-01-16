@@ -15,7 +15,7 @@ module.exports = async (client) => {
         if (!vlogChannel) return;
 
         //disconnects from a channel
-        if (sstate1.channel && (!state2.channel || (state1.guild.afkChannelID && state2.channelID == state1.guild.afkChannelID))) {
+        if (state1.channel && (!state2.channel || (state1.guild.afkChannelID && state2.channelID == state1.guild.afkChannelID))) {
             //if it directly disconnected from afk channel, return
             if (state1.channelID == state1.guild.afkChannelID) return;
             
@@ -45,11 +45,12 @@ module.exports = async (client) => {
 
             vlogChannel.send(text)
         }
-        
+
         //connects to channel
         if (state2.channel && (!state1.channel || (state2.guild.afkChannelID && state1.channelID == state2.guild.afkChannelID))) {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
+
             vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`)
             inCall.push(`${state2.member.id}-${Date.now()}`)
             console.log(`${state2.member.user.tag} has joined in ${state2.guild.name}`)
