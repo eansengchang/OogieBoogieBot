@@ -1,12 +1,14 @@
 const vlogSchema = require('@models/vlog-schema');
 const { Message } = require('discord.js');
-
-let inCall = [];
+const activitySchema = require('@models/server-activity-schema');
 
 module.exports = async (client) => {
     //message logging
 
     client.on('voiceStateUpdate', async (state1, state2) => {
+        if (state1.member.user.bot) return;
+
+        //vlog stuff
         let vlogCollection = vlogSchema(state1.guild.id);
         let obj = await vlogCollection.findOne({ _id: 'channel' })
 
@@ -14,30 +16,29 @@ module.exports = async (client) => {
         let vlogChannel = state1.guild.channels.cache.get(obj.vlogChannelID);
         if (!vlogChannel) return;
 
+        //activity stuff
+        let activityCollection = activitySchema(state1.guild.id);
+        let activity = await activityCollection.findOne({
+            _id: state1.member.user.id
+        })
+
         //disconnects from a channel
         if (state1.channel && (!state2.channel || (state1.guild.afkChannelID && state2.channelID == state1.guild.afkChannelID))) {
             //if it directly disconnected from afk channel, return
             if (state1.channelID == state1.guild.afkChannelID) return;
-            
+
             let text = `**${state1.member.user.tag}** left **${state1.channel.name}** `;
 
-            let member = inCall.filter(string => {
-                return string.includes(state1.member.id)
-            })
-            inCall = inCall.filter(string => {
-                return !string.includes(state1.member.id)
-            })
             console.log(`${state1.member.user.tag} has left in ${state1.guild.name}`)
-            console.log('member: ',member);
-            console.log('inCall: ', inCall)
-            if (!member[0]) {
-                console.log('no member[0]: ', member);
+
+            if (!activity || !activity.voiceJoinedStamp) {
+                console.log('no activity joined stamp: ', state1.member.user.tag);
+                console.log(activity)
                 vlogChannel.send(text);
                 return
             }
 
-            let array = member[0].split('-');
-            let time = Math.floor((Date.now() - array[1]) / 1000);
+            let time = Math.floor((Date.now() - activity.voiceJoinedStamp) / 1000);
 
             if (time < 60) text += `[Call time: **${time}s**]`;
             else if (time / 60 < 60) text += (`[Call time: **${Math.floor(time / 60)}m${Math.floor(time % 60)}s**]`);
@@ -51,14 +52,10 @@ module.exports = async (client) => {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
 
-            vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`)
-            inCall.push(`${state2.member.id}-${Date.now()}`)
-            console.log(`${state2.member.user.tag} has joined in ${state2.guild.name}`)
-            console.log('incall: ', inCall)
+            vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`);
+            
+            console.log(`${state2.member.user.tag} has joined in ${state2.guild.name}`);
         }
-
-
-        
 
         else if (state1.channelID !== state2.channelID) {
             vlogChannel.send(`**${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`)

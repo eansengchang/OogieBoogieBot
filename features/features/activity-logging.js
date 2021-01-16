@@ -1,4 +1,5 @@
-const serverActivity = require('@models/server-activity-schema');
+const activitySchema = require('@models/server-activity-schema');
+const highestVoiceSchema = require('@models/vlog-highest-schema');
 const fetch = require('node-fetch');
 
 module.exports = async (client) => {
@@ -6,7 +7,7 @@ module.exports = async (client) => {
     client.on('message', async (message) => {
         if (message.author.bot) return;
         if (message.guild) {
-            let activityCollection = serverActivity(message.guild.id);
+            let activityCollection = activitySchema(message.guild.id);
 
             let activity = await activityCollection.findOne({
                 _id: message.author.id
@@ -43,7 +44,8 @@ module.exports = async (client) => {
     client.on('voiceStateUpdate', async (state1, state2) => {
         if (state1.member.user.bot) return;
 
-        let activityCollection = serverActivity(state1.guild.id);
+        //activity stuff
+        let activityCollection = activitySchema(state1.guild.id);
         let activity = await activityCollection.findOne({
             _id: state1.member.user.id
         }, (err, member) => {
@@ -101,13 +103,34 @@ module.exports = async (client) => {
                         lastUpdate: Date.now(),
                     });
                 }
-                let duration = Math.floor((callEnd - activity.voiceJoinedStamp) / 1000 / 60);
+                let duration = Math.floor((callEnd - activity.voiceJoinedStamp) / 1000);
 
                 await activity.updateOne({
                     voice: activity.voice + duration,
                     isVoice: false
                 });
 
+                //highest voice
+                let highestVoiceCollection = highestVoiceSchema(state1.guild.id);
+                let highestVoice = await highestVoiceCollection.findOne({ _id: 'highestVoice' })
+
+                //HIGHEST VOICE IS IN SECONDS
+                if (!highestVoice || (highestVoice && highestVoice.time < duration)) {
+                    console.log(`New highest voice in ${state1.guild.name}:`, highestVoice, duration)
+                    highestVoiceCollection.findOneAndUpdate(
+                        {
+                            _id: 'highestVoice'
+                        },
+                        {
+                            _id: 'highestVoice',
+                            highestMemberID: state1.member.id,
+                            time: duration,
+                        },
+                        {
+                            upsert: true,
+                        }
+                    ).exec()
+                }
             }
         }
     })

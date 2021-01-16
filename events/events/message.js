@@ -1,6 +1,6 @@
 const config = require('@root/config.json');
 const prefix = config.prefix;
-const serverActivity = require('@models/server-activity-schema');
+const activitySchema = require('@models/server-activity-schema');
 const commandBase = require('@root/commands/command-base');
 
 module.exports = async (client, message) => {

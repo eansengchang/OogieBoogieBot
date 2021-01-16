@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const serverActivity = require('@models/server-activity-schema');
+const activitySchema = require('@models/server-activity-schema');
 const { CanvasRenderService } = require('chartjs-node-canvas')
 const { MessageAttachment } = require('discord.js');
 
@@ -14,8 +14,8 @@ module.exports = {
     minArgs: 0,
     maxArgs: 2,
     execute: async (message, args) => {
-        let activityCollection = serverActivity(message.guild.id);
-
+        let activityCollection = activitySchema(message.guild.id);
+        //VOICE IS IN SECONDS
         //activity top
         if (args[0] === 'top') {
             let activityList = [];
@@ -31,7 +31,7 @@ module.exports = {
 
                 let voicePerDay = activityList.map(activity => {
                     days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                    return Math.round(10 * activity.voice / days) / 10;
+                    return Math.round(10 * activity.voice / 60 / days) / 10;
                 })
 
                 //selection sorts voice
@@ -59,7 +59,7 @@ module.exports = {
                 for (let i = 0; i < 10; i++) {
                     if (activityList[i]) {
                         let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let voicePerDay = Math.round(10 * activityList[i].voice / days) / 10;
+                        let voicePerDay = Math.round(10 * activityList[i].voice / 60 / days) / 10;
                         let member = message.guild.members.cache.get(activityList[i]._id)
 
                         users.push(member.displayName);
@@ -246,7 +246,7 @@ let showBarChart = async (message, users, activities, label) => {
 let showActivity = (activity, message, user) => {
     let days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
     let messagesPerDay = Math.floor(10 * activity.messages / days) / 10;
-    let voicePerDay = activity.voice / days;
+    let voicePerDay = activity.voice / 60 / days;
 
     let embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
@@ -258,15 +258,15 @@ let showActivity = (activity, message, user) => {
         )
 
     if (voicePerDay < 60) {
-        embed.addFields({ name: 'Voice:', value: `${Math.round(10*voicePerDay)/10} min/day`, inline: false })
+        embed.addFields({ name: 'Voice:', value: `${Math.round(10 * voicePerDay) / 10} min/day`, inline: false })
     } else {
         embed.addFields({ name: 'Voice:', value: `${Math.round(10 * voicePerDay / 60) / 10} hr/day`, inline: false })
     }
 
-    if (activity.voice < 60) {
-        embed.addFields({ name: 'Total voice:', value: `${activity.voice} minutes`, inline: false })
+    if (activity.voice / 60 < 60) {
+        embed.addFields({ name: 'Total voice:', value: `${Math.floor(activity.voice / 60)} minutes`, inline: false })
     } else {
-        embed.addFields({ name: 'Total voice:', value: `${Math.round(10 * activity.voice / 60) / 10} hours`, inline: false })
+        embed.addFields({ name: 'Total voice:', value: `${Math.round(10 * activity.voice / 60 / 60) / 10} hours`, inline: false })
     }
 
     embed.addFields({

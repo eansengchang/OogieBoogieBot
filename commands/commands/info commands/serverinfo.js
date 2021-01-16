@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
-const serverActivity = require('@models/server-activity-schema');
+const activitySchema = require('@models/server-activity-schema');
 
 module.exports = {
     name: 'serverinfo',
     description: 'Information on the server.',
     guildOnly: true,
     async execute(message, args) {
-        let activityCollection = serverActivity(message.guild.id);
+        let activityCollection = activitySchema(message.guild.id);
         let totalMessages = 0;
         let totalVoice = 0;
 
