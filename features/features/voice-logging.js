@@ -43,7 +43,7 @@ module.exports = async (client) => {
             vlogChannel.send(text)
         }
         //connects to channel
-        if (state2.channel && !state1.channel) {
+        else if (state2.channel && !state1.channel) {
             vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`)
             inCall.push(`${state2.member.id}-${Date.now()}`)
             console.log(`${state2.member.user.tag} has joined in ${state2.guild.name}`)
@@ -53,7 +53,7 @@ module.exports = async (client) => {
 
         
 
-        if (state1.channelID !== state2.channelID) {
+        else if (state1.channelID !== state2.channelID) {
             vlogChannel.send(`**${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`)
         }
     })
