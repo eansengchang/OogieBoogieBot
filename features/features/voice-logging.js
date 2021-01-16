@@ -14,7 +14,6 @@ module.exports = async (client) => {
         if (!obj) return;
         let vlogChannel = state1.guild.channels.cache.get(obj.vlogChannelID);
         if (!vlogChannel) return;
-        console.log(inCall)
         //connects to channel
         if (state2.channel && !state1.channel) {
             vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`)
