@@ -47,7 +47,7 @@ module.exports = async (client) => {
         }
 
         //connects to channel
-        if (state2.channel && (!state1.channel || (state2.guild.afkChannelID && state1.channelID == state2.guild.afkChannelID))) {
+        else if (state2.channel && (!state1.channel || (state2.guild.afkChannelID && state1.channelID == state2.guild.afkChannelID))) {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
 
