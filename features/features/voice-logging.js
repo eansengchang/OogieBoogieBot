@@ -14,12 +14,13 @@ module.exports = async (client) => {
         if (!obj) return;
         let vlogChannel = state1.guild.channels.cache.get(obj.vlogChannelID);
         if (!vlogChannel) return;
-
+        console.log(inCall)
         //connects to channel
         if (state2.channel && !state1.channel) {
             vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`)
             inCall.push(`${state1.member.id}-${Date.now()}`)
         }
+
 
         //disconnects from a channel
         else if (state1.channel && !state2.channel) {
@@ -31,20 +32,20 @@ module.exports = async (client) => {
             inCall = inCall.filter(string => {
                 return !string.includes(`${state1.member.id}`)
             })
-            if (!member) return
+            if (!member[0]) return
 
             let array = member[0].split('-');
             let time = Math.floor((Date.now() - array[1]) / 1000);
 
             if (time < 60) text += `[Call time: **${time}s**]`;
             else if (time / 60 < 60) text += (`[Call time: **${Math.floor(time / 60)}m**]`);
-            else text += (`[Call time: **${Math.floor(time / 60 / 60)}hr${Math.floor(60 * (time / 60 / 60 - Math.floor(time / 60 / 60)))}m**]`);
+            else text += (`[Call time: **${Math.floor(time / 60 / 60)}hr${(time / 60) % 60}m**]`);
 
             vlogChannel.send(text)
         }
 
         else if (state1.channelID !== state2.channelID) {
-            vlogChannel.send(`**${state1.member.user.tag}** moved from **${statel.o91.channel.name}** to **${state2.channel.name}**`)
+            vlogChannel.send(`**${state1.member.user.tag}** moved from **${statel.channel.name}** to **${state2.channel.name}**`)
         }
     })
 }
