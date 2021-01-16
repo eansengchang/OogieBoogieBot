@@ -32,8 +32,8 @@ module.exports = async (client) => {
             inCall = inCall.filter(string => {
                 return !string.includes(state1.member.id)
             })
-            console.log(member);
-            console.log(inCall)
+            console.log('member: ',member);
+            console.log('incall: ', inCall)
             if (!member[0]) {
                 console.log('no member[0]: ', member)
                 return
