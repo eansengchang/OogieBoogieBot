@@ -28,6 +28,10 @@ module.exports = {
         else
             text += `**${Math.floor(record / 60 / 60)}hr${Math.floor((record / 60) % 60)}m**`
 
-        message.channel.send(text)
+        let embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle(`Longest voice in ${message.guild.name}`)
+            .setDescription(text);
+        message.channel.send(embed)
     },
 };
