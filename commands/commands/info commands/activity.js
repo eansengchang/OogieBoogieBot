@@ -146,7 +146,7 @@ module.exports = {
 
             const activity = await activityCollection.findOne({
                 _id: user.id
-            }, (err, member) => {
+            }, async (err, member) => {
                 if (err) console.error(err);
                 //if member isn't in the database, creates one
                 if (!member) {
@@ -160,7 +160,7 @@ module.exports = {
                         voiceJoinedStamp: message.createdTimestamp
                     });
 
-                    newMember.save()
+                    await newMember.save()
                         //                        .then(result => console.log(result))
                         .catch(err => console.error(err));
 
@@ -168,9 +168,13 @@ module.exports = {
                 }
             });
 
+            if (!activity) {
+                activity = await activityCollection.findOne({
+                    _id: state1.member.id
+                });
+            }
+
             showActivity(activity, message, user);
-
-
         }
     },
 };

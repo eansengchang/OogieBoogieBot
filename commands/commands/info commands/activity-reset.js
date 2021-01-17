@@ -32,7 +32,7 @@ module.exports = {
             
             let activity = await activityCollection.findOne({
                 _id: user.id
-            }, (err, member) => {
+            }, async (err, member) => {
                 if (err) console.error(err)
                 if (!member) {
                     const newMember = new activityCollection({
@@ -45,7 +45,7 @@ module.exports = {
                         voiceJoinedStamp: message.createdTimestamp
                     });
     
-                    newMember.save()
+                    await newMember.save()
                         .catch(err => console.error(err));
                 }
             });
