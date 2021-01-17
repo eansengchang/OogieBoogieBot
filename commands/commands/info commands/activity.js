@@ -30,7 +30,7 @@ module.exports = {
                 days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                 return Math.round(10 * activity.messages / days) / 10;
             })
-            //bubble sorts messages
+            //selection sorts messages
             for (let j = 0; j < 10; j++) {
                 let max = j;
                 for (let i = j; i < activityList.length; i++) {
