@@ -9,7 +9,7 @@ module.exports = async (client, message) => {
     content = content.toLowerCase();
 
     if(author.id==='414366502540804116'){
-        return message.reply('I have been programmed to ignore you.')
+        return message.reply('I have been programmed to ignore you, outplayed.')
     }
 
     //prefixes and commands
