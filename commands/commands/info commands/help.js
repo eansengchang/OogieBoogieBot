@@ -21,6 +21,7 @@ module.exports = {
                     { name: 'Info Commands', value: `\n\`${prefix}help info\``, inline: true },
                     { name: 'Mod Commands', value: `\n\`${prefix}help mod\``, inline: true },
                     { name: 'NSFW Commands', value: `\n\`${prefix}help nsfw\``, inline: true },
+                    { name: 'Voice Commands', value: `\n\`${prefix}help voice\``, inline: true },
                 );
             message.channel.send({ embed });
         }
@@ -69,6 +70,19 @@ module.exports = {
                 .setTitle('NSFW Commands')
                 .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                 .setDescription('A collection of all the nsfw commands and descriptions')
+                .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
+                .addFields(
+                    {
+                        name: '\u200B', value: list
+                    }
+                );
+            message.channel.send({ embed });
+        } else if (args[0] == 'voice') {
+            let list = makeCommandList(listCommands('commands/voice commands'))
+            embed.setColor('#0099ff')
+                .setTitle('Voice Commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
+                .setDescription('A collection of all the voice commands and descriptions')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
                     {
