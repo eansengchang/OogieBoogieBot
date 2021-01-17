@@ -28,7 +28,7 @@ module.exports = {
                     .setColor('#0099ff')
                     .setTitle(`${guild.name}'s timeout role`)
                     .addFields(
-                        { name: 'Timeout role:', value: `${timeoutRole}`, inline: false },
+                        { name: 'Current timeout role:', value: `${timeoutRole}`, inline: false },
                     )
                 return message.channel.send(embed);
             } else {

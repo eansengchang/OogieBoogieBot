@@ -28,7 +28,7 @@ module.exports = {
                     .setColor('#0099ff')
                     .setTitle(`${guild.name}'s default role`)
                     .addFields(
-                        { name: 'Default role:', value: `${defaultRole}`, inline: false },
+                        { name: 'Current default role:', value: `${defaultRole}`, inline: false },
                     )
                 return message.channel.send(embed);
             } else {

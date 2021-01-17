@@ -28,7 +28,7 @@ module.exports = {
                     .setColor('#0099ff')
                     .setTitle(`${guild.name}'s auto new role`)
                     .addFields(
-                        { name: 'Auto role:', value: `${autoRole}`, inline: false },
+                        { name: 'Current Auto role:', value: `${autoRole}`, inline: false },
                     )
                 return message.channel.send(embed);
             } else {
