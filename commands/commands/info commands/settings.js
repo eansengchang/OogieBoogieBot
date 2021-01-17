@@ -57,7 +57,7 @@ module.exports = {
         if (vlogObject && vlogObject.vlogChannelID !== '') {
             vlogChannel = `<#${vlogObject.vlogChannelID}>`;
         }
-        embed.addField('Vlog channel: ', `${vlogChannel}`)
+        embed.addField('Voice log channel: ', `${vlogChannel}`)
 
         message.channel.send(embed);
     },
