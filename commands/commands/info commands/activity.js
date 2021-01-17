@@ -26,111 +26,51 @@ module.exports = {
                 }
             })
 
-
-            if (args[1] === 'voice') {
-
-                let voicePerDay = activityList.map(activity => {
-                    days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                    return Math.round(10 * activity.voice / 60 / days) / 10;
-                })
-
-                //selection sorts voice
-                let flag = true;
-                for (let j = 0; j < 10; j++) {
-                    let max = j;
-                    for (let i = j; i < activityList.length - 1; i++) {
-                        if (voicePerDay[i] > voicePerDay[max]) {
-                            max = i;
-                        }
-                    }
-                    let temp = activityList[j];
-                    activityList[j] = activityList[max];
-                    activityList[max] = temp;
-
-                    temp = voicePerDay[j];
-                    voicePerDay[j] = voicePerDay[max];
-                    voicePerDay[max] = temp;
-                }
-
-                //grabs 10 highest activity
-                let list = '';
-                let users = [];
-                let activities = [];
-                for (let i = 0; i < 10; i++) {
-                    if (activityList[i]) {
-                        let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let voicePerDay = Math.round(10 * activityList[i].voice / 60 / days) / 10;
-                        let member = message.guild.members.cache.get(activityList[i]._id)
-
-                        users.push(member.displayName);
-                        activities.push(Math.round(10 * voicePerDay / 60) / 10);
-                        if (voicePerDay < 60) {
-                            list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}min/d)`;
-                        }
-                        else {
-                            list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * voicePerDay / 60) / 10}hr/d)`;
-                        }
+            let messagesPerDay = activityList.map(activity => {
+                days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                return Math.round(10 * activity.messages / days) / 10;
+            })
+            //bubble sorts messages
+            for (let j = 0; j < 10; j++) {
+                let max = j;
+                for (let i = j; i < activityList.length; i++) {
+                    if (messagesPerDay[i] > messagesPerDay[max]) {
+                        max = i;
                     }
                 }
+                let temp = activityList[j];
+                activityList[j] = activityList[max];
+                activityList[max] = temp;
 
-                //prints voice activity
-                let embed = new Discord.MessageEmbed()
-                    .setColor('#0099ff')
-                    .setTitle(`Top voice activity`)
-                    .setDescription(list);
-                message.channel.send(embed);
-                showBarChart(message, users, activities, 'Voice Activity (Hr/Day)');
+                temp = messagesPerDay[j];
+                messagesPerDay[j] = messagesPerDay[max];
+                messagesPerDay[max] = temp;
             }
 
-            else {
-                let messagesPerDay = activityList.map(activity => {
-                    days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                    return Math.round(10 * activity.messages / days) / 10;
-                })
-                //bubble sorts messages
-                let flag = true;
-                for (let j = 0; j < 10; j++) {
-                    let max = j;
-                    for (let i = j; i < activityList.length - 1; i++) {
-                        if (messagesPerDay[i] > messagesPerDay[max]) {
-                            max = i;
-                        }
-                    }
-                    let temp = activityList[j];
-                    activityList[j] = activityList[max];
-                    activityList[max] = temp;
-
-                    temp = messagesPerDay[j];
-                    messagesPerDay[j] = messagesPerDay[max];
-                    messagesPerDay[max] = temp;
+            //grabs 10 highest activity
+            let list = '';
+            let users = [];
+            let activities = [];
+            for (let i = 0; i < 10; i++) {
+                if (activityList[i]) {
+                    let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                    let messagesPerDay = Math.round(10 * activityList[i].messages / days) / 10;
+                    await message.guild.members.fetch(`${activityList[i]._id}`).then(member => {
+                        users.push(member.user.username);
+                        activities.push(messagesPerDay);
+                        list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
+                    }).catch(err => {
+                        console.log(err)
+                    });
                 }
-
-                //grabs 10 highest activity
-                let list = '';
-                let users = [];
-                let activities = [];
-                for (let i = 0; i < 10; i++) {
-                    if (activityList[i]) {
-                        let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
-                        let messagesPerDay = Math.round(10 * activityList[i].messages / days) / 10;
-                        await message.guild.members.fetch(`${activityList[i]._id}`).then(member => {
-                            users.push(member.displayName);
-                            activities.push(messagesPerDay);
-                            list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
-                        }).catch(err => {
-                            console.log(err)
-                        });
-                    }
-                }
-                //prints message activity
-                let embed = new Discord.MessageEmbed()
-                    .setColor('#0099ff')
-                    .setTitle(`Top message activity`)
-                    .setDescription(list);
-                message.channel.send(embed);
-                showBarChart(message, users, activities, 'Message Activity Per Day');
             }
-
+            //prints message activity
+            let embed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle(`Top message activity`)
+                .setDescription(list);
+            message.channel.send(embed);
+            showBarChart(message, users, activities, 'Message Activity Per Day');
 
         }
 
