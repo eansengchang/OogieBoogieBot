@@ -5,7 +5,7 @@ const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'defaultrole',
-    description: 'The default role given.',
+    description: 'The default role to untimeout.',
     expectedArgs: '{role}',
     guildOnly: true,
     minArgs: 0,
@@ -31,6 +31,8 @@ module.exports = {
                         { name: 'Default role:', value: `${defaultRole}`, inline: false },
                     )
                 return message.channel.send(embed);
+            } else {
+                return message.reply(`Set a default role using \`e defaultrole {role}\``)
             }
         }
 

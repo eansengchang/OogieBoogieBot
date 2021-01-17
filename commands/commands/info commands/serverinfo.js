@@ -36,7 +36,7 @@ module.exports = {
                 { name: 'Members:', value: `${guild.memberCount}`, inline: true },
                 { name: 'Roles:', value: `${guild.roles.cache.size - 1}`, inline: true },
                 { name: 'Total messages logged:', value: `${totalMessages} messages`, inline: false },
-                { name: 'Total hours logged:', value: `${Math.floor(10 * totalVoice / 60) / 10} hours`, inline: false },
+                { name: 'Total hours logged:', value: `${Math.floor(10 * totalVoice / 60 / 60) / 10} hours`, inline: false },
             )
             .setFooter(`requested by ${message.author.tag}`)
         message.channel.send(embed);

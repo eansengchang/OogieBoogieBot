@@ -16,7 +16,7 @@ module.exports = {
 
         if (args.length === 0) {
             let channel = await vlogCollection.findOne({ _id: 'channel' })
-            if (channel) {
+            if (channel && channel.vlogChannelID !== '') {
                 message.channel.send(`Voice log channel: <#${channel.vlogChannelID}>`)
             } else {
                 message.channel.send(`Set up voice logging channel using \`e vlog #channel\``)

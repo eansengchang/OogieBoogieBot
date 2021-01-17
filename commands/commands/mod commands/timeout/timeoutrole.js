@@ -31,19 +31,21 @@ module.exports = {
                         { name: 'Timeout role:', value: `${timeoutRole}`, inline: false },
                     )
                 return message.channel.send(embed);
+            } else {
+                return message.reply(`Set a timeout role using \`e timeoutrole {role}\``)
             }
         }
 
         let roleID = args[0].replace(/<|>|@|&/g, '')
         let role = message.guild.roles.cache.get(roleID)
-        if(!role){
+        if (!role) {
             role = await message.guild.roles.fetch(roleID);
         }
         if (args[0] == 'off') {
             roleID = '';
         }
-        
-        else if(!role){
+
+        else if (!role) {
             return message.reply('That is not a role!');
         }
 

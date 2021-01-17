@@ -6,7 +6,6 @@ module.exports = {
     guildOnly: true,
     memberPermissions: ['MOVE_MEMBERS'],
     clientPermissions: ['MOVE_MEMBERS'],
-    cooldown: 10,
     async execute(message, args) {
         let channelEnd;
         message.guild.channels.cache.array().forEach(channel => {
