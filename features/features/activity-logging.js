@@ -48,7 +48,7 @@ module.exports = async (client) => {
         let activityCollection = activitySchema(state1.guild.id);
         let activity = await activityCollection.findOne({
             _id: state1.member.user.id
-        }, (err, member) => {
+        }, async (err, member) => {
             if (err) console.error(err)
             if (!member) {
                 const newMember = new activityCollection({
