@@ -6,7 +6,7 @@ const height = 800;
 
 module.exports = {
     name: 'longestvoice',
-    description: 'Who has the record for the longest voice?',
+    description: 'Longest time in a voice channel.',
     expectedArgs: '',
     guildOnly: true,
     execute: async (message, args) => {
