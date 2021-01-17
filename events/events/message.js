@@ -8,7 +8,9 @@ module.exports = async (client, message) => {
     if (author.bot) return;
     content = content.toLowerCase();
 
-
+    if(author.id==='414366502540804116'){
+        return message.reply('I have been programmed to ignore you.')
+    }
 
     //prefixes and commands
     if (content.startsWith(prefix)) {
