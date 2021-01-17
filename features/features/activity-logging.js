@@ -61,7 +61,7 @@ module.exports = async (client) => {
                     voiceJoinedStamp: ``
                 });
 
-                newMember.save()
+                await newMember.save()
                     .catch(err => console.error(err));
             }
         });
