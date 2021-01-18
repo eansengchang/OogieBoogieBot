@@ -51,7 +51,7 @@ module.exports = {
 
         let timeout = await timeoutCollection.findOne({
             _id: 'roles'
-        }, (err, object) => {
+        }, async (err, object) => {
             if (err) console.error(err);
             //if member isn't in the database, creates one
             if (!object) {
