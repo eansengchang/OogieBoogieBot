@@ -57,6 +57,10 @@ app.get('/invite', (req, res) => {
     res.redirect('https://discord.com/api/oauth2/authorize?client_id=789960873203990598&permissions=0&scope=bot');
 })
 
+app.get('/support', (req, res) => {
+    res.redirect('https://discord.com/invite/ph5DVfFmeX');
+})
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`Server is live on port ${port}\n`))
