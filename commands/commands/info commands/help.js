@@ -14,7 +14,7 @@ module.exports = {
             embed.setColor('#0099ff')
                 .setTitle('Full Description of Commands')
                 .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
-                .setDescription('Type one of them for info on a specific category')
+                .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
                 .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
                 .addFields(
                     { name: 'Fun Commands', value: `\n\`${prefix}help fun\``, inline: true },
