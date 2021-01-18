@@ -61,7 +61,7 @@ module.exports = {
                     timeoutRole: '',
                 });
 
-                newTimeout.save()
+                await newTimeout.save()
                     //                        .then(result => console.log(result))
                     .catch(err => console.error(err));
             }
