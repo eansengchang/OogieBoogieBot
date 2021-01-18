@@ -116,7 +116,6 @@ module.exports = async (client) => {
 
                 //HIGHEST VOICE IS IN SECONDS
                 if (!highestVoice || (highestVoice && highestVoice.time < duration)) {
-                    console.log(`New highest voice in ${state1.guild.name}:`, highestVoice, duration)
                     highestVoiceCollection.findOneAndUpdate(
                         {
                             _id: 'highestVoice'
