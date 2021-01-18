@@ -11,7 +11,7 @@ module.exports = async (client) => {
 
             let activity = await activityCollection.findOne({
                 _id: message.author.id
-            }, (err, member) => {
+            }, async (err, member) => {
                 if (err) console.error(err)
                 //creates member if its not there
                 if (!member) {
@@ -25,7 +25,7 @@ module.exports = async (client) => {
                         voiceJoinedStamp: message.createdTimestamp
                     });
 
-                    newMember.save()
+                    await newMember.save()
                         .catch(err => console.error(err));
                 }
             })
