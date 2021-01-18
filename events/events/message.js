@@ -22,7 +22,7 @@ module.exports = async (client, message) => {
         'Rey is a stinky', 'Rey is a curry muncher', 'Rey shoots up orphanages', 'Rey watched 300 naruto episodes in a week',
         'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud', 'Rey wants to get pegged by Joe',
         'Rey is hardstuck silver', 'Rey you eat cow'];
-    if (content.substring(0, 3) === 'rey') {
+    if (content.substring(0, 3) === 'rey' && message.guild.id === '512578878305337354') {
         channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
     //seif
@@ -34,12 +34,5 @@ module.exports = async (client, message) => {
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
         channel.send(`Type \`${prefix}help\` for some help`);
-    }
-
-    //random stuff
-    if (channel.id === '715917628727885874') {
-        if (Math.random() < 0.4) {
-            channel.send('pain.');
-        }
     }
 };

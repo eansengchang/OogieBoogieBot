@@ -24,7 +24,7 @@ module.exports = {
             return;
         }
 
-        if(args[0] === off){
+        if(args[0] === 'off'){
             vlogCollection.findOneAndUpdate(
                 {
                     _id: 'channel'
