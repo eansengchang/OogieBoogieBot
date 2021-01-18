@@ -216,7 +216,19 @@ let showActivity = (activity, message, user) => {
     embed.addFields({
         name: 'Days logged:', value: `${days} days`, inline: false
     })
-        .setFooter(`requested by ${message.author.tag}`)
+        .setFooter(`requested by ${message.author.tag}`);
+
+    //if hes in a call, sends the length of the call
+    if (activity.voice) {
+        let time = Math.floor((Date.now() - activity.voiceJoinedStamp) / 1000);
+        let text;
+        
+        if (time < 60) text = `${time}s`;
+        else if (time / 60 < 60) text = (`${Math.floor(time / 60)}m${Math.floor(time % 60)}s`);
+        else text = (`${Math.floor(time / 60 / 60)}hr${Math.floor((time / 60) % 60)}m`);
+
+        embed.addField('In call for:', `**${text}**`);
+    }
 
     message.channel.send(embed);
 }
