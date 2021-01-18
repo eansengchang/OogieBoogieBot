@@ -10,8 +10,8 @@ module.exports = (category) => {
             if (stat.isDirectory()) {
                 readCommands(path.join(dir, file));
             } else if (file !== 'command-base.js' && file !== 'load-commands.js') {
-                const { name, expectedArgs, description } = require(path.join(__dirname, dir, file));
-                commands.push([name, expectedArgs || '', description]);
+                const command = require(path.join(__dirname, dir, file));
+                commands.push(command);
             }
         }
     }

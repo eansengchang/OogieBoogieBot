@@ -15,11 +15,11 @@ body
         p.h1 Fun Commands
       .row
         each command in funCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left(style='color:black') e #{command[0]} #{command[1]}
-          .collapse(id=command[0])
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
+            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
+          .collapse(id=command.name)
             .card.card-body
-              p(style='color:black') #{command[2]}
+              p(style='color:black') #{command.description}
         
 
     section(id='info commands')
@@ -27,33 +27,33 @@ body
         p.h1 Info Commands
       .row
         each command in infoCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left(style='color:black') e #{command[0]} #{command[1]}
-          .collapse(id=command[0])
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
+            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
+          .collapse(id=command.name)
             .card.card-body
-              p(style='color:black') #{command[2]}
+              p(style='color:black') #{command.description}
 
     section(id='mod commands')
       #subjumbotron.jumbotron.text-center.bg-transparent
         p.h1 Mod Commands
       .row
         each command in modCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left(style='color:black') e #{command[0]} #{command[1]}
-          .collapse(id=command[0])
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
+            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
+          .collapse(id=command.name)
             .card.card-body
-              p(style='color:black') #{command[2]}
+              p(style='color:black') #{command.description}
 
     section(id='voice commands')
       #subjumbotron.jumbotron.text-center.bg-transparent
         p.h1 Voice Commands
       .row
         each command in voiceCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-            p.text-left(style='color:black') e #{command[0]} #{command[1]}
-          .collapse(id=command[0])
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
+            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
+          .collapse(id=command.name)
             .card.card-body
-              p(style='color:black') #{command[2]}
+              p(style='color:black') #{command.description}
 
     section(id='nsfw commands')
       .row
@@ -63,10 +63,10 @@ body
       #collapseNSFW.collapse
         .row
           each command in nsfwCommands
-            button.btn(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command[0], aria-expanded='false', aria-controls=command[0])
-              p.text-left(style='color:black') e #{command[0]} #{command[1]}
-            .collapse(id=command[0])
+            button.btn(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
+              p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
+            .collapse(id=command.name)
               .card.card-body
-                p(style='color:black') #{command[2]}
+                p(style='color:black') #{command.description}
   
   include includes/footer.pug

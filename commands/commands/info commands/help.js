@@ -96,8 +96,8 @@ module.exports = {
 
 let makeCommandList = (array) => {
     let ans = '';
-    array.forEach(element => {
-        ans += `\`${prefix}${element[0]} ${element[1] || ''}\` ${element[2]} \n\n`;
+    array.forEach(command => {
+        ans += `\`${prefix}${command.name} ${command.expectedArgs || ''}\` ${command.description} \n\n`;
     });
     return ans;
 }
