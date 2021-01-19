@@ -2,8 +2,9 @@ let math = require('mathjs');
 
 module.exports = {
     name: 'calc',
-    description: 'Finds out how simp you are.',
-    expectedArgs: '@user',
+    description: 'Calculates some math for you.',
+    minArgs: 1,
+    expectedArgs: '{calculation}',
     execute(message, args) {
         let resp;
         try {
