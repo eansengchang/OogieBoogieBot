@@ -5,7 +5,7 @@ const vlogSchema = require('@models/vlog-schema');
 
 module.exports = {
     name: 'vlog',
-    description: 'Logs the voice.',
+    description: 'Logs all voice into a channel.',
     expectedArgs: '#channel',
     guildOnly: true,
     minArgs: 0,
