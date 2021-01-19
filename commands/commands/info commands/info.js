@@ -16,6 +16,7 @@ module.exports = {
             .setColor('#0099ff')
             .setTitle(`Oogie Boogie Website`)
             .setURL('https://oogieboogiedashboard.herokuapp.com/')
+            .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
             .setThumbnail(message.client.user.displayAvatarURL())
             .addFields(
                 { name: 'Created by:', value: `ESC#3777`, inline: false },
