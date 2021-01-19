@@ -10,22 +10,7 @@ module.exports = {
 
     execute(message, args) {
         const embed = new Discord.MessageEmbed();
-        if (args.length == 0) {
-            embed.setColor('#0099ff')
-                .setTitle('Full Description of Commands')
-                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
-                .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
-                .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
-                .addFields(
-                    { name: 'Fun Commands', value: `\n\`${prefix}help fun\``, inline: true },
-                    { name: 'Info Commands', value: `\n\`${prefix}help info\``, inline: true },
-                    { name: 'Mod Commands', value: `\n\`${prefix}help mod\``, inline: true },
-                    { name: 'NSFW Commands', value: `\n\`${prefix}help nsfw\``, inline: true },
-                    { name: 'Voice Commands', value: `\n\`${prefix}help voice\``, inline: true },
-                );
-            message.channel.send({ embed });
-        }
-        else if (args[0] == 'fun') {
+        if (args[0] == 'fun') {
             let list = makeCommandList(listCommands('commands/fun commands'))
             embed.setColor('#0099ff')
                 .setTitle('Fun commands')
@@ -88,6 +73,20 @@ module.exports = {
                     {
                         name: '\u200B', value: list
                     }
+                );
+            message.channel.send({ embed });
+        } else {
+            embed.setColor('#0099ff')
+                .setTitle('Full Description of Commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
+                .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
+                .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
+                .addFields(
+                    { name: 'Fun Commands', value: `\n\`${prefix}help fun\``, inline: true },
+                    { name: 'Info Commands', value: `\n\`${prefix}help info\``, inline: true },
+                    { name: 'Mod Commands', value: `\n\`${prefix}help mod\``, inline: true },
+                    { name: 'NSFW Commands', value: `\n\`${prefix}help nsfw\``, inline: true },
+                    { name: 'Voice Commands', value: `\n\`${prefix}help voice\``, inline: true },
                 );
             message.channel.send({ embed });
         }
