@@ -62,6 +62,11 @@ module.exports = async (client) => {
                 });
 
                 await newMember.save()
+                    .then(async newActivity => {
+                        activity = await activityCollection.findOne({
+                            _id: state1.member.id
+                        });
+                    })
                     .catch(err => console.error(err));
             }
         });
