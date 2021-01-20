@@ -2,7 +2,7 @@ let recentlyRan = []
 
 module.exports = message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    let {client, guild, member} = message;
+    let { client, guild, member } = message;
     const commandName = args.shift().toLowerCase();
 
     //checks if the command exists
@@ -65,22 +65,23 @@ module.exports = message => {
     }
 
     //ensure command isn't ran too frequently
-    let cooldownString = `${guild.id}-${member.id}-${name}`;
+    let cooldownString = `${member.id}-${name}`;
     if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
         message.reply(`You can\'t use that command so soon, cooldown is ${cooldown} secs.`)
         return
     }
+
 
     //error traps if there are no args
     if (args.length < minArgs || (maxArgs !== null && maxArgs < args.length)) {
         return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
     }
 
-    
+
     if (cooldown > 0) {
         recentlyRan.push(cooldownString)
         setTimeout(() => {
-            recentlyRan = recentlyRan.filter((string)=>{
+            recentlyRan = recentlyRan.filter((string) => {
                 return string !== cooldownString
             })
         }, 1000 * cooldown);
