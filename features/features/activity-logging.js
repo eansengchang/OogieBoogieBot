@@ -75,6 +75,7 @@ module.exports = async (client) => {
             activity = await activityCollection.findOne({
                 _id: state1.member.id
             });
+            console.log(`Regetting activity: `, activity);
         }
 
         //connects to channel
