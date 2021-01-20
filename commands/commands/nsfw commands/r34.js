@@ -9,7 +9,6 @@ module.exports = {
     cooldown: 2,
     nsfw: true,
     async execute(message, args) {
-        if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
         let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join('_')}`);
         let text = await response.text();

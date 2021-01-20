@@ -7,7 +7,6 @@ module.exports = {
     nsfw: true,
     
     async execute(message, args) {
-        if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
 
         let response = await fetch('https://nekos.life/api/v2/img/lewdk');
         let json = await response.json();
