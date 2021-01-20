@@ -2,7 +2,7 @@ let recentlyRan = []
 
 module.exports = message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    let { client, guild, member } = message;
+    let { client, guild, member, author } = message;
     const commandName = args.shift().toLowerCase();
 
     //checks if the command exists
@@ -24,6 +24,7 @@ module.exports = message => {
         memberPermissions = [],
         clientPermissions = [],
         cooldown = -1,
+        nsfw = false,
         execute
     } = command;
 
@@ -64,12 +65,16 @@ module.exports = message => {
         }
     }
 
+    if(message.channel.type !== 'dm' && nsfw){
+        if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
+    }
+
     //ensure command isn't ran too frequently
     let cooldownString;
     if(guild){
-        cooldownString = `${guild.id}-${member.id}-${name}`;
+        cooldownString = `${guild.id}-${author.id}-${name}`;
     } else{
-        cooldownString = `dm-${member.id}-${name}`;
+        cooldownString = `dm-${author.id}-${name}`;
     }
     
     if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
@@ -77,12 +82,10 @@ module.exports = message => {
         return
     }
 
-
     //error traps if there are no args
     if (args.length < minArgs || (maxArgs !== null && maxArgs < args.length)) {
         return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
     }
-
 
     if (cooldown > 0) {
         recentlyRan.push(cooldownString)
