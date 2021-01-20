@@ -65,7 +65,13 @@ module.exports = message => {
     }
 
     //ensure command isn't ran too frequently
-    let cooldownString = `${member.id}-${name}`;
+    let cooldownString;
+    if(guild){
+        cooldownString = `${guild.id}-${member.id}-${name}`;
+    } else{
+        cooldownString = `dm-${member.id}-${name}`;
+    }
+    
     if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
         message.reply(`You can\'t use that command so soon, cooldown is ${cooldown} secs.`)
         return
