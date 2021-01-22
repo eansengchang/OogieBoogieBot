@@ -22,7 +22,7 @@ module.exports = {
             if (member) {
                 let daysJoined = Math.round((message.createdTimestamp - member.joinedTimestamp) / 1000 / 60 / 60 / 24);
                 
-                embed.addField(`${member.displayName}`, `Joined at: \`${member.joinedAt.toDateString()}\` (${daysJoined} days ago)`);
+                embed.addField(`${member.user.tag}`, `Joined at: \`${member.joinedAt.toDateString()}\` (${daysJoined} days ago)`);
             }
         }
         

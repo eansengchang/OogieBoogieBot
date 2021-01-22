@@ -1,7 +1,7 @@
 # Oogie Boogie Bot
  Discord Bot created by ESC#3777
 
-[Website](https://oogieboogiedashboard.herokuapp.com/)
+[Website](https://oogieboogiedashboard.herokuapp.com/) | [Commands List](https://oogieboogiedashboard.herokuapp.com/commands)
 
 ## About
 Oogie Boogie Bot is a multi-functional bot that can take care of moderation and also provide information on your server. Numerous commands include a detailed breakdown of the activity levels of everyone on this server. This bot is also being constantly updated and improved with the latest commands.

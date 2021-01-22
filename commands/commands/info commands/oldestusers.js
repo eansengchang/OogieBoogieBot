@@ -23,7 +23,7 @@ module.exports = {
                 let { user } = member;
                 let daysCreated = Math.round((message.createdTimestamp - user.createdTimestamp) / 1000 / 60 / 60 / 24);
                 
-                embed.addField(`${member.displayName}`, `Created at: \`${user.createdAt.toDateString()}\` (${daysCreated} days ago)`);
+                embed.addField(`${member.user.tag}`, `Created at: \`${user.createdAt.toDateString()}\` (${daysCreated} days ago)`);
             }
         }
         

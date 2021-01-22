@@ -20,7 +20,17 @@ body
           .collapse(id=command.name)
             .card.card-body
               p(style='color:black') #{command.description}
-        
+
+    section(id='game commands')
+      #subjumbotron.jumbotron.text-center.bg-transparent
+        p.h1 Game Commands
+      .row
+        each command in gameCommands
+          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
+            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
+          .collapse(id=command.name)
+            .card.card-body
+              p(style='color:black') #{command.description}
 
     section(id='info commands')
       #subjumbotron.jumbotron.text-center.bg-transparent

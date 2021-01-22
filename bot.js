@@ -18,5 +18,3 @@ loadCommands(client);
 loadEvents(client);
 loadFeatures(client);
 client.mongoose.init();
-
-//require('./dashboard/server');

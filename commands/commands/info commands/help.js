@@ -23,6 +23,20 @@ module.exports = {
                     }
                 );
             message.channel.send({ embed });
+        } else if (args[0] == 'games') {
+            let list = makeCommandList(listCommands('commands/game commands'))
+            embed.setColor('#0099ff')
+                .setTitle('Game Commands')
+                .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
+                .setDescription('A collection of all the game commands and descriptions')
+                .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg')
+                .addFields(
+                    {
+                        name: '\u200B', value: list
+                    }
+                );
+            message.channel.send({ embed });
+            
         } else if (args[0] == 'info') {
             let list = makeCommandList(listCommands('commands/info commands'))
             embed.setColor('#0099ff')
@@ -87,6 +101,7 @@ module.exports = {
                     { name: 'Mod Commands', value: `\n\`${prefix}help mod\``, inline: true },
                     { name: 'NSFW Commands', value: `\n\`${prefix}help nsfw\``, inline: true },
                     { name: 'Voice Commands', value: `\n\`${prefix}help voice\``, inline: true },
+                    { name: 'Game Commands', value: `\n\`${prefix}help games\``, inline: true },
                 );
             message.channel.send({ embed });
         }
