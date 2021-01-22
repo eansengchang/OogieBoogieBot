@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 const size = 9;
-let totalBombs = 8;
+let totalBombs = 7;
 const numberEmoji = [":white_large_square:", ":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:"];
 
 function make2DArray(cols, rows) {
@@ -124,7 +124,7 @@ module.exports = {
 
         let collectNext = () => {
             const collector = new Discord.MessageCollector(message.channel, filter, {
-                time: 1000 * 60,
+                time: 1000 * 60 * 2,
                 max: 1
             })
 
@@ -178,14 +178,13 @@ module.exports = {
     },
 };
 
-
 let showGrid = (grid, message, title) => {
-    let field = `--:regional_indicator_a::regional_indicator_b::regional_indicator_c::regional_indicator_d::regional_indicator_e::regional_indicator_f::regional_indicator_g::regional_indicator_h::regional_indicator_i:`;
+    let field = `:black_large_square::regional_indicator_a::regional_indicator_b::regional_indicator_c::regional_indicator_d::regional_indicator_e::regional_indicator_f::regional_indicator_g::regional_indicator_h::regional_indicator_i:`;
     for (let i = 0; i < size; i++) {
         if (i == 0) {
-            field += `\n **1:**`
+            field += `\n \`1:\``
         } else {
-            field += `\n ${i + 1}:`
+            field += `\n \`${i + 1}:\``
         }
         for (let j = 0; j < size; j++) {
             let square = grid[i][j]
