@@ -25,15 +25,16 @@ module.exports = {
         if (people.length === 1) {
             people.push(message.author);
         }
-        
+        let response = '';
         while (people.length > 1) {
-            
+
             let random = Math.floor(Math.random() * people.length);
-            let died = people[random]
+            let died = people[random];
             people.splice(random, 1);
-            let killer = people[Math.floor(Math.random() * people.length)]
-            message.channel.send(makeDeathMessages(`**${killer.username}**`, `**${died.username}**`))
+            let killer = people[Math.floor(Math.random() * people.length)];
+            response += '\n' + makeDeathMessages(`**${killer.username}**`, `**${died.username}**`);
         }
-        message.channel.send(`**${people[0].username}** has won!`);
+        response += `\n**${people[0].username}** has won!`
+        message.channel.send(response)
     },
 };
