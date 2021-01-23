@@ -39,13 +39,17 @@ app.get('/', (req, res) => {
 
 app.get('/commands', (req, res) => {
 
+    let categoryNames = ['fun', 'game', 'info', 'mod', 'voice']
+    let categories = categoryNames.map(category => {
+        return {
+            name: category.charAt(0).toUpperCase() + category.slice(1),
+            commands: listCommands(`commands/${category} commands`)
+        }
+    })
+
     res.render('commands', {
-        funCommands: listCommands('commands/fun commands'),
-        gameCommands: listCommands('commands/game commands'),
-        infoCommands: listCommands('commands/info commands'),
-        modCommands: listCommands('commands/mod commands'),
-        nsfwCommands: listCommands('commands/nsfw commands'),
-        voiceCommands: listCommands('commands/voice commands')
+        categories: categories,
+        nsfwCommands: listCommands('commands/nsfw commands')
     })
 });
 
@@ -59,4 +63,4 @@ app.get('/support', (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Server is live on port ${port}\n`))
+app.listen(port, () => console.log(`Server is live on port ${port} \n`))

@@ -10,55 +10,11 @@ body
     .jumbotron.text-center.bg-transparent
       h1.display-2 Commands
       hr
-    section(id='fun commands')
+    each category in categories
       #subjumbotron.jumbotron.text-center.bg-transparent
-        p.h1 Fun Commands
+        p.h1 #{category.name} Commands
       .row
-        each command in funCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
-            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
-          .collapse(id=command.name)
-            .card.card-body
-              p(style='color:black') #{command.description}
-
-    section(id='game commands')
-      #subjumbotron.jumbotron.text-center.bg-transparent
-        p.h1 Game Commands
-      .row
-        each command in gameCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
-            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
-          .collapse(id=command.name)
-            .card.card-body
-              p(style='color:black') #{command.description}
-
-    section(id='info commands')
-      #subjumbotron.jumbotron.text-center.bg-transparent
-        p.h1 Info Commands
-      .row
-        each command in infoCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
-            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
-          .collapse(id=command.name)
-            .card.card-body
-              p(style='color:black') #{command.description}
-
-    section(id='mod commands')
-      #subjumbotron.jumbotron.text-center.bg-transparent
-        p.h1 Mod Commands
-      .row
-        each command in modCommands
-          button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
-            p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
-          .collapse(id=command.name)
-            .card.card-body
-              p(style='color:black') #{command.description}
-
-    section(id='voice commands')
-      #subjumbotron.jumbotron.text-center.bg-transparent
-        p.h1 Voice Commands
-      .row
-        each command in voiceCommands
+        each command in category.commands
           button.btn.btn-dark(id='dropdownBut', type='button', data-bs-toggle='collapse', data-bs-target='#'+command.name, aria-expanded='false', aria-controls=command.name)
             p.text-left(style='color:black') e #{command.name} #{command.expectedArgs || ''}
           .collapse(id=command.name)
