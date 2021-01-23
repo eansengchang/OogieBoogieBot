@@ -1,14 +1,16 @@
 let makeDeathMessages = (name1, name2) => {
     const deathMessage = [
-        `${name1} has killed ${name2}`,
-        `${name1} has stabbed ${name2}`,
-        `${name1} has shot ${name2}`,
-        `${name1} has choked ${name2}`,
+        `${name2} got killed killed ${name1}`,
+        `${name2} got stabbed by ${name1}`,
+        `${name2} got shot by ${name1}`,
+        `${name2} got choked by ${name1}`,
         `${name2} got absolutely destroyed by ${name1}`,
         `${name2} tried runnning away from ${name1} but tripped and died`,
+        `${name2} tripped and died`,
         `${name2} got caught off guard by ${name1}`,
         `${name2} tried to kill ${name1} but missed and died`,
         `${name2} got lost and died`,
+        `${name2} got betrayed by ${name1} and died`,
     ]
     return deathMessage[Math.floor(Math.random() * deathMessage.length)];
 }
@@ -23,7 +25,7 @@ module.exports = {
         if (people.length === 1) {
             people.push(message.author);
         }
-        console.log(people)
+        
         while (people.length > 1) {
             
             let random = Math.floor(Math.random() * people.length);

@@ -36,6 +36,7 @@ module.exports = {
             }
         }
 
+        //checks if role is real
         let roleID = args[0].replace(/<|>|@|&/g, '')
         let role = message.guild.roles.cache.get(roleID)
         if (!role) {
@@ -55,6 +56,7 @@ module.exports = {
             if (err) console.error('collection not found');
         });
 
+        //checks if timeout is set
         if (!timeout) {
             message.reply('You first need to set up a default role before setting a timeout role')
         }

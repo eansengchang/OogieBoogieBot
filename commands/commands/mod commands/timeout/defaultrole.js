@@ -36,6 +36,7 @@ module.exports = {
             }
         }
 
+        //checks for roles
         let roleID = args[0].replace(/<|>|@|&/g, '')
         let role = message.guild.roles.cache.get(roleID)
         if (!role) {
