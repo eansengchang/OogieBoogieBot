@@ -1,14 +1,16 @@
 const Discord = require('discord.js');
-const timeoutSchema = require('@models/timeout-schema');
+const timeoutRoleSchema = require('@models/timeout-role-schema');
+const defaultRoleSchema = require('@models/default-role-schema');
 const autoRoleSchema = require('@models/autorole-schema');
 const vlogSchema = require('@models/vlog-schema');
+const { transpose } = require('mathjs');
 
 module.exports = {
     name: 'settings',
     description: 'Settings of this server.',
     guildOnly: true,
     async execute(message, args) {
-        let timeoutCollection = timeoutSchema(message.guild.id);
+        
         let { guild } = message;
 
         let embed = new Discord.MessageEmbed()
@@ -17,30 +19,43 @@ module.exports = {
             .setFooter(`requested by ${message.author.tag}`)
             .addField('Prefix: ', '\`e \`')
 
-        //if theres any timeout settings
-        let timeout = await timeoutCollection.findOne({
-            _id: 'roles'
+        //if theres any default roles settings
+        let defaultRoleCollection = defaultRoleSchema();
+        let defaultRoleObj = await defaultRoleCollection.findOne({
+            _id: guild.id
         })
+        
         let defaultRole = 'none';
-        let timeoutRole = 'none';
-        if (timeout) {
-            if (timeout.defaultRole !== '') {
-                defaultRole = `<@&${timeout.defaultRole}>`;
+        if (defaultRoleObj) {
+            if (defaultRoleObj.defaultRole !== '') {
+                defaultRole = `<@&${defaultRoleObj.defaultRole}>`;
             }
-            if (timeout.timeoutRole !== '') {
-                timeoutRole = `<@&${timeout.timeoutRole}>`;
-            }
-
         }
+
         embed.addFields(
             { name: 'Default role:', value: `${defaultRole}`, inline: false },
+        )
+
+        //if theres any timeout roles settings
+        let timeoutRoleCollection = timeoutRoleSchema();
+        let timeoutRoleObj = await timeoutRoleCollection.findOne({
+            _id: guild.id
+        })
+        let timeoutRole = 'none';
+        if(timeoutRoleObj){
+            if (timeoutRoleObj.timeoutRole !== '') {
+                timeoutRole = `<@&${timeoutRoleObj.timeoutRole}>`;
+            }
+        }
+
+        embed.addFields(
             { name: 'Timeout role:', value: `${timeoutRole}`, inline: false },
         )
 
         //if theres any auto role settings
-        let autoRoleCollection = autoRoleSchema(message.guild.id)
+        let autoRoleCollection = autoRoleSchema()
         let autoRoleObject = await autoRoleCollection.findOne({
-            _id: 'autorole'
+            _id: guild.id
         })
         let autoRole = 'none';
         if (autoRoleObject && autoRoleObject.autoRole !== '') {
@@ -49,9 +64,9 @@ module.exports = {
         embed.addField('Auto role: ', `${autoRole}`)
 
         //if theres any vlog settings
-        let vlogCollection = vlogSchema(message.guild.id)
+        let vlogCollection = vlogSchema()
         let vlogObject = await vlogCollection.findOne({
-            _id: 'channel'
+            _id: guild.id
         })
         let vlogChannel = 'none'
         if (vlogObject && vlogObject.vlogChannelID !== '') {

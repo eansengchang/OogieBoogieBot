@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 let makeDeathMessages = (name1, name2) => {
     const deathMessage = [
         `${name2} *got killed by* ${name1}`,
@@ -19,7 +21,7 @@ let makeDeathMessages = (name1, name2) => {
 module.exports = {
     name: 'fight',
     description: 'Simulates a fight!',
-    expectedArgs: '@user',
+    expectedArgs: '@user or everyone',
     minArgs: 1,
     async execute(message, args) {
         let people = message.mentions.members.array();
@@ -30,7 +32,7 @@ module.exports = {
             people = people.filter(member => !member.user.bot)
         }
 
-        if(people.length === 0){
+        if (people.length === 0) {
             return message.reply('Invalid users.');
         }
 
@@ -47,6 +49,11 @@ module.exports = {
             response += '\n' + makeDeathMessages(`**${killer.displayName}**`, `**${died.displayName}**`);
         }
         response += `\n**${people[0].displayName}** has won!`;
-        message.channel.send(response);
+
+        let embed = new Discord.MessageEmbed()
+            .setTitle(`\n**${people[0].displayName}** has won!`)
+            .setDescription(response);
+
+        message.channel.send(embed);
     },
 };

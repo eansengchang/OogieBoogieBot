@@ -6,8 +6,8 @@ const highestVoiceSchema = mongoose.Schema({
     time: String,
 });
 
-const vlogDB = mongoose.connection.useDb('Vlog');
+const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
 
-module.exports = guildID => {
-    return vlogDB.model('Vlog', highestVoiceSchema, guildID);
+module.exports = () => {
+    return OogieBoogieDB.model('Vlog-highest', highestVoiceSchema, 'vlog-highest');
 }

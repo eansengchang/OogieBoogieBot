@@ -1,4 +1,4 @@
-const timeoutSchema = require('@models/timeout-schema');
+const defaultRoleSchema = require('@models/default-role-schema');
 
 module.exports = {
     name: 'untimeout',
@@ -10,13 +10,13 @@ module.exports = {
     memberPermissions: ['MUTE_MEMBERS'],
     clientPermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
-        let timeoutCollection = timeoutSchema(message.guild.id);
-        let timeout = await timeoutCollection.findOne({
-            _id: 'roles'
+        let defaultRoleCollection = defaultRoleSchema();
+        let defaultRole = await defaultRoleCollection.findOne({
+            _id: message.guild.id
         }, (err, object) => { });
 
-        if (!timeout || timeout.defaultRole == '') {
-            return message.reply(`You first have to set up the default role using \`e autorole\``);
+        if (!defaultRole || defaultRole.defaultRole == '') {
+            return message.reply(`You first have to set up the default role using \`e defaultrole\``);
         }
 
         let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
@@ -39,7 +39,7 @@ module.exports = {
 
             if (member) {
                 member
-                    .roles.set([timeout.defaultRole])
+                    .roles.set([defaultRole.defaultRole])
                     .then(() => {
                         message.reply(`Successfully unmuted <@${user.id}>`);
                     })

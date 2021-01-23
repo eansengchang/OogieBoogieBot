@@ -1,4 +1,4 @@
-const timeoutSchema = require('@models/timeout-schema');
+const timeoutRoleSchema = require('@models/timeout-role-schema');
 
 module.exports = {
     name: 'timeout',
@@ -11,9 +11,9 @@ module.exports = {
     clientPermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
 
-        let timeoutCollection = timeoutSchema(message.guild.id);
-        let timeout = await timeoutCollection.findOne({
-            _id: 'roles'
+        let timeoutRoleCollection = timeoutRoleSchema();
+        let timeout = await timeoutRoleCollection.findOne({
+            _id: message.guild.id
         }, (err, object) => { });
 
         if (!timeout || timeout.timeoutRole == '') {

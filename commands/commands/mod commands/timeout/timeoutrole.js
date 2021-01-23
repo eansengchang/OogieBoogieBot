@@ -1,7 +1,7 @@
 //const SQLite = require("better-sqlite3");
 //const sql = new SQLite('./activity.sqlite');
 const Discord = require('discord.js');
-const timeoutSchema = require('@models/timeout-schema');
+const timeoutSchema = require('@models/timeout-role-schema');
 
 module.exports = {
     name: 'timeoutrole',
@@ -12,12 +12,12 @@ module.exports = {
     maxArgs: 1,
     memberPermissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let timeoutCollection = timeoutSchema(message.guild.id);
+        let timeoutRoleCollection = timeoutSchema();
         let { guild } = message;
 
         if (args.length === 0) {
-            let timeout = await timeoutCollection.findOne({
-                _id: 'roles'
+            let timeout = await timeoutRoleCollection.findOne({
+                _id: guild.id
             })
             if (timeout) {
                 let timeoutRole = 'none';
@@ -45,26 +45,24 @@ module.exports = {
         if (args[0] == 'off') {
             roleID = '';
         }
-
         else if (!role) {
             return message.reply('That is not a role!');
         }
 
-        let timeout = await timeoutCollection.findOne({
-            _id: 'roles'
-        }, (err, object) => {
-            if (err) console.error('collection not found');
-        });
-
-        //checks if timeout is set
-        if (!timeout) {
-            message.reply('You first need to set up a default role before setting a timeout role')
-        }
-
         //updates messages
-        await timeout.updateOne({
-            timeoutRole: roleID,
-        });
+        await timeoutRoleCollection.findOneAndUpdate(
+            {
+                _id: message.guild.id
+            },
+            {
+                _id: message.guild.id,
+                timeoutRole: roleID
+            },
+            {
+                upsert: true,
+            }
+        ).exec()
+
         if (args[0] == 'off') {
             return message.channel.send(`I have successfully deleted the timeout role`)
         }

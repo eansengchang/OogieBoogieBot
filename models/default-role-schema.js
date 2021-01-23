@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const vlogSchema = mongoose.Schema({
+const defaultRoleSchema = mongoose.Schema({
     _id: String,
-    vlogChannelID: String,
+    defaultRole: String,
 });
 
 const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
 
 module.exports = () => {
-    return OogieBoogieDB.model('Vlog', vlogSchema, 'vlog');
+    return OogieBoogieDB.model('Default-role', defaultRoleSchema, 'default-role');
 }

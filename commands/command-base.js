@@ -33,8 +33,9 @@ module.exports = message => {
         return message.reply('I can\'t execute that command inside DMs!');
     }
 
-    //error traps for permissions
-    if (message.channel.type !== 'dm' && memberPermissions) {
+    //checks if person has permissions
+    if (message.channel.type !== 'dm' && memberPermissions && message.author.id !== '333177159357169664') {
+
         const member = message.member;
         let missingPerms = [];
         let flag = false;

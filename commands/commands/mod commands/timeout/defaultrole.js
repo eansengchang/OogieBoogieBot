@@ -1,7 +1,7 @@
 //const SQLite = require("better-sqlite3");
 //const sql = new SQLite('./activity.sqlite');
 const Discord = require('discord.js');
-const timeoutSchema = require('@models/timeout-schema');
+const defaultRoleSchema = require('@models/default-role-schema');
 
 module.exports = {
     name: 'defaultrole',
@@ -12,12 +12,12 @@ module.exports = {
     maxArgs: 1,
     memberPermissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let timeoutCollection = timeoutSchema(message.guild.id);
+        let defaultRoleCollection = defaultRoleSchema();
         let { guild } = message;
 
         if (args.length === 0) {
-            let timeout = await timeoutCollection.findOne({
-                _id: 'roles'
+            let timeout = await defaultRoleCollection.findOne({
+                _id: guild.id
             })
             if (timeout) {
                 let defaultRole = 'none';
@@ -50,29 +50,18 @@ module.exports = {
             return message.reply('That is not a role!');
         }
 
-        let timeout = await timeoutCollection.findOne({
-            _id: 'roles'
-        }, async (err, object) => {
-            if (err) console.error(err);
-            //if member isn't in the database, creates one
-            if (!object) {
-                const newTimeout = new timeoutCollection({
-                    _id: 'roles',
-                    defaultRole: roleID,
-                    timeoutRole: '',
-                });
-
-                await newTimeout.save()
-                    //                        .then(result => console.log(result))
-                    .catch(err => console.error(err));
+        await defaultRoleCollection.findOneAndUpdate(
+            {
+                _id: message.guild.id
+            },
+            {
+                _id: message.guild.id,
+                defaultRole: roleID
+            },
+            {
+                upsert: true,
             }
-        });
-
-        if (timeout) {
-            await timeout.updateOne({
-                defaultRole: roleID,
-            });
-        }
+        ).exec()
 
         if (args[0] == 'off') {
             return message.channel.send(`I have successfully deleted the default role`)

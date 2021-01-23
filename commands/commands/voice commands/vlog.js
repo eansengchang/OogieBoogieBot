@@ -12,10 +12,10 @@ module.exports = {
     maxArgs: 1,
     memberPermissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let vlogCollection = vlogSchema(message.guild.id);
+        let vlogCollection = vlogSchema();
 
         if (args.length === 0) {
-            let channel = await vlogCollection.findOne({ _id: 'channel' })
+            let channel = await vlogCollection.findOne({ _id: message.guild.id })
             if (channel && channel.vlogChannelID !== '') {
                 message.channel.send(`Current voice log channel: <#${channel.vlogChannelID}>`)
             } else {
@@ -25,18 +25,19 @@ module.exports = {
         }
 
         if(args[0] === 'off'){
-            vlogCollection.findOneAndUpdate(
+            await vlogCollection.findOneAndUpdate(
                 {
-                    _id: 'channel'
+                    _id: message.guild.id
                 },
                 {
-                    _id: 'channel',
+                    _id: message.guild.id,
                     vlogChannelID: ''
                 },
                 {
                     upsert: true,
                 }
             ).exec()
+            return;
         }
 
         channel = message.guild.channels.cache.get(args[0]) || message.mentions.channels.first();
@@ -47,10 +48,10 @@ module.exports = {
 
         vlogCollection.findOneAndUpdate(
             {
-                _id: 'channel'
+                _id: message.guild.id
             },
             {
-                _id: 'channel',
+                _id: message.guild.id,
                 vlogChannelID: channel.id
             },
             {

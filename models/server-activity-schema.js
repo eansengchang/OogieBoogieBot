@@ -10,8 +10,8 @@ const guildSchema = mongoose.Schema({
     voiceJoinedStamp: String
 });
 
-const timeoutDB = mongoose.connection.useDb('Activity');
+const activityDB = mongoose.connection.useDb('Activity');
 
 module.exports = guildID => {
-    return timeoutDB.model('Timoeut', guildSchema, guildID);
+    return activityDB.model('Timoeut', guildSchema, guildID);
 }

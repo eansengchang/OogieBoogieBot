@@ -122,17 +122,17 @@ module.exports = async (client) => {
                 });
 
                 //highest voice
-                let highestVoiceCollection = highestVoiceSchema(state1.guild.id);
-                let highestVoice = await highestVoiceCollection.findOne({ _id: 'highestVoice' })
+                let highestVoiceCollection = highestVoiceSchema();
+                let highestVoice = await highestVoiceCollection.findOne({ _id: state1.guild.id })
 
                 //HIGHEST VOICE IS IN SECONDS
                 if (!highestVoice || (highestVoice && highestVoice.time < duration)) {
                     highestVoiceCollection.findOneAndUpdate(
                         {
-                            _id: 'highestVoice'
+                            _id: state1.guild.id
                         },
                         {
-                            _id: 'highestVoice',
+                            _id: state1.guild.id,
                             highestMemberID: state1.member.id,
                             time: duration,
                         },

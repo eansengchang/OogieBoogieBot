@@ -12,12 +12,12 @@ module.exports = {
     maxArgs: 1,
     memberPermissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let autoRoleCollection = autoRoleSchema(message.guild.id);
+        let autoRoleCollection = autoRoleSchema();
         let { guild } = message;
 
         if (args.length === 0) {
             let autoRoleObject = await autoRoleCollection.findOne({
-                _id: 'autorole'
+                _id: message.guild.id
             })
             if (autoRoleObject) {
                 let autoRole = 'none';
@@ -51,10 +51,10 @@ module.exports = {
 
         autoRoleCollection.findOneAndUpdate(
             {
-                _id: 'autorole'
+                _id: message.guild.id
             },
             {
-                _id: 'autorole',
+                _id: message.guild.id,
                 autoRole: roleID,
             },
             {

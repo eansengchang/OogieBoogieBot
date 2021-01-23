@@ -5,8 +5,8 @@ const autoRoleSchema = mongoose.Schema({
     autoRole: String,
 });
 
-const autoRoleDB = mongoose.connection.useDb('Autorole');
+const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
 
-module.exports = guildID => {
-    return autoRoleDB.model('Autorole', autoRoleSchema, guildID);
+module.exports = () => {
+    return OogieBoogieDB.model('Auto-role', autoRoleSchema, 'auto-role');
 }
