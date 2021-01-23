@@ -40,7 +40,7 @@ module.exports = {
         uptime -= seconds * 1000;
 
         embed.addFields(
-            { name: 'Uptime:', value: `Online for \`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds\``, inline: false },
+            { name: 'Uptime:', value: `Last restarted: \`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds\``, inline: false },
         )
         message.channel.send(embed);
     },

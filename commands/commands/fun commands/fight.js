@@ -8,7 +8,7 @@ let makeDeathMessages = (name1, name2) => {
         `${name2} *tried runnning away from* ${name1} *but tripped and died*`,
         `${name2} *tripped and died*`,
         `${name2} *got caught off guard by* ${name1} *and died*`,
-        `${name2} *tried to kill* ${name1} *but missed and died*`,
+        `${name2} *tried to kill* ${name1} *but failed and died*`,
         `${name2} *got lost and died*`,
         `${name2} *got betrayed by* ${name1} *and died*`,
         `${name2} *was slain by* ${name1}`,
