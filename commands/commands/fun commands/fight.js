@@ -1,13 +1,13 @@
 let makeDeathMessages = (name1, name2) => {
     const deathMessage = [
-        `${name2} got killed killed ${name1}`,
+        `${name2} got killed by ${name1}`,
         `${name2} got stabbed by ${name1}`,
         `${name2} got shot by ${name1}`,
         `${name2} got choked by ${name1}`,
         `${name2} got absolutely destroyed by ${name1}`,
         `${name2} tried runnning away from ${name1} but tripped and died`,
         `${name2} tripped and died`,
-        `${name2} got caught off guard by ${name1}`,
+        `${name2} got caught off guard by ${name1} and died`,
         `${name2} tried to kill ${name1} but missed and died`,
         `${name2} got lost and died`,
         `${name2} got betrayed by ${name1} and died`,
