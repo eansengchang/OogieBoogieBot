@@ -1,9 +1,10 @@
 
 module.exports = {
-    name: 'test',
+    name: 'eval',
     description: 'specifically for testing',
     async execute(message, args) {
         if(message.author.id!== '333177159357169664') return;
-        console.log(!null);
+        
+        return;
     },
 };

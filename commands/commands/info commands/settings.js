@@ -3,7 +3,7 @@ const timeoutRoleSchema = require('@models/timeout-role-schema');
 const defaultRoleSchema = require('@models/default-role-schema');
 const autoRoleSchema = require('@models/autorole-schema');
 const vlogSchema = require('@models/vlog-schema');
-const { transpose } = require('mathjs');
+const voteChannelSchema = require('@models/vote-channel-schema');
 
 module.exports = {
     name: 'settings',
@@ -73,6 +73,23 @@ module.exports = {
             vlogChannel = `<#${vlogObject.vlogChannelID}>`;
         }
         embed.addField('Voice log channel: ', `${vlogChannel}`)
+
+        //if theres any vote channel settings
+        let voteChannelCollection = voteChannelSchema()
+        let voteChannelsArray = await voteChannelCollection.find({
+            serverID: guild.id
+        })
+
+        let voteChannels = 'none'
+        if (voteChannelsArray.length !== 0) {
+            console.log(voteChannelsArray)
+            voteChannels = '';
+            voteChannelsArray.forEach(channel => {
+                voteChannels += `<#${channel.voteChannelID}>\n`
+            });
+        }
+        
+        embed.addField('Voting channels: ', `${voteChannels}`)
 
         message.channel.send(embed);
     },

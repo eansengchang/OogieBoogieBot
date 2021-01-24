@@ -1,5 +1,4 @@
 const vlogSchema = require('@models/vlog-schema');
-const { Message } = require('discord.js');
 const activitySchema = require('@models/server-activity-schema');
 
 module.exports = async (client) => {
