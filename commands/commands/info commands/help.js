@@ -39,11 +39,11 @@ module.exports = {
             categoryNames.forEach(category=>{
                 embed.addField(
                     `${category.charAt(0).toUpperCase() + category.slice(1)} commands`,
-                    `\n\`${prefix}${category} fun\``,
+                    `\n\`${prefix}help ${category}\``,
                     true,
                 )
             })
-            
+
             message.channel.send({ embed });
         }
     },
