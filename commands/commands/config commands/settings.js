@@ -10,7 +10,7 @@ module.exports = {
     description: 'Settings of this server.',
     guildOnly: true,
     async execute(message, args) {
-        
+
         let { guild } = message;
 
         let embed = new Discord.MessageEmbed()
@@ -24,7 +24,7 @@ module.exports = {
         let defaultRoleObj = await defaultRoleCollection.findOne({
             _id: guild.id
         })
-        
+
         let defaultRole = 'none';
         if (defaultRoleObj) {
             if (defaultRoleObj.defaultRole !== '') {
@@ -42,14 +42,14 @@ module.exports = {
             _id: guild.id
         })
         let timeoutRole = 'none';
-        if(timeoutRoleObj){
+        if (timeoutRoleObj) {
             if (timeoutRoleObj.timeoutRole !== '') {
                 timeoutRole = `<@&${timeoutRoleObj.timeoutRole}>`;
             }
         }
 
         embed.addFields(
-            { name: 'Timeout role:', value: `${timeoutRole}`, inline: false },
+            { name: 'Timeout role:', value: `${timeoutRole}`, inline: true },
         )
 
         //if theres any auto role settings
@@ -61,7 +61,9 @@ module.exports = {
         if (autoRoleObject && autoRoleObject.autoRole !== '') {
             autoRole = `<@&${autoRoleObject.autoRole}>`;
         }
-        embed.addField('Auto role: ', `${autoRole}`)
+        embed.addFields(
+            { name: 'Auto role: ', value: `${autoRole}`, inline: true }
+        )
 
         //if theres any vlog settings
         let vlogCollection = vlogSchema()
@@ -72,7 +74,9 @@ module.exports = {
         if (vlogObject && vlogObject.vlogChannelID !== '') {
             vlogChannel = `<#${vlogObject.vlogChannelID}>`;
         }
-        embed.addField('Voice log channel: ', `${vlogChannel}`)
+        embed.addFields(
+            { name: 'Voice log channel: ', value: `${vlogChannel}`, inline: true }
+        )
 
         //if theres any vote channel settings
         let voteChannelCollection = voteChannelSchema()
@@ -88,8 +92,10 @@ module.exports = {
                 voteChannels += `<#${channel.voteChannelID}>\n`
             });
         }
-        
-        embed.addField('Voting channels: ', `${voteChannels}`)
+
+        embed.addFields(
+            { name: 'Voting channels: ', value: `${voteChannels}`, inline: true }
+        )
 
         message.channel.send(embed);
     },
