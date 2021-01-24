@@ -37,19 +37,20 @@ app.get('/', (req, res) => {
     })
 });
 
-app.get('/commands', (req, res) => {
+let categoryNames = ['fun', 'game', 'info', 'mod', 'voice', 'config']
+let categories = categoryNames.map(category => {
+    return {
+        name: category.charAt(0).toUpperCase() + category.slice(1),
+        commands: listCommands(`commands/${category} commands`)
+    }
+})
+nsfwCommands = listCommands('commands/nsfw commands')
 
-    let categoryNames = ['fun', 'game', 'info', 'mod', 'voice']
-    let categories = categoryNames.map(category => {
-        return {
-            name: category.charAt(0).toUpperCase() + category.slice(1),
-            commands: listCommands(`commands/${category} commands`)
-        }
-    })
+app.get('/commands', (req, res) => {
 
     res.render('commands', {
         categories: categories,
-        nsfwCommands: listCommands('commands/nsfw commands')
+        nsfwCommands: nsfwCommands
     })
 });
 
