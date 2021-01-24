@@ -49,7 +49,7 @@ module.exports = {
         }
 
         embed.addFields(
-            { name: 'Timeout role:', value: `${timeoutRole}`, inline: true },
+            { name: 'Timeout role:', value: `${timeoutRole}`, inline: false },
         )
 
         //if theres any auto role settings
@@ -61,7 +61,7 @@ module.exports = {
         if (autoRoleObject && autoRoleObject.autoRole !== '') {
             autoRole = `<@&${autoRoleObject.autoRole}>`;
         }
-        embed.addField('Auto role: ', `${autoRole}`,  true)
+        embed.addField('Auto role: ', `${autoRole}`)
 
         //if theres any vlog settings
         let vlogCollection = vlogSchema()
@@ -72,7 +72,7 @@ module.exports = {
         if (vlogObject && vlogObject.vlogChannelID !== '') {
             vlogChannel = `<#${vlogObject.vlogChannelID}>`;
         }
-        embed.addField('Voice log channel: ', `${vlogChannel}`, inline: true)
+        embed.addField('Voice log channel: ', `${vlogChannel}`)
 
         //if theres any vote channel settings
         let voteChannelCollection = voteChannelSchema()
@@ -89,7 +89,7 @@ module.exports = {
             });
         }
         
-        embed.addField('Voting channels: ', `${voteChannels}`, true)
+        embed.addField('Voting channels: ', `${voteChannels}`)
 
         message.channel.send(embed);
     },
