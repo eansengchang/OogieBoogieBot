@@ -88,12 +88,6 @@ module.exports = async (client) => {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
 
-            if (activity.lastUpdate === ``) {
-                await activity.updateOne({
-                    lastUpdate: Date.now(),
-                });
-            }
-
             await activity.updateOne({
                 voiceJoinedStamp: Date.now(),
                 isVoice: true

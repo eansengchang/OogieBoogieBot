@@ -84,7 +84,7 @@ module.exports = {
                 user = message.mentions.users.first() || message.author || message.member.user;
             })
 
-            const activity = await activityCollection.findOne({
+            let activity = await activityCollection.findOne({
                 _id: user.id
             }, async (err, member) => {
                 if (err) console.error(err);
@@ -219,7 +219,8 @@ let showActivity = (activity, message, user) => {
         .setFooter(`requested by ${message.author.tag}`);
 
     //if hes in a call, sends the length of the call
-    if (activity.voice) {
+    if (activity.isVoice) {
+        console.log(activity)
         let time = Math.floor((Date.now() - activity.voiceJoinedStamp) / 1000);
         let text;
 
