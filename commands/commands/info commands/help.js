@@ -36,14 +36,14 @@ module.exports = {
             embed.setTitle('Full Description of Commands')
                 .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
 
-                .addFields(
-                    { name: 'Fun Commands', value: `\n\`${prefix}help fun\``, inline: true },
-                    { name: 'Info Commands', value: `\n\`${prefix}help info\``, inline: true },
-                    { name: 'Mod Commands', value: `\n\`${prefix}help mod\``, inline: true },
-                    { name: 'NSFW Commands', value: `\n\`${prefix}help nsfw\``, inline: true },
-                    { name: 'Voice Commands', value: `\n\`${prefix}help voice\``, inline: true },
-                    { name: 'Game Commands', value: `\n\`${prefix}help games\``, inline: true },
-                );
+            categoryNames.forEach(category=>{
+                embed.addField(
+                    `${category.charAt(0).toUpperCase() + category.slice(1)} commands`,
+                    `\n\`${prefix}${category} fun\``,
+                    true,
+                )
+            })
+            
             message.channel.send({ embed });
         }
     },
