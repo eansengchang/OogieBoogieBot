@@ -9,15 +9,17 @@ module.exports = {
     execute: async (message, args) => {
         let memory = 0;
         let embed;
-        activityDB.db.stats((err, data) => {
-            memory += data.storageSize;
-        });
+
         OogieBoogieDB.db.stats((err, data) => {
             memory += data.storageSize;
-            embed.addFields(
-                { name: 'Memory:', value: `${Math.round(memory / 100000) / 10}mb / 500mb`, inline: false },
-            )
-            message.channel.send(embed);
+            activityDB.db.stats((err, data) => {
+                memory += data.storageSize;
+                embed.addFields(
+                    { name: 'Memory:', value: `${Math.round(memory / 100000) / 10}mb / 500mb`, inline: false },
+                )
+                message.channel.send(embed);
+            });
+
         });
 
 
