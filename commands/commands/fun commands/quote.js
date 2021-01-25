@@ -7,10 +7,15 @@ module.exports = {
     description: 'Quotes a person',
     expectedArgs: '@user {quote}',
     async execute(message, args) {
-        let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
+        let user;
+        await message.guild.members.fetch(args[0]).then(member => {
+            user = member.user || message.mentions.users.first();
+        }).catch((err) => {
+            user = message.mentions.users.first();
+        })
         if (!user) return message.reply('You need to specify a user to quote.')
 
-        const canvas = Canvas.createCanvas(1200 + 75 * args.length, 400);
+        const canvas = Canvas.createCanvas(1200 + 100 * args.length, 400);
         const ctx = canvas.getContext('2d');
 
         const background = await Canvas.loadImage(
