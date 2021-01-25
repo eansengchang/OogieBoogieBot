@@ -15,7 +15,7 @@ module.exports = {
         })
         if (!user) return message.reply('You need to specify a user to quote.')
 
-        const canvas = Canvas.createCanvas(1200 + 30 * args.join(' ').length, 400);
+        const canvas = Canvas.createCanvas(1200 + 20 * args.join(' ').length, 400);
         const ctx = canvas.getContext('2d');
 
         const background = await Canvas.loadImage(
