@@ -28,8 +28,6 @@ module.exports = async (client) => {
 
             let text = `**${state1.member.user.tag}** left **${state1.channel.name}** `;
 
-            console.log(`${state1.member.user.tag} has left in ${state1.guild.name}`)
-
             if (!activity || !activity.voiceJoinedStamp) {
                 console.log('no activity joined stamp: ', state1.member.user.tag);
                 console.log(activity)
@@ -52,8 +50,6 @@ module.exports = async (client) => {
             if (state2.channelID == state2.guild.afkChannelID) return;
 
             vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`);
-            
-            console.log(`${state2.member.user.tag} has joined in ${state2.guild.name}`);
         }
 
         else if (state1.channelID !== state2.channelID) {
