@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
+const mongoose = require('mongoose')
+
 
 module.exports = {
-    name: 'info',
+    name: 'stats',
     description: 'Info on this bot.',
     execute: async (message, args) => {
 

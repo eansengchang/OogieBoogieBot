@@ -13,5 +13,5 @@ const guildSchema = mongoose.Schema({
 const activityDB = mongoose.connection.useDb('Activity');
 
 module.exports = guildID => {
-    return activityDB.model('Timoeut', guildSchema, guildID);
+    return activityDB.model('Timeout', guildSchema, guildID);
 }

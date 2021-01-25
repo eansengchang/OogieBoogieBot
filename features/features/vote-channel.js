@@ -5,6 +5,8 @@ module.exports = async (client) => {
     //message logging
 
     client.on('message', async (message) => {
+        if(!message.guild) return;
+
         let voteChannelCollection = voteChannelSchema();
         let channels = await voteChannelCollection.find({ serverID: message.guild.id })
         let flag = false;
