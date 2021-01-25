@@ -1,11 +1,25 @@
 const Discord = require('discord.js');
 const mongoose = require('mongoose')
-
+const activityDB = mongoose.connection.useDb('Activity')
+const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot')
 
 module.exports = {
     name: 'stats',
     description: 'Info on this bot.',
     execute: async (message, args) => {
+        let memory = 0;
+        let embed;
+        activityDB.db.stats((err, data) => {
+            memory += data.storageSize;
+        });
+        OogieBoogieDB.db.stats((err, data) => {
+            memory += data.storageSize;
+            embed.addFields(
+                { name: 'Memory:', value: `${Math.round(memory / 100000) / 10}mb / 500mb`, inline: false },
+            )
+            message.channel.send(embed);
+        });
+
 
         let channels = 0;
         let serverMembers = 0;
@@ -14,7 +28,7 @@ module.exports = {
             serverMembers += guild.members.cache.size;
         });
 
-        let embed = new Discord.MessageEmbed()
+        embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle(`Oogie Boogie Website`)
             .setURL('https://oogieboogiedashboard.herokuapp.com/')
@@ -44,6 +58,5 @@ module.exports = {
         embed.addFields(
             { name: 'Uptime:', value: `Last restarted: \`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds\``, inline: false },
         )
-        message.channel.send(embed);
     },
 };
