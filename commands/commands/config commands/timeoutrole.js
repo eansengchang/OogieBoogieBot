@@ -5,7 +5,7 @@ const timeoutSchema = require('@models/timeout-role-schema');
 
 module.exports = {
     name: 'timeoutrole',
-    description: 'The role given to timeout.',
+    description: 'The role given to timeout / mute from server.',
     expectedArgs: '{role}',
     guildOnly: true,
     minArgs: 0,

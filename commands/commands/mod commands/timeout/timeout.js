@@ -2,7 +2,7 @@ const timeoutRoleSchema = require('@models/timeout-role-schema');
 
 module.exports = {
     name: 'timeout',
-    description: 'Timeouts a person.',
+    description: 'mutes a person in server.',
     expectedArgs: '@user',
     guildOnly: true,
     minArgs: 1,

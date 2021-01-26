@@ -5,7 +5,7 @@ const defaultRoleSchema = require('@models/default-role-schema');
 
 module.exports = {
     name: 'defaultrole',
-    description: 'The default role to untimeout.',
+    description: 'The role to untimeout/unmute.',
     expectedArgs: '{role}',
     guildOnly: true,
     minArgs: 0,
