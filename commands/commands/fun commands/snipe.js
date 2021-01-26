@@ -7,7 +7,6 @@ module.exports = {
     expectedArgs: '{num}',
 
     async execute(message, args) {
-        console.log(message.client.snipes.get(message.channel.id))
         const snipes = message.client.snipes.get(message.channel.id) || [];
         const msg = snipes[args[0] - 1 || 0];
         if(snipes.length === 0) return message.reply('There is nothing to snipe!')
