@@ -59,7 +59,7 @@ module.exports = {
         // Clip off the region you drew on
         ctx.clip();
 
-        const pfp = await Canvas.loadImage(user.displayAvatarURL({ format: 'png', }))
+        const pfp = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'png', }))
         ctx.drawImage(pfp, marginLeft, marginTop, pfpSize, pfpSize);
 
 
