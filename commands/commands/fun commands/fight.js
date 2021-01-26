@@ -14,8 +14,8 @@ let makeDeathMessages = (name1, name2) => {
         `${name2} *got lost and died*`,
         `${name2} *got betrayed by* ${name1} *and died*`,
         `${name2} *was slain by* ${name1}`,
-        `${name2} *accidentally shot theirself*`,
-        `${name2} *shot theirself*`,
+        `${name2} *accidentally shot themself*`,
+        `${name2} *shot themself*`,
         `${name2} *slipped on a banana and died*`,
     ]
     return deathMessage[Math.floor(Math.random() * deathMessage.length)];
