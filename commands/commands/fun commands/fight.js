@@ -25,6 +25,7 @@ module.exports = {
     description: 'Simulates a fight!',
     expectedArgs: '@user or everyone',
     minArgs: 1,
+    guildOnly: true,
     async execute(message, args) {
         let people = message.mentions.members.array();
 

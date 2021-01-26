@@ -6,6 +6,7 @@ module.exports = {
     name: 'quote',
     description: 'Quotes a person',
     expectedArgs: '@user {quote}',
+    guildOnly: true,
     async execute(message, args) {
         let user;
         await message.guild.members.fetch(args[0]).then(member => {
@@ -13,6 +14,8 @@ module.exports = {
         }).catch((err) => {
             user = message.mentions.users.first();
         })
+
+
         if (!user) return message.reply('You need to specify a user to quote.')
 
         const canvas = Canvas.createCanvas(1200 + 25 * args.join(' ').length, 400);
@@ -37,7 +40,7 @@ module.exports = {
         //the date
         ctx.fillStyle = '#797F84';
         ctx.font = `bold 50px system-ui`;
-        let date = `Today at ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: true})}`;
+        let date = `Today at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}`;
         ctx.fillText(date, marginLeft + pfpSize + 75 + ctx.measureText(username).width * 1.7 + 30, marginTop + fontHeight)
 
         //the actual text
