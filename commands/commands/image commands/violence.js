@@ -10,10 +10,6 @@ module.exports = {
     async execute(message, args) {
         let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first() || message.author || message.member.user;
 
-        if (user.id === message.client.user.id) {
-            return message.reply('I AM NOT TRASH')
-        }
-
         const canvas = Canvas.createCanvas(500, 500);
         const ctx = canvas.getContext('2d');
 
