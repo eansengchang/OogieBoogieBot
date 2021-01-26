@@ -9,8 +9,8 @@ module.exports = {
     guildOnly: true,
     async execute(message, args) {
         let member;
-        await message.guild.members.fetch(args[0]).then(member => {
-            member = member || message.mentions.members.first();
+        await message.guild.members.fetch(args[0]).then(fetched => {
+            member = fetched || message.mentions.members.first();
         }).catch((err) => {
             member = message.mentions.members.first();
         })
