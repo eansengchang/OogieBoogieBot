@@ -8,15 +8,15 @@ module.exports = {
     expectedArgs: '@user {quote}',
     guildOnly: true,
     async execute(message, args) {
-        let user;
+        let member;
         await message.guild.members.fetch(args[0]).then(member => {
-            user = member.user || message.mentions.users.first();
+            member = member || message.mentions.members.first();
         }).catch((err) => {
-            user = message.mentions.users.first();
+            member = message.mentions.members.first();
         })
 
 
-        if (!user) return message.reply('You need to specify a user to quote.')
+        if (!member) return message.reply('You need to specify a member to quote.')
 
         const canvas = Canvas.createCanvas(1200 + 25 * args.join(' ').length, 400);
         const ctx = canvas.getContext('2d');
@@ -34,8 +34,8 @@ module.exports = {
         //the name
         ctx.fillStyle = '#FFFFFF';
         ctx.font = `bold ${fontHeight}px uni-sans-heavy`;
-        let username = user.username;
-        ctx.fillText(username, marginLeft + pfpSize + 75, marginTop + fontHeight)
+        let displayName = member.displayName;
+        ctx.fillText(displayName, marginLeft + pfpSize + 75, marginTop + fontHeight)
 
         //the date
         ctx.fillStyle = '#797F84';
