@@ -35,9 +35,9 @@ module.exports = {
         ctx.fillText(username, marginLeft + pfpSize + 75, marginTop + fontHeight)
 
         //the date
-        ctx.fillStyle = '#5F6368';
-        ctx.font = `50px system-ui`;
-        let date = `Today at 3:43 AM`;
+        ctx.fillStyle = '#797F84';
+        ctx.font = `bold 50px system-ui`;
+        let date = `Today at ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: true})}`;
         ctx.fillText(date, marginLeft + pfpSize + 75 + ctx.measureText(username).width * 1.7 + 30, marginTop + fontHeight)
 
         //the actual text
