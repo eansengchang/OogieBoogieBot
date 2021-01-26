@@ -32,7 +32,7 @@ module.exports = {
         const fontHeight = 75;
 
         //the name
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = member.displayHexColor;
         ctx.font = `bold ${fontHeight}px uni-sans-heavy`;
         let displayName = member.displayName;
         ctx.fillText(displayName, marginLeft + pfpSize + 75, marginTop + fontHeight)
