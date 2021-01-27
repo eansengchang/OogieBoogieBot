@@ -10,6 +10,9 @@ module.exports = {
     guildOnly: true,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
+        let cleanContent = message.cleanContent.slice(prefix.length).trim().split(/ +/);
+        cleanContent.shift()
+
         const canvas = Canvas.createCanvas(500, 500);
         const ctx = canvas.getContext('2d');
 
@@ -21,7 +24,7 @@ module.exports = {
         //the text
         ctx.fillStyle = '#000000';
         ctx.font = `15px uni-sans-heavy`;
-        ctx.fillText(args.join(' '), 290, 30)
+        ctx.fillText(cleanContent.join(' '), 290, 50)
 
         const attachment = new MessageAttachment(canvas.toBuffer());
         message.channel.send('', attachment);

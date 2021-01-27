@@ -16,6 +16,7 @@ module.exports = {
             member = message.mentions.members.first();
         })
 
+        
 
         if (!member) return message.reply('You need to specify a member to quote.')
 
@@ -62,7 +63,6 @@ module.exports = {
 
         const pfp = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'png', }))
         ctx.drawImage(pfp, marginLeft, marginTop, pfpSize, pfpSize);
-
 
 
         const attachment = new MessageAttachment(canvas.toBuffer());
