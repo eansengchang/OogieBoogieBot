@@ -26,7 +26,7 @@ module.exports = async (client) => {
             //if it directly disconnected from afk channel, return
             if (state1.channelID == state1.guild.afkChannelID) return;
 
-            let text = `**${state1.member.user.tag}** left **${state1.channel.name}** `;
+            let text = `:mute: **${state1.member.user.tag}** left **${state1.channel.name}** `;
 
             if (!activity || !activity.voiceJoinedStamp) {
                 console.log('no activity joined stamp: ', state1.member.user.tag);
@@ -49,11 +49,12 @@ module.exports = async (client) => {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
 
-            vlogChannel.send(`**${state1.member.user.tag}** joined **${state2.channel.name}**`);
+            vlogChannel.send(`:speaker: **${state1.member.user.tag}** joined **${state2.channel.name}**`);
         }
 
+        //moved channels
         else if (state1.channelID !== state2.channelID) {
-            vlogChannel.send(`**${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`)
+            vlogChannel.send(`:arrow_right: **${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`)
         }
     })
 }
