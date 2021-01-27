@@ -6,6 +6,7 @@ module.exports = {
     name: 'whygay',
     description: 'Shows an image of gay.',
     expectedArgs: '@user',
+    guildOnly: true,
     async execute(message, args) {
         let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first() || message.author || message.member.user;
 

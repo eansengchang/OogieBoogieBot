@@ -7,6 +7,7 @@ module.exports = {
     description: 'Violence may be the answer.',
     expectedArgs: '{message}',
     minArgs: 1,
+    guildOnly: true,
     async execute(message, args) {
         const canvas = Canvas.createCanvas(500, 500);
         const ctx = canvas.getContext('2d');
