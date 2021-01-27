@@ -49,7 +49,7 @@ module.exports = async (client) => {
             //if it directly connected to afk channel, return
             if (state2.channelID == state2.guild.afkChannelID) return;
 
-            vlogChannel.send(`:speaker: **${state1.member.user.tag}** joined **${state2.channel.name}**`);
+            vlogChannel.send(`:loud_sound: **${state1.member.user.tag}** joined **${state2.channel.name}**`);
         }
 
         //moved channels
