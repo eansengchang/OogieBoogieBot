@@ -11,6 +11,7 @@ module.exports = {
     minArgs: 0,
     maxArgs: 1,
     memberPermissions: ['ADMINISTRATOR'],
+    clientPermissions: ['MANAGE_ROLES'],
     execute: async (message, args) => {
         let defaultRoleCollection = defaultRoleSchema();
         let { guild } = message;

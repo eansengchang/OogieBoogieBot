@@ -7,6 +7,7 @@ module.exports = {
     description: 'Quotes a person',
     expectedArgs: '@user {quote}',
     guildOnly: true,
+    clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
         let member;
         await message.guild.members.fetch(args[0]).then(fetched => {

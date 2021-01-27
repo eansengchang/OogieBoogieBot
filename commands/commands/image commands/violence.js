@@ -8,6 +8,7 @@ module.exports = {
     expectedArgs: '{message}',
     minArgs: 1,
     guildOnly: true,
+    clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
         const canvas = Canvas.createCanvas(500, 500);
         const ctx = canvas.getContext('2d');

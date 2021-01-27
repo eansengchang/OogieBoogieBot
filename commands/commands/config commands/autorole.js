@@ -10,7 +10,8 @@ module.exports = {
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
-    memberPermissions: ['ADMINISTRATOR'],
+    memberPermissions: ['MANAGE_ROLES'],
+    clientPermissions: ['MANAGE_ROLES'],
     execute: async (message, args) => {
         let autoRoleCollection = autoRoleSchema();
         let { guild } = message;
