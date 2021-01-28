@@ -3,23 +3,19 @@ const { MessageAttachment } = require('discord.js');
 const path = require('path');
 
 module.exports = {
-    name: 'trash',
-    description: 'Shows an image of trash.',
+    name: 'simpcard',
+    description: 'Shows a simp.',
     expectedArgs: '@user',
     guildOnly: true,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
         let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first() || message.author || message.member.user;
 
-        if (user.id === message.client.user.id) {
-            return message.reply('I AM NOT TRASH')
-        }
-
         const canvas = Canvas.createCanvas(500, 500);
         const ctx = canvas.getContext('2d');
 
         const background = await Canvas.loadImage(
-            path.join(__dirname, '../../../images/trash.png')
+            path.join(__dirname, '../../../images/simpcard.jpg')
         )
         ctx.drawImage(background, 0, 0);
 
@@ -28,9 +24,7 @@ module.exports = {
                 format: 'png'
             })
         )
-        let x = canvas.width / 2 - pfp.width / 2;
-        let y = canvas.height / 2 - pfp.height / 2;
-        ctx.drawImage(pfp, x, y);
+        ctx.drawImage(pfp, 50, 230);
 
         const attachment = new MessageAttachment(canvas.toBuffer());
         message.channel.send('', attachment);
