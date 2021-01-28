@@ -5,6 +5,7 @@ require('dotenv').config();
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.snipes = new Discord.Collection();
+client.editSnipes = new Discord.Collection();
 client.mongoose = require('@utils/mongoose')
 
 //.replace(/[<@!>]/g, '');

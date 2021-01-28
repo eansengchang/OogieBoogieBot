@@ -9,9 +9,9 @@ module.exports = async (client, message) => {
     if (message.guild) {
         const snipes = client.snipes.get(message.channel.id) || [];
         snipes.unshift({
-            content: message.content,
+            content: message.cleanContent,
             author: message.author,
-            image: message.attachments.first() ? message.attachments.first().proxyURL : null,
+            attachment: message.attachments.first() ? message.attachments.first().proxyURL : null,
             date: new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short' })
         })
         snipes.splice(10);

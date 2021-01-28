@@ -15,6 +15,8 @@ module.exports = {
             .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
             .setDescription(msg.content)
             .setFooter(`Date: ${msg.date} | ${args[0] || 1}/${snipes.length}`)
+
+        
         if (msg.attachment) embed.setImage(msg.attachment);
         message.channel.send(embed)
     },
