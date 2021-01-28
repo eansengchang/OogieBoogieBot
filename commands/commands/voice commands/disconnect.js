@@ -20,7 +20,7 @@ module.exports = {
             });
             return message.channel.send(`I have disconnected all possible members`);
         }
-        let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
+        let user = message.guild.members.cache.get(args[0]).user || message.mentions.users.first();
         if (!user) { return message.reply('User not found!'); }
         let flag = true;
         message.guild.channels.cache.array().forEach(channel => {
