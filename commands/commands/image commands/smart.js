@@ -21,7 +21,7 @@ module.exports = {
 
         const pfp = await Canvas.loadImage(
             user.displayAvatarURL({
-                format: 'png'
+                format: 'jpg'
             })
         )
         ctx.drawImage(pfp, 360, 160);

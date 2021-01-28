@@ -25,7 +25,7 @@ module.exports = {
 
         const pfp = await Canvas.loadImage(
             user.displayAvatarURL({
-                format: 'png'
+                format: 'jpg'
             })
         )
         let x = canvas.width / 2 - pfp.width / 2;
