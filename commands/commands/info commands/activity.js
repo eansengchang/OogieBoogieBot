@@ -70,7 +70,7 @@ module.exports = {
                 .setTitle(`Top message activity`)
                 .setDescription(list);
             message.channel.send(embed);
-            showBarChart(message, users, activities, 'Message Activity Per Day');
+            showChart(message, users, activities, 'Message Activity Per Day');
 
         }
 
@@ -121,19 +121,20 @@ module.exports = {
 
 const ChartCallback = (ChartJS) => {
     ChartJS.defaults.global.defaultFontFamily = 'Lato';
-    ChartJS.defaults.global.defaultFontColor = 'black';
+    ChartJS.defaults.global.defaultFontColor = 'white';
     ChartJS.defaults.global.defaultFontSize = 18;
+    ChartJS.defaults.global.legend.display = false;
     ChartJS.plugins.register({
         beforeDraw: (chartInstance) => {
             const { chart } = chartInstance;
             const { ctx } = chart;
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = '#36393E';
             ctx.fillRect(0, 0, chart.width, chart.height);
         }
     })
 }
 
-let showBarChart = async (message, users, activities, label) => {
+let showChart = async (message, users, activities) => {
     //creates a graph on activity
     const canvas = new CanvasRenderService(
         width,
@@ -142,27 +143,24 @@ let showBarChart = async (message, users, activities, label) => {
     )
 
     const configuration = {
-        type: 'bar',
+        type: 'horizontalBar',
         data: {
             labels: users,
             datasets: [
                 {
-                    label: label,
                     data: activities,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 126, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)',
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 126, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)'
+                        '#f3d9dc',
+                        '#fe7f2d',
+                        '#fcca46',
+                        '#a1c181',
+                        '#619b8a',
+                        '#7cea9c',
+                        '#55d6be',
+                        '#84dcc6',
+                        '#a5ffd6',
+                        '#bcf4de'
                     ],
-                    borderWidth: 1,
-                    borderColor: '#777'
                 }
             ],
         },
@@ -170,14 +168,35 @@ let showBarChart = async (message, users, activities, label) => {
             title: {
                 display: true,
                 text: `Top Activity of ${message.guild.name}`,
-                fontSize: 25,
+                fontSize: 34,
+                padding: 30,
             },
             scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
-                    }
+                    },
+                    gridLines: {
+                        display: false,
+                    },
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Messages per day'
+                    },
+                    gridLines: {
+                        display: false,
+                    },
                 }]
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 50,
+                    top: 0,
+                    bottom: 50
+                }
             }
         }
     }
