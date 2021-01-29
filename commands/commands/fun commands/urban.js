@@ -7,6 +7,7 @@ module.exports = {
     expectedArgs: '{phrase}',
     minArgs: 1,
     cooldown: 2,
+    nsfw: true,
     async execute(message, args) {
 
         let response = await fetch(`http://api.urbandictionary.com/v0/define?term=${args.join(' ')}`);
