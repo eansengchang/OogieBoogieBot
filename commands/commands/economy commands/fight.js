@@ -56,7 +56,7 @@ module.exports = {
             message.channel.send('Too many people! Randomly picking 20 members to fight...')
             people.splice(20)
         }
-        let bet = people.length;
+        let bet = people.length - 1;
 
         let economyCollection = economySchema()
 
@@ -72,7 +72,7 @@ module.exports = {
         response += `\n**${people[0].displayName}** has won!`;
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`\n**${people[0].displayName}** has earned ${bet} dollars!`)
+            .setTitle(`\n**${people[0].displayName}** has earned ${bet * 10} dollars!`)
             .setDescription(response);
 
         message.channel.send(embed);
