@@ -43,8 +43,32 @@ module.exports = {
                 upsert: true // insert the document if it does not exist
             })
 
+        stealer = await economyCollection.findOneAndUpdate(
+            {
+                _id: message.author.id
+            },
+            {
+                $setOnInsert: { money: 0 }
+            },
+            {
+                returnNewDocument: true,   // return new doc if one is upserted
+                upsert: true // insert the document if it does not exist
+            })
+
+        victim = await economyCollection.findOneAndUpdate(
+            {
+                _id: member.id
+            },
+            {
+                $setOnInsert: { money: 0 }
+            },
+            {
+                returnNewDocument: true,   // return new doc if one is upserted
+                upsert: true // insert the document if it does not exist
+            })
+
         if (!victim || !stealer) return
-        if(member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
+        if (member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
 
         var stolen = Math.round(victim.money * stealPercentage);
 

@@ -40,13 +40,37 @@ module.exports = {
                 upsert: true // insert the document if it does not exist
             })
 
+        giver = await economyCollection.findOneAndUpdate(
+            {
+                _id: message.author.id
+            },
+            {
+                $setOnInsert: { money: 0 }
+            },
+            {
+                returnNewDocument: true,   // return new doc if one is upserted
+                upsert: true // insert the document if it does not exist
+            })
+
+        receiver = await economyCollection.findOneAndUpdate(
+            {
+                _id: member.id
+            },
+            {
+                $setOnInsert: { money: 0 }
+            },
+            {
+                returnNewDocument: true,   // return new doc if one is upserted
+                upsert: true // insert the document if it does not exist
+            })
+
         if (!giver || !receiver) return
-        if(member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
+        if (member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
 
         let ammount = parseInt(args[1]);
-        if(isNaN(ammount) || ammount < 0) return message.reply('That is not a valid amount')
+        if (isNaN(ammount) || ammount < 0) return message.reply('That is not a valid amount')
 
-        if(ammount > giver.money) return message.reply('You don\'t have the money for that!')
+        if (ammount > giver.money) return message.reply('You don\'t have the money for that!')
 
         await giver.updateOne({
             money: giver.money - ammount
