@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     })
 });
 
-let categoryNames = ['fun', 'game', 'info', 'mod', 'voice', 'config', 'image']
+let categoryNames = ['fun', 'game', 'info', 'mod', 'voice', 'config', 'sound', 'image']
 let categories = categoryNames.map(category => {
     return {
         name: category.charAt(0).toUpperCase() + category.slice(1),

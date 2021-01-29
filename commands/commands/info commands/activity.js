@@ -9,7 +9,7 @@ const height = 800;
 module.exports = {
     name: 'activity',
     description: 'See how many messages you\'ve sent, or the top activity of the server',
-    expectedArgs: '@user or top',
+    expectedArgs: '@user / top',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 2,
@@ -55,10 +55,13 @@ module.exports = {
                 if (activityList[i]) {
                     let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
                     let messagesPerDay = Math.round(10 * activityList[i].messages / days) / 10;
+                    if (messagesPerDay > 100) {
+                        messagesPerDay = Math.round(messagesPerDay)
+                    }
                     await message.guild.members.fetch(`${activityList[i]._id}`).then(member => {
                         users.push(member.user.username);
                         activities.push(messagesPerDay);
-                        list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay}m/d)`;
+                        list += `\n${i + 1}. **${member.displayName}** (${messagesPerDay} m/d)`;
                     }).catch(err => {
                         console.log(err)
                     });
@@ -70,9 +73,35 @@ module.exports = {
                 .setTitle(`Top message activity`)
                 .setDescription(list);
             message.channel.send(embed);
-            showChart(message, users, activities, 'Message Activity Per Day');
+            showBarChart(message, users, activities, 'Message Activity Per Day');
 
         }
+        //if its activity all
+        // else if (args[0] == 'all') {
+        //     let activityList = [];
+        //     let users = [];
+        //     let messages = [];
+        //     //all activities of every member in activityList
+        //     (await activityCollection.find()).forEach(activity => {
+        //         if (message.guild.members.cache.get(activity._id)) {
+        //             activityList.push({
+        //                 tag: activity.userTag,
+        //                 messages: activity.messages
+        //             });
+        //         }
+        //     })
+
+        //     activityList.sort((a, b) => a.messages > b.messages ? -1 : 1)
+        //     activityList.forEach(activity => {
+        //         users.push(`${activity.tag.split('#')[0]}: ${activity.messages}`);
+        //         messages.push(activity.messages);
+        //     })
+
+        //     users.splice(7)
+        //     users.push('other')
+
+        //     showPieChart(message, users, messages)
+        // }
 
         //it just gives the activity
         else {
@@ -123,7 +152,6 @@ const ChartCallback = (ChartJS) => {
     ChartJS.defaults.global.defaultFontFamily = 'Lato';
     ChartJS.defaults.global.defaultFontColor = 'white';
     ChartJS.defaults.global.defaultFontSize = 18;
-    ChartJS.defaults.global.legend.display = false;
     ChartJS.plugins.register({
         beforeDraw: (chartInstance) => {
             const { chart } = chartInstance;
@@ -134,7 +162,61 @@ const ChartCallback = (ChartJS) => {
     })
 }
 
-let showChart = async (message, users, activities) => {
+let showPieChart = async (message, users, activities) => {
+    //creates a graph on activity
+    const canvas = new CanvasRenderService(
+        width,
+        height,
+        ChartCallback
+    )
+
+    const configuration = {
+        type: 'pie',
+        data: {
+            labels: users,
+            datasets: [
+                {
+                    data: activities,
+                    backgroundColor: [
+                        '#f3d9dc',
+                        '#fe7f2d',
+                        '#fcca46',
+                        '#a1c181',
+                        '#619b8a',
+                        '#7cea9c',
+                        '#55d6be'
+                    ],
+                    borderWidth: 0
+                }
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: `Messages of ${message.guild.name}`,
+                fontSize: 34,
+                padding: 30,
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 50,
+                    top: 0,
+                    bottom: 50
+                }
+            },
+            legend: {
+                position: 'left'
+            },
+        }
+    }
+
+    const image = await canvas.renderToBuffer(configuration);
+    const attachment = new MessageAttachment(image);
+    message.channel.send(attachment)
+}
+
+let showBarChart = async (message, users, activities) => {
     //creates a graph on activity
     const canvas = new CanvasRenderService(
         width,
@@ -197,7 +279,10 @@ let showChart = async (message, users, activities) => {
                     top: 0,
                     bottom: 50
                 }
-            }
+            },
+            legend: {
+                display: false
+            },
         }
     }
 
@@ -252,4 +337,3 @@ let showActivity = (activity, message, user) => {
 
     message.channel.send(embed);
 }
-
