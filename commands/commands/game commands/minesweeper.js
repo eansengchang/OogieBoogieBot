@@ -106,7 +106,7 @@ module.exports = {
         }
 
         const filter = m => {
-            //test if bot or valid syntax
+            //test if bot / valid syntax
             try {
                 let ans = !m.author.bot && ('abcdefghi'.includes(m.content.charAt(0)) && '123456789'.includes(m.content.charAt(1)))
                 if (ans) {

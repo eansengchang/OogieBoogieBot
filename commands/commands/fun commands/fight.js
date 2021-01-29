@@ -24,7 +24,7 @@ let makeDeathMessages = (name1, name2) => {
 module.exports = {
     name: 'fight',
     description: 'Simulates a fight!',
-    expectedArgs: '@user or everyone',
+    expectedArgs: '@user / everyone',
     minArgs: 1,
     guildOnly: true,
     async execute(message, args) {

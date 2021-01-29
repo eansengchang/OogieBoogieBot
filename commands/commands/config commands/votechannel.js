@@ -6,7 +6,7 @@ const voteChannelSchema = require('@models/vote-channel-schema');
 module.exports = {
     name: 'votechannel',
     description: 'Creates an automatic channel for polls',
-    expectedArgs: '#channel or remove #channel',
+    expectedArgs: '#channel / remove #channel',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 2,

@@ -16,7 +16,7 @@ module.exports = {
                     message.channel.send('I can\'t seem to join the channel');
                 });
 
-            } else if (args[0].endsWith('mp4') || args[0].endsWith('mp3')) {
+            } else if (args[0].endsWith('mp4') || args[0].endsWith('mp3') || args[0].endsWith('mov')) {
                 message.member.voice.channel.join().then(connection => {
                     connection.play(args[0])
                 }).catch(err => {
