@@ -28,7 +28,7 @@ module.exports = {
     expectedArgs: '@user / everyone',
     minArgs: 1,
     guildOnly: true,
-    cooldown: 0,
+    cooldown: 60 * 3,
     async execute(message, args) {
         let people = message.mentions.members.array();
 
