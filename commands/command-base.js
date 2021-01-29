@@ -66,19 +66,23 @@ module.exports = message => {
         }
     }
 
-    if(message.channel.type !== 'dm' && nsfw){
+    if (message.channel.type !== 'dm' && nsfw) {
         if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
     }
 
     //ensure command isn't ran too frequently
     let cooldownString;
-    if(guild){
+    if (guild) {
         cooldownString = `${guild.id}-${author.id}-${name}`;
-    } else{
+    } else {
         cooldownString = `dm-${author.id}-${name}`;
     }
-    
-    if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
+
+    if (cooldown > 0 && recentlyRan.includes(cooldownString) && message.author.id !== '333177159357169664') {
+        if (cooldown > 60) {
+            return message.reply(`You can\'t use that command so soon, cooldown is ${Math.round(10 * cooldown / 60) / 10} mins.`)
+        }
+
         message.reply(`You can\'t use that command so soon, cooldown is ${cooldown} secs.`)
         return
     }

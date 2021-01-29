@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const economySchema = require('@models/economy-schema')
 
 let makeDeathMessages = (name1, name2) => {
     const deathMessage = [
@@ -23,12 +22,11 @@ let makeDeathMessages = (name1, name2) => {
 }
 
 module.exports = {
-    name: 'fight',
-    description: 'Fight someone for money!',
+    name: 'simfight',
+    description: 'Simulates a fight!',
     expectedArgs: '@user / everyone',
     minArgs: 1,
     guildOnly: true,
-    cooldown: 0,
     async execute(message, args) {
         let people = message.mentions.members.array();
 
@@ -57,9 +55,6 @@ module.exports = {
             message.channel.send('Too many people! Randomly picking 20 members to fight...')
             people.splice(20)
         }
-        let bet = people.length - 1;
-
-        let economyCollection = economySchema()
 
         let response = '';
         while (people.length > 1) {
@@ -73,24 +68,8 @@ module.exports = {
         response += `\n**${people[0].displayName}** has won!`;
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`\n**${people[0].displayName}** has earned ${bet * 10} dollars!`)
             .setDescription(response);
 
         message.channel.send(embed);
-
-        //adds money
-        economyCollection.findOneAndUpdate(
-            {
-                _id: people[0].id
-            },
-            {
-                $inc: {
-                    money: bet * 10
-                }
-            },
-            {
-                upsert: true
-            }
-        ).exec()
     },
 };
