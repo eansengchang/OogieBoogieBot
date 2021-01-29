@@ -17,7 +17,7 @@ module.exports = {
             return message.reply('invalid member')
         }
 
-        let stealPercentage = Math.round(Math.random() * 100) / 100
+        let stealPercentage = Math.round(Math.random() * 50) / 100
 
         var stealer = await economyCollection.findOneAndUpdate(
             {
