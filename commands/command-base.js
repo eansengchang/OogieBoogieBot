@@ -78,7 +78,7 @@ module.exports = message => {
         cooldownString = `dm-${author.id}-${name}`;
     }
 
-    if (cooldown > 0 && recentlyRan.includes(cooldownString) && message.author.id !== '333177159357169664') {
+    if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
         if (cooldown > 60) {
             return message.reply(`You can\'t use that command so soon, cooldown is ${Math.round(10 * cooldown / 60) / 10} mins.`)
         }
