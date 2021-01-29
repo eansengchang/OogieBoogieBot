@@ -3,7 +3,7 @@ const economySchema = require('@models/economy-schema')
 
 module.exports = {
     name: 'give',
-    description: 'Gives someone monet',
+    description: 'Gives someone money',
     minArgs: 2,
     expectedArgs: '@user {ammount}',
     guildOnly: true,
