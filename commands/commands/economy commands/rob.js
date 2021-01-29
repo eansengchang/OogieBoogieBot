@@ -44,6 +44,7 @@ module.exports = {
             })
 
         if (!victim || !stealer) return
+        if(member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
 
         var stolen = Math.round(victim.money * stealPercentage);
 
