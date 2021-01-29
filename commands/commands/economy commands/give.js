@@ -43,7 +43,9 @@ module.exports = {
         if (!giver || !receiver) return
 
         let ammount = parseInt(args[1]);
-        if(isNaN(ammount)) return message.reply('That is not a valid amount')
+        if(isNaN(ammount) || ammount < 0) return message.reply('That is not a valid amount')
+
+        if(ammount > giver.money) return message.reply('You don\'t have the money for that!')
 
         await giver.updateOne({
             money: giver.money - ammount
