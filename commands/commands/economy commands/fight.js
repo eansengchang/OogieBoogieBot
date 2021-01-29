@@ -84,7 +84,7 @@ module.exports = {
             },
             {
                 $inc: {
-                    money: bet
+                    money: bet * 10
                 }
             },
             {
