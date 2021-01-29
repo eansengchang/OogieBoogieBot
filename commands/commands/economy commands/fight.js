@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const economySchema = require('@models/economy-schema')
 
 let makeDeathMessages = (name1, name2) => {
     const deathMessage = [
@@ -23,7 +24,7 @@ let makeDeathMessages = (name1, name2) => {
 
 module.exports = {
     name: 'fight',
-    description: 'Simulates a fight!',
+    description: 'Simulates a fight for money!',
     expectedArgs: '@user / everyone',
     minArgs: 1,
     guildOnly: true,
@@ -33,16 +34,32 @@ module.exports = {
         if (args[0] === 'everyone') {
             let members = await message.guild.members.fetch();
             people = members.array();
-            people = people.filter(member => !member.user.bot)
         }
+
+        people = people.filter(member => !member.user.bot)
 
         if (people.length === 0) {
             return message.reply('Invalid users.');
         }
 
         if (people.length === 1) {
+            if (people[0].id === message.author.id) {
+                return message.reply('You can\'t fight yourself')
+            }
             people.push(message.member);
         }
+
+        //shuffles people
+        people = people.sort(() => 0.5 - Math.random());
+
+        if(people.length > 20){
+            message.channel.send('Too many people! Randomly picking 20 members to fight...')
+            people.splice(20)
+        }
+        let bet = people.length;
+
+        let economyCollection = economySchema()
+
         let response = '';
         while (people.length > 1) {
 
@@ -55,9 +72,24 @@ module.exports = {
         response += `\n**${people[0].displayName}** has won!`;
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`\n**${people[0].displayName}** has won!`)
+            .setTitle(`\n**${people[0].displayName}** has earned ${bet} dollars!`)
             .setDescription(response);
 
         message.channel.send(embed);
+
+        //adds money
+        economyCollection.findOneAndUpdate(
+            {
+                _id: people[0].id
+            },
+            {
+                $inc: {
+                    money: bet
+                }
+            },
+            {
+                upsert: true
+            }
+        ).exec()
     },
 };
