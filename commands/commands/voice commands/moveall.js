@@ -19,6 +19,8 @@ module.exports = {
 
         if(!channelEnd) return message.channel.send('This is not a valid channel name')
 
+        if(!channelEnd.permissionsFor(message.guild.me).has('MOVE_MEMBERS')) return message.reply("I don't have perms to move people to that channel")
+
         message.channel.send(`Moving all possible users to \`${channelEnd.name}\`...`);
 
         let reply = await message.channel.send(`\`moved 0 members\`...`);
