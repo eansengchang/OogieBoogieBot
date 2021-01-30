@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args) {
         let cleanContent = message.cleanContent.slice(prefix.length).trim().split(/ +/);
         cleanContent.shift()
-        if (message.mentions.everyone) {
+        if (message.mentions.everyone || message.cleanContent.includes('@everyone') || message.cleanContent.includes('@here')) {
             return message.reply('I won\'t mention everyone');
         }
 
