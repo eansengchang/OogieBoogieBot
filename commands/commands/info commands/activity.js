@@ -119,8 +119,8 @@ module.exports = {
                 },
                 {
                     $setOnInsert: {
-                        _id: message.author.id,
-                        userTag: message.author.tag,
+                        _id: user.id,
+                        userTag: user.tag,
                         lastUpdate: message.createdTimestamp,
                         voice: 0,
                         isVoice: false,
