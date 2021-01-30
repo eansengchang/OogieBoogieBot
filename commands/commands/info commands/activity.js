@@ -113,29 +113,24 @@ module.exports = {
                 user = message.mentions.users.first() || message.author || message.member.user;
             })
 
-            let activity = await activityCollection.findOne({
-                _id: user.id
-            }, async (err, member) => {
-                if (err) console.error(err);
-                //if member isn't in the database, creates one
-                if (!member) {
-                    const newMember = new activityCollection({
+            let activity = await activityCollection.findOneAndUpdate(
+                {
+                    _id: message.author.id
+                },
+                {
+                    $setOnInsert: {
                         _id: message.author.id,
                         userTag: message.author.tag,
                         lastUpdate: message.createdTimestamp,
-                        messages: 1,
                         voice: 0,
                         isVoice: false,
                         voiceJoinedStamp: message.createdTimestamp
-                    });
-
-                    await newMember.save()
-                        //                        .then(result => console.log(result))
-                        .catch(err => console.error(err));
-
-                    return showActivity(newMember, message, user)
+                    }
+                },
+                {
+                    upsert: true,
                 }
-            });
+            )
 
             if (!activity) {
                 activity = await activityCollection.findOne({

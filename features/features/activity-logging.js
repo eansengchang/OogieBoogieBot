@@ -9,34 +9,27 @@ module.exports = async (client) => {
         if (message.guild) {
             let activityCollection = activitySchema(message.guild.id);
 
-            let activity = await activityCollection.findOne({
-                _id: message.author.id
-            }, async (err, member) => {
-                if (err) console.error(err)
-                //creates member if its not there
-                if (!member) {
-                    const newMember = new activityCollection({
+            await activityCollection.findOneAndUpdate(
+                {
+                    _id: message.author.id
+                },
+                {
+                    $setOnInsert: {
                         _id: message.author.id,
                         userTag: message.author.tag,
                         lastUpdate: message.createdTimestamp,
-                        messages: 1,
                         voice: 0,
                         isVoice: false,
                         voiceJoinedStamp: message.createdTimestamp
-                    });
-
-                    await newMember.save()
-                        .catch(err => console.error(err));
+                    },
+                    $inc: {
+                        messages: 1
+                    }
+                },
+                {
+                    upsert: true,
                 }
-            })
-
-            //updates messages
-            if (activity) {
-                await activity.updateOne({
-                    messages: activity.messages + 1
-                });
-            }
-
+            )
         }
     })
 
@@ -46,12 +39,12 @@ module.exports = async (client) => {
 
         //activity stuff
         let activityCollection = activitySchema(state1.guild.id);
-        let activity = await activityCollection.findOne({
-            _id: state1.member.user.id
-        }, async (err, member) => {
-            if (err) console.error(err)
-            if (!member) {
-                const newMember = new activityCollection({
+        let activity = await activityCollection.findOneAndUpdate(
+            {
+                _id: state1.member.user.id
+            },
+            {
+                $setOnInsert: {
                     _id: state1.member.id,
                     userTag: state1.member.user.tag,
                     lastUpdate: Date.now(),
@@ -59,23 +52,17 @@ module.exports = async (client) => {
                     voice: 0,
                     isVoice: false,
                     voiceJoinedStamp: ``
-                });
-
-                await newMember.save()
-                    .then(async newActivity => {
-                        activity = await activityCollection.findOne({
-                            _id: state1.member.id
-                        });
-                    })
-                    .catch(err => console.error(err));
+                }
+            },
+            {
+                upsert: true,
             }
-        });
+        );
 
         if (!activity) {
             activity = await activityCollection.findOne({
                 _id: state1.member.id
             });
-            console.log(`Regetting activity: `, activity);
         }
 
         if (!activity) {
