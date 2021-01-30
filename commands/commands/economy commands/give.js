@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args) {
         const economyCollection = economySchema()
 
-        let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member;
+        let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first();
 
         if (!member || member.user.bot) {
             return message.reply('invalid member')
