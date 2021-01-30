@@ -78,13 +78,27 @@ module.exports = message => {
         cooldownString = `dm-${author.id}-${name}`;
     }
 
-    if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
-        if (cooldown > 60) {
-            message.reply(`You can\'t use that command so soon, cooldown is ${Math.round(10 * cooldown / 60) / 10} mins.`)
+    //checks if command is on cooldown
+    let flag = false;
+    let timeLeft = 0;
+    recentlyRan.forEach(element => {
+        if (element.includes(cooldownString)) {
+            flag = true;
+            let temp = element.split('-')
+            timeLeft = parseInt(temp[temp.length - 1]) - Date.now()
+            console.log(parseInt(temp[temp.length - 1]), Date.now(), parseInt(temp[temp.length - 1]) - Date.now())
+        }
+    })
+
+    if (cooldown > 0 && flag) {
+        console.log(timeLeft)
+        timeLeft = Math.round(timeLeft / 1000)
+        if (timeLeft > 60) {
+            message.reply(`You can\'t use that command so soon, time left is \`${Math.floor(timeLeft / 60)} mins.\``)
             return
         }
 
-        message.reply(`You can\'t use that command so soon, cooldown is ${cooldown} secs.`)
+        message.reply(`You can\'t use that command so soon, time left is \`${timeLeft} secs.\``)
         return
     }
 
@@ -94,10 +108,10 @@ module.exports = message => {
     }
 
     if (cooldown > 0) {
-        recentlyRan.push(cooldownString)
+        recentlyRan.push(`${cooldownString}-${Date.now() + cooldown * 1000}`)
         setTimeout(() => {
             recentlyRan = recentlyRan.filter((string) => {
-                return string !== cooldownString
+                return !string.includes(cooldownString)
             })
         }, 1000 * cooldown);
     }
