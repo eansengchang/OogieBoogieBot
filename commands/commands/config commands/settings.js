@@ -86,7 +86,6 @@ module.exports = {
 
         let voteChannels = 'none'
         if (voteChannelsArray.length !== 0) {
-            console.log(voteChannelsArray)
             voteChannels = '';
             voteChannelsArray.forEach(channel => {
                 voteChannels += `<#${channel.voteChannelID}>\n`
