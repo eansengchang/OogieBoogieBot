@@ -115,7 +115,7 @@ module.exports = {
 
             let activity = await activityCollection.findOneAndUpdate(
                 {
-                    _id: message.author.id
+                    _id: user.id
                 },
                 {
                     $setOnInsert: {
