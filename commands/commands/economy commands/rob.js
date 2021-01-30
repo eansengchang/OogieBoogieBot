@@ -13,7 +13,7 @@ module.exports = {
 
         let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member;
 
-        if (!member) {
+        if (!member || member.user.bot) {
             return message.reply('invalid member')
         }
 
