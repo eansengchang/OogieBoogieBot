@@ -4,10 +4,16 @@ module.exports = message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     let { client, guild, member, author } = message;
     const commandName = args.shift().toLowerCase();
+    let command;
 
     //checks if the command exists
-    if (!client.commands.has(commandName)) return;
-    const command = client.commands.get(commandName);
+    client.commands.array().forEach(element => {
+        if (commandName === element.name || (element.aliases && element.aliases.includes(commandName))) {
+            command = element;
+        }
+    })
+
+    if (!command) return;
 
     // if (message.author.id == '249148390527598592') {
     //     return message.reply('Sorry, I\'m unable to run that command for you.');
@@ -86,12 +92,10 @@ module.exports = message => {
             flag = true;
             let temp = element.split('-')
             timeLeft = parseInt(temp[temp.length - 1]) - Date.now()
-            console.log(parseInt(temp[temp.length - 1]), Date.now(), parseInt(temp[temp.length - 1]) - Date.now())
         }
     })
 
     if (cooldown > 0 && flag) {
-        console.log(timeLeft)
         timeLeft = Math.round(timeLeft / 1000)
         if (timeLeft > 60) {
             message.reply(`You can\'t use that command so soon, time left is \`${Math.floor(timeLeft / 60)} mins.\``)

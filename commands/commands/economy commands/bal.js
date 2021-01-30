@@ -3,6 +3,7 @@ const economySchema = require('@models/economy-schema')
 
 module.exports = {
     name: 'bal',
+    aliases: ['balance'],
     description: 'Gets your balance',
     expectedArgs: '@user / top',
     guildOnly: true,

@@ -19,9 +19,7 @@ module.exports = {
                 )
                 message.channel.send(embed);
             });
-
         });
-
 
         let channels = 0;
         let serverMembers = 0;
