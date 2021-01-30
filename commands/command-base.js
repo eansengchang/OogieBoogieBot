@@ -80,7 +80,8 @@ module.exports = message => {
 
     if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
         if (cooldown > 60) {
-            return message.reply(`You can\'t use that command so soon, cooldown is ${Math.round(10 * cooldown / 60) / 10} mins.`)
+            message.reply(`You can\'t use that command so soon, cooldown is ${Math.round(10 * cooldown / 60) / 10} mins.`)
+            return
         }
 
         message.reply(`You can\'t use that command so soon, cooldown is ${cooldown} secs.`)
