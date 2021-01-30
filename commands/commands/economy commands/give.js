@@ -68,6 +68,8 @@ module.exports = {
         if (member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
 
         let ammount = parseInt(args[1]);
+        if(args[1] === 'all') ammount = giver.money
+
         if (isNaN(ammount) || ammount < 0) return message.reply('That is not a valid amount')
 
         if (ammount > giver.money) return message.reply('You don\'t have the money for that!')
