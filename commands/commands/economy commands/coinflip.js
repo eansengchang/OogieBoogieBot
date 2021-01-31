@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const economySchema = require('@models/economy-schema')
 
 module.exports = {
-    name: 'coinflip',
-    aliases: ['gamble'],
-    description: 'Flips a coin for some money',
+    name: 'gamble',
+    aliases: ['coinflip'],
+    description: 'Gamble for some money',
     expectedArgs: '{ammount} / all',
     guildOnly: true,
     minArgs: 1,
