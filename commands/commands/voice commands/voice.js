@@ -8,7 +8,7 @@ const height = 800;
 
 module.exports = {
     name: 'voice',
-    description: 'Top voice of this server',
+    description: 'Top voice activity of this server',
     guildOnly: true,
     execute: async (message, args) => {
         let activityCollection = activitySchema(message.guild.id);
