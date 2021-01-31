@@ -19,5 +19,8 @@ The bot also gives detailed information on a lot of areas such as a specific use
 ### Automative commands:
 The bot also automates commands such as nicknaming all members or automatic roles. The bot could also give automatic roles to all new members.
 
+### Economy commands:
+This bot also has a global economy accross all servers with a range of commands such as work, crime, steal and view the richest people.
+
 ### Fun commands:
 This includes meme command or 8ball.
