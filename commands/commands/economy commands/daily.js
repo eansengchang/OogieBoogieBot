@@ -19,7 +19,6 @@ module.exports = {
         const { id } = member;
 
         if (claimedCache.includes(id)) {
-            console.log(claimedCache)
             message.reply('You have already claimed your daily rewards.');
             return
         }
@@ -45,7 +44,6 @@ module.exports = {
             else if (neededTime / 60 < 60) text += (`${Math.floor(neededTime / 60)}m${Math.floor(neededTime % 60)}s`);
             else text += (`${Math.floor(neededTime / 60 / 60)}hr${Math.floor((neededTime / 60) % 60)}m`);
 
-            console.log(diffDays)
             if (diffDays >= 1) {
                 giveMoney(id, message)
             } else {
