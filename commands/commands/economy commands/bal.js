@@ -19,7 +19,7 @@ module.exports = {
                 }
             })
 
-            members.sort((a, b) => a.money + a.bank > b.money + a.bank ? -1 : 1)
+            members.sort((a, b) => a.money + a.bank > b.money + b.bank ? -1 : 1)
             members.splice(10)
             let list = members.map(member => {
                 return `**${message.guild.members.cache.get(member._id).displayName}**: $${member.money + member.bank}`
