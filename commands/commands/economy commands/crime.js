@@ -5,7 +5,7 @@ module.exports = {
     name: 'crime',
     description: 'Do some crime for some money',
     guildOnly: true,
-    cooldown: 60 * 10,
+    cooldown: 60 * 5,
     async execute(message, args) {
         const economyCollection = economySchema()
 
@@ -16,6 +16,7 @@ module.exports = {
                 _id: message.author.id
             },
             {
+                $setOnInsert: { bank: 0 },
                 $inc: { money: gained }
             },
             {

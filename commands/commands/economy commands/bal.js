@@ -19,10 +19,10 @@ module.exports = {
                 }
             })
 
-            members.sort((a, b) => a.money > b.money ? -1 : 1)
+            members.sort((a, b) => a.money + a.bank > b.money + a.bank ? -1 : 1)
             members.splice(10)
             let list = members.map(member => {
-                return `**${message.guild.members.cache.get(member._id).displayName}**: $${member.money}`
+                return `**${message.guild.members.cache.get(member._id).displayName}**: $${member.money + member.bank}`
             })
 
             let embed = new Discord.MessageEmbed()
@@ -40,9 +40,7 @@ module.exports = {
                 _id: member.id
             },
             {
-                $inc: {
-                    money: 0
-                }
+                $setOnInsert: { money: 0, bank: 0 },
             },
             {
                 upsert: true
@@ -51,7 +49,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setTitle(`${member.displayName}'s money`)
-            .setDescription(`Bank account: **${obj ? obj.money : 0} dollars**`)
+            .setDescription(`Bank account: **${obj ? obj.bank : 0} dollars** \n Cash: **${obj ? obj.money : 0} dollars**`)
 
         message.channel.send(embed)
     },

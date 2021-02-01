@@ -24,7 +24,7 @@ module.exports = {
                 _id: message.author.id
             },
             {
-                $setOnInsert: { money: 0 }
+                $setOnInsert: { money: 0, bank: 0 }
             },
             {
                 returnNewDocument: true,   // return new doc if one is upserted
@@ -36,7 +36,7 @@ module.exports = {
                 _id: member.id
             },
             {
-                $setOnInsert: { money: 0 }
+                $setOnInsert: { money: 0, bank: 0 }
             },
             {
                 returnNewDocument: true,   // return new doc if one is upserted

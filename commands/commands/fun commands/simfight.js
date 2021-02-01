@@ -22,7 +22,7 @@ let makeDeathMessages = (name1, name2) => {
 }
 
 module.exports = {
-    name: 'simfight',
+    name: 'fight',
     description: 'Simulates a fight!',
     expectedArgs: '@user / everyone',
     minArgs: 1,

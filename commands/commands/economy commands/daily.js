@@ -68,6 +68,7 @@ const giveMoney = async (id, message) => {
             _id: id
         },
         {
+            $setOnInsert: { bank: 0 },
             $inc: { money: 2000 }
         },
         {

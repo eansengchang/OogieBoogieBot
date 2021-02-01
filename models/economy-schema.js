@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const economySchema = mongoose.Schema({
     _id: String,
-    // bank: Number,
+    bank: Number,
     money: Number,
 });
 

@@ -16,6 +16,7 @@ module.exports = {
                 _id: message.author.id
             },
             {
+                $setOnInsert: { bank: 0 },
                 $inc: { money: 0 }
             },
             {
@@ -26,7 +27,7 @@ module.exports = {
         let ammount = parseInt(args[0]);
 
         //if wanna gamble all
-        if(args[0] === 'all') ammount = obj.money    
+        if (args[0] === 'all') ammount = obj.money
 
         if (isNaN(ammount) || ammount < 0) return message.reply('That is not a valid ammount');
 

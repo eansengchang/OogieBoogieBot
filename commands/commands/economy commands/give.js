@@ -21,7 +21,7 @@ module.exports = {
                 _id: message.author.id
             },
             {
-                $setOnInsert: { money: 0 }
+                $setOnInsert: { money: 0, bank: 0 }
             },
             {
                 returnNewDocument: true,   // return new doc if one is upserted
@@ -68,7 +68,7 @@ module.exports = {
         if (member.id === message.author.id) return message.reply('Why are you trying to give yourself money?')
 
         let ammount = parseInt(args[1]);
-        if(args[1] === 'all') ammount = giver.money
+        if (args[1] === 'all') ammount = giver.money
 
         if (isNaN(ammount) || ammount < 0) return message.reply('That is not a valid amount')
 
