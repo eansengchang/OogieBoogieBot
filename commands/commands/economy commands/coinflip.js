@@ -30,6 +30,7 @@ module.exports = {
         if (args[0] === 'all') ammount = obj.money
 
         if (isNaN(ammount) || ammount < 0) return message.reply('That is not a valid ammount');
+        if (ammount == 0) return message.reply('You have nothing to gamble!');
 
         if (obj && ammount > obj.money) return message.reply('You don\' have the money for this!')
 
