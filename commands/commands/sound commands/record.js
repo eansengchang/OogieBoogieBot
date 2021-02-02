@@ -8,19 +8,15 @@ module.exports = {
     // minArgs: 1,
     guildOnly: true,
     async execute(message, args) {
-        let member = message.mentions.members.first() || message.member;
+        let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member;
 
         if (message.member.voice.channel) {
-            let connection = await message.member.voice.channel.join()
+            let connection = await member.voice.channel.join()
             if (!connection) message.reply(`I can't seem to join the channel...`)
 
             message.channel.send(`Recording **${member.displayName}** | type \`stop\` to stop recording`)
             const audio = connection.receiver.createStream(member.user, { mode: 'pcm', end: 'manual' });
             const writer = audio.pipe(fs.createWriteStream(`./recorded-${member.id}.pcm`));
-
-            writer.on('finish', () => {
-                message.channel.send('Finished recording audio.')
-            })
 
             const filter = m => {
                 return (m.author.id === message.author.id && m.content == 'stop')
@@ -36,8 +32,12 @@ module.exports = {
                 message.channel.send('Finished recording audio.')
             })
 
+            writer.on('finish', () => {
+                collector.stop()
+            })
+
         } else {
-            message.reply('You need to join a voice channel first!');
+            message.reply('The member needs to join a voice channel first!');
         }
     },
 };
