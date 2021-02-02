@@ -16,8 +16,6 @@ module.exports = {
             member = message.mentions.members.first();
         })
 
-        
-
         if (!member) return message.reply('You need to specify a member to quote.')
 
         const canvas = Canvas.createCanvas(1200 + 25 * args.join(' ').length, 400);
