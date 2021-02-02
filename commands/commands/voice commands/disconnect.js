@@ -20,8 +20,11 @@ module.exports = {
             });
             return message.channel.send(`I have disconnected all possible members`);
         }
-        let user = message.guild.members.cache.get(args[0]).user || message.mentions.users.first();
-        if (!user) { return message.reply('User not found!'); }
+
+        let targetMember = message.guild.members.cache.get(args[0]) || message.mentions.members.first();
+        if (!targetMember) return message.reply('Member not found!');
+        let user = targetMember.user;
+
         let flag = true;
         message.guild.channels.cache.array().forEach(channel => {
             if (channel.type == 'voice') {
@@ -33,7 +36,7 @@ module.exports = {
                 });
             };
         });
-        if (flag) { return message.reply('User not found in voice channels!') }
+        if (flag) return message.reply('User not found in voice channels!')
         message.channel.send(`I have disconnected <@${user.id}>`);
     },
 };
