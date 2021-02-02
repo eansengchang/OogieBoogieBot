@@ -3,7 +3,7 @@ const ytdl = require('ytdl-core');
 module.exports = {
     name: 'play',
     description: 'Plays some audio',
-    expectedArgs: '{tag}',
+    expectedArgs: '{tag} / @user',
     minArgs: 1,
     guildOnly: true,
     async execute(message, args) {
@@ -14,6 +14,8 @@ module.exports = {
                 if (!fs.existsSync(`./recorded-${member.id}.pcm`)) return message.reply('no recording of user')
 
                 const connection = await message.member.voice.channel.join();
+                if(!connection) return message.channel.send('I can\'t seem to join the channel');
+
                 const stream = fs.createReadStream(`./recorded-${member.id}.pcm`);
 
                 const dispatcher = connection.play(stream, {
@@ -30,9 +32,7 @@ module.exports = {
                 let connection = await message.member.voice.channel.join()
                 if (!connection) return message.channel.send('I can\'t seem to join the channel');
 
-                connection.play(args[0])
-
-
+                connection.play(args[0]);
             } else {
                 message.reply('That doesn\'t seem to be a valid link')
             }

@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args) {
         let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member;
 
-        if (message.member.voice.channel) {
+        if (member.voice.channel) {
             let connection = await member.voice.channel.join()
             if (!connection) message.reply(`I can't seem to join the channel...`)
 
