@@ -3,7 +3,7 @@ const config = require('@root/config.json');
 prefix = config.prefix;
 
 const listCommands = require('../../list-commands')
-const categoryNames = ['fun', 'game', 'info', 'mod', 'voice', 'config', 'image', 'economy', 'nsfw'];
+const categoryNames = ['fun', 'info', 'mod', 'voice', 'config', 'image', 'economy', 'nsfw'];
 
 module.exports = {
     name: 'help',

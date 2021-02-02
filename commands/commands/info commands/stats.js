@@ -25,7 +25,7 @@ module.exports = {
                 { name: 'Created on:', value: `${client.user.createdAt.toDateString()}`, inline: false },
                 { name: 'Servers:', value: `${client.guilds.cache.size}`, inline: false },
                 { name: 'Total Channels:', value: `${channels}`, inline: false },
-                { name: 'Total Server members:', value: `${serverMembers}`, inline: false },
+                // { name: 'Total Server members:', value: `${serverMembers}`, inline: false },
                 { name: 'Commands:', value: `${client.commands.size}`, inline: false },
             )
         let uptime = client.uptime;
