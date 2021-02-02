@@ -29,10 +29,10 @@ module.exports = {
                 user = message.mentions.users.first();
             })
         }
-
-        if (user.bot) return message.channel.send('You can\'t do this to a bot');
+        
         // If we have a user mentioned
         if (user) {
+            if (user.bot) return message.channel.send('You can\'t do this to a bot');
             // Now we get the member from the user
             const member = message.guild.member(user);
             // If the member is in the guild

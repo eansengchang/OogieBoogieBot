@@ -10,7 +10,6 @@ module.exports = {
     memberPermissions: ['MUTE_MEMBERS'],
     clientPermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
-
         let timeoutRoleCollection = timeoutRoleSchema();
         let timeout = await timeoutRoleCollection.findOne({
             _id: message.guild.id
@@ -31,9 +30,9 @@ module.exports = {
             })
         }
 
-        if (user && user.bot) return message.channel.send('You can\'t do this to a bot');
         // If we have a user mentioned
         if (user) {
+            if (user.bot) return message.channel.send('You can\'t do this to a bot');
             // Now we get the member from the user
             const member = message.guild.member(user);
 
