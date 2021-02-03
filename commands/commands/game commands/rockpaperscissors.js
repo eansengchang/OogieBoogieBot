@@ -44,8 +44,8 @@ module.exports = {
         const authorDM = await message.author.createDM();
         const memberDM = await member.user.createDM();
 
-        message.author.send(questionEmbed);
-        member.user.send(questionEmbed);
+        await message.author.send(questionEmbed);
+        await member.user.send(questionEmbed);
 
         let updateDecision = (m) => {
             let dmMessage = m.first()
@@ -56,8 +56,6 @@ module.exports = {
             let content = dmMessage.content.trim().toLowerCase()
 
             dmMessage.channel.send(`Your choice of \`${content}\` has been submitted`)
-            console.log('Update decision')
-            console.log(`${dmMessage.author.tag}: ${content}`)
 
             if (dmMessage.author.id === message.author.id) {
                 authorChoice = decisions.indexOf(content);
@@ -72,7 +70,6 @@ module.exports = {
             if (authorChoice !== '' && memberChoice !== '') {
                 let result = (authorChoice - memberChoice + 3) % 3;
                 let description;
-                console.log(result)
                 if (result === 1) {
                     description = `${message.member.displayName} has won!`
                 } else if (result === 2) {
