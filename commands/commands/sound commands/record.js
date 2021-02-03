@@ -12,8 +12,7 @@ module.exports = {
 
         if (member.voice.channel) {
 
-
-            let connection = await member.voice.channel.join()
+            const connection = await member.voice.channel.join()
             if (!connection) message.reply(`I can't seem to join the channel...`)
 
             if (fs.existsSync(`./recorded-${member.id}.pcm`)) {
@@ -23,8 +22,8 @@ module.exports = {
                 })
             }
             // return;
-            const audio = connection.receiver.createStream(member.user, { mode: 'pcm', end: 'manual' });
-            const writer = audio.pipe(fs.createWriteStream(`./recorded-${member.id}.pcm`));
+            const receiver = connection.receiver.createStream(member, { mode: 'pcm', end: 'manual' });
+            const writer = receiver.pipe(fs.createWriteStream(`./recorded-${member.id}.pcm`));
             message.channel.send(`Recording **${member.displayName}** | type \`stop\` to stop recording`)
 
             const filter = m => {
@@ -38,7 +37,7 @@ module.exports = {
 
             collector.on('end', m => {
                 
-                audio.unpipe();
+                receiver.unpipe();
                 message.channel.send('Finished recording audio.')
             })
 
