@@ -10,11 +10,13 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     guildOnly: true,
+    cooldown: 20,
     execute: async (message, args) => {
         let member = message.mentions.members.first();
 
         if (!member) return message.reply('Invalid member')
         if (member.user.bot) return message.reply('You can\'t do this to a bot')
+        if (member.id === message.author.id) return message.reply('You can\'t challenge yourself!')
 
         //setup
         let authorChoice = '';
