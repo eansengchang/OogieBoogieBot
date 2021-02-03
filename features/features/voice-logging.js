@@ -29,8 +29,6 @@ module.exports = async (client) => {
             let text = `:mute: **${state1.member.user.tag}** left **${state1.channel.name}** `;
 
             if (!activity || !activity.voiceJoinedStamp) {
-                console.log('no activity joined stamp: ', state1.member.user.tag);
-                console.log(activity)
                 vlogChannel.send(text);
                 return
             }
