@@ -7,6 +7,7 @@ module.exports = {
     description: 'Quotes a person',
     expectedArgs: '@user {quote}',
     guildOnly: true,
+    minArgs: 2,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
         let member;
