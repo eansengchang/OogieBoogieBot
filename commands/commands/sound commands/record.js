@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js')
+const ytdl = require('ytdl-core');
 
 module.exports = {
     name: 'record',
@@ -21,6 +22,7 @@ module.exports = {
                     // console.log('File deleted!');
                 })
             }
+            connection.play(ytdl('https://www.youtube.com/watch?v=7-qGKqveZaM'), { filter: 'audioonly' });
             // return;
             const receiver = connection.receiver.createStream(member, { mode: 'pcm', end: 'manual' });
             const writer = receiver.pipe(fs.createWriteStream(`./recorded-${member.id}.pcm`));
@@ -36,7 +38,7 @@ module.exports = {
             })
 
             collector.on('end', m => {
-                
+
                 receiver.unpipe();
                 message.channel.send('Finished recording audio.')
             })
