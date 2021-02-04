@@ -33,7 +33,7 @@ module.exports = {
             }
 
             const collector = new Discord.MessageCollector(message.channel, filter, {
-                time: 1000 * 60,
+                time: 1000 * 60 * 3,
                 max: 1
             })
 
