@@ -16,19 +16,19 @@ body{
 #dropdownBut{
     margin-top: 10px;
     background-color: #88bdda;
-    padding: 0;
+    padding: 10px;
     
 }
 
 .card{
     margin: 0;
     background-color: #4fa2cf;
-    padding:0;
+    padding:10px;
 }
 
 p{
-    margin: 10px;
-    font-size: 15px;
+    margin: 0px;
+    font-size: 18px;
     color: white;
     padding:0;
 }

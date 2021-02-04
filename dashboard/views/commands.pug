@@ -20,6 +20,8 @@ body
           .collapse(id=command.name)
             .card.card-body
               p(style='color:black') #{command.description}
+              if command.aliases
+                p(style='color:black;font-size:15px') Other aliases: #{command.aliases.join(', ')}
 
     section(id='nsfw commands')
       .row
