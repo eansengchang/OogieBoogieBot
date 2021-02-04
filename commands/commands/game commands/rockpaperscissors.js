@@ -40,7 +40,7 @@ module.exports = {
 
         //asks the question now in the dms
         let questionEmbed = new Discord.MessageEmbed()
-            .setTitle('Submit your decision!')
+            .setTitle('Rock Paper Scissors!')
             .setDescription('Type either \`rock\`, \`paper\`, \`scissors\` to submit your decision...');
 
         const authorDM = await message.author.createDM();

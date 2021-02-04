@@ -319,7 +319,6 @@ let showActivity = (activity, message, user) => {
 
     //if hes in a call, sends the length of the call
     if (activity.isVoice) {
-        console.log(activity)
         let time = Math.floor((Date.now() - activity.voiceJoinedStamp) / 1000);
         let text;
 
