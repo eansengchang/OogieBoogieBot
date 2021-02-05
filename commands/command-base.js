@@ -46,7 +46,7 @@ module.exports = message => {
         let missingPerms = [];
         let flag = false;
         memberPermissions.forEach((item, index) => {
-            if (!member.hasPermission(item)) {
+            if (!message.channel.permissionsFor(member).has(item)) {
                 flag = true;
                 missingPerms.push(item);
             }
@@ -62,7 +62,7 @@ module.exports = message => {
         let missingPerms = [];
         let flag = false;
         clientPermissions.forEach((item, index) => {
-            if (!selfMember.hasPermission(item)) {
+            if (!message.channel.permissionsFor(selfMember).has(item)) {
                 flag = true;
                 missingPerms.push(item);
             }

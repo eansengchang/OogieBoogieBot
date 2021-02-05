@@ -6,6 +6,7 @@ module.exports = {
     description: 'Looks it up on urban dictionary.',
     expectedArgs: '@user {phrase}',
     minArgs: 2,
+    guildOnly: true,
     clientPermissions: ['MANAGE_WEBHOOKS'],
     async execute(message, args) {
         let { channel } = message;
