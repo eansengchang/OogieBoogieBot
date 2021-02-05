@@ -10,7 +10,7 @@ Oogie Boogie Bot is a multi-functional bot that can take care of moderation and 
 ### Activity and voice logging:
 The bot logs every minute of voice and message and can be used to create detailed breakdowns of each members activity and presence per day visually. It can also log all the voice calls happening in the server and their duration.
 
-### voice recording and playback
+### Voice recording and playback:
 This bot also has features of recording a person's voice and playing in back. It can also play sound from a sound file or from online. This feature is however still in development.
 
 ### Moderation commands:
