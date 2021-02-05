@@ -10,14 +10,14 @@ module.exports = {
     minArgs: 2,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
-        let member;
-        await message.guild.members.fetch(args[0]).then(fetched => {
-            member = fetched || message.mentions.members.first();
-        }).catch((err) => {
-            member = message.mentions.members.first();
-        })
+        let member = message.mentions.members.first();
 
         if (!member) return message.reply('You need to specify a member to quote.')
+
+        let content = message.cleanContent.trim().split(/ +/);
+        for (let i = 0; i < 2 + (member.displayName).split(' ').length; i++) {
+            content.shift()
+        }
 
         const canvas = Canvas.createCanvas(1200 + 25 * args.join(' ').length, 400);
         const ctx = canvas.getContext('2d');
@@ -33,7 +33,7 @@ module.exports = {
         const fontHeight = 75;
 
         //the name
-        ctx.fillStyle = member.displayHexColor;
+        ctx.fillStyle = member.displayHexColor === '#000000' ? '#FFFFFF' : member.displayHexColor;
         ctx.font = `bold ${fontHeight}px uni-sans-heavy`;
         let displayName = member.displayName;
         ctx.fillText(displayName, marginLeft + pfpSize + 75, marginTop + fontHeight)
@@ -47,8 +47,7 @@ module.exports = {
         //the actual text
         ctx.fillStyle = '#FFFFFF';
         ctx.font = ` ${fontHeight}px uni-sans`;
-        args.shift()
-        let text = args.join(' ')
+        let text = content.join(' ')
         ctx.fillText(text, marginLeft + pfpSize + 75, marginTop + pfpSize - 30)
 
         // Pick up the pen
