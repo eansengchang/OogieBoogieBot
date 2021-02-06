@@ -262,6 +262,9 @@ let showBarChart = async (message, users, activities) => {
                         display: true,
                         labelString: 'Messages per day'
                     },
+                    ticks: {
+                        beginAtZero: true
+                    },
                     gridLines: {
                         display: false,
                     },
