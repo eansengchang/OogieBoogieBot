@@ -3,7 +3,7 @@ const config = require('@root/config.json');
 prefix = config.prefix;
 
 const listCommands = require('../../list-commands')
-const categoryNames = ['fun', 'info', 'stats', 'mod', 'voice', 'config', 'image', 'game', 'nsfw'];
+const categoryNames = ['config', 'fun', 'info', 'stats', 'mod', 'voice', 'image', 'game', 'nsfw'];
 
 module.exports = {
     name: 'help',
@@ -36,7 +36,7 @@ module.exports = {
             embed.setTitle('Full Description of Commands')
                 .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
 
-            categoryNames.forEach(category=>{
+            categoryNames.forEach(category => {
                 embed.addField(
                     `${category.charAt(0).toUpperCase() + category.slice(1)} commands`,
                     `\n\`${prefix}help ${category}\``,
