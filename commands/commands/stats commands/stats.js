@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'stats',
+    aliases: ['info'],
     description: 'Info on this bot.',
     execute: async (message, args) => {
         let embed;

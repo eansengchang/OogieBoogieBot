@@ -1,5 +1,6 @@
 module.exports = {
     name: 'purge',
+    aliases: ['prune'],
     description: 'Bulk deletes messages.',
     expectedArgs: '{num}',
     minArgs: 1,
