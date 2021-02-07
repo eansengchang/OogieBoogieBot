@@ -10,7 +10,6 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     guildOnly: true,
-    cooldown: 20,
     execute: async (message, args) => {
         let member = message.mentions.members.first();
 
