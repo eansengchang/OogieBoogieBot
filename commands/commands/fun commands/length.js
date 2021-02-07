@@ -1,5 +1,6 @@
 module.exports = {
     name: 'length',
+    aliases: ['penis'],
     description: 'Finds your length.',
     expectedArgs: '@user',
     execute(message, args) {
