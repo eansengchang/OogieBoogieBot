@@ -7,6 +7,7 @@ const voteChannelSchema = require('@models/vote-channel-schema');
 
 module.exports = {
     name: 'settings',
+    aliases:['config'],
     description: 'Settings of this server.',
     guildOnly: true,
     async execute(message, args) {
