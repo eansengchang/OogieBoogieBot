@@ -9,15 +9,21 @@ module.exports = {
     guildOnly: true,
     clientPermissions: ['MANAGE_WEBHOOKS'],
     async execute(message, args) {
+        if (message.mentions.everyone || message.cleanContent.includes('@everyone') || message.cleanContent.includes('@here')) {
+            return message.reply('I won\'t mention everyone');
+        }
+
         let { channel } = message;
 
         let member = message.mentions.members.first();
         if (!member) return message.reply('You need to specify who to mimick')
 
-        let content = message.cleanContent.trim().split(/ +/);
-        for (let i = 0; i < 2 + (member.displayName).split(' ').length; i++) {
-            content.shift()
-        }
+        // let content = message.cleanContent.trim().split(/ +/);
+        // for (let i = 0; i < 2 + (member.displayName).split(' ').length; i++) {
+        //     content.shift()
+        // }
+        args.shift();
+        let content = args;
 
         let avatarURL = member.user.displayAvatarURL()
 
