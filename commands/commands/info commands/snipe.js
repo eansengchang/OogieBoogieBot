@@ -14,7 +14,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
             .setDescription(msg.content)
-            .setFooter(`Date: ${msg.date} | ${args[0] || 1}/${snipes.length}`)
+            .setFooter(`Date: ${msg.date} | ${args[0] - 1 + 1 || 1}/${snipes.length}`)
 
         
         if (msg.attachment) embed.setImage(msg.attachment);
