@@ -10,6 +10,6 @@ module.exports = {
         }
 
         if (cleanContent.length === 0) return message.reply('please specify what to say');
-        message.channel.send(cleanContent.join(' '));
+        message.channel.send(cleanContent.join(' ') + `\n\n-${message.member.displayName}`);
     },
 };
