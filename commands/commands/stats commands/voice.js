@@ -143,6 +143,9 @@ let showChart = async (message, users, activities) => {
                     gridLines: {
                         display: false,
                     },
+                    ticks: {
+                        beginAtZero: true
+                    },
                 }]
             },
             layout: {
