@@ -3,6 +3,7 @@ let recentlyRan = []
 module.exports = message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     let { client, guild, member, author } = message;
+    const selfMember = message.guild.member(message.client.user);
     const commandName = args.shift().toLowerCase();
     let command;
 
@@ -14,6 +15,10 @@ module.exports = message => {
     })
 
     if (!command) return;
+
+    if (!message.channel.permissionsFor(selfMember).has('SEND_MESSAGES')) {
+        return;
+    }
 
     // if (message.author.id == '249148390527598592') {
     //     return message.reply('Sorry, I\'m unable to run that command for you.');
@@ -58,7 +63,7 @@ module.exports = message => {
 
     //error traps for bot perms
     if (message.channel.type !== 'dm' && clientPermissions) {
-        const selfMember = message.guild.member(message.client.user);
+
         let missingPerms = [];
         let flag = false;
         clientPermissions.forEach((item, index) => {
