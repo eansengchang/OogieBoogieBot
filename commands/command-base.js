@@ -3,7 +3,7 @@ let recentlyRan = []
 module.exports = message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     let { client, guild, member, author } = message;
-    const selfMember = message.guild.member(message.client.user);
+
     const commandName = args.shift().toLowerCase();
     let command;
 
@@ -16,7 +16,7 @@ module.exports = message => {
 
     if (!command) return;
 
-    if (!message.channel.permissionsFor(selfMember).has('SEND_MESSAGES')) {
+    if (message.channel.type !== 'dm' && !message.channel.permissionsFor(selfMember).has('SEND_MESSAGES')) {
         return;
     }
 
@@ -46,7 +46,6 @@ module.exports = message => {
 
     //checks if person has permissions
     if (message.channel.type !== 'dm' && memberPermissions && message.author.id !== '333177159357169664') {
-
         const member = message.member;
         let missingPerms = [];
         let flag = false;
@@ -63,7 +62,7 @@ module.exports = message => {
 
     //error traps for bot perms
     if (message.channel.type !== 'dm' && clientPermissions) {
-
+        const selfMember = message.guild.member(message.client.user);
         let missingPerms = [];
         let flag = false;
         clientPermissions.forEach((item, index) => {
@@ -126,7 +125,7 @@ module.exports = message => {
     }
 
     try {
-        console.log(`Running ${name} in #${message.channel.name} in ${message.guild.name}`)
+        console.log(`${message.user.tag}: ${name} in #${message.channel ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`)
         execute(message, args);
     } catch (error) {
         console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
