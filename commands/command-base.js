@@ -121,7 +121,7 @@ module.exports = message => {
     }
 
     try {
-        console.log(`Running ${name} in ${message.guild.name}: #${message.channel.name}`)
+        console.log(`Running ${name} in #${message.channel.name} in ${message.guild.name}`)
         execute(message, args);
     } catch (error) {
         console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
