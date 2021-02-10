@@ -16,7 +16,8 @@ module.exports = message => {
 
     if (!command) return;
 
-    if (message.channel.type !== 'dm' && !message.channel.permissionsFor(selfMember).has('SEND_MESSAGES')) {
+    //if it doesn't have perms to send in the channel
+    if (message.channel.type !== 'dm' && !message.channel.permissionsFor(message.guild.member(message.client.user)).has('SEND_MESSAGES')) {
         return;
     }
 
@@ -125,7 +126,7 @@ module.exports = message => {
     }
 
     try {
-        console.log(`${message.user.tag}: ${name} in #${message.channel ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`)
+        console.log(`${message.author.tag}: ${name} in #${message.channel.name ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`)
         execute(message, args);
     } catch (error) {
         console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
