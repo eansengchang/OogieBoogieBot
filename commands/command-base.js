@@ -126,7 +126,9 @@ module.exports = message => {
     }
 
     try {
-        console.log(`${message.author.tag}: ${name} in #${message.channel.name ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`)
+        let text = `${message.author.tag}: ${name} in #${message.channel.name ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`;
+        console.log(text)
+        client.guilds.cache.get('616347460679368731').channels.cache.get('809573431195729940').send(text);
         execute(message, args);
     } catch (error) {
         console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
