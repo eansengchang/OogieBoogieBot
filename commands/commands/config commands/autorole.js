@@ -43,7 +43,7 @@ module.exports = {
             role = await message.guild.roles.fetch(roleID);
         }
 
-        if (args[0] == 'off') {
+        if (args[0] == 'off' || args[0] == 'remove') {
             roleID = '';
         }
         else if (!role) {
