@@ -12,14 +12,15 @@ module.exports = {
     execute(message, args) {
         const embed = new Discord.MessageEmbed().setColor('#0099ff')
             .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
-            .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
+
 
         let allCommands = true;
         categoryNames.forEach(category => {
             if (args[0] === category) {
                 allCommands = false;
                 let list = makeCommandList(listCommands(`commands/${category} commands`))
-                embed.setColor('#0099ff')
+                embed
+                    .setColor('#0099ff')
                     .setTitle(`${category.charAt(0).toUpperCase() + category.slice(1)} commands`)
                     .setDescription(`A collection of all the ${category} commands and descriptions`)
                     .addFields(
@@ -34,7 +35,9 @@ module.exports = {
 
         if (allCommands) {
             embed.setTitle('Full Description of Commands')
+                .setColor('#0099ff')
                 .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
+                .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
 
             categoryNames.forEach(category => {
                 embed.addField(

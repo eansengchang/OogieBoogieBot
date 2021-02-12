@@ -68,7 +68,8 @@ module.exports = {
         response += `\n**${people[0].displayName}** has won!`;
 
         let embed = new Discord.MessageEmbed()
-            .setDescription(response);
+            .setDescription(response)
+            .setColor('#0099ff')
 
         message.channel.send(embed);
     },

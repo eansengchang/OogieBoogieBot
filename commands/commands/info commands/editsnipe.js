@@ -11,6 +11,7 @@ module.exports = {
         if (editSnipes.length === 0) return message.reply('There is nothing to snipe!')
         if (!msg) return message.reply('That is not a valid snipe...');
         const embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
             .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true, size: 256 }))
             .addFields(
                 {

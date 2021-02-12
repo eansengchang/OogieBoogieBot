@@ -28,6 +28,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Richest people in ${message.guild.name}`)
                 .setDescription(list.join('\n'))
+                .setColor('#0099ff')
 
             message.channel.send(embed)
             return;

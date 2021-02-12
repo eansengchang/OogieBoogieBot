@@ -27,6 +27,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
             .setTitle(`${message.member.displayName} has worked!`)
             .setDescription(`**${message.member.displayName}** has gained **$${gained}** after working!`)
+            .setColor('#0099ff')
 
         message.channel.send(embed)
     },

@@ -83,6 +83,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
             .setTitle(`${member.displayName} has been robbed`)
             .setDescription(`**${message.member.displayName}** has robbed **$${stolen}** from **${member.displayName}**`)
+            .setColor('#0099ff')
 
         message.channel.send(embed)
     },

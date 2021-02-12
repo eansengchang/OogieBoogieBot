@@ -23,6 +23,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setTitle(`${message.member.displayName} has challenged ${member.displayName}!`)
+            .setColor('#0099ff')
             .setDescription('A rock paper scissors battle is in progress...')
             .addFields(
                 {
@@ -39,6 +40,7 @@ module.exports = {
 
         //asks the question now in the dms
         let questionEmbed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
             .setTitle('Rock Paper Scissors!')
             .setDescription('Type either \`rock\`, \`paper\`, \`scissors\` to submit your decision...');
 
@@ -79,6 +81,7 @@ module.exports = {
                     description = `It is a draw!`
                 }
                 editedEmbed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
                     .setTitle(`${message.member.displayName} has challenged ${member.displayName}!`)
                     .setDescription(description)
                     .addFields(
@@ -94,6 +97,7 @@ module.exports = {
 
             } else {
                 editedEmbed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
                     .setTitle(`${message.member.displayName} has challenged ${member.displayName}!`)
                     .setDescription(`A rock paper scissors battle is in progress...`)
                     .addFields(

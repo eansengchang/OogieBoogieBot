@@ -27,6 +27,7 @@ module.exports = {
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Voting channels of ${message.guild.name}`)
                     .setDescription(text)
+                    .setColor('#0099ff')
 
                 message.channel.send(embed)
             } else {

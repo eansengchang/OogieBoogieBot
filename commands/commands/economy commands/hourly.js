@@ -25,6 +25,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
             .setTitle(`${message.member.displayName} has collected his hourly reward!`)
             .setDescription(`You have gained **$500**`)
+            .setColor('#0099ff')
 
         message.channel.send(embed)
     },

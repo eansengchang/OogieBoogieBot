@@ -79,6 +79,7 @@ const giveMoney = async (id, message) => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`${message.member.displayName} has claimed their daily reward!`)
         .setDescription(`**${message.member.displayName}** has gained $2000`)
+        .setColor('#0099ff')
 
     message.channel.send(embed)
 }

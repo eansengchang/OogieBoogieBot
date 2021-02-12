@@ -37,6 +37,7 @@ module.exports = {
         // if(obj && ammount < obj.money / 10) return message.reply('You can only gamble a minimum of 10% of your money')
 
         let embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
 
         if (Math.random() > 0.5) {
             await obj.updateOne({

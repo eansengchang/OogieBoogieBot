@@ -203,5 +203,7 @@ let showGrid = (grid, message, title) => {
         .setDescription(field)
         .setTitle(title)
         .setFooter('Minesweeper')
+        .setColor('#0099ff')
+        
     message.channel.send(embed);
 }

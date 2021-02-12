@@ -85,6 +85,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
             .setTitle(`${member.displayName} has been gifted!`)
             .setDescription(`**${message.member.displayName}** has gifted **$${ammount}** to **${member.displayName}**`)
+            .setColor('#0099ff')
 
         message.channel.send(embed)
     },
