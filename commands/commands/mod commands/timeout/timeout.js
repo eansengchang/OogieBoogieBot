@@ -1,7 +1,8 @@
 const timeoutRoleSchema = require('@models/timeout-role-schema');
 
 module.exports = {
-    name: 'timeout',
+    name: 'mute',
+    aliases: ['timeout'],
     description: 'mutes a person in server.',
     expectedArgs: '@user',
     guildOnly: true,
@@ -52,7 +53,7 @@ module.exports = {
                         message.reply(`Successfully muted <@${user.id}>`);
                     })
                     .catch(err => {
-                        if(err.message == 'Missing Permissions'){
+                        if (err.message == 'Missing Permissions') {
                             return message.reply('I don\'t have the permissions to do that')
                         }
                         message.reply('I was unable to unmute the member');
