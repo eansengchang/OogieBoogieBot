@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('@root/config.json');
+const fetch = require('node-fetch');
 prefix = config.prefix;
 
 const listCommands = require('../../list-commands')
@@ -9,7 +10,8 @@ module.exports = {
     name: 'help',
     description: 'Help with commands.',
 
-    execute(message, args) {
+    async execute(message, args) {
+        fetch('https://oogieboogiedashboard.herokuapp.com/commands');
         const embed = new Discord.MessageEmbed().setColor('#0099ff')
             .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
 

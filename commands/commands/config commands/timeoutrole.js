@@ -4,7 +4,8 @@ const Discord = require('discord.js');
 const timeoutSchema = require('@models/timeout-role-schema');
 
 module.exports = {
-    name: 'timeoutrole',
+    name: 'muterole',
+    aliases: ['timeoutrole'],
     description: 'The role given to timeout / mute from server.',
     expectedArgs: '{role}',
     guildOnly: true,

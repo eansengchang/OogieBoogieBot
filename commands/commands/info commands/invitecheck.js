@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'invitecheck',
-    description: 'Gives info about the invite.',
+    description: 'Gives info about an invite.',
     expectedArgs: '{invite link}',
     minArgs: 1,
 

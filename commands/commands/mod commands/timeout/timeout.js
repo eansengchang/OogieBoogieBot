@@ -17,7 +17,7 @@ module.exports = {
         }, (err, object) => { });
 
         if (!timeout || timeout.timeoutRole == '') {
-            return message.reply(`You first have to set up the timeout role using \`e timeoutrole\``);
+            return message.reply(`You first have to set up the mute role using \`e muterole\``);
         }
 
         let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
