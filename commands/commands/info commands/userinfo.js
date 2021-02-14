@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'profile',
+    name: 'userinfo',
+    aliases: ['profile'],
     description: 'Gets someone\'s profile.',
     expectedArgs: '@user',
     guildOnly: true,
