@@ -7,6 +7,7 @@ module.exports = {
     name: 'activity-reset',
     description: 'Resets the activity.',
     expectedArgs: '@user / all',
+    examples: ['@user', 'all'],
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
@@ -28,8 +29,8 @@ module.exports = {
         } else {
 
             const user = message.mentions.users.first();
-            if(!user){return message.reply('User not found!');}
-            
+            if (!user) { return message.reply('User not found!'); }
+
             let activity = await activityCollection.findOne({
                 _id: user.id
             }, async (err, member) => {
@@ -44,21 +45,21 @@ module.exports = {
                         isVoice: false,
                         voiceJoinedStamp: message.createdTimestamp
                     });
-    
+
                     await newMember.save()
                         .catch(err => console.error(err));
                 }
             });
 
-            if(activity){
+            if (activity) {
                 await activity.updateOne({
                     _id: user.id,
-                        userTag: user.tag,
-                        lastUpdate: message.createdTimestamp,
-                        messages: 0,
-                        voice: 0,
-                        isVoice: false,
-                        voiceJoinedStamp: message.createdTimestamp
+                    userTag: user.tag,
+                    lastUpdate: message.createdTimestamp,
+                    messages: 0,
+                    voice: 0,
+                    isVoice: false,
+                    voiceJoinedStamp: message.createdTimestamp
                 });
             }
 

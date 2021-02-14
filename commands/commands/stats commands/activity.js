@@ -8,6 +8,7 @@ const height = 800;
 
 module.exports = {
     name: 'activity',
+    examples: ['top', '@user', '{userid}'],
     description: 'See how many messages you\'ve sent, or the top activity of the server',
     expectedArgs: '@user / top',
     guildOnly: true,

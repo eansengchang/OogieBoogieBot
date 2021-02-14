@@ -10,11 +10,9 @@ module.exports = {
     name: 'help',
     description: 'Help with commands.',
 
-    async execute(message, args) {
+    execute(message, args) {
         fetch('https://oogieboogiedashboard.herokuapp.com/commands');
         const embed = new Discord.MessageEmbed().setColor('#0099ff')
-            .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
-
 
         let allCommands = true;
         categoryNames.forEach(category => {
@@ -23,6 +21,7 @@ module.exports = {
                 let list = makeCommandList(listCommands(`commands/${category} commands`))
                 embed
                     .setColor('#0099ff')
+                    .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
                     .setTitle(`${category.charAt(0).toUpperCase() + category.slice(1)} commands`)
                     .setDescription(`A collection of all the ${category} commands and descriptions`)
                     .addFields(
@@ -31,26 +30,93 @@ module.exports = {
                         }
                     );
 
-                return message.channel.send({ embed });
+                return message.channel.send(embed);
+            }
+        })
+        if (!allCommands) return;
+
+        let command;
+        message.client.commands.array().forEach(element => {
+            if (args[0] === element.name || (element.aliases && element.aliases.includes(args[0]))) {
+                command = element;
             }
         })
 
-        if (allCommands) {
-            embed.setTitle('Full Description of Commands')
-                .setColor('#0099ff')
-                .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
-                .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
+        if (command) {
+            let {
+                name,
+                examples,
+                description,
+                expectedArgs,
+                guildOnly = false,
+                minArgs = 0,
+                maxArgs = null,
+                memberPermissions = [],
+                clientPermissions = [],
+                cooldown = -1,
+                nsfw = false,
+                execute
+            } = command;
 
-            categoryNames.forEach(category => {
-                embed.addField(
-                    `${category.charAt(0).toUpperCase() + category.slice(1)} commands`,
-                    `\n\`${prefix}help ${category}\``,
-                    true,
-                )
-            })
+            embed.setTitle(`Info on ${name}`)
+                .addFields(
+                    {
+                        name: 'Description',
+                        value: description
+                    },
+                    {
+                        name: 'Use',
+                        value: `\`${prefix}${name} ${expectedArgs ? expectedArgs : ''}\``
+                    })
 
-            message.channel.send({ embed });
+            if (examples) {
+                embed.addField('Examples', examples.map(x => `\`${prefix}${name} ${x}\``).join('\n'))
+            }
+
+            embed.addFields(
+                {
+                    name: 'Server Only?',
+                    value: guildOnly,
+                    inline: true,
+                },
+                {
+                    name: 'Member Permissions',
+                    value: memberPermissions.join(', ') ? memberPermissions.join(', ') : 'None',
+                    inline: true,
+                },
+                {
+                    name: 'Bot Permissions',
+                    value: clientPermissions.join(', ') ? clientPermissions.join(', ') : 'None',
+                    inline: true,
+                },
+                {
+                    name: 'NSFW?',
+                    value: nsfw,
+                    inline: true,
+                }
+            )
+
+            message.channel.send(embed);
+            return
         }
+        if (command) console.log('huh')
+
+        embed.setTitle('Full Description of Commands')
+            .setColor('#0099ff')
+            .setURL('https://oogieboogiedashboard.herokuapp.com/commands')
+            .setDescription('[Help Server](https://discord.com/invite/ph5DVfFmeX) | [Website](https://oogieboogiedashboard.herokuapp.com/)')
+            .setThumbnail('http://www.justinmaller.com/img/projects/wallpaper/WP_Encrusted_XI-2560x1440_00000.jpg');
+
+        categoryNames.forEach(category => {
+            embed.addField(
+                `${category.charAt(0).toUpperCase() + category.slice(1)} commands`,
+                `\n\`${prefix}help ${category}\``,
+                true,
+            )
+        })
+
+        message.channel.send({ embed });
+
     },
 };
 
