@@ -3,7 +3,7 @@ let math = require('mathjs');
 module.exports = {
     name: 'calc',
     examples: ['5 + 6'],
-    aliases: ['calculate'],
+    aliases: ['calculate', 'math'],
     description: 'Calculates some math for you.',
     minArgs: 1,
     expectedArgs: '{calculation}',

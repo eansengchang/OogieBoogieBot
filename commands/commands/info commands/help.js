@@ -52,6 +52,7 @@ module.exports = {
             let {
                 name,
                 examples,
+                aliases = [],
                 description,
                 expectedArgs,
                 guildOnly = false,
@@ -59,7 +60,7 @@ module.exports = {
                 maxArgs = null,
                 memberPermissions = [],
                 clientPermissions = [],
-                cooldown = -1,
+                cooldown = 0,
                 nsfw = false,
                 execute
             } = command;
@@ -71,20 +72,20 @@ module.exports = {
                         value: description
                     },
                     {
+                        name: 'Aliases',
+                        value: `\`${prefix}${name}\`\n${aliases.map(x => `\`${prefix}${x}\``).join('\n')}`
+                    },
+                    {
                         name: 'Use',
                         value: `\`${prefix}${commandName} ${expectedArgs ? expectedArgs : ''}\``
                     })
 
+            //lists examples of command use
             if (examples) {
                 embed.addField('Examples', examples.map(x => `\`${prefix}${commandName} ${x}\``).join('\n'))
             }
 
             embed.addFields(
-                {
-                    name: 'Server Only?',
-                    value: guildOnly,
-                    inline: true,
-                },
                 {
                     name: 'Member Permissions',
                     value: memberPermissions.join(', ') ? memberPermissions.join(', ') : 'None',
@@ -93,6 +94,11 @@ module.exports = {
                 {
                     name: 'Bot Permissions',
                     value: clientPermissions.join(', ') ? clientPermissions.join(', ') : 'None',
+                    inline: false,
+                },
+                {
+                    name: 'Server Only?',
+                    value: guildOnly,
                     inline: true,
                 },
                 {
@@ -101,6 +107,12 @@ module.exports = {
                     inline: true,
                 }
             )
+
+            //cooldown
+            let cooldownTime;
+            if (cooldown < 60) cooldownTime = `${cooldown} seconds`
+            else cooldownTime = `${cooldown / 60} minutes`
+            embed.addField('Cooldown', cooldownTime, true);
 
             message.channel.send(embed);
             return

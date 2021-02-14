@@ -121,12 +121,12 @@ module.exports = {
         }
 
         const authorCollector = new Discord.MessageCollector(authorDM, filter, {
-            time: 1000 * 30,
+            time: 1000 * 60 * 2,
             max: 1
         })
 
         const memberCollector = new Discord.MessageCollector(memberDM, filter, {
-            time: 1000 * 30,
+            time: 1000 * 60 * 2,
             max: 1
         })
 

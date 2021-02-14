@@ -6,7 +6,6 @@ module.exports = message => {
 
     const commandName = args.shift().toLowerCase();
     let command;
-
     //checks if the command exists
     client.commands.array().forEach(element => {
         if (commandName === element.name || (element.aliases && element.aliases.includes(commandName))) {
