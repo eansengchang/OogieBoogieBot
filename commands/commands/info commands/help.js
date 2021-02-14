@@ -36,8 +36,9 @@ module.exports = {
         if (!allCommands) return;
 
         let command;
+        let commandName = args[0].toLowerCase()
         message.client.commands.array().forEach(element => {
-            if (args[0] === element.name || (element.aliases && element.aliases.includes(args[0]))) {
+            if (commandName === element.name || (element.aliases && element.aliases.includes(commandName))) {
                 command = element;
             }
         })
@@ -58,7 +59,7 @@ module.exports = {
                 execute
             } = command;
 
-            embed.setTitle(`Info on ${name}`)
+            embed.setTitle(`Info on ${commandName}`)
                 .addFields(
                     {
                         name: 'Description',
@@ -66,11 +67,11 @@ module.exports = {
                     },
                     {
                         name: 'Use',
-                        value: `\`${prefix}${name} ${expectedArgs ? expectedArgs : ''}\``
+                        value: `\`${prefix}${commandName} ${expectedArgs ? expectedArgs : ''}\``
                     })
 
             if (examples) {
-                embed.addField('Examples', examples.map(x => `\`${prefix}${name} ${x}\``).join('\n'))
+                embed.addField('Examples', examples.map(x => `\`${prefix}${commandName} ${x}\``).join('\n'))
             }
 
             embed.addFields(

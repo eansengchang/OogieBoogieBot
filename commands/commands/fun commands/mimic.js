@@ -3,7 +3,8 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'mimic',
-    description: 'Looks it up on urban dictionary.',
+    examples: ['@user I am beautiful'],
+    description: 'Mimics someone',
     expectedArgs: '@user {phrase}',
     minArgs: 2,
     guildOnly: true,

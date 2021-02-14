@@ -113,7 +113,7 @@ module.exports = message => {
 
     //error traps if there are no args
     if (args.length < minArgs || (maxArgs !== null && maxArgs < args.length)) {
-        return message.reply(`Incorrect syntax! Use \`${prefix}${name} ${expectedArgs}\``);
+        return message.reply(`Incorrect syntax! Use \`${prefix}${commandName} ${expectedArgs}\``);
     }
 
     if (cooldown > 0) {

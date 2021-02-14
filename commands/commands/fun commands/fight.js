@@ -25,6 +25,7 @@ module.exports = {
     name: 'fight',
     description: 'Simulates a fight!',
     expectedArgs: '@user / everyone',
+    examples: ['@user1 @user2', 'everyone'],
     minArgs: 1,
     guildOnly: true,
     async execute(message, args) {
@@ -51,7 +52,7 @@ module.exports = {
         //shuffles people
         people = people.sort(() => 0.5 - Math.random());
 
-        if(people.length > 20){
+        if (people.length > 20) {
             message.channel.send('Too many people! Randomly picking 20 members to fight...')
             people.splice(20)
         }

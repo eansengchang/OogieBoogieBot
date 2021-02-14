@@ -1,5 +1,6 @@
 module.exports = {
     name: 'ask',
+    examples: ['should I do my homework?'],
     aliases: ['8ball'],
     description: 'Answers your question.',
     expectedArgs: '{question}',

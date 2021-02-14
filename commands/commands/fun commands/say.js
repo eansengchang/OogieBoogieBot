@@ -1,5 +1,6 @@
 module.exports = {
     name: 'say',
+    examples: ['I am a good bot'],
     description: 'Says something.',
     expectedArgs: '{phrase}',
     execute(message, args) {
