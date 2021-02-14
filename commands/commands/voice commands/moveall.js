@@ -1,5 +1,6 @@
 module.exports = {
     name: 'moveall',
+    examples: ['#channel', '{channel id}'],
     description: 'Moves everyone to a channel.',
     expectedArgs: '{channel name}',
     minArgs: 1,

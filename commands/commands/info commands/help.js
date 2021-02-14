@@ -14,6 +14,7 @@ module.exports = {
         fetch('https://oogieboogiedashboard.herokuapp.com/commands');
         const embed = new Discord.MessageEmbed().setColor('#0099ff')
 
+        //help on a specific category
         let allCommands = true;
         categoryNames.forEach(category => {
             if (args[0] === category) {
@@ -36,13 +37,17 @@ module.exports = {
         if (!allCommands) return;
 
         let command;
-        let commandName = args[0].toLowerCase()
-        message.client.commands.array().forEach(element => {
-            if (commandName === element.name || (element.aliases && element.aliases.includes(commandName))) {
-                command = element;
-            }
-        })
+        let commandName = args[0];
+        if (commandName) {
+            commandName = commandName.toLowerCase();
+            message.client.commands.array().forEach(element => {
+                if (commandName === element.name || (element.aliases && element.aliases.includes(commandName))) {
+                    command = element;
+                }
+            })
+        }
 
+        //help on a specific command
         if (command) {
             let {
                 name,
@@ -100,8 +105,8 @@ module.exports = {
             message.channel.send(embed);
             return
         }
-        if (command) console.log('huh')
 
+        //Help on everything
         embed.setTitle('Full Description of Commands')
             .setColor('#0099ff')
             .setURL('https://oogieboogiedashboard.herokuapp.com/commands')

@@ -7,7 +7,7 @@ module.exports = {
     clientPermissions: ['MANAGE_NICKNAMES'],
     cooldown: 10,
     async execute(message, args) {
-        // Get the Guild and store it under the variable "members"
+        
         if (args.length === 0) {
             message.channel.send(`changing all possible users to default`);
         } else {
