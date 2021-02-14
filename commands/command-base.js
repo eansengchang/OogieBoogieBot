@@ -126,7 +126,7 @@ module.exports = message => {
     }
 
     try {
-        let text = `${message.author.tag}: ${name} in #${message.channel.name ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`;
+        let text = `${message.author.tag}: ${commandName} in #${message.channel.name ? message.channel.name : 'dm'} in ${message.guild ? message.guild.name : 'dm'}`;
         console.log(text)
         client.guilds.cache.get('616347460679368731').channels.cache.get('809573431195729940').send(text);
         execute(message, args);
