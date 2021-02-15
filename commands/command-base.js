@@ -45,7 +45,7 @@ module.exports = message => {
     }
 
     //checks if person has permissions
-    if (message.channel.type !== 'dm' && memberPermissions && message.author.id !== '333177159357169664') {
+    if (message.channel.type !== 'dm' && memberPermissions) {
         const member = message.member;
         let missingPerms = [];
         let flag = false;
