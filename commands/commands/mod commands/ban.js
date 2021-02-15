@@ -5,7 +5,7 @@ module.exports = {
     description: 'Bans a person.',
     expectedArgs: '@user {reason}',
     guildOnly: true,
-    minArgs: 2,
+    minArgs: 1,
     memberPermissions: ['BAN_MEMBERS'],
     clientPermissions: ['BAN_MEMBERS'],
     async execute(message, args) {
@@ -16,11 +16,16 @@ module.exports = {
             // Now we get the member from the user
             const member = message.guild.member(user);
             // If the member is in the guild
+            
             if (member) {
+                if (member.roles.highest.position >= message.member.roles.highest.position) {
+                    return message.reply('Unable to ban someone with an equal or higher role than you');
+                }
+
                 args.shift()
                 member
                     .ban({
-                        reason: `${message.author.tag}: ${args.join(' ')}`,
+                        reason: `by ${message.author.tag}: ${args.join(' ')}`,
                     })
                     .then(() => {
                         // We let the message author know we were able to ban the person

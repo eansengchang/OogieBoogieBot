@@ -17,7 +17,7 @@ module.exports = {
                 evaled = await evaled;
             }
 
-            message.channel.send(`\`\`\`js\n${inspect(evaled, { depth: 0 })}\`\`\``)
+            await message.channel.send(`\`\`\`js\n${inspect(evaled, { depth: 0 })}\`\`\``)
 
         } catch (e) {
             message.channel.send(`\`\`\`${e}\`\`\``)
