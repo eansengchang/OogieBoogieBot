@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'disconnect',
+    aliases: ['voicekick', 'vkick'],
     description: 'Disconnects people in a call.',
     expectedArgs: '@user / all',
     guildOnly: true,
