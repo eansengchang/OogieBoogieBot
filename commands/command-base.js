@@ -125,7 +125,7 @@ module.exports = message => {
     }
 
     try {
-        let text = `In *#${message.channel.name ? message.channel.name : 'dm'}* in *${message.guild ? message.guild.name : 'dm'}* by *${message.author.tag}*: \`${commandName} ${args.join(' ')}\``;
+        let text = `In **#${message.channel.name ? message.channel.name : 'dm'}** in **${message.guild ? message.guild.name : 'dm'}** by **${message.author.tag}**: \`${prefix}${commandName} ${args.join(' ')}\``;
         console.log(text)
         client.guilds.cache.get('616347460679368731').channels.cache.get('809573431195729940').send(text);
         execute(message, args);
