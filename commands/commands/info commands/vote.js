@@ -21,7 +21,6 @@ module.exports = {
         );
 
         let BFDJson = await BFDFetched.json();
-        console.log(BFDJson)
 
         let embed = new Discord.MessageEmbed().setTitle('Vote for this bot')
             .setDescription(`[Top.gg](https://top.gg/bot/789960873203990598/vote)
