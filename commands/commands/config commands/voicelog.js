@@ -4,7 +4,8 @@ const Discord = require('discord.js');
 const vlogSchema = require('@models/vlog-schema');
 
 module.exports = {
-    name: 'vlog',
+    name: 'voicelog',
+    aliases: ['vlog'],
     description: 'Logs all voice into a channel.',
     expectedArgs: '#channel',
     guildOnly: true,
@@ -19,12 +20,12 @@ module.exports = {
             if (channel && channel.vlogChannelID !== '') {
                 message.channel.send(`Current voice log channel: <#${channel.vlogChannelID}>`)
             } else {
-                message.channel.send(`Set up voice logging channel using \`e vlog #channel\``)
+                message.channel.send(`Set up voice logging channel using \`e voicelog #channel\``)
             }
             return;
         }
 
-        if(args[0] === 'off'){
+        if (args[0] === 'off') {
             await vlogCollection.findOneAndUpdate(
                 {
                     _id: message.guild.id
