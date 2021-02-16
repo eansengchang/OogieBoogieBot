@@ -27,7 +27,7 @@ module.exports = {
             Can vote? ${topGGJson.voted === 1 ? '**False**' : '**True**'}
             
             [botsfordiscord.com](https://botsfordiscord.com/bot/789960873203990598/vote)
-            Already voted: ${BFDJson.hasVoted24.includes(message.author.id) ? '**False**' : '**True**'}
+            Can vote?: ${BFDJson.hasVoted24.includes(message.author.id) ? '**False**' : '**True**'}
             `
             )
 
