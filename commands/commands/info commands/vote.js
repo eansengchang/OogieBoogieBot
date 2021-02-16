@@ -24,10 +24,10 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed().setTitle('Vote for this bot')
             .setDescription(`[Top.gg](https://top.gg/bot/789960873203990598/vote)
-            Voted: ${topGGJson.voted === 1 ? '**True**' : '**False**'}
+            Already voted: ${topGGJson.voted === 1 ? '**True**' : '**False**'}
             
             [botsfordiscord.com](https://botsfordiscord.com/bot/789960873203990598/vote)
-            Voted: ${BFDJson.hasVoted24.includes(message.author.id) ? '**True**' : '**False**'}
+            Already voted: ${BFDJson.hasVoted24.includes(message.author.id) ? '**True**' : '**False**'}
             `
             )
 
