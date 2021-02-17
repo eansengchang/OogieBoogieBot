@@ -11,7 +11,7 @@ module.exports = {
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
-    memberPermissions: ['ADMINISTRATOR'],
+    memberPermissions: ['MANAGE_MESSAGES'],
     execute: async (message, args) => {
         let activityCollection = activitySchema(message.guild.id);
 

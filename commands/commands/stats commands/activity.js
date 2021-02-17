@@ -16,7 +16,6 @@ module.exports = {
     maxArgs: 2,
     execute: async (message, args) => {
         let activityCollection = activitySchema(message.guild.id);
-        //VOICE IS IN SECONDS
         //activity top
         if (args[0] === 'top') {
             let activityList = [];
