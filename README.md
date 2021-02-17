@@ -4,7 +4,7 @@
 [Website](https://oogieboogiedashboard.herokuapp.com/) | [Commands List](https://oogieboogiedashboard.herokuapp.com/commands) | [Bot Server](https://discord.com/invite/ph5DVfFmeX)
 
 ## About
-Oogie Boogie Bot is a multi-functional bot that can take care of moderation and also provide detailed information on your server. Numerous commands include a detailed breakdown of the activity levels of everyone on this server. This bot is also being constantly updated and improved with the latest commands.
+Oogie Boogie Bot can monitor activity, manage your server with also fun commands. Numerous commands include a detailed breakdown of the activity levels of everyone on this server. This bot is also being constantly updated and improved with the latest commands.
  
 ## Features
 ### Activity and voice logging:

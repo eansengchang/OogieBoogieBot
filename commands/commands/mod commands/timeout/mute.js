@@ -1,13 +1,14 @@
 const timeoutRoleSchema = require('@models/timeout-role-schema');
+const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'mute',
+    examples: ['@user 2h spamming', '@user 30m'],
     aliases: ['timeout'],
     description: 'mutes a person in server.',
-    expectedArgs: '@user',
+    expectedArgs: '@user {time} {reason}',
     guildOnly: true,
-    minArgs: 1,
-    maxArgs: 1,
+    minArgs: 2,
     memberPermissions: ['MUTE_MEMBERS'],
     clientPermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
@@ -37,10 +38,44 @@ module.exports = {
             return message.reply('I\'m unable to timeout someone with an equal or higher role than me');
         }
 
+        args.shift()
+
+        //interprets the time into millesconds
+        let time = args[0].toLowerCase();
+        let timeNum = parseInt(time);
+        if (time.endsWith('h')) timeNum *= 60 * 60;
+        else if (time.endsWith('m')) timeNum *= 60;
+        else timeNum = 60 * 30;
+
+        let expires = new Date()
+        expires.setSeconds(expires.getSeconds() + timeNum)
+
         member
             .roles.set([timeout.timeoutRole])
-            .then(() => {
-                message.reply(`Successfully muted <@${user.id}>`);
+            .then(async () => {
+                
+                message.reply(`Successfully muted <@${user.id}> for \`${timeNum < 60 ? `${timeNum}s` : timeNum < 3600 ? `${timeNum / 60}m` : `${timeNum / 3600}h`}\``);
+
+                let timeoutCollection = timeoutSchema();
+                const timeouts = await timeoutCollection.findOneAndUpdate(
+                    {
+                        userId: member.id,
+                        guildId: message.guild.id
+                    },
+                    {
+                        userId: member.id,
+                        guildId: message.guild.id,
+                        reason: args.length ? args.join(' ') : 'no reason',
+                        staffId: message.author.id,
+                        staffTag: message.author.tag,
+                        expires: expires,
+                        current: true
+                    },
+                    {
+                        upsert: true,
+                    }
+                )
+
             })
             .catch(err => {
                 if (err.message == 'Missing Permissions') return message.reply('I don\'t have the permissions to do that')

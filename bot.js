@@ -10,13 +10,13 @@ client.mongoose = require('@utils/mongoose')
 
 //.replace(/[<@!>]/g, '');
 
-const loadCommands = require('@root/commands/load-commands');
 const loadEvents = require('@root/events/load-events');
+const loadCommands = require('@root/commands/load-commands');
 const loadFeatures = require('@root/features/load-features');
 
 client.login(process.env.BOTTOKEN);
 
-loadCommands(client);
 loadEvents(client);
+loadCommands(client);
 loadFeatures(client);
 client.mongoose.init();
