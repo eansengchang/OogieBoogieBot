@@ -19,6 +19,6 @@ module.exports = async (client, guild) => {
                 { name: 'Total number of guilds:', value: `${client.guilds.cache.size}`, inline: true },
             )
 
-    let logGuild = await client.guilds.fetch('684391250777866301')
-    logGuild.channels.cache.get('801016710345785344').send(embed);
+    let logGuild = await client.guilds.fetch('616347460679368731')
+    logGuild.channels.cache.get('811898380104106006').send(embed);
 }
