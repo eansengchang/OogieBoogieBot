@@ -1,9 +1,11 @@
 const timeoutRoleSchema = require('@models/timeout-role-schema');
+const defaultRoleSchema = require('@models/default-role-schema');
 const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = async (client) => {
     let timeoutCollection = timeoutSchema()
     let timeoutRoleCollection = timeoutRoleSchema()
+    let defaultRoleCollection = defaultRoleSchema()
     const checkMutes = async () => {
         const now = new Date()
 
@@ -25,12 +27,12 @@ module.exports = async (client) => {
                 if (!guild) continue
                 const member = (await guild.members.fetch()).get(userId)
 
-                let untimeoutRole = await timeoutRoleCollection.findOne({
+                let untimeoutRole = await defaultRoleCollection.findOne({
                     _id: guild.id
                 })
                 if (!untimeoutRole || untimeoutRole.defaultRole === '') continue
-                const mutedRole = untimeoutRole.defaultRole;
-                member.roles.set([mutedRole])
+                const defaultRole = untimeoutRole.defaultRole;
+                member.roles.set([defaultRole])
             }
             await timeoutCollection.updateMany(conditional,
                 {
