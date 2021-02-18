@@ -43,9 +43,10 @@ module.exports = {
         //interprets the time into millesconds
         let time = args[0].toLowerCase();
         let timeNum = parseInt(time);
+        if(isNaN(timeNum)) return message.reply(`A valid amount of time could be 2h`)
         if (time.endsWith('h')) timeNum *= 60 * 60;
         else if (time.endsWith('m')) timeNum *= 60;
-        else timeNum = 60 * 30;
+        else return message.reply(`A valid amount of time could be 2h`)
 
         let expires = new Date()
         expires.setSeconds(expires.getSeconds() + timeNum)
@@ -53,7 +54,7 @@ module.exports = {
         member
             .roles.set([timeout.timeoutRole])
             .then(async () => {
-                
+
                 message.reply(`Successfully muted <@${user.id}> for \`${timeNum < 60 ? `${timeNum}s` : timeNum < 3600 ? `${timeNum / 60}m` : `${timeNum / 3600}h`}\``);
 
                 let timeoutCollection = timeoutSchema();
