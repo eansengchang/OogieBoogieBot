@@ -33,7 +33,7 @@ module.exports = {
         if (!member) return message.reply("That user isn't in this server!");
         member
             .roles.set([defaultRole.defaultRole])
-            .then(() => {
+            .then(async () => {
                 let timeoutCollection = timeoutSchema();
                 const timeouts = await timeoutCollection.findOneAndUpdate(
                     {
