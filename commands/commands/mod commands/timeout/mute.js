@@ -50,6 +50,7 @@ module.exports = {
 
         let expires = new Date()
         expires.setSeconds(expires.getSeconds() + timeNum)
+        args.shift();
 
         member
             .roles.set([timeout.timeoutRole])
