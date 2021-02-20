@@ -1,4 +1,5 @@
 const defaultRoleSchema = require('@models/default-role-schema');
+const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'unmute',
@@ -33,6 +34,20 @@ module.exports = {
         member
             .roles.set([defaultRole.defaultRole])
             .then(() => {
+                let timeoutCollection = timeoutSchema();
+                const timeouts = await timeoutCollection.findOneAndUpdate(
+                    {
+                        userId: member.id,
+                        guildId: message.guild.id
+                    },
+                    {
+                        current: false
+                    },
+                    {
+                        upsert: false,
+                    }
+                )
+
                 message.reply(`Successfully unmuted <@${user.id}>`);
             })
             .catch(err => {
