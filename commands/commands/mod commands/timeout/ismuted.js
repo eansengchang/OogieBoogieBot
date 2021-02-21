@@ -36,7 +36,7 @@ module.exports = {
             const date = currentMute.expires
 
             embed.addField('Muted by', `<@${currentMute.staffId}>`)
-            embed.addField('Muted for', `<@${currentMute.reason}>`)
+            embed.addField('Muted for', `${currentMute.reason}`)
             embed.addField('Muted untill', `${date.toLocaleString()} GMT`)
         }
 
