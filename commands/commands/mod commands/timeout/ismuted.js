@@ -3,8 +3,9 @@ const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = {
     name: 'ismuted',
+    aliases: ['muteinfo'],
     description: 'Checks if a person is muted',
-    expectedArgs: '@user',
+    expectedArgs: '@user / {user id}',
     guildOnly: true,
     minArgs: 1,
     memberPermissions: ['MUTE_MEMBERS'],
@@ -37,7 +38,7 @@ module.exports = {
 
             embed.addField('Muted by', `<@${currentMute.staffId}>`)
             embed.addField('Muted for', `${currentMute.reason}`)
-            embed.addField('Muted untill', `${date.toLocaleString()} GMT`)
+            embed.addField('Muted until', `${date.toLocaleString()} GMT`)
         }
 
         message.channel.send(embed)
