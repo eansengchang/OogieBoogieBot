@@ -18,8 +18,6 @@ module.exports = {
         const target = members.get(id);
         const isInDiscord = !!target;
 
-
-
         const currentMute = await timeoutCollection.findOne(
             {
                 userId: id,

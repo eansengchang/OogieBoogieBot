@@ -5,6 +5,7 @@ const commandBase = require('@root/commands/command-base');
 module.exports = async (client, oldMessage, newMessage) => {
 
     if (oldMessage.author.bot) return;
+    if(oldMessage.cleanContent === newMessage.cleanContent) return;
 
     if (oldMessage.guild) {
         const editSnipes = client.editSnipes.get(newMessage.channel.id) || [];
