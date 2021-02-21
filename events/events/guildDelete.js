@@ -3,7 +3,8 @@ const Discord = require('discord.js');
 
 module.exports = async (client, guild) => {
 
-    // if (!guild.available) return
+    if (!guild.available) return
+
 
     let embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
