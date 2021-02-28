@@ -11,6 +11,8 @@ module.exports = {
         let response = await fetch(`https://artii.herokuapp.com/make?text=${encodeURIComponent(args.join(' '))}`);
         let text = await response.text();
 
-        message.channel.send(`\`\`\`${text}\`\`\``);
+        message.channel.send(`\`\`\`${text}\`\`\``).catch(err=>{
+            message.channel.send("Sorry, can't asciify this text...")
+        });
     },
 };

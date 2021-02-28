@@ -8,10 +8,10 @@ Oogie Boogie Bot can monitor activity, manage your server with also fun commands
  
 ## Features
 ### Activity and voice logging:
-The bot logs every minute of voice and message and can be used to create detailed breakdowns of each members activity and presence per day visually. It can also log all the voice calls happening in the server and their duration.
+The bot logs every minute of voice and message and can be used to create detailed breakdowns of each members activity and presence per day visually. It can also log all the voice calls happening on the server and their duration.
 
 ### Moderation commands:
-There are a range of moderation commands that do the work for you such as purging a channel or muting someone from a server. These can be customized such as giving a specific role when you mute someone.
+There is a range of moderation commands that do the work for you such as purging a channel or muting someone from a server. These can be customized such as giving a specific role when you mute someone.
 
 ### Informative commands:
 The bot also gives detailed information on a lot of areas such as a specific user or the entire server. 
