@@ -1,4 +1,4 @@
-let math = require('mathjs');
+const math = require('mathjs');
 
 module.exports = {
     name: 'calc',
@@ -7,13 +7,14 @@ module.exports = {
     description: 'Calculates some math for you.',
     minArgs: 1,
     expectedArgs: '{calculation}',
-    execute(message, args) {
+    async execute(message, args) {
         let resp;
         try {
             resp = math.evaluate(args.join(' '));
+            await message.channel.send(resp);
         } catch {
             return message.reply('Invalid Calculation.');
         }
-        message.channel.send(resp);
+        
     },
 };
