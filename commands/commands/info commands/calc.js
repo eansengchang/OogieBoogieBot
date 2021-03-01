@@ -11,7 +11,7 @@ module.exports = {
         let resp;
         try {
             resp = math.evaluate(args.join(' '));
-            if (resp.includes('n')) throw 'Only numbers';
+            if (toString(resp).includes('e')) throw 'Only number';
             await message.channel.send(resp);
         } catch {
             return message.reply('Invalid Calculation.');
