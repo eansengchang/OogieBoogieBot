@@ -11,10 +11,11 @@ module.exports = {
         let resp;
         try {
             resp = math.evaluate(args.join(' '));
+            if (resp.includes(/[^0-9]/g)) throw 'Only numbers';
             await message.channel.send(resp);
         } catch {
             return message.reply('Invalid Calculation.');
         }
-        
+
     },
 };
