@@ -2,7 +2,8 @@ const fetch = require('node-fetch');
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'r34',
+    name: 'rule34',
+    aliases: ['r34'],
     description: 'Searches rule 34.',
     minArgs: 1,
     expectedArgs: '{tag}',
