@@ -6,8 +6,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.snipes = new Discord.Collection();
 client.editSnipes = new Discord.Collection();
-client.mongoose = require('@utils/mongoose')
-
+client.mongoose = require('@utils/mongoose');
 //.replace(/[<@!>]/g, '');
 
 const loadEvents = require('@root/events/load-events');
