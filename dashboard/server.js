@@ -2,6 +2,7 @@ const express = require('express');
 const app = express()
 const Discord = require('discord.js');
 require('dotenv').config();
+require('./keep-alive');
 
 require('module-alias/register');
 
