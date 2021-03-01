@@ -50,7 +50,7 @@ module.exports = {
         }
 
         embed.addFields(
-            { name: 'Timeout role:', value: `${timeoutRole}`, inline: true },
+            { name: 'Muted role:', value: `${timeoutRole}`, inline: true },
         )
 
         //if theres any auto role settings
