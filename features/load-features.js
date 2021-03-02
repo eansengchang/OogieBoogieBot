@@ -11,7 +11,6 @@ module.exports = (client) => {
             } else if (file !== 'load-features.js') {
                 const feature = require(path.join(__dirname, dir, file));
                 feature(client)
-                console.log(`Loaded feature: ${file}`)
             }
         }
     }
