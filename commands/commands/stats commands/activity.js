@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const activitySchema = require('@models/server-activity-schema');
-const { CanvasRenderService } = require('chartjs-node-canvas')
+const { ChartJSNodeCanvas } = require('chartjs-node-canvas')
 const { MessageAttachment } = require('discord.js');
 
 const width = 1200;
@@ -143,7 +143,7 @@ module.exports = {
     },
 };
 
-const ChartCallback = (ChartJS) => {
+const chartCallback = (ChartJS) => {
     ChartJS.defaults.global.defaultFontFamily = 'Lato';
     ChartJS.defaults.global.defaultFontColor = 'white';
     ChartJS.defaults.global.defaultFontSize = 18;
@@ -159,11 +159,7 @@ const ChartCallback = (ChartJS) => {
 
 let showPieChart = async (message, users, activities) => {
     //creates a graph on activity
-    const canvas = new CanvasRenderService(
-        width,
-        height,
-        ChartCallback
-    )
+    const canvas = new ChartJSNodeCanvas({ width, height, chartCallback })
 
     const configuration = {
         type: 'pie',
@@ -213,11 +209,7 @@ let showPieChart = async (message, users, activities) => {
 
 let showBarChart = async (message, users, activities) => {
     //creates a graph on activity
-    const canvas = new CanvasRenderService(
-        width,
-        height,
-        ChartCallback
-    )
+    const canvas = new ChartJSNodeCanvas({ width, height, chartCallback })
 
     const configuration = {
         type: 'horizontalBar',
@@ -279,7 +271,7 @@ let showBarChart = async (message, users, activities) => {
                 }
             },
             legend: {
-                display: false
+                display: false,
             },
         }
     }
