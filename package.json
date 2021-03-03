@@ -23,7 +23,7 @@
     "module-alias": "^2.2.2",
     "mongoose": "^5.11.9",
     "node-fetch": "^2.6.1",
-    "pug": "^3.0.0",
+    "pug": "^3.0.2",
     "ytdl-core": "^4.4.5"
   },
   "_moduleAliases": {
