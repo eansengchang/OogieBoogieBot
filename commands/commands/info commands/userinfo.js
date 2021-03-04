@@ -34,7 +34,7 @@ module.exports = {
                 { name: 'ID:', value: `${user.id}` },
                 { name: 'Created at:', value: `\`${user.createdAt.toDateString()}\` (${daysCreated} days ago)` },
                 { name: 'Joined server at:', value: `\`${member.joinedAt.toDateString()}\` (${daysJoined} days ago)` },
-                { name: 'Roles:', value: roles },
+                { name: 'Roles:', value: roles.substring(0, 1024) },
                 { name: 'Bot:', value: `${user.bot}` },
             )
             .setFooter(`requested by ${message.author.tag}`)
