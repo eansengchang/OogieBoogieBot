@@ -11,9 +11,10 @@ module.exports = {
         let resp;
         try {
             resp = math.evaluate(args.join(' '));
-            if (`${resp}`.includes('e')) throw 'Only number';
-            await message.channel.send(resp);
-        } catch {
+            if(`${resp}`.includes('function')) throw 'Only Number';
+            if (!resp.re && !resp.im) return await message.channel.send(resp);
+            return await message.channel.send(`${resp.re} + ${resp.im}i`)
+        } catch (e) {
             return message.reply('Invalid Calculation.');
         }
 
