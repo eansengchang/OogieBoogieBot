@@ -8,13 +8,6 @@ module.exports = {
         let embed;
         let { client } = message;
 
-        let channels = 0;
-        let serverMembers = 0;
-        client.guilds.cache.array().forEach(guild => {
-            channels += guild.channels.cache.size;
-            serverMembers += guild.members.cache.size;
-        });
-
         embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle(`Oogie Boogie Website`)
@@ -25,7 +18,7 @@ module.exports = {
                 { name: 'Created by:', value: `ESC#3777`, inline: false },
                 { name: 'Created on:', value: `${client.user.createdAt.toDateString()}`, inline: false },
                 { name: 'Servers:', value: `${client.guilds.cache.size}`, inline: false },
-                { name: 'Total Channels:', value: `${channels}`, inline: false },
+                { name: 'Total Channels:', value: `${client.channels.cache.size}`, inline: false },
                 // { name: 'Total Server members:', value: `${serverMembers}`, inline: false },
                 { name: 'Commands:', value: `${client.commands.size}`, inline: false },
             )

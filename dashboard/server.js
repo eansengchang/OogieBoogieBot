@@ -22,18 +22,12 @@ app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
 
-    let channels = 0;
-    let serverMembers = 0;
-    client.guilds.cache.array().forEach(guild => {
-        channels += guild.channels.cache.size;
-        serverMembers += guild.members.cache.size;
-    });
     const numCommands = countCommands();
 
     res.render('index', {
         servers: client.guilds.cache.size,
-        channels: channels,
-        members: serverMembers,
+        channels: client.channels.cache.size,
+        members: client.users.cache.size,
         commands: numCommands,
     })
 });
