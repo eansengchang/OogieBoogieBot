@@ -9,9 +9,9 @@ module.exports = {
     guildOnly: true,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
-        let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first() || message.author || message.member.user;
+        let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member;
 
-        if (user.id === message.client.user.id) {
+        if (member.id === message.client.user.id) {
             return message.reply('I AM NOT GAY')
         }
 
@@ -24,11 +24,11 @@ module.exports = {
         ctx.drawImage(background, 0, 0);
 
         const pfp = await Canvas.loadImage(
-            user.displayAvatarURL({
+            member.user.displayAvatarURL({
                 format: 'png',
             })
         )
-        
+
         ctx.drawImage(pfp, 90, 150);
 
         const attachment = new MessageAttachment(canvas.toBuffer());

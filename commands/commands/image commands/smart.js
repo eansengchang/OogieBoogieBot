@@ -9,7 +9,7 @@ module.exports = {
     guildOnly: true,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
-        let user = message.guild.members.cache.get(args[0]) || message.mentions.users.first() || message.author || message.member.user;
+        let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member;
 
         const canvas = Canvas.createCanvas(500, 500);
         const ctx = canvas.getContext('2d');
@@ -20,7 +20,7 @@ module.exports = {
         ctx.drawImage(background, 0, 0);
 
         const pfp = await Canvas.loadImage(
-            user.displayAvatarURL({
+            member.user.displayAvatarURL({
                 format: 'jpg'
             })
         )
