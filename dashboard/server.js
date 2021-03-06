@@ -21,7 +21,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-
     const numCommands = countCommands();
 
     res.render('index', {
@@ -55,6 +54,10 @@ app.get('/invite', (req, res) => {
 
 app.get('/support', (req, res) => {
     res.redirect('https://discord.com/invite/ph5DVfFmeX');
+})
+
+app.get('/privacypolicy', (req, res) => {
+    res.render('privacypolicy')
 })
 
 const port = process.env.PORT || 3000;
