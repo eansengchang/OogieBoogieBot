@@ -123,6 +123,7 @@ module.exports = {
                         userTag: user.tag,
                         lastUpdate: message.createdTimestamp,
                         voice: 0,
+                        messages: 0,
                         isVoice: false,
                         voiceJoinedStamp: message.createdTimestamp
                     }
