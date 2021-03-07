@@ -28,7 +28,7 @@ module.exports = {
             return message.channel.send('I have successfully reset all activity.')
         } else {
 
-            const user = message.mentions.users.first();
+            const user = message.guild.members.cache.get(args[0])?.user || message.mentions.users.first();
             if (!user) { return message.reply('User not found!'); }
 
             let activity = await activityCollection.findOne({

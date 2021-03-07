@@ -320,7 +320,7 @@ let showActivity = (activity, message, user) => {
 
         if (time < 60) text = `${time}s`;
         else if (time / 60 < 60) text = (`${Math.floor(time / 60)}m${Math.floor(time % 60)}s`);
-        else text = (`${Math.floor(time / 60 / 60)}hr${Math.floor((time / 60) % 60)}m`);
+        else text = (`${Math.floor(time / 60 / 60)}hr${Math.floor((time / 60) % 60)}m${Math.floor(time % 60)}s`);
 
         embed.addField('In voice for:', `${text}`);
     }
