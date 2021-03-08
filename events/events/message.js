@@ -11,6 +11,7 @@ module.exports = async (client, message) => {
     //prefixes and commands
     if (content.startsWith(prefix)) {
         commandBase(message);
+        return;
     }
 
     //simple replies
