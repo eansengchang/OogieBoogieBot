@@ -31,6 +31,11 @@ module.exports = async (client, message) => {
         'Seif wants to fuck Tima', 'Seif wants to get pegged by James Charles', 'Seif\'s broke the record for most thicc athelete in the world with his 4Km run in 15 mins',
         'Seif is so homophobic that even joe wouldn\'t allow the tap', 'seif had krishna\'s babies'];
 
+    //arran bully
+
+    if (message.guild.id === '512578878305337354' && author.id === '395152698120339456' && content.includes('cdn.discordapp.com/attachments/')) {
+        message.reply('Not funny.')
+    }
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {
         channel.send(`Type \`${prefix}help\` for some help`);

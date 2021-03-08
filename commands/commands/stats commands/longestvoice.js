@@ -26,7 +26,7 @@ module.exports = {
         else if (record / 60 < 60)
             text += `**${Math.floor(record / 60)}m${Math.floor(record % 60)}s**`
         else
-            text += `**${Math.floor(record / 60 / 60)}hr${Math.floor((record / 60) % 60)}m${Math.floor(record % 60)}s**`
+            text += `**${Math.floor(record / 60 / 60)}hr${Math.floor((record / 60) % 60)}m**`
 
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
