@@ -13,8 +13,9 @@ module.exports = {
 
         let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join('_')}`);
         let text = await response.text();
-        let result = text.split('"').filter(element => {
-            return (element.startsWith('wimg', 8) || element.startsWith('img', 8)) && (element.includes('jpeg') || element.includes('jpg') || element.includes('png'));
+    
+        let result = text.split('"').filter((element, index) => {
+            return text.split('"')[index-1] === ` file_url=` && !element.endsWith('mp4');
         })
 
         if (result.length === 0) {

@@ -81,12 +81,7 @@ module.exports = message => {
     }
 
     //ensure command isn't ran too frequently
-    let cooldownString;
-    if (guild) {
-        cooldownString = `${author.id}-${name}`;
-    } else {
-        cooldownString = `${author.id}-${name}`;
-    }
+    let cooldownString = `${author.id}-${name}`;
 
     //checks if command is on cooldown
     let flag = false;

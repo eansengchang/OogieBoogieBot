@@ -64,7 +64,7 @@ module.exports = async (client) => {
         if (currentTimeout) {
             //remutes them
             member
-                .roles.set([timeout.timeoutRole])
+                .roles.set([timeout.timeoutRole]).catch()
         }
 
     })
