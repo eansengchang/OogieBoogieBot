@@ -42,7 +42,6 @@ span {
 
 #gap{
     margin-top: 15vh;
-    margin-bottom: 5vh;
 }
 
 #stopgap{
@@ -53,3 +52,6 @@ span {
     margin: 4px;
 }
 
+#stats{
+    margin-top: 2vh;
+}

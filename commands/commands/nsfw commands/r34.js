@@ -15,7 +15,7 @@ module.exports = {
         let text = await response.text();
     
         let result = text.split('"').filter((element, index) => {
-            return text.split('"')[index-1] === ` file_url=` && !element.endsWith('mp4');
+            return element.startsWith('https') && text.split('"')[index-1] === ` file_url=` && !element.endsWith('mp4');
         })
 
         if (result.length === 0) {

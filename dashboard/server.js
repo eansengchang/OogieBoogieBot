@@ -4,6 +4,10 @@ const Discord = require('discord.js');
 require('dotenv').config();
 require('./keep-alive');
 
+let mongoose = require('../utils/mongoose');
+mongoose.init()
+const activitySchema = require('../models/server-activity-schema');
+
 require('module-alias/register');
 
 const client = new Discord.Client();
@@ -20,15 +24,49 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
-    const numCommands = countCommands();
+let totalMessages = 0;
+let totalVoice = 0;
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+const updateStats = () => {
+    let tempTotalMessages = 0;
+    let tempTotalVoice = 0;
+    let num = 0;
+
+    client.guilds.cache.array().forEach(async (guild, index) => {
+        let activityCollection = activitySchema(guild.id);
+
+        activityCollection.find().then(collection => {
+            num++;
+            collection.forEach(activity => {
+                tempTotalMessages += activity.messages;
+                tempTotalVoice += activity.voice;
+            })
+            if (num === client.guilds.cache.array().length) {
+                totalMessages = tempTotalMessages;
+                totalVoice = tempTotalVoice;
+            }
+        })
+    })
+}
+updateStats();
+
+app.get('/', async (req, res) => {
+    const numCommands = countCommands();
+    // console.log(totalMessages, totalVoice)
     res.render('index', {
         servers: client.guilds.cache.size,
         channels: client.channels.cache.size,
         members: client.users.cache.size,
         commands: numCommands,
+        totalMessages: numberWithCommas(totalMessages),
+        totalVoice: numberWithCommas(Math.round(totalVoice / 3600)),
     })
+
+    updateStats();
 });
 
 let categoryNames = ['config', 'fun', 'info', 'stats', 'mod', 'voice', 'image', 'game', 'economy']
@@ -41,7 +79,6 @@ let categories = categoryNames.map(category => {
 nsfwCommands = listCommands('commands/nsfw commands')
 
 app.get('/commands', (req, res) => {
-
     res.render('commands', {
         categories: categories,
         nsfwCommands: nsfwCommands
@@ -62,4 +99,9 @@ app.get('/privacypolicy', (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Server is live on port ${port} \n`))
+app.listen(port, () => {
+    console.log(`Server is live on port ${port} \n`)
+
+    updateStats();
+
+})
