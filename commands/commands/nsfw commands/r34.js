@@ -19,7 +19,7 @@ module.exports = {
         })
 
         if (result.length === 0) {
-            return message.channel.send('No searches found...')
+            return message.reply('No searches found...')
         }
 
         let pick = result[Math.floor(Math.random() * result.length)];
