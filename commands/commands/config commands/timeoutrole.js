@@ -14,7 +14,7 @@ module.exports = {
     memberPermissions: ['ADMINISTRATOR'],
     clientPermissions: ['MANAGE_ROLES'],
     execute: async (message, args) => {
-        let timeoutRoleCollection = timeoutSchema();
+        let timeoutRoleCollection = timeoutSchema;
         let { guild } = message;
 
         if (args.length === 0) {

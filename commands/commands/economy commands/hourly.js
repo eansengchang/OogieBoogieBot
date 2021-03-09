@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: true,
     cooldown: 60 * 60,
     async execute(message, args) {
-        const economyCollection = economySchema()
+        const economyCollection = economySchema;
 
         await economyCollection.findOneAndUpdate(
             {

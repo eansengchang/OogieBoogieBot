@@ -12,7 +12,7 @@ module.exports = {
     memberPermissions: ['MUTE_MEMBERS'],
     clientPermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
-        let timeoutRoleCollection = timeoutRoleSchema();
+        let timeoutRoleCollection = timeoutRoleSchema;
         let timeout = await timeoutRoleCollection.findOne({
             _id: message.guild.id
         }, (err, object) => { });
@@ -58,7 +58,7 @@ module.exports = {
 
                 message.reply(`Successfully muted <@${user.id}> for \`${timeNum < 60 ? `${timeNum}s` : timeNum < 3600 ? `${timeNum / 60}m` : `${timeNum / 3600}h`}\``);
 
-                let timeoutCollection = timeoutSchema();
+                let timeoutCollection = timeoutSchema;
                 const timeouts = await timeoutCollection.findOneAndUpdate(
                     {
                         userId: member.id,

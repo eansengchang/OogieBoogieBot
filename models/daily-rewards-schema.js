@@ -11,8 +11,4 @@ const dailyRewardsSchema = mongoose.Schema({
     timestamps: true
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
-
-module.exports = () => {
-    return OogieBoogieDB.model('daily-rewards', dailyRewardsSchema);
-}
+module.exports = mongoose.model('daily-rewards', dailyRewardsSchema);

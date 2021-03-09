@@ -7,8 +7,4 @@ const economySchema = mongoose.Schema({
     money: Number,
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
-
-module.exports = () => {
-    return OogieBoogieDB.model('Economy', economySchema, 'economy');
-}
+module.exports = mongoose.model('Economy', economySchema, 'economy');

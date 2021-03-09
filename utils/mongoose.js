@@ -16,10 +16,10 @@ module.exports = {
         mongoose.connect(`${process.env.MONGO_URL}`, dbOptions);
         mongoose.set('useFindAndModify', false);
         mongoose.Promise = global.Promise;
-        mongoose.connection.setMaxListeners(12);
+        mongoose.connection.setMaxListeners(15);
 
         mongoose.connection.on('connected', () => {
-            console.log(`\nMongoose has successfully connected to Activity!`);
+            console.log(`\nMongoose has successfully connected!`);
         });
 
         mongoose.connection.on('err', err => {
@@ -27,7 +27,7 @@ module.exports = {
         });
 
         mongoose.connection.on('disconnected', () => {
-            console.warn(`Mongoose connection lost on Activity`);
+            console.warn(`Mongoose connection lost`);
         });
     }
 }

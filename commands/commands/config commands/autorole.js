@@ -13,7 +13,7 @@ module.exports = {
     memberPermissions: ['MANAGE_ROLES'],
     clientPermissions: ['MANAGE_ROLES'],
     execute: async (message, args) => {
-        let autoRoleCollection = autoRoleSchema();
+        let autoRoleCollection = autoRoleSchema;
         let { guild } = message;
 
         if (args.length === 0) {

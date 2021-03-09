@@ -25,7 +25,7 @@ module.exports = {
 
         const obj = { userID: id }
 
-        const dailyRewardsCollection = dailyRewardsSchema()
+        const dailyRewardsCollection = dailyRewardsSchema;
         const results = await dailyRewardsCollection.findOne(obj)
 
         if (results) {
@@ -60,7 +60,7 @@ module.exports = {
 };
 
 const giveMoney = async (id, message) => {
-    const economyCollection = economySchema()
+    const economyCollection = economySchema;
     claimedCache.push(id)
 
     await economyCollection.findOneAndUpdate(

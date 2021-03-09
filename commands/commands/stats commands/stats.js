@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 
+const mongoose = require('mongoose')
+const activityDB = mongoose.connection.useDb('Activity');
+
 module.exports = {
     name: 'stats',
     aliases: ['info'],
@@ -17,10 +20,10 @@ module.exports = {
             .addFields(
                 { name: 'Created by:', value: `ESC#3777`, inline: false },
                 { name: 'Created on:', value: `${client.user.createdAt.toDateString()}`, inline: false },
-                { name: 'Servers:', value: `${client.guilds.cache.size}`, inline: false },
-                { name: 'Total Channels:', value: `${client.channels.cache.size}`, inline: false },
+                { name: 'Servers:', value: `${client.guilds.cache.size}`, inline: true },
+                { name: 'Total Channels:', value: `${client.channels.cache.size}`, inline: true },
                 // { name: 'Total Server members:', value: `${serverMembers}`, inline: false },
-                { name: 'Commands:', value: `${client.commands.size}`, inline: false },
+                { name: 'Commands:', value: `${client.commands.size}`, inline: true },
             )
         let uptime = client.uptime;
         let days = Math.floor(uptime / 1000 / 60 / 60 / 24)
@@ -39,7 +42,16 @@ module.exports = {
             { name: 'Uptime:', value: `Last restarted: \`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds\``, inline: false },
         )
 
-        message.channel.send(embed);
+        let stats1 = await mongoose.connection.db.stats();
+        let stats2 = await activityDB.db.stats();
+        let memory = stats1.indexSize + stats1.dataSize + stats2.indexSize + stats2.dataSize;
 
+        embed.addField(
+            'Database Memory:',
+            `\`${Math.round(memory / 100000) / 10}mb / 500mb\``,
+            false
+        )
+
+        message.channel.send(embed);
     },
 };

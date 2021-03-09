@@ -5,8 +5,4 @@ const voteChannelSchema = mongoose.Schema({
     voteChannelID: String,
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
-
-module.exports = () => {
-    return OogieBoogieDB.model('Vote-channel', voteChannelSchema, 'vote-channel');
-}
+module.exports = mongoose.model('Vote-channel', voteChannelSchema, 'vote-channel');

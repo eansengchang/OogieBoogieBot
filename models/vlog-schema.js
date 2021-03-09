@@ -5,8 +5,4 @@ const vlogSchema = mongoose.Schema({
     vlogChannelID: String,
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
-
-module.exports = () => {
-    return OogieBoogieDB.model('Vlog', vlogSchema, 'vlog');
-}
+module.exports = mongoose.model('Vlog', vlogSchema, 'vlog');

@@ -9,7 +9,7 @@ module.exports = {
     expectedArgs: '{ammount}',
     guildOnly: true,
     async execute(message, args) {
-        const economyCollection = economySchema()
+        const economyCollection = economySchema;
 
         var person = await economyCollection.findOneAndUpdate(
             {

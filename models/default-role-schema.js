@@ -5,8 +5,4 @@ const defaultRoleSchema = mongoose.Schema({
     defaultRole: String,
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
-
-module.exports = () => {
-    return OogieBoogieDB.model('Default-role', defaultRoleSchema, 'default-role');
-}
+module.exports = mongoose.model('Default-role', defaultRoleSchema, 'default-role');

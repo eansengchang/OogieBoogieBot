@@ -10,7 +10,7 @@ module.exports = {
     minArgs: 1,
     memberPermissions: ['MUTE_MEMBERS'],
     async execute(message, args) {
-        let timeoutCollection = timeoutSchema();
+        let timeoutCollection = timeoutSchema;
 
         const id = args[0].replace(/[<@!>]/g, '');
 

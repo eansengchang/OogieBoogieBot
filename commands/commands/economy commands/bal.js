@@ -8,7 +8,7 @@ module.exports = {
     expectedArgs: '@user / top',
     guildOnly: true,
     async execute(message, args) {
-        const economyCollection = economySchema()
+        const economyCollection = economySchema;
 
         if (args[0] === 'top') {
             let members = [];

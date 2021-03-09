@@ -13,7 +13,7 @@ module.exports = {
     memberPermissions: ['ADMINISTRATOR'],
     clientPermissions: ['MANAGE_ROLES'],
     execute: async (message, args) => {
-        let defaultRoleCollection = defaultRoleSchema();
+        let defaultRoleCollection = defaultRoleSchema;
         let { guild } = message;
 
         if (args.length === 0) {

@@ -24,8 +24,5 @@ const muteSchema = mongoose.Schema({
     timestamps: true
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
 
-module.exports = () => {
-    return OogieBoogieDB.model('Timeout', muteSchema, 'timeout ');
-}
+module.exports = mongoose.model('Timeout', muteSchema, 'timeout ');

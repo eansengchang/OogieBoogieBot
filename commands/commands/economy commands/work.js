@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: true,
     cooldown: 60 * 5,
     async execute(message, args) {
-        const economyCollection = economySchema()
+        const economyCollection = economySchema;
 
         let gained = Math.round(Math.random() * 200)
 

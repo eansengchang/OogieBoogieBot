@@ -5,8 +5,4 @@ const timeoutRoleSchema = mongoose.Schema({
     timeoutRole: String,
 });
 
-const OogieBoogieDB = mongoose.connection.useDb('OogieBoogieBot');
-
-module.exports = () => {
-    return OogieBoogieDB.model('Timeout-role', timeoutRoleSchema, 'timeout-role');
-}
+module.exports = mongoose.model('Timeout-role', timeoutRoleSchema, 'timeout-role');

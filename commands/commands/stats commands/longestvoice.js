@@ -11,7 +11,7 @@ module.exports = {
     guildOnly: true,
     execute: async (message, args) => {
 
-        let highestVoiceCollection = highestVoiceSchema();
+        let highestVoiceCollection = highestVoiceSchema;
         let highestVoice = await highestVoiceCollection.findOne({ _id: message.guild.id })
 
         if (!highestVoice) {

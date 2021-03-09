@@ -12,7 +12,7 @@ module.exports = {
     memberPermissions: ['MUTE_MEMBERS'],
     clientPermissions: ['MANAGE_ROLES'],
     async execute(message, args) {
-        let defaultRoleCollection = defaultRoleSchema();
+        let defaultRoleCollection = defaultRoleSchema;
         let defaultRole = await defaultRoleCollection.findOne({
             _id: message.guild.id
         }, (err, object) => { });
@@ -34,7 +34,7 @@ module.exports = {
         member
             .roles.set([defaultRole.defaultRole])
             .then(async () => {
-                let timeoutCollection = timeoutSchema();
+                let timeoutCollection = timeoutSchema;
                 const timeouts = await timeoutCollection.findOneAndUpdate(
                     {
                         userId: member.id,

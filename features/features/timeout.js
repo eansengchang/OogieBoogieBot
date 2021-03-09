@@ -3,9 +3,9 @@ const defaultRoleSchema = require('@models/default-role-schema');
 const timeoutSchema = require('@models/timeout-schema');
 
 module.exports = async (client) => {
-    let timeoutCollection = timeoutSchema()
-    let timeoutRoleCollection = timeoutRoleSchema()
-    let defaultRoleCollection = defaultRoleSchema()
+    let timeoutCollection = timeoutSchema;
+    let timeoutRoleCollection = timeoutRoleSchema;
+    let defaultRoleCollection = defaultRoleSchema;
     const checkMutes = async () => {
         const now = new Date()
 
@@ -46,7 +46,7 @@ module.exports = async (client) => {
     checkMutes()
 
     client.on('guildMemberAdd', async member => {
-        timeoutRoleCollection = timeoutRoleSchema()
+        timeoutRoleCollection = timeoutRoleSchema;
         const { guild, id } = member
 
         let timeoutRole = await timeoutRoleCollection.findOne({
@@ -54,8 +54,6 @@ module.exports = async (client) => {
         })
 
         if (!timeoutRole || timeoutRole.timeoutRole !== '') return;
-
-        timeoutCollection = timeoutSchema()
 
         const currentTimeout = await timeoutSchema.findOne({
             userId: id,

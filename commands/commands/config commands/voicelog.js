@@ -13,7 +13,7 @@ module.exports = {
     maxArgs: 1,
     memberPermissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let vlogCollection = vlogSchema();
+        let vlogCollection = vlogSchema;
 
         if (args.length === 0) {
             let channel = await vlogCollection.findOne({ _id: message.guild.id })

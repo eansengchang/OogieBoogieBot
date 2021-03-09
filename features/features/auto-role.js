@@ -3,7 +3,7 @@ const autoRoleSchema = require('@models/autorole-schema');
 module.exports = async (client) => {
     //message logging
     client.on('guildMemberAdd', async (member) => {
-        let autoRoleCollection = autoRoleSchema();
+        let autoRoleCollection = autoRoleSchema;
 
         let autoRole = await autoRoleCollection.findOne({
             _id: member.guild.id

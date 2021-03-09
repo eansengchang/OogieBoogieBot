@@ -21,7 +21,7 @@ module.exports = {
             .addField('Prefix: ', '\`e \`')
 
         //if theres any default roles settings
-        let defaultRoleCollection = defaultRoleSchema();
+        let defaultRoleCollection = defaultRoleSchema;
         let defaultRoleObj = await defaultRoleCollection.findOne({
             _id: guild.id
         })
@@ -38,7 +38,7 @@ module.exports = {
         )
 
         //if theres any timeout roles settings
-        let timeoutRoleCollection = timeoutRoleSchema();
+        let timeoutRoleCollection = timeoutRoleSchema;
         let timeoutRoleObj = await timeoutRoleCollection.findOne({
             _id: guild.id
         })
@@ -54,7 +54,7 @@ module.exports = {
         )
 
         //if theres any auto role settings
-        let autoRoleCollection = autoRoleSchema()
+        let autoRoleCollection = autoRoleSchema;
         let autoRoleObject = await autoRoleCollection.findOne({
             _id: guild.id
         })
@@ -67,7 +67,7 @@ module.exports = {
         )
 
         //if theres any vlog settings
-        let vlogCollection = vlogSchema()
+        let vlogCollection = vlogSchema;
         let vlogObject = await vlogCollection.findOne({
             _id: guild.id
         })
@@ -80,7 +80,7 @@ module.exports = {
         )
 
         //if theres any vote channel settings
-        let voteChannelCollection = voteChannelSchema()
+        let voteChannelCollection = voteChannelSchema;
         let voteChannelsArray = await voteChannelCollection.find({
             serverID: guild.id
         })

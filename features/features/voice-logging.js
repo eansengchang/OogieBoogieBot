@@ -8,7 +8,7 @@ module.exports = async (client) => {
         if (state1.member.user.bot) return;
 
         //vlog stuff
-        let vlogCollection = vlogSchema();
+        let vlogCollection = vlogSchema;
         let obj = await vlogCollection.findOne({ _id: state1.guild.id })
 
         if (!obj) return;

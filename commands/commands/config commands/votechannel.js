@@ -13,7 +13,7 @@ module.exports = {
     maxArgs: 2,
     memberPermissions: ['ADMINISTRATOR'],
     execute: async (message, args) => {
-        let voteChannelCollection = voteChannelSchema();
+        let voteChannelCollection = voteChannelSchema;
 
         //just shows information
         if (args.length === 0) {

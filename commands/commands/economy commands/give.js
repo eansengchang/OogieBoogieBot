@@ -8,7 +8,7 @@ module.exports = {
     expectedArgs: '@user {ammount}',
     guildOnly: true,
     async execute(message, args) {
-        const economyCollection = economySchema()
+        const economyCollection = economySchema;
 
         let member = message.guild.members.cache.get(args[0]) || message.mentions.members.first();
 

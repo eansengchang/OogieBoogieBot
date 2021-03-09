@@ -1,5 +1,3 @@
-const timeoutRoleSchema = require('@models/timeout-role-schema');
-
 module.exports = {
     name: 'kick',
     description: 'Kicks a person.',
