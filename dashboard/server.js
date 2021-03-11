@@ -4,11 +4,11 @@ const Discord = require('discord.js');
 require('dotenv').config();
 require('./keep-alive');
 
+require('../bot')
+
 let mongoose = require('../utils/mongoose');
 mongoose.init()
 const activitySchema = require('../models/server-activity-schema');
-
-require('module-alias/register');
 
 const client = new Discord.Client();
 client.login(process.env.BOTTOKEN);
