@@ -6,8 +6,6 @@ require('./keep-alive');
 
 const client = require('../bot');
 
-let mongoose = require('../utils/mongoose');
-mongoose.init()
 const activitySchema = require('../models/server-activity-schema');
 
 const countCommands = require('../commands/count-commands')
