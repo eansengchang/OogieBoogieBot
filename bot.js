@@ -13,7 +13,7 @@ const loadEvents = require('@root/events/load-events');
 const loadCommands = require('@root/commands/load-commands');
 const loadFeatures = require('@root/features/load-features');
 
-client.login(process.env.BOTTESTTOKEN);
+client.login(process.env.BOTTOKEN);
 
 loadEvents(client);
 console.log('Loaded events')
