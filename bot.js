@@ -22,3 +22,5 @@ console.log('Loaded commands')
 loadFeatures(client);
 console.log('Loaded features')
 // client.mongoose.init();
+
+module.exports = client;

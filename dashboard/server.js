@@ -4,14 +4,11 @@ const Discord = require('discord.js');
 require('dotenv').config();
 require('./keep-alive');
 
-require('../bot')
+const client = require('../bot');
 
 let mongoose = require('../utils/mongoose');
 mongoose.init()
 const activitySchema = require('../models/server-activity-schema');
-
-const client = new Discord.Client();
-client.login(process.env.BOTTOKEN);
 
 const countCommands = require('../commands/count-commands')
 const listCommands = require('../commands/list-commands')
