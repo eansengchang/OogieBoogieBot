@@ -36,7 +36,7 @@ module.exports = async (client, message) => {
 
     if (message.guild.id === '512578878305337354' && author.id === '395152698120339456' && content.includes('cdn.discordapp.com/attachments/')) {
         message.reply('Not funny.')
-        await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
+        // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
     }
 
     if (content.replace(/[<@!>]/g, '') === client.user.id) {

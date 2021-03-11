@@ -24,9 +24,7 @@ app.set('view engine', 'pug');
 let totalMessages = 0;
 let totalVoice = 0;
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+let numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 const updateStats = () => {
     let tempTotalMessages = 0;
@@ -56,8 +54,8 @@ app.get('/', async (req, res) => {
     // console.log(totalMessages, totalVoice)
     res.render('index', {
         servers: client.guilds.cache.size,
-        channels: client.channels.cache.size,
-        members: client.users.cache.size,
+        channels: numberWithCommas(client.channels.cache.size),
+        members: numberWithCommas(client.users.cache.size),
         commands: numCommands,
         totalMessages: numberWithCommas(totalMessages),
         totalVoice: numberWithCommas(Math.round(totalVoice / 3600)),
