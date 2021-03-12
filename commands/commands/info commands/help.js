@@ -109,10 +109,13 @@ module.exports = {
             )
 
             //cooldown
-            let cooldownTime;
-            if (cooldown < 60) cooldownTime = `${cooldown} seconds`
-            else cooldownTime = `${cooldown / 60} minutes`
-            embed.addField('Cooldown', cooldownTime, true);
+            if (cooldown > 0) {
+                let cooldownTime;
+                if (cooldown < 60) cooldownTime = `${cooldown} seconds`
+                else cooldownTime = `${cooldown / 60} minutes`
+
+                embed.addField('Cooldown', cooldownTime, true);
+            }
 
             message.channel.send(embed);
             return
