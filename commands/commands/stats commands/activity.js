@@ -1,23 +1,19 @@
 const Discord = require('discord.js');
 const activitySchema = require('@models/server-activity-schema');
-const { ChartJSNodeCanvas } = require('chartjs-node-canvas')
-const { MessageAttachment } = require('discord.js');
-
-const width = 1200;
-const height = 800;
+const { showBarChart } = require('@utils/chart')
 
 module.exports = {
     name: 'activity',
-    examples: ['top', '@user', '{userid}'],
-    description: 'See how many messages you\'ve sent, or the top activity of the server',
-    expectedArgs: '@user / top',
+    examples: ['messages', 'voice', '@user', '{userid}'],
+    description: 'See how many messages you\'ve sent, or the top voice/messages activity of the server',
+    expectedArgs: '@user / messages / voice',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 2,
     execute: async (message, args) => {
         let activityCollection = activitySchema(message.guild.id);
         //activity top
-        if (args[0] === 'top') {
+        if (args[0] === 'messages' || args[0] === 'top') {
             let activityList = [];
             //all activities of every member in activityList
             (await activityCollection.find()).forEach(activity => {
@@ -73,36 +69,69 @@ module.exports = {
                 .setTitle(`Top message activity`)
                 .setDescription(list);
             message.channel.send(embed);
-            showBarChart(message, users, activities, 'Message Activity Per Day');
+            showBarChart(message, users, activities, `Message activity in ${message.guild.name}`, 'messages per day');
 
+        } //total messages
+        else if (args[0] === 'voice') {
+            let activityList = [];
+            //all activities of every member in activityList
+            (await activityCollection.find()).forEach(activity => {
+                if (message.guild.members.cache.get(activity._id)) {
+                    activityList.push(activity);
+                }
+            })
+
+            let voicePerDay = activityList.map(activity => {
+                days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                return Math.round(10 * activity.voice / 60 / days) / 10;
+            })
+
+            //selection sorts voice
+            for (let j = 0; j < 10; j++) {
+                let max = j;
+                for (let i = j; i < activityList.length; i++) {
+                    if (voicePerDay[i] > voicePerDay[max]) {
+                        max = i;
+                    }
+                }
+                let temp = activityList[j];
+                activityList[j] = activityList[max];
+                activityList[max] = temp;
+
+                temp = voicePerDay[j];
+                voicePerDay[j] = voicePerDay[max];
+                voicePerDay[max] = temp;
+            }
+
+            //grabs 10 highest activity
+            let list = '';
+            let users = [];
+            let activities = [];
+            for (let i = 0; i < 10; i++) {
+                if (activityList[i]) {
+                    let days = Math.floor((message.createdTimestamp - activityList[i].lastUpdate) / 1000 / 60 / 60 / 24) + 1;
+                    let voicePerDay = Math.round(10 * activityList[i].voice / 60 / days) / 10;
+                    let member = message.guild.members.cache.get(activityList[i]._id)
+
+                    users.push(member.user.username);
+                    activities.push(Math.round(10 * voicePerDay / 60) / 10);
+                    if (voicePerDay < 60) {
+                        list += `\n${i + 1}. **${member.displayName}** (${voicePerDay}min/d)`;
+                    }
+                    else {
+                        list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * voicePerDay / 60) / 10}hr/d)`;
+                    }
+                }
+            }
+
+            //prints voice activity
+            let embed = new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle(`Top voice activity`)
+                .setDescription(list);
+            message.channel.send(embed);
+            showBarChart(message, users, activities, `Voice activity of ${message.guild.name}`, 'Voice (hr/d)');
         }
-        //if its activity all
-        // else if (args[0] == 'all') {
-        //     let activityList = [];
-        //     let users = [];
-        //     let messages = [];
-        //     //all activities of every member in activityList
-        //     (await activityCollection.find()).forEach(activity => {
-        //         if (message.guild.members.cache.get(activity._id)) {
-        //             activityList.push({
-        //                 tag: activity.userTag,
-        //                 messages: activity.messages
-        //             });
-        //         }
-        //     })
-
-        //     activityList.sort((a, b) => a.messages > b.messages ? -1 : 1)
-        //     activityList.forEach(activity => {
-        //         users.push(`${activity.tag.split('#')[0]}: ${activity.messages}`);
-        //         messages.push(activity.messages);
-        //     })
-
-        //     users.splice(7)
-        //     users.push('other')
-
-        //     showPieChart(message, users, messages)
-        // }
-
         //it just gives the activity
         else {
             let user;
@@ -143,144 +172,6 @@ module.exports = {
         }
     },
 };
-
-const chartCallback = (ChartJS) => {
-    ChartJS.defaults.global.defaultFontFamily = 'Lato';
-    ChartJS.defaults.global.defaultFontColor = 'white';
-    ChartJS.defaults.global.defaultFontSize = 18;
-    ChartJS.plugins.register({
-        beforeDraw: (chartInstance) => {
-            const { chart } = chartInstance;
-            const { ctx } = chart;
-            ctx.fillStyle = '#36393E';
-            ctx.fillRect(0, 0, chart.width, chart.height);
-        }
-    })
-}
-
-let showPieChart = async (message, users, activities) => {
-    //creates a graph on activity
-    const canvas = new ChartJSNodeCanvas({ width, height, chartCallback })
-
-    const configuration = {
-        type: 'pie',
-        data: {
-            labels: users,
-            datasets: [
-                {
-                    data: activities,
-                    backgroundColor: [
-                        '#f3d9dc',
-                        '#fe7f2d',
-                        '#fcca46',
-                        '#a1c181',
-                        '#619b8a',
-                        '#7cea9c',
-                        '#55d6be'
-                    ],
-                    borderWidth: 0
-                }
-            ],
-        },
-        options: {
-            title: {
-                display: true,
-                text: `Messages of ${message.guild.name}`,
-                fontSize: 34,
-                padding: 30,
-            },
-            layout: {
-                padding: {
-                    left: 0,
-                    right: 50,
-                    top: 0,
-                    bottom: 50
-                }
-            },
-            legend: {
-                position: 'left'
-            },
-        }
-    }
-
-    const image = await canvas.renderToBuffer(configuration);
-    const attachment = new MessageAttachment(image);
-    message.channel.send(attachment)
-}
-
-let showBarChart = async (message, users, activities) => {
-    //creates a graph on activity
-    const canvas = new ChartJSNodeCanvas({ width, height, chartCallback })
-
-    const configuration = {
-        type: 'horizontalBar',
-        data: {
-            labels: users,
-            datasets: [
-                {
-                    data: activities,
-                    backgroundColor: [
-                        '#f3d9dc',
-                        '#fe7f2d',
-                        '#fcca46',
-                        '#a1c181',
-                        '#619b8a',
-                        '#7cea9c',
-                        '#55d6be',
-                        '#84dcc6',
-                        '#a5ffd6',
-                        '#bcf4de'
-                    ],
-                }
-            ],
-        },
-        options: {
-            title: {
-                display: true,
-                text: `Top Activity of ${message.guild.name}`,
-                fontSize: 34,
-                padding: 30,
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    },
-                    gridLines: {
-                        display: false,
-                    },
-                }],
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Messages per day'
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    },
-                    gridLines: {
-                        display: false,
-                    },
-                }]
-            },
-            layout: {
-                padding: {
-                    left: 0,
-                    right: 50,
-                    top: 0,
-                    bottom: 50
-                }
-            },
-            legend: {
-                display: false,
-            },
-        }
-    }
-
-    const image = await canvas.renderToBuffer(configuration);
-    const attachment = new MessageAttachment(image);
-    message.channel.send(attachment)
-}
 
 let showActivity = (activity, message, user) => {
     let days = Math.floor((message.createdTimestamp - activity.lastUpdate) / 1000 / 60 / 60 / 24) + 1;
@@ -327,3 +218,4 @@ let showActivity = (activity, message, user) => {
 
     message.channel.send(embed);
 }
+

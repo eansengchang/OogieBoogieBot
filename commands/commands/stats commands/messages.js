@@ -3,12 +3,11 @@ const activitySchema = require('@models/server-activity-schema');
 const { showBarChart } = require('@utils/chart')
 
 module.exports = {
-    name: 'voice',
-    description: 'Top voice of this server',
+    name: 'messages',
+    description: 'See the total messages of the server',
     guildOnly: true,
     execute: async (message, args) => {
         let activityCollection = activitySchema(message.guild.id);
-        
         let activityList = [];
         //all activities of every member in activityList
         (await activityCollection.find()).forEach(activity => {
@@ -17,8 +16,7 @@ module.exports = {
             }
         })
 
-        //VOICE IS IN SECONDS
-        activityList.sort((a, b) => b.voice - a.voice)
+        activityList.sort((a, b) => b.messages - a.messages)
 
         //grabs 10 highest activity
         let list = '';
@@ -26,26 +24,22 @@ module.exports = {
         let activities = [];
         for (let i = 0; i < 10; i++) {
             if (activityList[i]) {
-                let totalVoice = Math.round(activityList[i].voice / 60);
-                let member = message.guild.members.cache.get(activityList[i]._id)
-
-                users.push(member.user.username);
-                activities.push(Math.round(10 * totalVoice / 60) / 10);
-                if (totalVoice < 60) {
-                    list += `\n${i + 1}. **${member.displayName}** (${totalVoice}min/d)`;
-                }
-                else {
-                    list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * totalVoice / 60) / 10}hr/d)`;
-                }
+                let messages = activityList[i].messages;
+                await message.guild.members.fetch(`${activityList[i]._id}`).then(member => {
+                    users.push(member.user.username);
+                    activities.push(messages);
+                    list += `\n${i + 1}. **${member.displayName}** (${messages} messages)`;
+                }).catch(err => {
+                    console.log(err)
+                });
             }
         }
-
-        //prints voice activity
+        //prints message activity
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`Top voice activity`)
+            .setTitle(`Total messages sent`)
             .setDescription(list);
         message.channel.send(embed);
-        showBarChart(message, users, activities, `Total voice of ${message.guild.name}`, 'Voice (hours)');
+        showBarChart(message, users, activities, `Total messages in ${message.guild.name}`, 'messages');
     },
 };
