@@ -43,10 +43,10 @@ module.exports = {
         //interprets the time into millesconds
         let time = args[0].toLowerCase();
         let timeNum = parseInt(time);
-        if(isNaN(timeNum)) return message.reply(`A valid amount of time could be 2h`)
+        if(isNaN(timeNum)) return message.reply(`A valid amount of time could be 2h or 15m`)
         if (time.endsWith('h')) timeNum *= 60 * 60;
         else if (time.endsWith('m')) timeNum *= 60;
-        else return message.reply(`A valid amount of time could be 2h`)
+        else return message.reply(`A valid amount of time could be 2h or 15m`)
 
         let expires = new Date()
         expires.setSeconds(expires.getSeconds() + timeNum)
