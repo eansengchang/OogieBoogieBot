@@ -4,6 +4,10 @@ const commandBase = require('@root/commands/command-base');
 
 module.exports = async (client, message) => {
 
+    if (message.author.id === client.user.id && message.content.includes('not funny.') && Date.now() - message.createdAt.getTime() < 1000 * 60) {
+        message.channel.send('<@395152698120339456>, stop deleting my message, you\'re still not funny.');
+    }
+
     if (message.author.bot) return;
 
     if (message.guild) {

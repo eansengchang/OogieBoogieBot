@@ -47,7 +47,7 @@ module.exports = {
         let memory = stats1.indexSize + stats1.dataSize + stats2.indexSize + stats2.dataSize;
 
         embed.addField(
-            'Database Memory:',
+            'Database Storage:',
             `\`${Math.round(memory / 100000) / 10}mb / 500mb\``,
             false
         )
