@@ -18,7 +18,6 @@ module.exports = {
             .setColor('#0099ff')
             .setTitle(`${guild.name}'s settings`)
             .setFooter(`requested by ${message.author.tag}`)
-            .addField('Prefix: ', '\`e \`')
 
         //if theres any default roles settings
         let defaultRoleCollection = defaultRoleSchema;
