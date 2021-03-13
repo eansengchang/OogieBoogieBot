@@ -4,7 +4,7 @@ const { showBarChart } = require('@utils/chart')
 
 module.exports = {
     name: 'voice',
-    description: 'Top voice of this server',
+    description: 'Top total voice of this server',
     guildOnly: true,
     execute: async (message, args) => {
         let activityCollection = activitySchema(message.guild.id);
@@ -32,10 +32,10 @@ module.exports = {
                 users.push(member.user.username);
                 activities.push(Math.round(10 * totalVoice / 60) / 10);
                 if (totalVoice < 60) {
-                    list += `\n${i + 1}. **${member.displayName}** (${totalVoice}min/d)`;
+                    list += `\n${i + 1}. **${member.displayName}** (${totalVoice} mins)`;
                 }
                 else {
-                    list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * totalVoice / 60) / 10}hr/d)`;
+                    list += `\n${i + 1}. **${member.displayName}** (${Math.round(10 * totalVoice / 60) / 10} hours)`;
                 }
             }
         }
