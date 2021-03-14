@@ -5,8 +5,9 @@ const autoRoleSchema = require('@models/autorole-schema');
 
 module.exports = {
     name: 'autorole',
+    examples: ['off', '@role', '{role id}'],
     description: 'The role given to new members.',
-    expectedArgs: '{role}',
+    expectedArgs: '{role} / off',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
@@ -63,7 +64,7 @@ module.exports = {
             }
         ).exec()
 
-        if (args[0] == 'off') {
+        if (args[0] == 'off' || args[0] == 'remove') {
             return message.channel.send(`I have successfully deleted the auto role`)
         }
         message.channel.send(`I have successfully set the auto role to ${role.name}`)

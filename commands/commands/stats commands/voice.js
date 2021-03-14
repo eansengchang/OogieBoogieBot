@@ -46,6 +46,6 @@ module.exports = {
             .setTitle(`Top voice activity`)
             .setDescription(list);
         message.channel.send(embed);
-        showBarChart(message, users, activities, `Total voice of ${message.guild.name}`, 'Voice (hours)');
+        showBarChart(message, users, activities, `Total voice of ${message.guild.name}`, 'Total Voice (hours)');
     },
 };

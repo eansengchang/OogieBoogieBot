@@ -5,9 +5,10 @@ const timeoutSchema = require('@models/timeout-role-schema');
 
 module.exports = {
     name: 'muterole',
+    examples: ['off', '@role', '{role id}'],
     aliases: ['timeoutrole'],
     description: 'The role given to timeout / mute from server.',
-    expectedArgs: '{role}',
+    expectedArgs: '{role} / off',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
@@ -48,7 +49,8 @@ module.exports = {
             roleID = '';
         }
         else if (!role) {
-            return message.reply('That is not a role!');
+            await message.reply('That is not a role!');
+            return;
         }
 
         //updates messages
@@ -65,7 +67,7 @@ module.exports = {
             }
         ).exec()
 
-        if (args[0] == 'off') {
+        if (args[0] == 'off'|| args[0] == 'remove') {
             return message.channel.send(`I have successfully deleted the timeout role`)
         }
         message.channel.send(`I have successfully set the timeout role to ${role.name}`)

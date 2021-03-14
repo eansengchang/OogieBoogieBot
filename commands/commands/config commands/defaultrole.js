@@ -5,6 +5,7 @@ const defaultRoleSchema = require('@models/default-role-schema');
 
 module.exports = {
     name: 'defaultrole',
+    examples: ['off', '@role', '{role id}'],
     description: 'The role to untimeout/unmute.',
     expectedArgs: '{role}',
     guildOnly: true,
@@ -64,7 +65,7 @@ module.exports = {
             }
         ).exec()
 
-        if (args[0] == 'off') {
+        if (args[0] == 'off' || args[0] == 'remove') {
             return message.channel.send(`I have successfully deleted the default role`)
         }
         message.channel.send(`I have successfully set the default role to ${role.name}`)
