@@ -17,7 +17,7 @@ module.exports = {
         let { channel } = message;
 
         let member = message.mentions.members.first();
-        if (!member) return message.reply('You need to specify who to mimick')
+        if (!member) return message.reply('That is not a valid member.')
 
         // let content = message.cleanContent.trim().split(/ +/);
         // for (let i = 0; i < 2 + (member.displayName).split(' ').length; i++) {
