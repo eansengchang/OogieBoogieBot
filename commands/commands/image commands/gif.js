@@ -8,7 +8,7 @@ module.exports = {
     minArgs: 1,
     clientPermissions: ['ATTACH_FILES'],
     async execute(message, args) {
-        let url = `https://g.tenor.com/v1/search?q=${args.join(' ')}&key=${process.env.TENOR_KEY}&contentfilter=medium`;
+        let url = `https://g.tenor.com/v1/search?q=${args.join(' ')}&key=${process.env.TENOR_KEY}&contentfilter=low`;
         let response = await fetch(url);
         let json = await response.json();
         let results = json.results;
