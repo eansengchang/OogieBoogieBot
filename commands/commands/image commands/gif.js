@@ -14,7 +14,7 @@ module.exports = {
         let results = json.results;
         let random = results[Math.floor(Math.random() * results.length)];
 
-        Message.channel.send('Via tenor:')
+        message.channel.send('Via tenor:')
         message.channel.send(random.url)
     },
 };
