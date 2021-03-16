@@ -9,8 +9,8 @@ module.exports = async (client) => {
             _id: member.guild.id
         }, (err, object) => { })
 
-        if (autoRole && autoRole.autoRole != ''){
-            member.roles.add([autoRole.autoRole])
+        if (autoRole && autoRole.autoRole != '') {
+            member.roles.add([autoRole.autoRole]).catcH(() => { })
         }
     })
 }
