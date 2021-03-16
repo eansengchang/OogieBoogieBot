@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const Discord = require('discord.js');
 
 module.exports = {
     name: 'gif',
@@ -13,6 +14,12 @@ module.exports = {
         let json = await response.json();
         let results = json.results;
         let random = results[Math.floor(Math.random() * results.length)];
-        message.channel.send(random.url)
+
+        let embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setImage(random.url)
+        .setFooter('Via tenor');
+
+    message.channel.send(embed);
     },
 };
