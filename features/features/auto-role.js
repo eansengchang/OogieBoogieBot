@@ -10,7 +10,7 @@ module.exports = async (client) => {
         }, (err, object) => { })
 
         if (autoRole && autoRole.autoRole != '') {
-            member.roles.add([autoRole.autoRole]).catcH(() => { })
+            member.roles.add([autoRole.autoRole]).catch(() => { })
         }
     })
 }
