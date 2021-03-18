@@ -7,7 +7,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Invite link')
-            .setDescription('[click this link to invite me](https://discord.com/oauth2/authorize?client_id=789960873203990598&permissions=3072&scope=bot)')
+            .setDescription('[click this link to invite me](https://discord.com/oauth2/authorize?client_id=789960873203990598&permissions=0&scope=bot)')
 
         message.channel.send(embed)
     },

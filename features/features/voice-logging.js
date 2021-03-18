@@ -29,7 +29,7 @@ module.exports = async (client) => {
             let text = `:mute: **${state1.member.user.tag}** left **${state1.channel.name}** `;
 
             if (!activity || !activity.voiceJoinedStamp) {
-                vlogChannel.send(text);
+                vlogChannel.send(text).catch(() => { });
                 return
             }
 
@@ -39,7 +39,7 @@ module.exports = async (client) => {
             else if (time / 60 < 60) text += (`[Call time: **${Math.floor(time / 60)}m${Math.floor(time % 60)}s**]`);
             else text += (`[Call time: **${Math.floor(time / 60 / 60)}hr${Math.floor((time / 60) % 60)}m**]`);
 
-            vlogChannel.send(text)
+            vlogChannel.send(text).catch(() => { })
         }
 
         //connects to channel
@@ -52,7 +52,7 @@ module.exports = async (client) => {
 
         //moved channels
         else if (state1.channelID !== state2.channelID) {
-            vlogChannel.send(`:arrow_right: **${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`)
+            vlogChannel.send(`:arrow_right: **${state1.member.user.tag}** moved from **${state1.channel.name}** to **${state2.channel.name}**`).catch(() => { })
         }
     })
 }

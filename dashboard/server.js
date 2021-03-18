@@ -79,7 +79,7 @@ app.get('/commands', (req, res) => {
 });
 
 app.get('/invite', (req, res) => {
-    res.redirect('https://discord.com/api/oauth2/authorize?client_id=789960873203990598&permissions=3072&scope=bot');
+    res.redirect('https://discord.com/api/oauth2/authorize?client_id=789960873203990598&permissions=0&scope=bot');
 })
 
 app.get('/support', (req, res) => {
