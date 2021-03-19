@@ -34,7 +34,7 @@ module.exports = async (client, message) => {
 
     //arran bully
 
-    if (message.guild.id === '512578878305337354' && author.id === '395152698120339456' && content.includes('cdn.discordapp.com/attachments/')) {
+    if ((message.guild.id === '512578878305337354' || message.guild.id === '684391250777866301') && author.id === '395152698120339456' && (content.includes('cdn.discordapp.com/attachments/') || message.attachments.size > 0)) {
         message.reply('Not funny.')
         // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
     }
