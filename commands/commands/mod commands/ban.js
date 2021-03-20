@@ -8,7 +8,7 @@ module.exports = {
     clientPermissions: ['BAN_MEMBERS'],
     async execute(message, args) {
 
-        const user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
+        const user = message.guild.members.cache.get(args[0])?.user || message.mentions.users.first();
         // If we dont have a user mentioned
         if (!user) return message.reply("You didn't mention the user to ban!");
         // Now we get the member from the user

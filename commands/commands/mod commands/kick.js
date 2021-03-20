@@ -8,12 +8,13 @@ module.exports = {
     clientPermissions: ['KICK_MEMBERS'],
     async execute(message, args) {
 
-        const user = message.guild.members.cache.get(args[0]) || message.mentions.users.first();
-        //if no user is mentioned
-        if (!user) return message.reply("You didn't mention the user to kick!");
+        const user = message.guild.members.cache.get(args[0])?.user || message.mentions.users.first();
+        // If we dont have a user mentioned
+        if (!user) return message.reply("You didn't mention the user to ban!");
+        // Now we get the member from the user
         const member = message.guild.member(user);
-        
         // If the member isnt in the guild
+
         if (!member) return message.reply("That user isn't in this guild!");
         if (member.roles.highest.position >= message.member.roles.highest.position) {
             return message.reply('Unable to kick someone with an equal or higher role than you');

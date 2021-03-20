@@ -6,10 +6,11 @@ module.exports = {
     name: 'snipe',
     description: 'Snipe the last 10 messages',
     expectedArgs: '{num}',
-    memberPermissions: ['MANAGE_MESSAGES'],
 
     async execute(message, args) {
         if(args[0]==='enable'){
+            if(!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('You require the permission of managing messages to do this.')
+
             await snipeCollection.findOneAndUpdate(
                 {
                     _id: message.guild.id
@@ -24,6 +25,8 @@ module.exports = {
             )
             return message.channel.send('Sniping has now been enabled on this server.');
         } else if(args[0]==='disable'){
+            if(!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('You require the permission of managing messages to do this.')
+
             await snipeCollection.findOneAndUpdate(
                 {
                     _id: message.guild.id
