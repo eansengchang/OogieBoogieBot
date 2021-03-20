@@ -10,10 +10,9 @@ module.exports = {
     async execute(message, args) {
         let resp;
         try {
-            resp = math.evaluate(args.join(' '));
+            resp = math.evaluate(args.join(' ')).toString();
             if(`${resp}`.includes('function')) throw 'Only Number';
-            if (!resp.re && !resp.im) return await message.channel.send(resp);
-            return await message.channel.send(`${resp.re} + ${resp.im}i`)
+            await message.channel.send(resp)
         } catch (e) {
             return message.reply('Invalid Calculation.');
         }
