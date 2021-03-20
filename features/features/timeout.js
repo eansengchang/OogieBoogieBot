@@ -32,13 +32,9 @@ module.exports = async (client) => {
                 })
                 if (!untimeoutRole || untimeoutRole.defaultRole === '') continue
                 const defaultRole = untimeoutRole.defaultRole;
-                member.roles.set([defaultRole])
+                member.roles.set([defaultRole]).catch(() => { })
             }
-            await timeoutCollection.updateMany(conditional,
-                {
-                    current: false
-                }
-            )
+            await timeoutCollection.deleteMany(conditional)
         }
 
         setTimeout(checkMutes, 1000 * 60);
@@ -53,7 +49,7 @@ module.exports = async (client) => {
             _id: guild.id
         })
 
-        if (!timeoutRole || timeoutRole.timeoutRole !== '') return;
+        if (!timeoutRole || timeoutRole.timeoutRole === '') return;
 
         const currentTimeout = await timeoutSchema.findOne({
             userId: id,
@@ -64,7 +60,7 @@ module.exports = async (client) => {
         if (currentTimeout) {
             //remutes them
             member
-                .roles.set([timeout.timeoutRole]).catch(() => {})
+                .roles.set([timeoutRole.timeoutRole]).catch(() => { })
         }
 
     })

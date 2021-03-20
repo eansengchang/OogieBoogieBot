@@ -35,16 +35,10 @@ module.exports = {
             .roles.set([defaultRole.defaultRole])
             .then(async () => {
                 let timeoutCollection = timeoutSchema;
-                const timeouts = await timeoutCollection.findOneAndUpdate(
+                const timeouts = await timeoutCollection.deleteMany(
                     {
                         userId: member.id,
                         guildId: message.guild.id
-                    },
-                    {
-                        current: false
-                    },
-                    {
-                        upsert: false,
                     }
                 )
 
