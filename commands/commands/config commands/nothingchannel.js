@@ -1,38 +1,39 @@
 //const SQLite = require("better-sqlite3");
 //const sql = new SQLite('./activity.sqlite');
 const Discord = require('discord.js');
-const voteChannelSchema = require('@models/vote-channel-schema');
+const nothingChannelSchema = require('@models/nothing-channel-schema');
 
 module.exports = {
-    name: 'votechannel',
+    name: 'nothingchannel',
     examples:['remove #channel', '#channel'],
-    description: 'Creates an automatic channel for polls',
+    description: 'Creates a \'nothing\' channel...',
     expectedArgs: '#channel / remove #channel',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 2,
     memberPermissions: ['ADMINISTRATOR'],
+    clientPermissinos: ['MANAGE_MESSAGES'],
     execute: async (message, args) => {
-        let voteChannelCollection = voteChannelSchema;
+        let nothingChannelCollection = nothingChannelSchema;
 
         //just shows information
         if (args.length === 0) {
-            let channels = await voteChannelCollection.find({ serverID: message.guild.id })
+            let channels = await nothingChannelCollection.find({ serverID: message.guild.id })
 
             if (channels.length !== 0) {
                 let text = '';
                 channels.forEach(channel => {
-                    text += `<#${channel.voteChannelID}>\n`
+                    text += `<#${channel.nothingChannelID}>\n`
                 });
 
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Voting channels of ${message.guild.name}`)
+                    .setTitle(`'Nothing' channels of ${message.guild.name}`)
                     .setDescription(text)
                     .setColor('#0099ff')
 
                 message.channel.send(embed)
             } else {
-                message.channel.send(`Set up vote channel using \`e votechannel #channel\``)
+                message.channel.send(`Set up a 'nothing' channel using \`e nothingchannel #channel\``)
             }
             return;
         }
@@ -45,8 +46,8 @@ module.exports = {
                 return message.reply('This is not a valid text channel.')
             }
 
-            await voteChannelCollection.deleteOne({
-                voteChannelID: channel.id
+            await nothingChannelCollection.deleteOne({
+                nothingChannelID: channel.id
             })
 
             message.channel.send(`Removed channel <#${channel.id}>.`);
@@ -59,26 +60,26 @@ module.exports = {
             return message.reply('This is not a valid text channel.')
         }
 
-        let voteChannels = await voteChannelCollection.find({ serverID: message.guild.id })
+        let nothingChannels = await nothingChannelCollection.find({ serverID: message.guild.id })
         let double = false;
-        voteChannels.forEach(voteChannel => {
-            if (voteChannel.voteChannelID === channel.id) {
+        nothingChannels.forEach(nothingChannel => {
+            if (nothingChannel.nothingChannelID === channel.id) {
                 double = true;
             }
         })
 
         if(double){
-            return message.reply('Channel is already set as a voting channel')
+            return message.reply('Channel is already set as a \'nothing\' channel')
         }
 
-        let newChannel = new voteChannelCollection(
+        let newChannel = new nothingChannelCollection(
             {
                 serverID: message.guild.id,
-                voteChannelID: channel.id
+                nothingChannelID: channel.id
             }
         );
         await newChannel.save();
 
-        message.channel.send(`Successfully set a vote channel to ${channel.name}!`)
+        message.channel.send(`Successfully set a \'nothing\' channel to ${channel.name}!`)
     },
 };

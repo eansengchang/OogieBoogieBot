@@ -4,7 +4,7 @@ module.exports = async (client) => {
     //message logging
 
     client.on('message', async (message) => {
-        if(!message.guild) return;
+        if (!message.guild) return;
 
         let voteChannelCollection = voteChannelSchema;
         let channels = await voteChannelCollection.find({ serverID: message.guild.id })
@@ -16,12 +16,8 @@ module.exports = async (client) => {
         });
 
         if (flag) {
-            try {
-                message.react('👍');
-                message.react('👎');
-            } catch {
-                return;
-            }
+            message.react('👍').catch(() => { });
+            message.react('👎').catch(() => { });
         }
     })
 }
