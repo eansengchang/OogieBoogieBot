@@ -9,7 +9,7 @@ module.exports = {
 
     async execute(message, args) {
         if(args[0]==='enable'){
-            if(!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('You require the permission of managing messages to do this.')
+            if(!message.member.permissions.has('ADMINISTRATOR')) return message.reply('You require the permission of administrator to do this.')
 
             await snipeCollection.findOneAndUpdate(
                 {
@@ -25,7 +25,7 @@ module.exports = {
             )
             return message.channel.send('Sniping has now been enabled on this server.');
         } else if(args[0]==='disable'){
-            if(!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('You require the permission of managing messages to do this.')
+            if(!message.member.permissions.has('ADMINISTRATOR')) return message.reply('You require the permission of administrator to do this.')
 
             await snipeCollection.findOneAndUpdate(
                 {
