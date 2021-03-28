@@ -11,7 +11,7 @@ module.exports = {
     nsfw: true,
     async execute(message, args) {
 
-        let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join('_')}*`);
+        let response = await fetch(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${args.join('_')}`);
         let text = await response.text();
     
         let result = text.split('"').filter((element, index) => {
