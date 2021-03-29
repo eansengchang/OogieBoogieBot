@@ -23,9 +23,9 @@ module.exports = async (client, message) => {
         'Rey is a stinky', 'Rey is a curry muncher', 'Rey shoots up orphanages', 'Rey watched 300 naruto episodes in a week',
         'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud', 'Rey wants to get pegged by Joe',
         'Rey is hardstuck plat', 'Rey you eat cow'];
-    if (content.substring(0, 3) === 'rey' && message.guild.id === '512578878305337354') {
-        channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
-    }
+    // if (content.substring(0, 3) === 'rey' && message.guild.id === '512578878305337354') {
+    //     channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
+    // }
     //seif
     const seif = ['SEIF IS INSANELY SUS HOLY FUCK', 'Seif is a pedo', 'Seif? The failure of a human being?',
         'Seif is packing a tic-tac', 'Seif has big boobies', 'Seif is a stinky', 'Seif shoots up orphanages',
