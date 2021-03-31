@@ -26,13 +26,12 @@ module.exports = async (client, message) => {
     if (content.substring(0, 3) === 'rey' && message.guild.id === '512578878305337354') {
         channel.send('<@512375511205543936> ' + rey[Math.floor(Math.random() * rey.length)]);
     }
-    //seif
-    const seif = ['SEIF IS INSANELY SUS HOLY FUCK', 'Seif is a pedo', 'Seif? The failure of a human being?',
-        'Seif is packing a tic-tac', 'Seif has big boobies', 'Seif is a stinky', 'Seif shoots up orphanages',
-        'Seif wants to fuck Tima', 'Seif wants to get pegged by James Charles', 'Seif\'s broke the record for most thicc athelete in the world with his 4Km run in 15 mins',
-        'Seif is so homophobic that even joe wouldn\'t allow the tap', 'seif had krishna\'s babies'];
 
-    //arran bully
+    //joe
+    const joe = ['Joe is stinky'];
+    if (content.substring(0, 3) === 'joe' && message.guild.id === '512578878305337354') {
+        channel.send('<@249148390527598592> ' + joe[Math.floor(Math.random() * joe.length)]);
+    }
 
     if ((message.guild.id === '512578878305337354' || message.guild.id === '684391250777866301') && author.id === '395152698120339456' && (content.includes('cdn.discordapp.com/attachments/') || content.includes('media.discordapp.net') || message.attachments.size > 0)) {
         message.reply('Not funny.')
