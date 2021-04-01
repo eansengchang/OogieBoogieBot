@@ -35,7 +35,7 @@ module.exports = async (client, message) => {
 
     //krishna
     const krishna = ['Krishna is stinky'];
-    if (content.substring(0, 3) === 'krishna' && message.guild.id === '512578878305337354') {
+    if (content.substring(0, 7) === 'krishna' && message.guild.id === '512578878305337354') {
         channel.send('<@414366502540804116> ' + krishna[Math.floor(Math.random() * krishna.length)]);
     }
 
