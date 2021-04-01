@@ -33,6 +33,12 @@ module.exports = async (client, message) => {
         channel.send('<@249148390527598592> ' + joe[Math.floor(Math.random() * joe.length)]);
     }
 
+    //krishna
+    const krishna = ['Krishna is stinky'];
+    if (content.substring(0, 3) === 'krishna' && message.guild.id === '512578878305337354') {
+        channel.send('<@414366502540804116> ' + krishna[Math.floor(Math.random() * krishna.length)]);
+    }
+
     if ((message.guild.id === '512578878305337354' || message.guild.id === '684391250777866301') && author.id === '395152698120339456' && (content.includes('cdn.discordapp.com/attachments/') || content.includes('media.discordapp.net') || message.attachments.size > 0)) {
         message.reply('Not funny.')
         // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
