@@ -76,7 +76,7 @@ module.exports = message => {
         }
     }
 
-    if (message.channel.type !== 'dm' && nsfw && message.guild.id !== '512578878305337354') {
+    if (message.channel.type !== 'dm' && nsfw) {
         if (!message.channel.nsfw) return message.reply('This is not an NSFW channel');
     }
 

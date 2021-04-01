@@ -23,7 +23,12 @@ module.exports = async (client, message) => {
         'Rey is a stinky', 'Rey is a curry muncher', 'Rey shoots up orphanages', 'Rey watched 300 naruto episodes in a week',
         'Rey is a weeb', 'Rey wants to fuck Tima', 'Rey got his league account banned', 'Ben chud', 'Rey wants to get pegged by Joe',
         'Rey is hardstuck plat', 'Rey you eat cow'];
-        
+
+    if ((message.guild.id === '512578878305337354' || message.guild.id === '684391250777866301') && author.id === '395152698120339456' && (content.includes('cdn.discordapp.com') || content.includes('media.discordapp.net') || message.attachments.size > 0)) {
+        message.reply('Not funny.')
+        // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
+    }
+
     // rey delete
     // if (message.author.id === '512375511205543936' && message.guild.id === '512578878305337354') {
     //     await message.delete().catch(() => { });
