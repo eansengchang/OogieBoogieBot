@@ -8,6 +8,7 @@ module.exports = {
     aliases: ['info'],
     description: 'Info on this bot.',
     execute: async (message, args) => {
+        if (message.author.id !== '333177159357169664') return;
         let embed;
         let { client } = message;
 
