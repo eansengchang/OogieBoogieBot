@@ -66,7 +66,7 @@ module.exports = async (client) => {
         }
 
         if (!activity) {
-            console.log(`Couln't get activity...`)
+            // console.log(`Couln't get activity...`)
             return;
         }
 

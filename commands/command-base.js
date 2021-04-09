@@ -121,11 +121,11 @@ module.exports = message => {
 
     try {
         let text = `In **${message.guild ? message.guild.name : 'dm'}** in **#${message.channel.name ? message.channel.name : 'dm'}** by **${message.author.tag}**: \`${prefix}${commandName} ${args.join(' ')}\``;
-        console.log(text)
+        // console.log(text)
         client.guilds.cache.get('616347460679368731').channels.cache.get('809573431195729940').send(text);
         execute(message, args);
     } catch (error) {
-        console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
+        // console.log(`THERE WAS AN ERROR BUT WAS CATCHED: ${error}`);
         message.reply('there was an error trying to execute that command!');
     }
 }
