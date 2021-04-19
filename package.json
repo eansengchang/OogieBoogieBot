@@ -24,7 +24,7 @@
     "module-alias": "^2.2.2",
     "mongoose": "^5.12.3",
     "node-fetch": "^2.6.1",
-    "npm": "^7.9.0",
+    "npm": "^7.10.0",
     "pug": "^3.0.2"
   },
   "_moduleAliases": {
