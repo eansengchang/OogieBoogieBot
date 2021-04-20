@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 prefix = config.prefix;
 
 const listCommands = require('../../list-commands')
-const categoryNames = ['config', 'fun', 'info', 'stats', 'mod', 'voice', 'image', 'game', 'nsfw', 'economy'];
+const categoryNames = ['config', 'fun', 'info', 'stats', 'mod', 'voice', 'image', 'game', 'economy'];
 
 module.exports = {
     name: 'help',
