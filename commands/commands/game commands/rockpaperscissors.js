@@ -64,9 +64,10 @@ module.exports = {
                 authorChoice = decisions.indexOf(content);
             } else if (dmMessage.author.id === member.id) {
                 memberChoice = decisions.indexOf(content);
-            } else {
-                console.log('THIS IS NOT MEANT TO HAPPEN')
-            }
+            } 
+            // else {
+            //      console.log('THIS IS NOT MEANT TO HAPPEN')
+            // }
 
             let editedEmbed;
 
