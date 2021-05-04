@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'gif',
+    cooldown: 1,
     examples:['cute cat'],
     description: 'Shows a gif',
     expectedArgs: '{tag}',
