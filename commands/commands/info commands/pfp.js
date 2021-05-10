@@ -11,6 +11,6 @@ module.exports = {
             user = message.mentions.users.first() || message.author || message.member.user;
         })
 
-        message.channel.send(`${user.displayAvatarURL({ format: 'png', dynamic: true })}`);
+        message.channel.send(`${user.displayAvatarURL({ size: 4096, dynamic: true })}`);
     },
 };
