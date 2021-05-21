@@ -38,7 +38,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setTitle(`${message.member.displayName} has withdrew!`)
-            .setDescription(`**$${ammount}** has been added to your bank account`)
+            .setDescription(`**$${ammount}** has been withdrawn from your bank account`)
             .setColor('#0099ff')
 
         message.channel.send(embed)

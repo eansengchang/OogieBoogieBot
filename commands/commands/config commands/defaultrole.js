@@ -7,7 +7,7 @@ module.exports = {
     name: 'defaultrole',
     examples: ['off', '@role', '{role id}'],
     description: 'The role to untimeout/unmute.',
-    expectedArgs: '{role}',
+    expectedArgs: '{role id} / off',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,

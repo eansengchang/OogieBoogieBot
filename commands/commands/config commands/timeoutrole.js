@@ -8,7 +8,7 @@ module.exports = {
     examples: ['off', '@role', '{role id}'],
     aliases: ['timeoutrole'],
     description: 'The role given to timeout / mute from server.',
-    expectedArgs: '{role} / off',
+    expectedArgs: '{role id} / off',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,

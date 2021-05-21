@@ -7,7 +7,7 @@ module.exports = {
     name: 'autorole',
     examples: ['off', '@role', '{role id}'],
     description: 'The role given to new members.',
-    expectedArgs: '{role} / off',
+    expectedArgs: '{role id} / off',
     guildOnly: true,
     minArgs: 0,
     maxArgs: 1,
