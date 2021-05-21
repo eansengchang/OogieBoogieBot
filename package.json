@@ -18,13 +18,13 @@
     "chart.js": "^2.9.4",
     "chartjs-node-canvas": "^3.0.6",
     "discord.js": "^12.5.3",
-    "dotenv": "^8.2.0",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "mathjs": "^9.3.0",
+    "mathjs": "^9.4.0",
     "module-alias": "^2.2.2",
-    "mongoose": "^5.12.3",
+    "mongoose": "^5.12.9",
     "node-fetch": "^2.6.1",
-    "npm": "^7.9.0",
+    "npm": "^7.13.0",
     "pug": "^3.0.2"
   },
   "_moduleAliases": {
