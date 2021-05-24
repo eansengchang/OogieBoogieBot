@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "mathjs": "^9.4.0",
     "module-alias": "^2.2.2",
-    "mongoose": "^5.12.9",
+    "mongoose": "^5.12.10",
     "node-fetch": "^2.6.1",
     "npm": "^7.13.0",
     "pug": "^3.0.2"
