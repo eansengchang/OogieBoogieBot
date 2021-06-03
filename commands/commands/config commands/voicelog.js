@@ -6,6 +6,7 @@ const vlogSchema = require('@models/vlog-schema');
 module.exports = {
     name: 'voicelog',
     aliases: ['vlog'],
+    examples: ['#channel', 'remove'],
     description: 'Logs all voice into a channel.',
     expectedArgs: '#channel',
     guildOnly: true,
@@ -25,7 +26,7 @@ module.exports = {
             return;
         }
 
-        if (args[0] === 'off') {
+        if (args[0] === 'off' || args[0] === 'remove') {
             await vlogCollection.findOneAndUpdate(
                 {
                     _id: message.guild.id
