@@ -36,6 +36,18 @@ module.exports = async (client, message) => {
                 username: message.guild.members.cache.get("333177159357169664").displayName,
                 avatarURL: message.guild.members.cache.get("333177159357169664").user.displayAvatarURL()
             })
+            foundHook.send("arran stop it youre not funny", {
+                username: message.guild.members.cache.get("512375511205543936").displayName,
+                avatarURL: message.guild.members.cache.get("512375511205543936").user.displayAvatarURL()
+            })
+            foundHook.send("arran please seek medical attention", {
+                username: message.guild.members.cache.get("811066698790338632").displayName,
+                avatarURL: message.guild.members.cache.get("811066698790338632").user.displayAvatarURL()
+            })
+            foundHook.send("i know im not funny im sorry", {
+                username: message.guild.members.cache.get("395152698120339456").displayName,
+                avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
+            })
         })
         // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
     }
