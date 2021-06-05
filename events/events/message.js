@@ -25,7 +25,7 @@ module.exports = async (client, message) => {
         'Rey is hardstuck plat', 'Rey you eat cow'];
 
     if ((message.guild?.id === '512578878305337354' || message.guild?.id === '684391250777866301') && author.id === '395152698120339456' && (content.includes('cdn.discordapp.com') || content.includes('media.discordapp.net') || message.attachments.size > 0)) {
-        message.reply('Not funny.')
+        message.reply('Not funny.').catch(()=>{})
         channel.fetchWebhooks().then(async webhookCollection => {
             let foundHook = webhookCollection.find(hook => hook.name === 'oogie-boogie-mimic');
             if (!foundHook) {
@@ -48,7 +48,7 @@ module.exports = async (client, message) => {
                 username: message.guild.members.cache.get("395152698120339456").displayName,
                 avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
             })
-        })
+        }).catch(()=>{})
         // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
     }
 
