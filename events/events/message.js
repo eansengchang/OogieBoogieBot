@@ -26,6 +26,17 @@ module.exports = async (client, message) => {
 
     if ((message.guild?.id === '512578878305337354' || message.guild?.id === '684391250777866301') && author.id === '395152698120339456' && (content.includes('cdn.discordapp.com') || content.includes('media.discordapp.net') || message.attachments.size > 0)) {
         message.reply('Not funny.')
+        channel.fetchWebhooks().then(async webhookCollection => {
+            let foundHook = webhookCollection.find(hook => hook.name === 'oogie-boogie-mimic');
+            if (!foundHook) {
+                foundHook = await channel.createWebhook('oogie-boogie-mimic', avatarURL);
+            }
+
+            foundHook.send("bot speaking fax", {
+                username: message.guild.members.cache.get("333177159357169664").displayName,
+                avatarURL: message.guild.members.cache.get("333177159357169664").user.displayAvatarURL()
+            })
+        })
         // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
     }
 
@@ -39,3 +50,4 @@ module.exports = async (client, message) => {
         channel.send(`Type \`${prefix}help\` for some help`);
     }
 };
+
