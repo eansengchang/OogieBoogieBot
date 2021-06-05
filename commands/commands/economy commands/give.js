@@ -72,7 +72,7 @@ module.exports = {
 
         if (isNaN(ammount) || ammount < 0) return message.reply('That is not a valid amount')
 
-        if (ammount > giver.money) return message.reply('You don\'t have the money for that!')
+        if (ammount > giver.money) return message.reply('You don\'t have the money for that, you only have $${giver.money} in cash!')
 
         await giver.updateOne({
             money: giver.money - ammount
