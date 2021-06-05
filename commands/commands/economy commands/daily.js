@@ -14,6 +14,7 @@ module.exports = {
     name: 'daily',
     description: 'Gets your daily reward',
     guildOnly: true,
+    cooldown: 60*60*24
     async execute(message, args) {
         const { guild, member } = message;
         const { id } = member;
