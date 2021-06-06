@@ -39,30 +39,30 @@ module.exports = async (client, message) => {
                 username: message.guild.members.cache.get("512375511205543936").displayName,
                 avatarURL: message.guild.members.cache.get("512375511205543936").user.displayAvatarURL()
             })
-            foundHook.send("arran please seek medical attention", { //kj
-                username: message.guild.members.cache.get("811066698790338632").displayName,
-                avatarURL: message.guild.members.cache.get("811066698790338632").user.displayAvatarURL()
-            })
-            foundHook.send("i know im not funny im sorry", { //arran
-                username: message.guild.members.cache.get("395152698120339456").displayName,
-                avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
-            })
-            foundHook.send("you keep saying that but why do keep posting such bad memes", { //rey
-                username: message.guild.members.cache.get("512375511205543936").displayName,
-                avatarURL: message.guild.members.cache.get("512375511205543936").user.displayAvatarURL()
-            })
-            foundHook.send("im only trying to compensate for my tiny dick with my broken sense of humour", { //arran
-                username: message.guild.members.cache.get("395152698120339456").displayName,
-                avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
-            })
-            foundHook.send("its not working out really well now is it?", { //esc
-                username: message.guild.members.cache.get("333177159357169664").displayName,
-                avatarURL: message.guild.members.cache.get("333177159357169664").user.displayAvatarURL()
-            })
-            foundHook.send("look i know im a failure of a human being stop it please im begging you", { //arran
-                username: message.guild.members.cache.get("395152698120339456").displayName,
-                avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
-            })
+            // foundHook.send("arran please seek medical attention", { //kj
+            //     username: message.guild.members.cache.get("811066698790338632").displayName,
+            //     avatarURL: message.guild.members.cache.get("811066698790338632").user.displayAvatarURL()
+            // })
+            // foundHook.send("i know im not funny im sorry", { //arran
+            //     username: message.guild.members.cache.get("395152698120339456").displayName,
+            //     avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
+            // })
+            // foundHook.send("you keep saying that but why do keep posting such bad memes", { //rey
+            //     username: message.guild.members.cache.get("512375511205543936").displayName,
+            //     avatarURL: message.guild.members.cache.get("512375511205543936").user.displayAvatarURL()
+            // })
+            // foundHook.send("im only trying to compensate for my tiny dick with my broken sense of humour", { //arran
+            //     username: message.guild.members.cache.get("395152698120339456").displayName,
+            //     avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
+            // })
+            // foundHook.send("its not working out really well now is it?", { //esc
+            //     username: message.guild.members.cache.get("333177159357169664").displayName,
+            //     avatarURL: message.guild.members.cache.get("333177159357169664").user.displayAvatarURL()
+            // })
+            // foundHook.send("look i know im a failure of a human being stop it please im begging you", { //arran
+            //     username: message.guild.members.cache.get("395152698120339456").displayName,
+            //     avatarURL: message.guild.members.cache.get("395152698120339456").user.displayAvatarURL()
+            // })
         }).catch(() => { })
         // await message.delete({ reason: 'arran made bad meme' }).catch(() => {})
     }
