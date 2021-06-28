@@ -20,7 +20,7 @@
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "mathjs": "^9.4.0",
+    "mathjs": "^9.4.3",
     "module-alias": "^2.2.2",
     "mongoose": "^5.12.9",
     "node-fetch": "^2.6.1",
