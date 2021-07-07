@@ -8,6 +8,8 @@ module.exports = {
     minArgs: 1,
     expectedArgs: '{calculation}',
     async execute(message, args) {
+        if(author.id == "811066698790338632") return message.reply("cry")
+
         let { client } = message;
         
         let resp;
