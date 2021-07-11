@@ -52,9 +52,9 @@ module.exports = {
         //shuffles people
         people = people.sort(() => 0.5 - Math.random());
 
-        if (people.length > 20) {
-            message.channel.send('Too many people! Randomly picking 20 members to fight...')
-            people.splice(20)
+        if (people.length > 40) {
+            message.channel.send('Too many people! Randomly picking 40 members to fight...')
+            people.splice(40)
         }
 
         let response = '';
